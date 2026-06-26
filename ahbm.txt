@@ -3552,12 +3552,11 @@ rule("CORE: (BOSS) Mercy - Switch")
 	{
 		Ongoing - Each Player;
 		Team 1;
-		All;
+		Mercy;
 	}
 
 	conditions
 	{
-		Event Player == Players On Hero(Hero(Mercy), Team 1);
 		Event Player.M == True;
 	}
 
@@ -6526,13 +6525,8 @@ rule("CORE: (BOSS) JUNK - SWITCH DMG")
 	event
 	{
 		Ongoing - Each Player;
-		All;
-		All;
-	}
-
-	conditions
-	{
-		Event Player == Players On Hero(Hero(Junkrat), Team 1);
+		Team 1;
+		Junkrat;
 	}
 
 	actions
