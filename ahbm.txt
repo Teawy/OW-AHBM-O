@@ -19174,7 +19174,7 @@ rule("CORE: (TEAM) MAUGA - START CARDIAC HEAL SELF")
 
 	actions
 	{
-		Start Healing Modification(Event Player, Event Player, 750, Receivers Healers and Healing Percent);
+		Start Healing Modification(Event Player, Event Player, 750, None);
 		Event Player.cardiac_heal = Last Healing Modification ID;
 	}
 }
@@ -19217,7 +19217,7 @@ rule("CORE: (TEAM) KIRIKO - START SHIMADA HEALING")
 	{
 		Start Healing Modification(Remove From Array(Append To Array(Append To Array(Players On Hero(Hero(Kiriko), Team Of(Event Player)),
 			Players On Hero(Hero(Genji), Team Of(Event Player))), Players On Hero(Hero(Hanzo), Team Of(Event Player))), Event Player),
-			Event Player, 1500, Receivers Healers and Healing Percent);
+			Event Player, 1500, Receivers and Healers);
 		Event Player.Shimada_Healing = Last Healing Modification ID;
 	}
 }
@@ -19252,7 +19252,7 @@ rule("CORE: (BOSS) RAM - START SK DMG")
 	actions
 	{
 		Start Damage Modification(Players On Hero(Hero(Mercy), Team 2), Players On Hero(Hero(Ramattra), Team 1), 177.777,
-			Receivers Damagers and Damage Percent);
+			Receivers and Damagers);
 	}
 }
 
