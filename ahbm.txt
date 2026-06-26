@@ -2013,6 +2013,80 @@ rule("CORE: (TIMER) SET START TIME")
 	}
 }
 
+rule("CORE: (BOSS) ALL - SWITCH OFF")
+{
+	event
+	{
+		Ongoing - Each Player;
+		Team 1;
+		All;
+	}
+
+	conditions
+	{
+		Event Player.current_hero != Hero Of(Event Player);
+	}
+
+	actions
+	{
+		Set Max Health(Event Player, 100);
+		Set Healing Dealt(Event Player, 100);
+		Set Move Speed(Event Player, 100);
+		Set Damage Dealt(Event Player, 100);
+		Set Gravity(Event Player, 100);
+		Set Invisible(Event Player, None);
+		Stop Scaling Player(Event Player);
+		Stop Scaling Barriers(Event Player);
+		Set Secondary Fire Enabled(Event Player, !Array Contains(Array(Hero(Baptiste), Hero(Zenyatta), Hero(Illari), Hero(Genji), Hero(Winston), Hero(Reaper)), Hero Of(
+			Event Player)));
+		Skip If(!Entity Exists(Event Player.PlayerFX_0), 2);
+		Destroy Effect(Event Player.PlayerFX_0);
+		Event Player.PlayerFX_0 = Null;
+		Skip If(!Entity Exists(Event Player.PlayerFX_1), 2);
+		Destroy Effect(Event Player.PlayerFX_1);
+		Event Player.PlayerFX_1 = Null;
+		Skip If(!Entity Exists(Event Player.PlayerFX_2), 2);
+		Destroy Effect(Event Player.PlayerFX_2);
+		Event Player.PlayerFX_2 = Null;
+		Skip If(!Entity Exists(Event Player.PlayerFX_3), 2);
+		Destroy Effect(Event Player.PlayerFX_3);
+		Event Player.PlayerFX_3 = Null;
+		Skip If(!Entity Exists(Event Player.C), 2);
+		Destroy Effect(Event Player.C);
+		Event Player.C = Null;
+		Skip If(!Entity Exists(Event Player.E), 2);
+		Destroy Effect(Event Player.E);
+		Event Player.E = Null;
+		Skip If(!Entity Exists(Event Player.G), 2);
+		Destroy Effect(Event Player.G);
+		Event Player.G = Null;
+		Skip If(!Entity Exists(Event Player.K), 2);
+		Destroy Effect(Event Player.K);
+		Event Player.K = Null;
+		Skip If(!Entity Exists(Event Player.S), 2);
+		Destroy Effect(Event Player.S);
+		Event Player.S = Null;
+		Skip If(!Entity Exists(Event Player.T), 2);
+		Destroy Effect(Event Player.T);
+		Event Player.T = Null;
+		Skip If(!Entity Exists(Event Player.U), 2);
+		Destroy Effect(Event Player.U);
+		Event Player.U = Null;
+		Event Player.D = Null;
+		Event Player.M = Null;
+		Set Ability 1 Enabled(Event Player, True);
+		Allow Button(Event Player, Button(Ultimate));
+		Destroy HUD Text(Event Player.charge_hud);
+		Remove Health Pool From Player(Global.BOSS_HealthPools[0]);
+		Remove Health Pool From Player(Global.BOSS_HealthPools[1]);
+		Skip If(Is Waiting For Players, 4);
+		Clear Status(Event Player, Burning);
+		Skip If(!Entity Exists(Event Player.N), 2);
+		Destroy Effect(Event Player.N);
+		Event Player.N = Null;
+	}
+}
+
 rule("CORE: (BOSS) ALL - RESISTANCE STAT")
 {
 	event
@@ -3549,30 +3623,6 @@ rule("CORE: (BOSS) Mercy - Life Steal")
 	}
 }
 
-rule("CORE: (BOSS) Mercy - Switch")
-{
-	event
-	{
-		Ongoing - Each Player;
-		Team 1;
-		Mercy;
-	}
-
-	conditions
-	{
-		Event Player.M == True;
-	}
-
-	actions
-	{
-		Event Player.M = Null;
-		Destroy Effect(Event Player.U);
-		Set Healing Received(Event Player, 100);
-		Set Max Health(Event Player, 100);
-		Set Move Speed(Event Player, 100);
-	}
-}
-
 rule("CORE: (BOSS) REIN - FLAME ON")
 {
 	event
@@ -3754,27 +3804,6 @@ rule("CORE: (BOSS) REIN - FLAME UNHACKED")
 	}
 }
 
-rule("CORE: (BOSS) REIN - SWITCH OFF")
-{
-	event
-	{
-		Ongoing - Each Player;
-		Team 1;
-		All;
-	}
-
-	conditions
-	{
-		Players On Hero(Hero(Reinhardt), Team 1) == False;
-		Is Waiting For Players == False;
-	}
-
-	actions
-	{
-		Clear Status(Event Player, Burning);
-	}
-}
-
 rule("CORE: (BOSS) REIN - SWITCH ON")
 {
 	event
@@ -3929,33 +3958,6 @@ rule("CORE: (BOSS) GENJI - DASH RESET ULT")
 	}
 }
 
-rule("CORE: (BOSS) GENJI - SWITCH")
-{
-	event
-	{
-		Ongoing - Each Player;
-		Team 1;
-		All;
-	}
-
-	conditions
-	{
-		Is Hero Being Played(Hero(Genji), Team 1) == False;
-		disabled Is Waiting For Players == False;
-	}
-
-	actions
-	{
-		disabled Skip If(Is Waiting For Players, 3);
-		Skip If(Event Player.S == Null, 2);
-		Destroy Effect(Event Player.S);
-		Event Player.S = Null;
-		Event Player.D = 0;
-		disabled Skip If(Array Contains(Array(Hero(Mercy), Hero(Symmetra), Hero(Zenyatta), Hero(Torbjörn)), Hero Of(Event Player)), 1);
-		disabled Set Ability 1 Enabled(Event Player, True);
-	}
-}
-
 rule("CORE: (BOSS) GENJI - DASH LOCK/UNLOCK")
 {
 	event
@@ -4035,27 +4037,6 @@ rule("CORE: (BOSS) ORISA - HACKED SPEED")
 	actions
 	{
 		Set Move Speed(Event Player, 55.555);
-	}
-}
-
-rule("CORE: (BOSS) ORISA - RESET SPEED")
-{
-	event
-	{
-		Ongoing - Each Player;
-		Team 1;
-		All;
-	}
-
-	conditions
-	{
-		Is Hero Being Played(Hero(Orisa), Team 1) == False;
-	}
-
-	actions
-	{
-		Abort If(Is Hero Being Played(Hero(Sombra), Team 1) || Is Hero Being Played(Hero(Tracer), Team 1));
-		Set Move Speed(Event Player, 100);
 	}
 }
 
@@ -4160,30 +4141,6 @@ rule("CORE: (BOSS) D.VA - FULL ULTIMATE")
 	}
 }
 
-rule("CORE: (BOSS) D.VA - SWITCH")
-{
-	event
-	{
-		Ongoing - Each Player;
-		Team 1;
-		All;
-	}
-
-	conditions
-	{
-		Is Hero Being Played(Hero(D.Va), Team 1) == False;
-		Is Waiting For Players == False;
-	}
-
-	actions
-	{
-		Destroy Effect(Event Player.N);
-		Destroy Effect(Event Player.PlayerFX_2);
-		Event Player.N = Null;
-		Event Player.PlayerFX_2 = Null;
-	}
-}
-
 rule("CORE: (BOSS) ZEN - NO ULTIMATE")
 {
 	event
@@ -4277,27 +4234,6 @@ rule("CORE: (BOSS) ZEN - FULL ULTIMATE")
 	}
 }
 
-rule("CORE: (BOSS) ZEN - SWITCH")
-{
-	event
-	{
-		Ongoing - Each Player;
-		Team 1;
-		All;
-	}
-
-	conditions
-	{
-		Is Hero Being Played(Hero(Zenyatta), Team 1) == False;
-	}
-
-	actions
-	{
-		Destroy Effect(Event Player.T);
-		Event Player.T = Null;
-	}
-}
-
 rule("CORE: (BOSS) MEI - NO ULTIMATE")
 {
 	event
@@ -4365,30 +4301,6 @@ rule("CORE: (BOSS) MEI - FULL ULTIMATE")
 		Destroy Effect(Event Player.PlayerFX_0);
 		Create Effect(All Players(Team 2), Sparkles, Color(Sky Blue), Event Player, 1.750, Visible To Position and Radius);
 		Event Player.PlayerFX_0 = Last Created Entity;
-	}
-}
-
-rule("CORE: (BOSS) MEI+REAP - SWITCH")
-{
-	event
-	{
-		Ongoing - Each Player;
-		Team 1;
-		All;
-	}
-
-	conditions
-	{
-		Is Hero Being Played(Hero(Mei), Team 1) == False;
-		Is Hero Being Played(Hero(Reaper), Team 1) == False;
-	}
-
-	actions
-	{
-		Destroy Effect(Event Player.PlayerFX_1);
-		Destroy Effect(Event Player.PlayerFX_0);
-		disabled Event Player.M = Null;
-		disabled Event Player.PlayerFX_0 = Null;
 	}
 }
 
@@ -4759,59 +4671,6 @@ rule("CORE: (BOSS) TRACER - ULTIMATE USE")
 	}
 }
 
-rule("CORE: (BOSS) TRACER - SWITCH")
-{
-	event
-	{
-		Ongoing - Each Player;
-		Team 1;
-		All;
-	}
-
-	conditions
-	{
-		Is Hero Being Played(Hero(Tracer), Team 1) == False;
-	}
-
-	actions
-	{
-		Skip If(Event Player.E == Null, 2);
-		Destroy Effect(Event Player.E);
-		Event Player.E = Null;
-		Skip If(Event Player.PlayerFX_3 == Null, 2);
-		Destroy Effect(Event Player.PlayerFX_3);
-		Event Player.PlayerFX_3 = Null;
-		Skip If(Event Player.PlayerFX_1 == Null, 2);
-		Destroy Effect(Event Player.PlayerFX_1);
-		Event Player.PlayerFX_1 = Null;
-		Set Invisible(Event Player, None);
-		Skip If(Is Hero Being Played(Hero(Sombra), Team 1), 1);
-		Set Damage Dealt(Event Player, 100);
-		Allow Button(Event Player, Button(Ultimate));
-	}
-}
-
-rule("CORE: (BOSS) TRACER - RESET SPEED")
-{
-	event
-	{
-		Ongoing - Each Player;
-		Team 1;
-		All;
-	}
-
-	conditions
-	{
-		Is Hero Being Played(Hero(Tracer), Team 1) == False;
-	}
-
-	actions
-	{
-		Abort If(Is Hero Being Played(Hero(Sombra), Team 1) || Is Hero Being Played(Hero(Orisa), Team 1));
-		Set Move Speed(Event Player, 100);
-	}
-}
-
 rule("CORE: (BOSS) BRIG - BASH ON")
 {
 	event
@@ -4858,28 +4717,6 @@ rule("CORE: (BOSS) BRIG - BASH OFF")
 	{
 		Destroy Effect(Event Player.C);
 		Chase Player Variable At Rate(Event Player, L, 0, 1, Destination and Rate);
-	}
-}
-
-rule("CORE: (BOSS) BRIG - SWITCH")
-{
-	event
-	{
-		Ongoing - Each Player;
-		Team 1;
-		All;
-	}
-
-	conditions
-	{
-		Is Hero Being Played(Hero(Brigitte), Team 1) == False;
-	}
-
-	actions
-	{
-		Skip If(Event Player.C == Null, 2);
-		Destroy Effect(Event Player.C);
-		Event Player.C = Null;
 	}
 }
 
@@ -4935,37 +4772,6 @@ rule("CORE: (BOSS) MOIRA - ORB OFF")
 		Destroy Effect(Event Player.G);
 		Destroy Effect(Event Player.K);
 		Chase Player Variable At Rate(Event Player, O, 0, 1, Destination and Rate);
-	}
-}
-
-rule("CORE: (BOSS) MOIRA - SWITCH")
-{
-	event
-	{
-		Ongoing - Each Player;
-		Team 1;
-		All;
-	}
-
-	conditions
-	{
-		Is Hero Being Played(Hero(Moira), Team 1) == False;
-	}
-
-	actions
-	{
-		Skip If(Event Player.G == Null, 2);
-		Destroy Effect(Event Player.G);
-		Event Player.G = Null;
-		Skip If(Event Player.K == Null, 2);
-		Destroy Effect(Event Player.K);
-		Event Player.K = Null;
-		Skip If(Event Player.PlayerFX_2 == Null, 2);
-		Destroy Effect(Event Player.PlayerFX_2);
-		Event Player.PlayerFX_2 = Null;
-		Skip If(Event Player.PlayerFX_0 == Null, 2);
-		Destroy Effect(Event Player.PlayerFX_0);
-		Event Player.PlayerFX_0 = Null;
 	}
 }
 
@@ -5367,34 +5173,6 @@ rule("CORE: (BOSS) SYM - SHIELD VARS")
 	}
 }
 
-rule("CORE: (BOSS) SYM - SWITCH")
-{
-	event
-	{
-		Ongoing - Each Player;
-		Team 1;
-		All;
-	}
-
-	conditions
-	{
-		Is Hero Being Played(Hero(Symmetra), Team 1) == False;
-	}
-
-	actions
-	{
-		Skip If(Event Player.PlayerFX_3 == Null, 2);
-		Destroy Effect(Event Player.PlayerFX_3);
-		Event Player.PlayerFX_3 = Null;
-		Skip If(Event Player.PlayerFX_1 == Null, 2);
-		Destroy Effect(Event Player.PlayerFX_1);
-		Event Player.PlayerFX_1 = Null;
-		Skip If(Event Player.PlayerFX_0 == Null, 2);
-		Destroy Effect(Event Player.PlayerFX_0);
-		Event Player.PlayerFX_0 = Null;
-	}
-}
-
 rule("CORE: (BOSS) 76 - POW JUMP VARS")
 {
 	event
@@ -5576,29 +5354,6 @@ rule("CORE: (BOSS) SOMBRA - UNFOCUS")
 	}
 }
 
-rule("CORE: (BOSS) SOMBRA - RESET SPEED & DMG")
-{
-	event
-	{
-		Ongoing - Each Player;
-		Team 1;
-		All;
-	}
-
-	conditions
-	{
-		Is Hero Being Played(Hero(Sombra), Team 1) == False;
-	}
-
-	actions
-	{
-		Skip If(Is Hero Being Played(Hero(Orisa), Team 1) || Is Hero Being Played(Hero(D.Va), Team 1), 2);
-		Abort If(Is Hero Being Played(Hero(Tracer), Team 1));
-		Set Move Speed(Event Player, 100);
-		Set Damage Dealt(Event Player, 100);
-	}
-}
-
 rule("CORE: (BOSS) CASS - DODGE VARS")
 {
 	event
@@ -5776,27 +5531,6 @@ rule("CORE: (BOSS) CASS - DODGE reset 2")
 			"EXTENDED"), Custom String("COMBAT ROLL"), Left, 1, Color(White), Color(White), Color(Orange), Visible To and String,
 			Default Visibility);
 		Global.BOSS_AbilityKey = Last Text ID;
-	}
-}
-
-rule("CORE: (BOSS) ALL HEAL DEALT")
-{
-	event
-	{
-		Ongoing - Each Player;
-		Team 1;
-		All;
-	}
-
-	conditions
-	{
-		Array Contains(Array(Hero(Zenyatta), Hero(Illari), Hero(Juno)), Hero Of(Event Player)) == False;
-		Has Spawned(Event Player) == True;
-	}
-
-	actions
-	{
-		Set Healing Dealt(Event Player, 100);
 	}
 }
 
@@ -6519,21 +6253,6 @@ rule("CORE: (BOSS) JUNK - OFF FIRE")
 		Create HUD Text(All Players(Team 1), Icon String(Warning), Custom String("get kills to deal more damage"), Custom String(
 			"fire damage"), Left, 1, Color(Red), Color(White), Color(Orange), Visible To and String, Default Visibility);
 		Global.BOSS_AbilityKey = Last Text ID;
-	}
-}
-
-rule("CORE: (BOSS) JUNK - SWITCH DMG")
-{
-	event
-	{
-		Ongoing - Each Player;
-		Team 1;
-		Junkrat;
-	}
-
-	actions
-	{
-		Set Damage Dealt(Event Player, 100);
 	}
 }
 
@@ -10460,27 +10179,6 @@ rule("CORE: (TEAM) ALL - HEALING DEALT DEFAULT")
 	}
 }
 
-rule("CORE: (BOSS) ALL - RE-SET GRAVITY")
-{
-	event
-	{
-		Ongoing - Each Player;
-		Team 1;
-		All;
-	}
-
-	conditions
-	{
-		Hero Of(Event Player) != Hero(Reaper);
-		Has Spawned(Event Player) == True;
-	}
-
-	actions
-	{
-		Set Gravity(Event Player, 100);
-	}
-}
-
 rule("CORE: (TEAM) ECHO - SPAWN ABILITY HUD")
 {
 	event
@@ -10809,49 +10507,6 @@ rule("CORE: (WAIT) INSTA ULT")
 	actions
 	{
 		Set Ultimate Charge(Event Player, 100);
-	}
-}
-
-rule("CORE: (BOSS) DISABLE 2nd FIRE")
-{
-	event
-	{
-		Ongoing - Each Player;
-		Team 1;
-		All;
-	}
-
-	conditions
-	{
-		Array Contains(Array(Hero(Baptiste), Hero(Zenyatta), Hero(Illari), Hero(Winston), Hero(Reaper)), Hero Of(Event Player)) == True;
-		Has Spawned(Event Player) == True;
-	}
-
-	actions
-	{
-		Set Secondary Fire Enabled(Event Player, False);
-	}
-}
-
-rule("CORE: (BOSS) ENABLE 2nd FIRE")
-{
-	event
-	{
-		Ongoing - Each Player;
-		Team 1;
-		All;
-	}
-
-	conditions
-	{
-		Array Contains(Array(Hero(Baptiste), Hero(Zenyatta), Hero(Illari), Hero(Genji), Hero(Winston), Hero(Reaper)), Hero Of(
-			Event Player)) != True;
-		Has Spawned(Event Player) == True;
-	}
-
-	actions
-	{
-		Set Secondary Fire Enabled(Event Player, True);
 	}
 }
 
@@ -11336,29 +10991,6 @@ rule("CORE: (BOSS) WINSTON - RAGE HP")
 		Set Max Health(Event Player, 99.613);
 		Event Player.base_health = Max Health(Event Player);
 		Event Player.base_shields = Max Health Of Type(Event Player, Shields);
-	}
-}
-
-rule("CORE: (BOSS) General: REMOVE POOLS")
-{
-	event
-	{
-		Ongoing - Each Player;
-		Team 1;
-		All;
-	}
-
-	conditions
-	{
-		Array Contains(Array(Hero(Genji), Hero(Hanzo), Hero(Widowmaker), Hero(Juno), Hero(Ashe), Hero(Domina), Hero(Echo), Hero(Shion), Hero(Sigma),
-			Hero(Winston)), Hero Of(Event Player)) != True;
-		Has Spawned(Event Player) == True;
-	}
-
-	actions
-	{
-		Remove Health Pool From Player(Global.BOSS_HealthPools[0]);
-		Remove Health Pool From Player(Global.BOSS_HealthPools[1]);
 	}
 }
 
@@ -13831,27 +13463,6 @@ rule("CORE: (BOSS) GENJI - 2ND CD MID COUNT")
 			"   \r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n                         {0}", Round To Integer(Event Player.primary_charge,
 			Up)), Top, 8, Color(White), Color(White), Color(Green), Visible To and String, Default Visibility);
 		Event Player.charge_hud = Last Text ID;
-	}
-}
-
-rule("CORE: (BOSS) ALL - CLEAR CHARGE HUD")
-{
-	event
-	{
-		Ongoing - Each Player;
-		Team 1;
-		All;
-	}
-
-	conditions
-	{
-		Has Spawned(Event Player) == True;
-		Array Contains(Array(Hero(Ashe), Hero(Genji), Hero(Sombra), Hero(Reinhardt), Hero(Echo)), Hero Of(Event Player)) == False;
-	}
-
-	actions
-	{
-		Destroy HUD Text(Event Player.charge_hud);
 	}
 }
 
