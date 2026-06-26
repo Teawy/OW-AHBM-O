@@ -17745,7 +17745,7 @@ rule("CORE: (TEAM) REAP - LOSE ENERGY")
 	}
 }
 
-rule("CORE: (BOSS) ALL - BERSERK 1")
+rule("CORE: (BOSS) ALL - BERSERK")
 {
 	event
 	{
@@ -17758,48 +17758,39 @@ rule("CORE: (BOSS) ALL - BERSERK 1")
 	{
 		Is Waiting For Players == False;
 		Has Spawned(Event Player) == True;
-		Match Time >= 106;
 		Player Stat(Event Player, All Damage Dealt) <= 0;
-		Global.BERSERK[1] == -1;
+		Match Time >= Array(Null, 106, 50)[Absolute Value(Global.BERSERK[1])];
+		Array Contains(Array(-1, -2), Global.BERSERK[1]) == True;
 		(Is Button Held(Event Player, Button(Interact)) || Is Button Held(Host Player, Button(Interact))) == True;
 	}
 
 	actions
 	{
-		Wait Until((Is Button Held(Event Player, Button(Interact)) || Is Button Held(Host Player, Button(Interact))) == False, 1.500);
-		Skip If((Is Button Held(Event Player, Button(Interact)) || Is Button Held(Host Player, Button(Interact))) == False, 3);
-		Skip If(Global.BERSERK[1] == 0, 2);
-		Global.BERSERK[0] = 1;
-		Call Subroutine(BERSERK_activated);
-	}
-}
-
-rule("CORE: (BOSS) ALL - BERSERK 2")
-{
-	event
-	{
-		Ongoing - Each Player;
-		Team 1;
-		All;
-	}
-
-	conditions
-	{
-		Is Waiting For Players == False;
-		Has Spawned(Event Player) == True;
-		Match Time >= 50;
-		Player Stat(Event Player, All Damage Dealt) <= 0;
-		Global.BERSERK[1] == -2;
-		(Is Button Held(Event Player, Button(Interact)) || Is Button Held(Host Player, Button(Interact))) == True;
-	}
-
-	actions
-	{
-		Wait Until((Is Button Held(Event Player, Button(Interact)) || Is Button Held(Host Player, Button(Interact))) == False, 1.500);
-		Skip If((Is Button Held(Event Player, Button(Interact)) || Is Button Held(Host Player, Button(Interact))) == False, 3);
-		Skip If(Global.BERSERK[1] == 0, 2);
-		Global.BERSERK[0] = 2;
-		Call Subroutine(BERSERK_activated);
+		Wait Until(!(Is Button Held(Event Player, Button(Interact)) && Is Button Held(Host Player, Button(Interact))), 1.500);
+		Abort If(Is Button Held(Event Player, Button(Interact)) || !Is Button Held(Host Player, Button(Interact)));
+		Abort If(Global.BERSERK[1] == 0);
+		Global.BERSERK[0] = Absolute Value(Global.BERSERK[1]);
+		Global.BERSERK[2] = 1;
+		Wait(0.016, Ignore Condition);
+		Global.BERSERK[1] = 0;
+		Set Match Time(Match Time / 2 + 0.500);
+		Play Effect(All Players(Team 1), Good Explosion, Color(Red), Eye Position(Event Player) + Facing Direction Of(Event Player) * 1,
+			5);
+		Play Effect(All Players(All Teams), Ring Explosion Sound, Color(White), All Players(All Teams), 250);
+		Skip If(Global.BERSERK[0] == 2, 5);
+		Small Message(All Players(Team 1), Custom String("BERSERK ACTIVE"));
+		Small Message(All Players(Team 2), Custom String("BOSS IS BERSERKING"));
+		Global.MAX_TIME = 61;
+		Global.BERSERK[1] = -2;
+		Set Objective Description(All Players(All Teams), Custom String("BERSERK MATCH"), Visible To and String);
+		Skip If(Global.BERSERK[0] == 1, 5);
+		Small Message(All Players(Team 1), Custom String("DOUBLE BERSERK"));
+		Small Message(All Players(Team 2), Custom String("BOSS IS DOUBLE BERSERKING"));
+		Global.MAX_TIME = 31;
+		Global.BERSERK[1] = 0;
+		Set Objective Description(All Players(All Teams), Custom String("DOUBLE BERSERK MATCH"), Visible To and String);
+		Wait(0.016, Ignore Condition);
+		Global.BERSERK[2] = 0;
 	}
 }
 
@@ -17826,40 +17817,6 @@ rule("SUB: ANTI-ENVIRO OOM")
 	}
 }
 
-rule("SUB: BERSERK ACTIVATED")
-{
-	event
-	{
-		Subroutine;
-		BERSERK_activated;
-	}
-
-	actions
-	{
-		Global.BERSERK[2] = 1;
-		Wait(0.016, Ignore Condition);
-		Global.BERSERK[1] = 0;
-		Set Match Time(Match Time / 2 + 0.500);
-		Play Effect(All Players(Team 1), Good Explosion, Color(Red), Eye Position(Event Player) + Facing Direction Of(Event Player) * 1,
-			5);
-		Play Effect(All Players(All Teams), Ring Explosion Sound, Color(White), All Players(All Teams), 250);
-		Skip If(Global.BERSERK[0] == 2, 5);
-		Small Message(All Players(Team 1), Custom String("BERSERK ACTIVE"));
-		Small Message(All Players(Team 2), Custom String("BOSS IS BERSERKING"));
-		Global.MAX_TIME = 61;
-		Global.BERSERK[1] = -2;
-		Set Objective Description(All Players(All Teams), Custom String("BERSERK MATCH"), Visible To and String);
-		Skip If(Global.BERSERK[0] == 1, 5);
-		Small Message(All Players(Team 1), Custom String("DOUBLE BERSERK"));
-		Small Message(All Players(Team 2), Custom String("BOSS IS DOUBLE BERSERKING"));
-		Global.MAX_TIME = 31;
-		Global.BERSERK[1] = 0;
-		Set Objective Description(All Players(All Teams), Custom String("DOUBLE BERSERK MATCH"), Visible To and String);
-		Wait(0.016, Ignore Condition);
-		Global.BERSERK[2] = 0;
-	}
-}
-
 rule("CORE: (BOSS) NO BERSERK RIGHTS")
 {
 	event
@@ -17871,8 +17828,7 @@ rule("CORE: (BOSS) NO BERSERK RIGHTS")
 
 	conditions
 	{
-		(Player Stat(Event Player, All Damage Dealt) > 0 || (Global.BERSERK[0] == 0 && Match Time < 106) || (
-			Global.BERSERK[0] == 1 && Match Time < 50) || (Global.BERSERK[0] == 2 && Match Time < 21)) == True;
+		(Player Stat(Event Player, All Damage Dealt) > 0 || Match Time < Array(106, 50, 21)[Global.BERSERK[0]]) == True;
 	}
 
 	actions
