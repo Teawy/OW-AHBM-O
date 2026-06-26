@@ -2062,7 +2062,6 @@ rule("CORE: (BOSS) ALL - RESISTANCE STAT")
 		Else;
 			Global.BossResistanceStat = 0.400;
 		End;
-		End;
 		Wait(0.100, Ignore Condition);
 		Loop If Condition Is True;
 	}
@@ -3569,11 +3568,8 @@ rule("CORE: (BOSS) Mercy - Switch")
 	{
 		Event Player.M = Null;
 		Destroy Effect(Event Player.U);
-		Skip If(Event Player == Players On Hero(Hero(Moira), Team 1) || Event Player == Players On Hero(Hero(Lúcio), Team 1), 1);
 		Set Healing Received(Event Player, 100);
-		Skip If(Event Player == Players On Hero(Hero(D.Va), Team 1), 1);
 		Set Max Health(Event Player, 100);
-		Skip If(Event Player == Players On Hero(Hero(Sombra), Team 1) || Event Player == Players On Hero(Hero(Orisa), Team 1), 1);
 		Set Move Speed(Event Player, 100);
 	}
 }
@@ -3955,7 +3951,6 @@ rule("CORE: (BOSS) GENJI - SWITCH")
 		Skip If(Event Player.S == Null, 2);
 		Destroy Effect(Event Player.S);
 		Event Player.S = Null;
-		Skip If(Event Player.D && Event Player == Players On Hero(Hero(Genji), Team 1), 1);
 		Event Player.D = 0;
 		disabled Skip If(Array Contains(Array(Hero(Mercy), Hero(Symmetra), Hero(Zenyatta), Hero(Torbjörn)), Hero Of(Event Player)), 1);
 		disabled Set Ability 1 Enabled(Event Player, True);
@@ -3969,11 +3964,6 @@ rule("CORE: (BOSS) GENJI - DASH LOCK/UNLOCK")
 		Ongoing - Each Player;
 		Team 1;
 		Genji;
-	}
-
-	conditions
-	{
-		Hero Of(Event Player) == Hero(Genji);
 	}
 
 	actions
@@ -6557,7 +6547,6 @@ rule("CORE: (BOSS) JUNK - SWITCH DMG")
 
 	actions
 	{
-		Skip If(Event Player == Players On Hero(Hero(Sombra), Team 1) || Event Player == Players On Hero(Hero(Tracer), Team 1), 1);
 		Set Damage Dealt(Event Player, 100);
 	}
 }
@@ -7496,7 +7485,6 @@ rule("ROLES: IN-GAME leaver: SWAP TAC")
 		Wait(0.016, Ignore Condition);
 		Set Player Allowed Heroes(Event Player, Remove From Array(Allowed Heroes(Event Player), Global.A[4]));
 		Event Player.Z[5] = Null;
-		Abort;
 	}
 }
 
@@ -7545,7 +7533,6 @@ rule("ROLES: IN-GAME joiner: ALLOW TAC")
 		Set Player Allowed Heroes(Event Player, Append To Array(Allowed Heroes(Event Player), Global.A[4]));
 		Wait(0.016, Ignore Condition);
 		Event Player.Z[5] = Null;
-		Abort;
 	}
 }
 
@@ -7893,7 +7880,6 @@ rule("CORE: (TIMER) NEGATIVE SOULS")
 		Skip If(Health(Event Player) - Absolute Value(13 * Absolute Value(Global.X[0])) <= 0.100, 1);
 		Damage(Event Player, Null, Absolute Value(13 * Absolute Value(Global.X[0])));
 		Loop If Condition Is True;
-		Abort If Condition Is False;
 	}
 }
 
@@ -10448,7 +10434,6 @@ rule("CORE: (TEAM) BAP - ABILITY 2 BUTTON OFF")
 	actions
 	{
 		Disallow Button(Event Player, Button(Ability 2));
-		Abort;
 	}
 }
 
@@ -10470,7 +10455,6 @@ rule("CORE: (TEAM) ALL - ABILITY 2 BUTTON ON")
 	actions
 	{
 		Allow Button(Event Player, Button(Ability 2));
-		Abort;
 	}
 }
 
@@ -10818,15 +10802,9 @@ rule("CORE: (BOSS) GENJI - RESET 2nd fire CD")
 		Set Secondary Fire Enabled(Event Player, True);
 		Stop Chasing Player Variable(Event Player, primary_charge);
 		Event Player.primary_charge = 0;
-		Skip If(Hero Of(Event Player) != Hero(Genji), 3);
 		Destroy HUD Text(Global.BOSS_AbilityKey);
 		Create HUD Text(All Players(Team 1), Ability Icon String(Hero(Genji), Button(Secondary Fire)), Custom String("secondary fire"),
 			Custom String("cooldown"), Left, 1, Color(Green), Color(Green), Color(White), Visible To and String, Default Visibility);
-		Global.BOSS_AbilityKey = Last Text ID;
-		Skip If(Hero Of(Event Player) == Hero(Genji), 3);
-		Destroy HUD Text(Global.BOSS_AbilityKey);
-		Create HUD Text(All Players(Team 1), Null, Null, Custom String("None"), Left, 1, Color(White), Color(White), Color(Red),
-			Visible To and String, Default Visibility);
 		Global.BOSS_AbilityKey = Last Text ID;
 	}
 }
@@ -11013,7 +10991,6 @@ rule("CORE: (BOSS) JUNK - FIRE DMG FROZEN")
 
 	conditions
 	{
-		Event Player == Players On Hero(Hero(Junkrat), Team 1);
 		Has Status(Event Player, Frozen) == True;
 		Is Waiting For Players == False;
 	}
@@ -11068,7 +11045,6 @@ rule("CORE: (BOSS) ASHE - DYNAMITE FROZEN")
 
 	conditions
 	{
-		Event Player == Players On Hero(Hero(Ashe), Team 1);
 		Has Status(Event Player, Frozen) == True;
 		disabled Is Waiting For Players == False;
 	}
@@ -11663,7 +11639,6 @@ rule("CORE: (BOSS) TORB - ULTIMATE FROZEN")
 
 	conditions
 	{
-		Event Player == Players On Hero(Hero(Torbjörn), Team 1);
 		Has Status(Event Player, Frozen) == True;
 	}
 
@@ -11751,7 +11726,7 @@ rule("CORE: (BOSS) HAM - SLAM FROZEN")
 
 	conditions
 	{
-		(Hero Of(Event Player) == Hero(Wrecking Ball) && Has Status(Event Player, Frozen)) == True;
+		Has Status(Event Player, Frozen) == True;
 	}
 
 	actions
@@ -12564,7 +12539,6 @@ rule("CORE: (TEAM) PHARAH - ABILITY 2 BUTTON OFF")
 	actions
 	{
 		Disallow Button(Event Player, Button(Ability 2));
-		Abort;
 	}
 }
 
@@ -13172,7 +13146,6 @@ rule("CORE: (ALL) SPAWN - DELETE PLAYER FX")
 	actions
 	{
 		Destroy Effect(Event Player.PlayerFX_0);
-		Abort;
 	}
 }
 
@@ -13788,7 +13761,6 @@ rule("CORE: (ALL) SET SPAWN")
 	{
 		Event Player.SpawnStats[0] = Position Of(Event Player);
 		Event Player.SpawnStats[1] = Ultimate Charge Percent(Event Player);
-		Abort;
 	}
 }
 
@@ -13899,7 +13871,6 @@ rule("CORE: (BOSS) ALL - CLEAR CHARGE HUD")
 	actions
 	{
 		Destroy HUD Text(Event Player.charge_hud);
-		Abort;
 	}
 }
 
@@ -14279,7 +14250,6 @@ rule("CORE: (TEAM) SIG - SPAWN 2ndary charge")
 	actions
 	{
 		Event Player.secondary_charge = 0;
-		Abort;
 	}
 }
 
@@ -15592,7 +15562,7 @@ rule("CORE: (TEAM) SIG - LEVITATION ON")
 	conditions
 	{
 		Event Player.Stunned != True;
-		(Hero Of(Event Player) == Hero(Sigma) && !Has Status(Event Player, Rooted) && !Is Using Ultimate(Event Player)
+		(!Has Status(Event Player, Rooted) && !Is Using Ultimate(Event Player)
 			 && Event Player.Ability_Toggle) == True;
 		Is Button Held(Event Player, Button(Jump)) == True;
 	}
@@ -15789,8 +15759,8 @@ rule("CORE: (BOSS) ECHO - P.C. UP")
 	{
 		Ultimate Charge Percent(Event Player) < 100;
 		Event Player.Stunned != True;
-		(Is Button Held(Event Player, Button(Ultimate)) && Event Player.Ability_Toggle && Hero Of(Event Player) == Hero(
-			Echo) && !Has Status(Event Player, Rooted) && !Is Duplicating(Event Player)) == True;
+		(Is Button Held(Event Player, Button(Ultimate)) && Event Player.Ability_Toggle
+			&& !Has Status(Event Player, Rooted) && !Is Duplicating(Event Player)) == True;
 	}
 
 	actions
@@ -16557,8 +16527,7 @@ rule("CORE: (TEAM) LW - HEAL ENERGY BAR")
 		Create Progress Bar HUD Text(Event Player, Event Player.primary_charge, Custom String("HEALING BLOSSOM ENERGY"), Left, 10,
 			Custom Color(150, 140, 0, 220), Color(White), Visible To Values and Color, Default Visibility);
 		Event Player.team_abilityHUD[0] = Last Text ID;
-		Wait Until(Event Player.primary_charge < 10 || Hero Of(Event Player) != Hero(Lifeweaver), 9999);
-		Abort If(Hero Of(Event Player) != Hero(Lifeweaver));
+		Wait Until(Event Player.primary_charge < 10, 9999);
 		Destroy HUD Text(Event Player.team_abilityHUD[0]);
 		Wait(0.016, Ignore Condition);
 		Destroy Progress Bar HUD Text(Event Player.team_abilityHUD[0]);
@@ -19076,7 +19045,6 @@ rule("OW2: (ALL) FILL HP")
 	{
 		Wait(0.250, Ignore Condition);
 		Heal(Event Player, Null, 10000);
-		Abort;
 	}
 }
 
