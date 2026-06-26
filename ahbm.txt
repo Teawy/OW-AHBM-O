@@ -11362,27 +11362,6 @@ rule("CORE: (BOSS) General: REMOVE POOLS")
 	}
 }
 
-rule("CORE: (TEAM) BRIG - SIZE")
-{
-	event
-	{
-		Ongoing - Each Player;
-		Team 2;
-		Brigitte;
-	}
-
-	conditions
-	{
-		Has Spawned(Event Player) == True;
-	}
-
-	actions
-	{
-		Start Scaling Player(Event Player, 1.100, False);
-		Start Scaling Barriers(Event Player, 1.500, False);
-	}
-}
-
 rule("CORE: (ALL) BASTION - SIZE")
 {
 	event
@@ -11416,14 +11395,35 @@ rule("CORE: (TEAM) General - SIZE")
 	conditions
 	{
 		Has Spawned(Event Player) == True;
-		Array Contains(Array(Hero(Winston), Hero(Brigitte), Hero(D.Va), Hero(Torbjörn), Hero(Ramattra), Hero(Orisa), Hero(Sigma), Hero(
-			Bastion), Hero(Zarya), Hero(Doomfist), Hero(Hazard)), Hero Of(Event Player)) != True;
+		Hero Of(Event Player) != Hero(Bastion);
 	}
 
 	actions
 	{
-		Start Scaling Player(Event Player, 1, False);
-		Start Scaling Barriers(Event Player, 1, False);
+		Stop Scaling Player(Event Player);
+		Stop Scaling Barriers(Event Player);
+		If(Hero Of(Event Player) == Hero(Winston));
+			Start Scaling Barriers(Event Player, 0.750, False);
+		Else If(Hero Of(Event Player) == Hero(Brigitte));
+			Start Scaling Player(Event Player, 1.100, False);
+			Start Scaling Barriers(Event Player, 1.500, False);
+		Else If(Hero Of(Event Player) == Hero(D.Va));
+			Start Scaling Player(Event Player, 0.900, False);
+		Else If(Hero Of(Event Player) == Hero(Torbjörn));
+			Start Scaling Player(Event Player, 1.125, False);
+		Else If(Hero Of(Event Player) == Hero(Ramattra));
+			Start Scaling Barriers(Event Player, 2, False);
+		Else If(Hero Of(Event Player) == Hero(Orisa));
+			Start Scaling Player(Event Player, 0.920, False);
+		Else If(Hero Of(Event Player) == Hero(Sigma));
+			Start Scaling Barriers(Event Player, 0.900, False);
+		Else If(Hero Of(Event Player) == Hero(Zarya));
+			Start Scaling Player(Event Player, 0.940, False);
+		Else If(Hero Of(Event Player) == Hero(Doomfist));
+			Start Scaling Player(Event Player, 0.888, False);
+		Else If(Hero Of(Event Player) == Hero(Hazard));
+			Start Scaling Player(Event Player, 0.800, False);
+		
 	}
 }
 
@@ -13239,48 +13239,6 @@ rule("CORE: (TEAM) D.VA - PILOT POOLS")
 	}
 }
 
-rule("CORE: (TEAM) D.VA - SIZE")
-{
-	event
-	{
-		Ongoing - Each Player;
-		Team 2;
-		D.Va;
-	}
-
-	conditions
-	{
-		Has Spawned(Event Player) == True;
-	}
-
-	actions
-	{
-		Start Scaling Player(Event Player, 0.900, False);
-		Start Scaling Barriers(Event Player, 1, False);
-	}
-}
-
-rule("CORE: (TEAM) DOOM - SIZE")
-{
-	event
-	{
-		Ongoing - Each Player;
-		Team 2;
-		Doomfist;
-	}
-
-	conditions
-	{
-		Has Spawned(Event Player) == True;
-	}
-
-	actions
-	{
-		Start Scaling Player(Event Player, 0.888, False);
-		Start Scaling Barriers(Event Player, 1, False);
-	}
-}
-
 rule("CORE: (TEAM) REIN: HEALTH")
 {
 	event
@@ -13639,7 +13597,7 @@ rule("CORE: (TEAM) SOMBRA: HEALTH")
 	}
 }
 
-rule("CORE: (TEAM) HAZARD - HEALTH & SIZE")
+rule("CORE: (TEAM) HAZARD - HEALTH")
 {
 	event
 	{
@@ -13655,8 +13613,6 @@ rule("CORE: (TEAM) HAZARD - HEALTH & SIZE")
 
 	actions
 	{
-		Start Scaling Player(Event Player, 0.800, False);
-		Start Scaling Barriers(Event Player, 1, False);
 		Remove Health Pool From Player(Event Player.health_pool);
 		Remove Health Pool From Player(Event Player.shield_pool);
 		Remove Health Pool From Player(Event Player.armour_pool);
@@ -13670,7 +13626,7 @@ rule("CORE: (TEAM) HAZARD - HEALTH & SIZE")
 	}
 }
 
-rule("CORE: (TEAM) SIG - HEALTH & SIZE")
+rule("CORE: (TEAM) SIG - HEALTH")
 {
 	event
 	{
@@ -13686,8 +13642,6 @@ rule("CORE: (TEAM) SIG - HEALTH & SIZE")
 
 	actions
 	{
-		Start Scaling Player(Event Player, 1, False);
-		Start Scaling Barriers(Event Player, 0.900, False);
 		Remove Health Pool From Player(Event Player.health_pool);
 		Remove Health Pool From Player(Event Player.shield_pool);
 		Remove Health Pool From Player(Event Player.armour_pool);
@@ -13715,8 +13669,6 @@ rule("CORE: (TEAM) TORB: HEALTH")
 		Remove Health Pool From Player(Event Player.armour_pool);
 		Add Health Pool To Player(Event Player, Armor, 100, True, False);
 		Event Player.armour_pool = Last Created Health Pool;
-		Start Scaling Player(Event Player, 1.125, False);
-		Start Scaling Barriers(Event Player, 1, False);
 		Wait(0.016, Ignore Condition);
 		Event Player.base_health = Max Health(Event Player);
 		Event Player.base_shields = Max Health Of Type(Event Player, Shields);
@@ -15018,7 +14970,6 @@ rule("CORE: (TEAM) ZAR: HEALTH")
 
 	actions
 	{
-		Start Scaling Player(Event Player, 0.940, False);
 		Remove Health Pool From Player(Event Player.health_pool);
 		Remove Health Pool From Player(Event Player.shield_pool);
 		Remove Health Pool From Player(Event Player.armour_pool);
@@ -15052,7 +15003,7 @@ rule("CORE: (TEAM) ORISA: HEALTH")
 	}
 }
 
-rule("CORE: (TEAM) WINSTON: HEALTH / SIZE")
+rule("CORE: (TEAM) WINSTON: HEALTH")
 {
 	event
 	{
@@ -15064,8 +15015,6 @@ rule("CORE: (TEAM) WINSTON: HEALTH / SIZE")
 	actions
 	{
 		Set Max Health(Event Player, 99.715);
-		Start Scaling Player(Event Player, 1, False);
-		Start Scaling Barriers(Event Player, 0.750, False);
 		Remove Health Pool From Player(Event Player.armour_pool);
 		Remove Health Pool From Player(Event Player.health_pool);
 		Add Health Pool To Player(Event Player, Health, 7.693, True, False);
@@ -18607,48 +18556,6 @@ rule("CORE: (BOSS) ALL - MELEE KB")
 	actions
 	{
 		Apply Impulse(Victim, Facing Direction Of(Event Player), 4.444, To World, Cancel Contrary Motion);
-	}
-}
-
-rule("CORE: (TEAM) RAM - SIZE")
-{
-	event
-	{
-		Ongoing - Each Player;
-		Team 2;
-		Ramattra;
-	}
-
-	conditions
-	{
-		Has Spawned(Event Player) == True;
-	}
-
-	actions
-	{
-		Start Scaling Player(Event Player, 1, False);
-		Start Scaling Barriers(Event Player, 2, False);
-	}
-}
-
-rule("CORE: (TEAM) ORISA - SIZE")
-{
-	event
-	{
-		Ongoing - Each Player;
-		Team 2;
-		Orisa;
-	}
-
-	conditions
-	{
-		Has Spawned(Event Player) == True;
-	}
-
-	actions
-	{
-		Start Scaling Player(Event Player, 0.920, False);
-		Start Scaling Barriers(Event Player, 1, False);
 	}
 }
 
