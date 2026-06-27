@@ -8251,7 +8251,6 @@ rule("CORE: (TEAM) ASHE - ORANGE FADE")
 			0 + Event Player.timer * 10, 255 - Event Player.timer * 15.500);
 		Wait(0.064, Abort When False);
 		Loop If Condition Is True;
-		Abort If Condition Is False;
 	}
 }
 
@@ -13180,9 +13179,9 @@ rule("CORE: (TEAM) RAM - HUD TEXT")
 		Destroy Progress Bar HUD Text(Event Player.team_abilityHUD[0]);
 		Wait(0.016, Ignore Condition);
 		Create HUD Text(Event Player, Custom String("{0} x {1}", Ability Icon String(Hero(Baptiste), Button(Ability 1)),
-			Event Player.PassiveAOEHeal), Custom String("DEFENSIVE HEALING"), Custom String("({0})", Count Of(Filtered Array(
+			Event Player.PassiveAOEHeal), Custom String("DEFENSIVE HEALING"), Custom String("({0})", Count Of(Remove From Array(
 			Players Within Radius(Eye Position(Event Player), Event Player.primary_charge, Team 2, Surfaces And Enemy Barriers),
-			Current Array Element != Event Player))), Left, 10, Color(Purple), Color(Yellow), Color(Black), Visible To and String,
+			Event Player))), Left, 10, Color(Purple), Color(Yellow), Color(Black), Visible To and String,
 			Default Visibility);
 		Event Player.team_abilityHUD[0] = Last Text ID;
 	}
@@ -19918,17 +19917,14 @@ rule("CORE: (ALL) TRACK CC")
 	{
 		(Has Status(Event Player, Hacked) || Has Status(Event Player, Knocked Down) || Has Status(Event Player, Asleep) || Has Status(
 			Event Player, Frozen) || Has Status(Event Player, Stunned) || Is Communicating Any Emote(Event Player) || Is Alive(
-			Event Player) != True || !Has Spawned(Event Player)) == True;
+			Event Player) != True || !Has Spawned(Event Player)) != Event Player.Stunned;
 	}
 
 	actions
 	{
-		Event Player.Stunned = True;
-		Wait(0.016, Ignore Condition);
-		Wait Until(!Has Status(Event Player, Hacked) && !Has Status(Event Player, Knocked Down) && !Has Status(Event Player, Asleep)
-			&& !Has Status(Event Player, Frozen) && !Has Status(Event Player, Stunned) && Is Alive(Event Player)
-			&& !Is Communicating Any Emote(Event Player) && Has Spawned(Event Player), 99999);
-		Event Player.Stunned = False;
+		Event Player.Stunned = (Has Status(Event Player, Hacked) || Has Status(Event Player, Knocked Down) || Has Status(Event Player, Asleep) || Has Status(
+			Event Player, Frozen) || Has Status(Event Player, Stunned) || Is Communicating Any Emote(Event Player) || Is Alive(
+			Event Player) != True || !Has Spawned(Event Player));
 		Wait(0.016, Ignore Condition);
 		Loop If Condition Is True;
 	}
