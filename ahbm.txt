@@ -19308,7 +19308,7 @@ rule("CORE: (ALL) DOOM DMG")
 
 	actions
 	{
-		Damage(Victim, Event Player, Event Damage * 0.500 / Team Of(Event Player) == Team 1 ? 2.250 : 0.650);
+		Damage(Victim, Event Player, Event Damage * 0.500 / (Team Of(Event Player) == Team 1 ? 2.250 : 0.650));
 	}
 }
 
