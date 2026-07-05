@@ -16741,13 +16741,13 @@ rule("CORE: (TEAM) PHARAH - FLY SPEED")
 
 	conditions
 	{
-		Speed Of In Direction(Event Player, Vector(0, 1, 0)) > 0;
+		Speed Of In Direction(Event Player, Up) > 0;
 	}
 
 	actions
 	{
 		Set Move Speed(Event Player, 54);
-		Wait Until(Speed Of In Direction(Event Player, Vector(0, 1, 0)) <= 0, 99999);
+		Wait Until(Speed Of In Direction(Event Player, Up) <= 0, 99999);
 		Set Move Speed(Event Player, 100);
 		Wait(0.100, Ignore Condition);
 		Loop If Condition Is True;
