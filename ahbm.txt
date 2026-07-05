@@ -17207,13 +17207,13 @@ rule("CORE: (TEAM) PHARAH - FLY SPEED")
 
 	conditions
 	{
-		Speed Of In Direction(Event Player, Up) > 0;
+		Speed Of In Direction(Event Player, Vector(0, 1, 0)) > 0;
 	}
 
 	actions
 	{
 		Set Move Speed(Event Player, 54);
-		Wait Until(Speed Of In Direction(Event Player, Up) <= 0, 99999);
+		Wait Until(Speed Of In Direction(Event Player, Vector(0, 1, 0)) <= 0, 99999);
 		Set Move Speed(Event Player, 100);
 		Wait(0.100, Ignore Condition);
 		Loop If Condition Is True;
@@ -19916,15 +19916,15 @@ rule("CORE: (ALL) TRACK CC")
 	conditions
 	{
 		(Has Status(Event Player, Hacked) || Has Status(Event Player, Knocked Down) || Has Status(Event Player, Asleep) || Has Status(
-			Event Player, Frozen) || Has Status(Event Player, Stunned) || Is Communicating Any Emote(Event Player) || Is Alive(
-			Event Player) != True || !Has Spawned(Event Player)) != Event Player.Stunned;
+			Event Player, Frozen) || Has Status(Event Player, Stunned) || Is Communicating Any Emote(Event Player) || Is Dead(
+			Event Player) || !Has Spawned(Event Player)) != Event Player.Stunned;
 	}
 
 	actions
 	{
 		Event Player.Stunned = (Has Status(Event Player, Hacked) || Has Status(Event Player, Knocked Down) || Has Status(Event Player, Asleep) || Has Status(
-			Event Player, Frozen) || Has Status(Event Player, Stunned) || Is Communicating Any Emote(Event Player) || Is Alive(
-			Event Player) != True || !Has Spawned(Event Player));
+			Event Player, Frozen) || Has Status(Event Player, Stunned) || Is Communicating Any Emote(Event Player) || Is Dead(
+			Event Player) || !Has Spawned(Event Player));
 		Wait(0.016, Ignore Condition);
 		Loop If Condition Is True;
 	}
