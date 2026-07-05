@@ -728,9 +728,10 @@ settings
 				Ammunition Clip Size Scalar: 50%
 				Damage Dealt: 143%
 				Damage Received: 36%
-				Execution Cooldown Time: 80%
-				Healing Received: 20%
-				Health: 33%
+				Evade Cooldown Time: 200%
+				Execution Cooldown Time: 20%
+				Healing Received: 12%
+				Health: 200%
 				Joyride Cooldown Time: 66%
 				Joyride Duration Scalar: 125%
 				Joyride Knockback Scalar: 200%
@@ -740,7 +741,7 @@ settings
 				Passive Health Regeneration: On
 				Role Passives: Off
 				Ultimate Duration: 50%
-				Ultimate Generation - Combat Satsuriku Spree: 200%
+				Ultimate Generation - Combat Satsuriku Spree: 205%
 				Ultimate Generation - Passive Satsuriku Spree: 0%
 			}
 
@@ -11290,7 +11291,7 @@ rule("CORE: (BOSS) SHION: HEALTH POOL")
 	{
 		Remove Health Pool From Player(Global.BOSS_HealthPools[0]);
 		Remove Health Pool From Player(Global.BOSS_HealthPools[1]);
-		Add Health Pool To Player(Event Player, Health, 517.500, True, False);
+		Add Health Pool To Player(Event Player, Health, 100, True, False);
 		Global.BOSS_HealthPools[0] = Last Created Health Pool;
 		Event Player.base_health = Max Health(Event Player);
 		Event Player.base_shields = Max Health Of Type(Event Player, Shields);
