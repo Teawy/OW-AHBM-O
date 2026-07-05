@@ -3955,7 +3955,7 @@ rule("CORE: (BOSS) GENJI - SWITCH")
 		Event Player.S = Null;
 		Skip If(Event Player.D && Event Player == Players On Hero(Hero(Genji), Team 1), 1);
 		Event Player.D = 0;
-		disabled Skip If(Array Contains(Array(Hero(Mercy), Hero(Symmetra), Hero(Zenyatta), Hero(Torbjörn)), Hero Of(Event Player)), True);
+		disabled Skip If(Array Contains(Array(Hero(Mercy), Hero(Symmetra), Hero(Zenyatta), Hero(Torbjörn)), Hero Of(Event Player)), 1);
 		disabled Set Ability 1 Enabled(Event Player, True);
 	}
 }
