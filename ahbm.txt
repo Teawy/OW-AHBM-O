@@ -17715,8 +17715,8 @@ rule("CORE: (BOSS) ALL - BERSERK")
 
 	actions
 	{
-		Wait Until(!(Is Button Held(Event Player, Button(Interact)) && Is Button Held(Host Player, Button(Interact))), 1.500);
-		Abort If(Is Button Held(Event Player, Button(Interact)) || !Is Button Held(Host Player, Button(Interact)));
+		Wait Until(!(Is Button Held(Event Player, Button(Interact)) || Is Button Held(Host Player, Button(Interact))), 1.500);
+		Abort If(!(Is Button Held(Event Player, Button(Interact)) || Is Button Held(Host Player, Button(Interact))));
 		Abort If(Global.BERSERK[1] == 0);
 		Global.BERSERK[0] = Absolute Value(Global.BERSERK[1]);
 		Global.BERSERK[2] = 1;
