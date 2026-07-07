@@ -5084,11 +5084,6 @@ rule("CORE: (BOSS) MOIRA - HEAL USING")
 		Is Using Ability 1(Event Player) == False;
 		Is Using Ability 2(Event Player) == False;
 		Is Using Ultimate(Event Player) == False;
-		Has Status(Event Player, Hacked) == False;
-		Has Status(Event Player, Knocked Down) == False;
-		Has Status(Event Player, Asleep) == False;
-		Has Status(Event Player, Frozen) == False;
-		Has Status(Event Player, Stunned) == False;
 		Event Player.Stunned != True;
 		Normalized Health(Event Player) != 1;
 	}
