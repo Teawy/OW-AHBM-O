@@ -7791,6 +7791,8 @@ rule("MAPS: set threshold list 2")
 		Global.Enviro_Threshold = 7;
 		Skip If(Current Map != Map(King's Row) && Current Map != Map(King's Row Winter), 1);
 		Global.Enviro_Threshold = -100;
+		Skip If(Current Map != Map(Workshop Island) && Current Map != Map(Workshop Island Night) && Current Map != Map(Workshop Expanse) && Current Map != Map(Workshop Expanse Night), 1);
+		Global.Enviro_Threshold = -20;
 	}
 }
 
@@ -15515,8 +15517,8 @@ rule("MAPS: ANTI-ENVIRO actions")
 	conditions
 	{
 		(Has Spawned(Event Player) && !Array Contains(Array(Map(Ecopoint: Antarctica), Map(Hollywood), Map(King's Row), Map(
-			Temple of Anubis), Map(Château Guillard), Map(Horizon Lunar Colony), Map(Workshop Chamber), Map(Workshop Expanse), Map(
-			Workshop Island), Map(Workshop Green Screen)), Current Map)) == True;
+			Temple of Anubis), Map(Château Guillard), Map(Horizon Lunar Colony), Map(Workshop Chamber),
+			Map(Workshop Green Screen)), Current Map)) == True;
 		(Y Component Of(Position Of(Event Player)) < Global.Enviro_Threshold && !Is Waiting For Players) == True;
 	}
 
