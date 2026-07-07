@@ -16300,6 +16300,7 @@ rule("CORE: (TEAM) LUCIO - SPAWN ABILITY HUD")
 	{
 		Event Player.primary_charge = 0;
 		Destroy HUD Text(Event Player.team_abilityHUD[0]);
+		Destroy Progress Bar HUD Text(Event Player.team_abilityHUD[0]);
 		Wait(0.016, Ignore Condition);
 		Create HUD Text(Event Player, Custom String("{0}%", Round To Integer(Event Player.primary_charge, Down)), Custom String(
 			"-> charging"), Custom String("mega amp heal song  {0} {1} {2}", Icon String(Arrow: Up), Ability Icon String(Hero(Lúcio),
