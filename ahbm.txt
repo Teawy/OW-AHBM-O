@@ -597,7 +597,7 @@ settings
 				Damage Dealt: 222%
 				Damage Received: 50%
 				Fade Cooldown Time: 42%
-				Healing Dealt: 175%
+				Healing Dealt: 190%
 				Healing Received: 10%
 				Health: 267%
 				Movement Speed: 90%
@@ -2181,8 +2181,7 @@ rule("CORE: (SCORE) TEAM RES")
 	actions
 	{
 		Wait(1.707, Ignore Condition);
-		Skip If(!Is Using Ability 2(Players On Hero(Hero(Mercy), Team 2)) || Is Alive(Players On Hero(Hero(Mercy), Team 2))
-			== False, 10);
+		Skip If(!Is Using Ability 2(Players On Hero(Hero(Mercy), Team 2)) || Is Dead(Players On Hero(Hero(Mercy), Team 2)), 10);
 		Global.X[0] -= 1;
 		Wait(0.016, Ignore Condition);
 		Skip If(Global.BERSERK[0] > 0, 1);
@@ -2679,7 +2678,7 @@ rule("CORE: (MSGS) RES UP MERCY MESSAGE")
 
 	actions
 	{
-		Skip If(Is Alive(Players On Hero(Hero(Mercy), Team 2)) == False, 8);
+		Skip If(Is Dead(Players On Hero(Hero(Mercy), Team 2)), 8);
 		Destroy HUD Text(Global.Mercy_State);
 		Create HUD Text(All Players(All Teams), Custom String("{0} {1}", Ability Icon String(Hero(Mercy), Button(Ability 2)),
 			Hero Icon String(Hero(Mercy))), Null, Null, Top, -5, Color(Yellow), Color(White), Color(Orange), Visible To and String,
@@ -2709,8 +2708,7 @@ rule("CORE: (MSGS) RES MSG ............................................ SQU1DWAR
 		Skip If(Event Player.E > 0, 5);
 		Event Player.A = Null;
 		Event Player.Third_Person = 10000;
-		Event Player.C = Filtered Array(Players Within Radius(Position Of(Event Player), 6, Team 2, Off), Is Alive(Current Array Element)
-			== False);
+		Event Player.C = Filtered Array(Players Within Radius(Position Of(Event Player), 6, Team 2, Off), Is Dead(Current Array Element));
 		Event Player.D = 0;
 		Event Player.E = 1;
 		Event Player.S = True;
@@ -5085,7 +5083,7 @@ rule("CORE: (BOSS) MOIRA - HEAL USING")
 	{
 		Global.B = True;
 		Wait(0.050, Abort When False);
-		Heal(Event Player, Event Player, 10.050);
+		Heal(Event Player, Event Player, 13.750);
 		Global.BOSS_AbilityCD -= 1;
 		Loop If Condition Is True;
 	}
@@ -5748,24 +5746,16 @@ rule("CORE: (BOSS) CASS - DODGE reset 1")
 	actions
 	{
 		Destroy HUD Text(Global.BOSS_AbilityKey);
-		Skip If(Event Player.U != 0, 6);
-		Skip If(Global.BOSS_AbilityCD == 0, 2);
-		Create HUD Text(All Players(Team 1), Round To Integer(Global.BOSS_AbilityCD, Up), Custom String("EXTENDED"), Custom String(
-			"COMBAT ROLL"), Left, 1, Color(Orange), Color(White), Color(Orange), Visible To and String, Default Visibility);
-		Global.BOSS_AbilityKey = Last Text ID;
-		Skip If(Global.BOSS_AbilityCD != 0, 2);
-		Create HUD Text(All Players(Team 1), Custom String("{0}+crouch", Input Binding String(Button(Ability 1))), Custom String(
-			"EXTENDED"), Custom String("COMBAT ROLL"), Left, 1, Color(White), Color(White), Color(Orange), Visible To and String,
-			Default Visibility);
-		Global.BOSS_AbilityKey = Last Text ID;
-		Skip If(Event Player.U == 0, 6);
-		Skip If(Global.BOSS_AbilityCD != 0, 2);
-		Create HUD Text(All Players(Team 1), Icon String(No), Custom String("EXTENDED"), Custom String("COMBAT ROLL"), Left, 1, Color(Red),
-			Color(White), Color(Orange), Visible To and String, Default Visibility);
-		Global.BOSS_AbilityKey = Last Text ID;
-		Skip If(Global.BOSS_AbilityCD == 0, 2);
-		Create HUD Text(All Players(Team 1), Round To Integer(Global.BOSS_AbilityCD, Up), Custom String("EXTENDED"), Custom String(
-			"COMBAT ROLL"), Left, 1, Color(Orange), Color(White), Color(Orange), Visible To and String, Default Visibility);
+		If(Global.BOSS_AbilityCD != 0);
+			Create HUD Text(Event Player, Round To Integer(Global.BOSS_AbilityCD, Up), Custom String("EXTENDED"), Custom String("COMBAT ROLL"),
+				Left, 1, Color(Orange), Color(White), Color(Orange), Visible To and String, Default Visibility);
+		Else If(Event Player.U == 0);
+			Create HUD Text(Event Player, Custom String("{0}+crouch", Input Binding String(Button(Ability 1))), Custom String("EXTENDED"),
+				Custom String("COMBAT ROLL"), Left, 1, Color(White), Color(White), Color(Orange), String, Default Visibility);
+		Else If(Event Player.U != 0);
+			Create HUD Text(Event Player, Icon String(No), Custom String("EXTENDED"), Custom String("COMBAT ROLL"), Left, 1, Color(Red), Color(
+				White), Color(Orange), String, Default Visibility);
+		End;
 		Global.BOSS_AbilityKey = Last Text ID;
 	}
 }
@@ -7264,7 +7254,7 @@ rule("ROLES: TAC (5) lock condition & action '")
 
 	conditions
 	{
-		Count Of(All Players(Team 2)) < 6;
+		Number Of Players(Team 2) < 6;
 		Count Of(Filtered Array(All Players(Team 2), Current Array Element.Z[3] == 4)) == 1;
 		Is Waiting For Players == False;
 	}
@@ -7288,7 +7278,7 @@ rule("ROLES: TAC (5) unlock condition & action '")
 	conditions
 	{
 		Is Assembling Heroes == False;
-		Count Of(All Players(Team 2)) < 6;
+		Number Of Players(Team 2) < 6;
 		Count Of(Filtered Array(All Players(Team 2), Current Array Element.Z[3] == 4)) == 0;
 		Is Waiting For Players == False;
 	}
@@ -7310,7 +7300,7 @@ rule("ROLES: TAC (6) lock condition & action '")
 
 	conditions
 	{
-		Count Of(All Players(Team 2)) == 6;
+		Number Of Players(Team 2) == 6;
 		Count Of(Filtered Array(All Players(Team 2), Current Array Element.Z[3] == 4)) == 2;
 		Is Waiting For Players == False;
 	}
@@ -7334,7 +7324,7 @@ rule("ROLES: OFF (6) unlock condition & action '")
 	conditions
 	{
 		Is Waiting For Players == False;
-		Count Of(All Players(Team 2)) == 6;
+		Number Of Players(Team 2) == 6;
 		Count Of(Filtered Array(All Players(Team 2), Current Array Element.Z[3] == 4)) < 2;
 	}
 
@@ -7466,7 +7456,7 @@ rule("ROLES: IN-GAME leaver: TAC FIX")
 	actions
 	{
 		Wait(3.333, Ignore Condition);
-		Skip If(Count Of(All Players(Team 2)) == 6, 2);
+		Skip If(Number Of Players(Team 2) == 6, 2);
 		Skip If(Count Of(Filtered Array(All Players(Team 2), Current Array Element.Z[3] == 4)) < 2, 1);
 		Sorted Array(Filtered Array(All Players(Team 2), Current Array Element.Z[3] == 4), Ultimate Charge Percent(Current Array Element))
 			[0].Z[5] = 2;
@@ -7799,6 +7789,8 @@ rule("MAPS: set threshold list 2")
 		Global.Enviro_Threshold = 7;
 		Skip If(Current Map != Map(King's Row) && Current Map != Map(King's Row Winter), 1);
 		Global.Enviro_Threshold = -100;
+		Skip If(Current Map != Map(Workshop Island) && Current Map != Map(Workshop Island Night) && Current Map != Map(Workshop Expanse) && Current Map != Map(Workshop Expanse Night), 1);
+		Global.Enviro_Threshold = -20;
 	}
 }
 
@@ -8261,7 +8253,6 @@ rule("CORE: (TEAM) ASHE - ORANGE FADE")
 			0 + Event Player.timer * 10, 255 - Event Player.timer * 15.500);
 		Wait(0.064, Abort When False);
 		Loop If Condition Is True;
-		Abort If Condition Is False;
 	}
 }
 
@@ -9221,10 +9212,7 @@ rule("CORE: (TEAM) BRIG - ARMOUR BROKEN")
 		Wait(24, Ignore Condition);
 		Stop Chasing Player Variable(Event Player, mercyArmourCD);
 		Event Player.mercyArmourCD = 0;
-		Skip If(Is Hero Being Played(Hero(Mercy), Team 2) == True, 1);
-		Event Player.Ability_Toggle = False;
-		Skip If(Is Hero Being Played(Hero(Mercy), Team 2) == False, 1);
-		Event Player.Ability_Toggle = True;
+		Event Player.Ability_Toggle = Is Hero Being Played(Hero(Mercy), Team 2);
 	}
 }
 
@@ -9393,10 +9381,7 @@ rule("CORE: (TEAM) BRIG - DIES w ARMOUR UP")
 		Wait(24, Ignore Condition);
 		Stop Chasing Player Variable(Event Player, mercyArmourCD);
 		Event Player.mercyArmourCD = 0;
-		Skip If(Is Hero Being Played(Hero(Mercy), Team 2) == True, 1);
-		Event Player.Ability_Toggle = False;
-		Skip If(Is Hero Being Played(Hero(Mercy), Team 2) == False, 1);
-		Event Player.Ability_Toggle = True;
+		Event Player.Ability_Toggle = Is Hero Being Played(Hero(Mercy), Team 2);
 	}
 }
 
@@ -13172,9 +13157,9 @@ rule("CORE: (TEAM) RAM - HUD TEXT")
 		Destroy Progress Bar HUD Text(Event Player.team_abilityHUD[0]);
 		Wait(0.016, Ignore Condition);
 		Create HUD Text(Event Player, Custom String("{0} x {1}", Ability Icon String(Hero(Baptiste), Button(Ability 1)),
-			Event Player.PassiveAOEHeal), Custom String("DEFENSIVE HEALING"), Custom String("({0})", Count Of(Filtered Array(
+			Event Player.PassiveAOEHeal), Custom String("DEFENSIVE HEALING"), Custom String("({0})", Count Of(Remove From Array(
 			Players Within Radius(Eye Position(Event Player), Event Player.primary_charge, Team 2, Surfaces And Enemy Barriers),
-			Current Array Element != Event Player))), Left, 10, Color(Purple), Color(Yellow), Color(Black), Visible To and String,
+			Event Player))), Left, 10, Color(Purple), Color(Yellow), Color(Black), Visible To and String,
 			Default Visibility);
 		Event Player.team_abilityHUD[0] = Last Text ID;
 	}
@@ -14695,8 +14680,7 @@ rule("CORE: (TEAM) BRIG KB CD")
 	{
 		Wait(0.700, Ignore Condition);
 		Set Ability Cooldown(Event Player, Button(Ability 1), 20);
-		Skip If(Is Using Ability 1(Event Player), 1);
-		Abort;
+		Abort If(!Is Using Ability 1(Event Player));
 		Wait Until(!Is Using Ability 1(Event Player), 1);
 		Set Ability Cooldown(Event Player, Button(Ability 1), 10);
 	}
@@ -15507,8 +15491,8 @@ rule("MAPS: ANTI-ENVIRO actions")
 	conditions
 	{
 		(Has Spawned(Event Player) && !Array Contains(Array(Map(Ecopoint: Antarctica), Map(Hollywood), Map(King's Row), Map(
-			Temple of Anubis), Map(Château Guillard), Map(Horizon Lunar Colony), Map(Workshop Chamber), Map(Workshop Expanse), Map(
-			Workshop Island), Map(Workshop Green Screen)), Current Map)) == True;
+			Temple of Anubis), Map(Château Guillard), Map(Horizon Lunar Colony), Map(Workshop Chamber),
+			Map(Workshop Green Screen)), Current Map)) == True;
 		(Y Component Of(Position Of(Event Player)) < Global.Enviro_Threshold && !Is Waiting For Players) == True;
 	}
 
@@ -16729,8 +16713,7 @@ rule("CORE: (TEAM) JUNO - HEAL CHARGE+")
 		Skip If(Event Player.secondary_charge < 50, 2);
 		Event Player.secondary_charge += Event Damage * 0.330;
 		Event Player.heal_rate = 2.500;
-		Skip If(Event Player.secondary_charge <= 100, 1);
-		Event Player.secondary_charge = 100;
+		Event Player.secondary_charge = Min(Event Player.secondary_charge, 100);
 	}
 }
 
@@ -16855,15 +16838,9 @@ rule("CORE: (TEAM) BAP - HEAL CHARGE+")
 
 	actions
 	{
-		Skip If(Event Player.timer >= 100, 1);
-		Event Player.timer += 12.500;
-		Skip If(Event Player.timer <= 100, 1);
-		Event Player.timer = 100;
+		Event Player.timer = Min(100, Event Player.timer + 12.500);
 		Stop Chasing Player Variable(Event Player, secondary_charge);
-		Skip If(Event Player.secondary_charge >= 100, 1);
-		Event Player.secondary_charge += Event Damage * 0.500;
-		Skip If(Event Player.secondary_charge <= 100, 1);
-		Event Player.secondary_charge = 100;
+		Event Player.secondary_charge = Min(100, Event Player.secondary_charge + Event Damage * 0.500);
 	}
 }
 
@@ -17661,10 +17638,7 @@ rule("CORE: (TEAM) REAP - LOSE ENERGY")
 
 	actions
 	{
-		Skip If(Event Player.primary_charge > 25, 1);
-		Event Player.primary_charge = 0;
-		Skip If(Event Player.primary_charge <= 25, 1);
-		Event Player.primary_charge -= 25;
+		Event Player.primary_charge = Max(0, Event Player.primary_charge - 25);
 	}
 }
 
@@ -18790,9 +18764,7 @@ rule("CORE: (TEAM) LUCIO - MEGA AMP DEATH CHARGE")
 
 	actions
 	{
-		Event Player.primary_charge -= 40;
-		Skip If(Event Player.primary_charge > 0, 1);
-		Event Player.primary_charge = 0;
+		Event Player.primary_charge = Max(0, Event Player.primary_charge - 40);
 	}
 }
 
@@ -19232,9 +19204,7 @@ rule("CORE: (TEAM) EMP")
 	{
 		Damage(Victim, Null, 25);
 		Wait(0.016, Ignore Condition);
-		Skip If(Health Of Type(Victim, Shields) > 0, 1);
-		Abort;
-		Loop;
+		Loop If(Health Of Type(Victim, Shields) > 0);
 	}
 }
 
@@ -19316,10 +19286,7 @@ rule("CORE: (ALL) DOOM DMG")
 
 	actions
 	{
-		Skip If(Team Of(Event Player) == Team 1, 1);
-		Damage(Victim, Event Player, Event Damage * 0.500 / 0.650);
-		Skip If(Team Of(Event Player) == Team 2, 1);
-		Damage(Victim, Event Player, Event Damage * 0.500 / 2.250);
+		Damage(Victim, Event Player, Event Damage * 0.500 / (Team Of(Event Player) == Team 1 ? 2.250 : 0.650));
 	}
 }
 
@@ -19927,18 +19894,15 @@ rule("CORE: (ALL) TRACK CC")
 	conditions
 	{
 		(Has Status(Event Player, Hacked) || Has Status(Event Player, Knocked Down) || Has Status(Event Player, Asleep) || Has Status(
-			Event Player, Frozen) || Has Status(Event Player, Stunned) || Is Communicating Any Emote(Event Player) || Is Alive(
-			Event Player) != True || !Has Spawned(Event Player)) == True;
+			Event Player, Frozen) || Has Status(Event Player, Stunned) || Is Communicating Any Emote(Event Player) || Is Dead(
+			Event Player) || !Has Spawned(Event Player)) != Event Player.Stunned;
 	}
 
 	actions
 	{
-		Event Player.Stunned = True;
-		Wait(0.016, Ignore Condition);
-		Wait Until(!Has Status(Event Player, Hacked) && !Has Status(Event Player, Knocked Down) && !Has Status(Event Player, Asleep)
-			&& !Has Status(Event Player, Frozen) && !Has Status(Event Player, Stunned) && Is Alive(Event Player)
-			&& !Is Communicating Any Emote(Event Player) && Has Spawned(Event Player), 99999);
-		Event Player.Stunned = False;
+		Event Player.Stunned = (Has Status(Event Player, Hacked) || Has Status(Event Player, Knocked Down) || Has Status(Event Player, Asleep) || Has Status(
+			Event Player, Frozen) || Has Status(Event Player, Stunned) || Is Communicating Any Emote(Event Player) || Is Dead(
+			Event Player) || !Has Spawned(Event Player));
 		Wait(0.016, Ignore Condition);
 		Loop If Condition Is True;
 	}
