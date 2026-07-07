@@ -597,7 +597,7 @@ settings
 				Damage Dealt: 222%
 				Damage Received: 50%
 				Fade Cooldown Time: 42%
-				Healing Dealt: 175%
+				Healing Dealt: 190%
 				Healing Received: 10%
 				Health: 267%
 				Movement Speed: 90%
@@ -5085,7 +5085,7 @@ rule("CORE: (BOSS) MOIRA - HEAL USING")
 	{
 		Global.B = True;
 		Wait(0.050, Abort When False);
-		Heal(Event Player, Event Player, 10.050);
+		Heal(Event Player, Event Player, 13.750);
 		Global.BOSS_AbilityCD -= 1;
 		Loop If Condition Is True;
 	}
@@ -5186,11 +5186,13 @@ rule("CORE: (BOSS) MOIRA - HEAL CANCEL")
 			&& !Has Status(Event Player, Hacked) && !Has Status(Event Player, Knocked Down) && !Has Status(
 			Event Player, Asleep) && !Has Status(Event Player, Frozen) && !Has Status(Event Player, Stunned)
 			 && True, 1);
-			Global.W = False;
-		Global.W = !Is Using Ability 1(Event Player) && !Is Using Ability 2(Event Player) && !Is Using Ultimate(Event Player)
+		Global.W = False;
+		Skip If(!Is Using Ability 1(Event Player) && !Is Using Ability 2(Event Player) && !Is Using Ultimate(Event Player)
 			 && !Has Status(Event Player, Hacked) && !Has Status(Event Player, Knocked Down) && !Has Status(
 			Event Player, Asleep) && !Has Status(Event Player, Frozen) && !Has Status(Event Player, Stunned)
-			 && Global.BOSS_AbilityCD == 100;
+			 && Global.BOSS_AbilityCD == 100, 1);
+		Skip(1);
+		Global.W = True;
 		Wait(0.001, Ignore Condition);
 		Loop If Condition Is True;
 	}
