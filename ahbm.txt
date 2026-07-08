@@ -65,11 +65,11 @@ settings
 				Jump Vertical Speed: 111%
 				Movement Gravity: 91%
 				Movement Speed: 101%
-				Passive Health Regeneration: Disabled
+				Passive Health Regeneration: On
 				Projectile Speed: 109%
-				Role Passives: Disabled
+				Role Passives: Off
 				Sleep Dart Cooldown Time: 24%
-				Spawn With Ultimate Ready: Enabled
+				Spawn With Ultimate Ready: On
 				Ultimate Generation - Passive Nano Boost: 0%
 				Ultimate Generation Nano Boost: 240%
 			}
@@ -84,9 +84,9 @@ settings
 				Inferno Rush Cooldown Time: 75%
 				Jump Vertical Speed: 150%
 				Movement Speed: 90%
-				Passive Health Regeneration: Disabled
+				Passive Health Regeneration: On
 				Projectile Speed: 175%
-				Role Passives: Disabled
+				Role Passives: Off
 				Ultimate Duration: 500%
 				Ultimate Generation - Combat Vermillion Ascent: 190%
 			}
@@ -102,9 +102,9 @@ settings
 				Healing Received: 45%
 				Health: 350%
 				Movement Speed: 130%
-				Passive Health Regeneration: Disabled
+				Passive Health Regeneration: On
 				Projectile Gravity: 90%
-				Role Passives: Disabled
+				Role Passives: Off
 				Ultimate Duration: 25%
 				Ultimate Generation - Combat B.O.B.: 200%
 				Ultimate Generation B.O.B.: 186%
@@ -120,10 +120,10 @@ settings
 				Immortality Field Cooldown Time: 45%
 				Jump Vertical Speed: 120%
 				Movement Gravity: 120%
-				Passive Health Regeneration: Disabled
+				Passive Health Regeneration: On
 				Regenerative Burst Cooldown Time: 166%
-				Role Passives: Disabled
-				Secondary Fire: Disabled
+				Role Passives: Off
+				Secondary Fire: Off
 				Ultimate Duration: 250%
 				Ultimate Generation Amplification Matrix: 233%
 			}
@@ -137,9 +137,9 @@ settings
 				Healing Received: 25%
 				Health: 400%
 				Jump Vertical Speed: 250%
-				Passive Health Regeneration: Disabled
+				Passive Health Regeneration: On
 				Reconfigure Cooldown Time: 40%
-				Role Passives: Disabled
+				Role Passives: Off
 				Ultimate Duration: 150%
 				Ultimate Generation Configuration: Artillery: 41%
 			}
@@ -155,9 +155,9 @@ settings
 				Health: 290%
 				Movement Gravity: 125%
 				Movement Speed: 105%
-				Passive Health Regeneration: Disabled
-				Repair Pack: Disabled
-				Role Passives: Disabled
+				Passive Health Regeneration: On
+				Repair Pack: Off
+				Role Passives: Off
 				Shield Bash Cooldown Time: 200%
 				Shield Bash Knockback Scalar: 300%
 				Ultimate Generation - Combat Rally: 54%
@@ -171,13 +171,13 @@ settings
 			{
 				Combat Roll Cooldown Time: 40%
 				Damage Dealt: 222%
-				Flashbang Cooldown Time: 133%
 				Healing Received: 50%
 				Health: 330%
+				Flashbang Cooldown Time: 133%
 				Movement Gravity: 90%
 				Movement Speed: 90%
-				Passive Health Regeneration: Disabled
-				Role Passives: Enabled
+				Passive Health Regeneration: On
+				Role Passives: On
 				Ultimate Generation Deadeye: 233%
 			}
 
@@ -193,8 +193,8 @@ settings
 				Health: 143%
 				Micro Missiles Cooldown Time: 100%
 				Movement Speed: 133%
-				Passive Health Regeneration: Disabled
-				Role Passives: Disabled
+				Passive Health Regeneration: On
+				Role Passives: Off
 				Self Destruct Knockback Scalar: 200%
 				Ultimate Generation - Combat Self-Destruct: 100%
 				Ultimate Generation - Passive Self-Destruct: 0%
@@ -213,9 +213,9 @@ settings
 				Health: 125%
 				Movement Gravity: 80%
 				Movement Speed: 105%
-				Passive Health Regeneration: Disabled
+				Passive Health Regeneration: On
 				Reconstruction Heal Scalar: 50%
-				Role Passives: Disabled
+				Role Passives: Off
 				Sonic Repulsors Cooldown Time: 71%
 				Sonic Repulsors Knockback Scalar: 166%
 				Ultimate Barrier Health Scalar Panopticon: 100%
@@ -232,12 +232,12 @@ settings
 				Healing Received: 25%
 				Health: 180%
 				Meteor Strike Knockback Scalar: 150%
-				Passive Health Regeneration: Disabled
+				Passive Health Regeneration: On
 				Power Block Cooldown Time: 428%
 				Projectile Speed: 50%
 				Rocket Punch Cooldown Time: 25%
 				Rocket Punch Knockback Scalar: 300%
-				Role Passives: Disabled
+				Role Passives: Off
 				Seismic Slam Cooldown Time: 138%
 				Ultimate Duration: 150%
 				Ultimate Generation - Combat Meteor Strike: 175%
@@ -257,9 +257,9 @@ settings
 				Jump Vertical Speed: 125%
 				Movement Gravity: 80%
 				Movement Speed: 90%
-				Passive Health Regeneration: Disabled
+				Passive Health Regeneration: On
 				Projectile Speed: 200%
-				Role Passives: Enabled
+				Role Passives: On
 				Sticky Bombs Cooldown Time: 83%
 				Ultimate Generation - Combat Duplicate: 66%
 				Ultimate Generation - Passive Duplicate: 0%
@@ -277,8 +277,8 @@ settings
 				Healing Received: 10%
 				Health: 320%
 				Jump Vertical Speed: 90%
-				Passive Health Regeneration: Disabled
-				Role Passives: Disabled
+				Passive Health Regeneration: On
+				Role Passives: Off
 				Siphon Blaster Cooldown Time: 0%
 				Siphon Blaster Duration Scalar: 500%
 				Siphon Blaster Heat Scalar: 20%
@@ -292,12 +292,12 @@ settings
 				Ammunition Clip Size Scalar: 33%
 				Damage Dealt: 188%
 				Health: 400%
-				Passive Health Regeneration: Disabled
+				Passive Health Regeneration: On
 				Quick Dash Cooldown Time: 100%
-				Role Passives: Disabled
+				Role Passives: Off
 				Take Aim Duration: 250%
 				Ultimate Generation Bola Shot: 50%
-				Updraft Cooldown Time: 100%
+				Updraft Cooldown Time: 100%				
 			}
 
 			Genji
@@ -309,9 +309,9 @@ settings
 				Health: 240%
 				Jump Vertical Speed: 80%
 				Movement Speed: 90%
-				Passive Health Regeneration: Disabled
+				Passive Health Regeneration: On
 				Projectile Speed: 192%
-				Role Passives: Disabled
+				Role Passives: Off
 				Swift Strike Cooldown Time: 0%
 				Ultimate Duration: 60%
 				Ultimate Generation - Combat Dragonblade: 175%
@@ -325,10 +325,10 @@ settings
 				Jump Vertical Speed: 80%
 				Lunge Cooldown Time: 50%
 				Movement Speed: 90%
-				Passive Health Regeneration: Disabled
+				Passive Health Regeneration: On
 				Projectile Gravity: 166%
 				Projectile Speed: 166%
-				Role Passives: Enabled
+				Role Passives: On
 				Sonic Arrow Cooldown Time: 75%
 				Storm Arrows Cooldown Time: 63%
 				Storm Arrows Quantity: 3
@@ -345,8 +345,8 @@ settings
 				Jagged Wall Health: 57%
 				Jump Vertical Speed: 150%
 				Movement Speed: 90%
-				Passive Health Regeneration: Disabled
-				Role Passives: Enabled
+				Passive Health Regeneration: On
+				Role Passives: On
 				Spike Guard Resource Cost: 100%
 				Spike Guard Resource Regeneration: 90%
 				Violent Leap Cooldown Time: 50%
@@ -364,10 +364,10 @@ settings
 				Jump Vertical Speed: 120%
 				Movement Gravity: 75%
 				Movement Speed: 110%
+				Passive Health Regeneration: On
+				Role Passives: Off
 				Outburst Cooldown Time: 188%
-				Passive Health Regeneration: Disabled
-				Role Passives: Disabled
-				Secondary Fire: Disabled
+				Secondary Fire: Off
 				Ultimate Generation Captive Sun: 106%
 			}
 
@@ -381,11 +381,11 @@ settings
 				Healing Dealt: 400%
 				Healing Received: 10%
 				Health: 400%
-				Lifeline: Disabled
+				Lifeline: Off
 				Movement Speed: 125%
-				Passive Health Regeneration: Disabled
+				Passive Health Regeneration: On
 				Projectile Speed: 125%
-				Role Passives: Enabled
+				Role Passives: On
 				Ultimate Generation - Combat Catnapper: 250%
 				Ultimate Generation - Passive Catnapper: 5%
 			}
@@ -405,9 +405,9 @@ settings
 				Jump Vertical Speed: 190%
 				Movement Gravity: 90%
 				Movement Speed: 105%
-				Passive Health Regeneration: Disabled
+				Passive Health Regeneration: On
 				Projectile Speed: 95%
-				Role Passives: Disabled
+				Role Passives: Off
 				Ultimate Generation - Combat Rampage: 44%
 			}
 
@@ -423,9 +423,9 @@ settings
 				Jump Vertical Speed: 190%
 				Movement Gravity: 125%
 				Movement Speed: 130%
-				Passive Health Regeneration: Disabled
+				Passive Health Regeneration: On
 				Projectile Speed: 110%
-				Role Passives: Disabled
+				Role Passives: Off
 				Steel Trap Cooldown Time: 60%
 				Ultimate Duration: 40%
 				Ultimate Generation - Combat RIP-Tire: 125%
@@ -436,7 +436,7 @@ settings
 			{
 				Damage Dealt: 150%
 				Glide Boost Cooldown Time: 16%
-				Glide Boost Duration Scalar: 
+				Glide Boost Duration Scalar: 250%
 				Healing Dealt: 32%
 				Healing Received: 12%
 				Health: 50%
@@ -444,9 +444,9 @@ settings
 				Jump Vertical Speed: 150%
 				Movement Gravity: 90%
 				Movement Speed: 96%
-				Passive Health Regeneration: Disabled
+				Passive Health Regeneration: On
 				Pulsar Torpedoes Cooldown Time: 30%
-				Role Passives: Disabled
+				Role Passives: Off
 				Ultimate Generation - Combat Orbital Ray: 165%
 				Ultimate Generation Orbital Ray: 325%
 			}
@@ -459,11 +459,11 @@ settings
 				Health: 267%
 				Jump Vertical Speed: 110%
 				Movement Gravity: 90%
-				Passive Health Regeneration: Disabled
+				Passive Health Regeneration: On
 				Projectile Speed: 165%
 				Protection Suzu Cooldown Time: 179%
-				Role Passives: Disabled
-				Spawn With Ultimate Ready: Enabled
+				Role Passives: Off
+				Spawn With Ultimate Ready: On
 				Ultimate Duration: 50%
 				Ultimate Generation Kitsune Rush: 89%
 			}
@@ -476,15 +476,15 @@ settings
 				Healing Dealt: 90%
 				Healing Received: 15%
 				Health: 250%
-				Life Grip: Disabled
+				Life Grip: Off
 				Movement Gravity: 85%
-				Passive Health Regeneration: Disabled
+				Passive Health Regeneration: On
 				Petal Platform Cooldown Time: 8%
 				Petal Platform Health: 34%
 				Projectile Speed: 68%
 				Rejuvenating Dash Cooldown Time: 120%
 				Rejuvenating Dash Healing: 500%
-				Role Passives: Disabled
+				Role Passives: Off
 				Tree of Life Health: 50%
 				Ultimate Generation - Combat Tree of Life: 109%
 				Ultimate Generation - Passive Tree of Life: 0%
@@ -502,9 +502,9 @@ settings
 				Health: 267%
 				Jump Vertical Speed: 100%
 				Movement Speed: 90%
-				Passive Health Regeneration: Disabled
+				Passive Health Regeneration: On
 				Projectile Speed: 150%
-				Role Passives: Disabled
+				Role Passives: Off
 				Soundwave Cooldown Time: 40%
 				Soundwave Knockback Scalar: 44%
 				Ultimate Generation - Combat Sound Barrier: 100%
@@ -518,10 +518,10 @@ settings
 				Damage Received: 42%
 				Healing Dealt: 50%
 				Health: 300%
+				Passive Health Regeneration: On
 				Movement Gravity: 80%
 				Overrun Cooldown Time: 120%
-				Passive Health Regeneration: Disabled
-				Role Passives: Enabled
+				Role Passives: On
 				Ultimate Generation Cage Fight: 75%
 			}
 
@@ -531,14 +531,14 @@ settings
 				Cryo-Freeze Cooldown Time: 60%
 				Damage Dealt: 241%
 				Damage Received: 18%
-				Freeze Stacking: Enabled
+				Freeze Stacking: On
 				Healing Dealt: 80%
 				Healing Received: 30%
 				Health: 300%
 				Ice Wall Cooldown Time: 0%
 				No Ammunition Requirement: On
-				Passive Health Regeneration: Disabled
-				Role Passives: Disabled
+				Passive Health Regeneration: On
+				Role Passives: Off
 				Ultimate Generation Blizzard: 110%
 				Weapon Freeze Duration Scalar: 40%
 				Weapon Freeze Minimum: 60%
@@ -549,20 +549,20 @@ settings
 				Ammunition Clip Size Scalar: 300%
 				Damage Dealt: 333%
 				Damage Received: 33%
-				Flash Heal: Disabled
-				Guardian Angel: Disabled
+				Flash Heal: Off
+				Guardian Angel: Off
 				Healing Dealt: 10%
 				Healing Received: 50%
 				Health: 267%
 				Jump Vertical Speed: 160%
 				Movement Gravity: 90%
 				Movement Speed: 160%
-				Passive Health Regeneration: Disabled
+				Passive Health Regeneration: On
 				Projectile Speed: 333%
-				Resurrect: Disabled
-				Role Passives: Disabled
-				Spawn With Ultimate Ready: Enabled
-				Sympathetic Recovery: Disabled
+				Resurrect: Off
+				Role Passives: Off
+				Spawn With Ultimate Ready: On
+				Sympathetic Recovery: Off
 				Ultimate Generation - Combat Valkyrie: 133%
 				Ultimate Generation - Passive Valkyrie: 3%
 				Ultimate Generation Valkyrie: 35%
@@ -576,15 +576,15 @@ settings
 				Damage Dealt: 240%
 				Damage Received: 40%
 				Healing Dealt: 360%
-				Healing Kasa: Disabled
+				Healing Kasa: Off
 				Healing Received: 10%
 				Health: 250%
 				Katashiro Return Cooldown Time: 90%
-				Katashiro Return Duration Scalar: 
+				Katashiro Return Duration Scalar: 145%
 				Movement Speed: 115%
-				Passive Health Regeneration: Disabled
-				Role Passives: Disabled
-				Spawn With Ultimate Ready: Enabled
+				Passive Health Regeneration: On
+				Role Passives: Off
+				Spawn With Ultimate Ready: On
 				Ultimate Generation - Combat Kekkai Sanctuary: 166%
 				Ultimate Generation - Passive Kekkai Sanctuary: 0%
 			}
@@ -601,10 +601,10 @@ settings
 				Healing Received: 10%
 				Health: 267%
 				Movement Speed: 90%
-				Passive Health Regeneration: Disabled
-				Primary Fire: Disabled
+				Passive Health Regeneration: On
+				Primary Fire: Off
 				Projectile Speed: 50%
-				Role Passives: Disabled
+				Role Passives: Off
 				Ultimate Duration: 75%
 				Ultimate Generation Coalescence: 195%
 			}
@@ -620,9 +620,9 @@ settings
 				Health: 178%
 				Javelin Spin Cooldown Time: 300%
 				Movement Speed: 225%
-				Passive Health Regeneration: Disabled
+				Passive Health Regeneration: On
 				Projectile Speed: 400%
-				Role Passives: Disabled
+				Role Passives: Off
 				Ultimate Generation Terra Surge: 160%
 			}
 
@@ -641,10 +641,10 @@ settings
 				Jump Jet Acceleration Scalar: 75%
 				Jump Jet Cooldown Time: 75%
 				Movement Speed: 125%
-				Passive Health Regeneration: Disabled
+				Passive Health Regeneration: On
 				Projectile Speed: 150%
 				Rocket Launcher Knockback Scalar: 400%
-				Role Passives: Enabled
+				Role Passives: On
 				Ultimate Generation Barrage: 60%
 			}
 
@@ -653,14 +653,15 @@ settings
 				Ammunition Clip Size Scalar: 25%
 				Damage Received: 20%
 				Health: 250%
-				Infinite Ultimate Duration: Enabled
+				Infinite Ultimate Duration: On
 				Movement Speed: 90%
 				Nemesis Form Cooldown Time: 0%
-				Passive Health Regeneration: Disabled
-				Role Passives: Enabled
-				Spawn With Ultimate Ready: Enabled
+				Passive Health Regeneration: On
+				Role Passives: On
+				Spawn With Ultimate Ready: On
 				Ultimate Duration: 500%
-				Void Barrier Omnic Form: Disabled
+				Void Barrier Omnic Form: Off
+				Void Barrier Omnic Form Cooldown Time: 0%
 			}
 
 			Reaper
@@ -672,8 +673,8 @@ settings
 				Healing Received: 21%
 				Health: 219%
 				Movement Speed: 90%
-				Passive Health Regeneration: Disabled
-				Role Passives: Disabled
+				Passive Health Regeneration: On
+				Role Passives: Off
 				Shadow Step Cooldown Time: 160%
 				Ultimate Generation Death Blossom: 81%
 				Wraith Form Cooldown Time: 200%
@@ -692,10 +693,10 @@ settings
 				Health: 300%
 				Jump Vertical Speed: 105%
 				Movement Gravity: 90%
-				Passive Health Regeneration: Disabled
+				Passive Health Regeneration: On
 				Projectile Speed: 333%
 				Rocket Hammer Knockback Scalar: 250%
-				Role Passives: Disabled
+				Role Passives: Off
 				Ultimate Generation - Combat Earthshatter: 225%
 				Ultimate Generation Earthshatter: 275%
 			}
@@ -711,11 +712,11 @@ settings
 				Health: 200%
 				Jump Vertical Speed: 250%
 				Movement Gravity: 95%
-				Passive Health Regeneration: Disabled
+				Passive Health Regeneration: On
 				Projectile Speed: 105%
-				Role Passives: Disabled
-				Take a Breather Maximum Time: 32%
-				Take a Breather Recharge Rate: 20%
+				Role Passives: Off
+				Take A Breather Maximum Time: 32%
+				Take A Breather Recharge Rate: 20%
 				Ultimate Generation - Combat Whole Hog: 0%
 				Ultimate Generation - Passive Whole Hog: 0%
 				Ultimate Generation Whole Hog: 172%
@@ -737,8 +738,8 @@ settings
 				Joyride Speed Scalar: 75%
 				Jump Vertical Speed: 125%
 				Movement Speed: 150%
-				Passive Health Regeneration: Disabled
-				Role Passives: Disabled
+				Passive Health Regeneration: On
+				Role Passives: Off
 				Ultimate Duration: 50%
 				Ultimate Generation - Combat Satsuriku Spree: 205%
 				Ultimate Generation - Passive Satsuriku Spree: 0%
@@ -750,8 +751,8 @@ settings
 				Healing Received: 30%
 				Health: 400%
 				Movement Gravity: 90%
-				Passive Health Regeneration: Disabled
-				Role Passives: Enabled
+				Passive Health Regeneration: On
+				Role Passives: On
 				Tracking Shot Cooldown Time: 60%
 				Tremor Charge Cooldown Time: 140%
 				Tremor Charge Knockback Scalar: 160%
@@ -772,25 +773,25 @@ settings
 				Kinetic Grasp Cooldown Time: 6%
 				Movement Gravity: 90%
 				Movement Speed: 130%
-				Passive Health Regeneration: Disabled
+				Passive Health Regeneration: On
 				Projectile Gravity: 150%
 				Projectile Speed: 115%
-				Role Passives: Disabled
+				Role Passives: Off
 				Ultimate Generation Gravitic Flux: 70%
 			}
 
 			Sojourn
 			{
 				Ammunition Clip Size Scalar: 55%
-				Charged Shot Energy Charge Rate: 100%
 				Damage Dealt: 225%
 				Damage Received: 48%
 				Disruptor Shot Cooldown Time: 80%
 				Healing Received: 14%
 				Health: 400%
-				Passive Health Regeneration: Disabled
+				Passive Health Regeneration: On
 				Power Slide Cooldown Time: 71%
-				Role Passives: Disabled
+				Charged Shot Energy Charge Rate: 100%
+				Role Passives: Off
 				Ultimate Generation - Combat Overclock: 250%
 			}
 
@@ -805,9 +806,9 @@ settings
 				Helix Rockets Knockback Scalar: 0%
 				Jump Vertical Speed: 105%
 				Movement Speed: 140%
-				Passive Health Regeneration: Disabled
+				Passive Health Regeneration: On
 				Projectile Speed: 140%
-				Role Passives: Enabled
+				Role Passives: On
 				Ultimate Duration: 66%
 				Ultimate Generation - Combat Tactical Visor: 100%
 				Ultimate Generation Tactical Visor: 212%
@@ -820,11 +821,11 @@ settings
 				Healing Received: 10%
 				Health: 323%
 				Movement Speed: 150%
-				Passive Health Regeneration: Disabled
-				Role Passives: Enabled
+				Passive Health Regeneration: On
+				Role Passives: On
 				Translocator Cooldown Time: 500%
 				Ultimate Generation EMP: 66%
-				Virus: Disabled
+				Virus: Off
 			}
 
 			Symmetra
@@ -834,11 +835,11 @@ settings
 				Healing Received: 40%
 				Health: 300%
 				No Ammunition Requirement: On
-				Passive Health Regeneration: Disabled
-				Primary Fire: Disabled
+				Passive Health Regeneration: On
+				Primary Fire: Off
 				Projectile Speed: 222%
-				Role Passives: Disabled
-				Sentry Turret: Disabled
+				Role Passives: Off
+				Sentry Turret: Off
 				Teleporter Cooldown Time: 8%
 				Ultimate Generation Photon Barrier: 175%
 			}
@@ -851,14 +852,14 @@ settings
 				Deploy Turret Cooldown Time: 200%
 				Healing Received: 20%
 				Health: 250%
-				Infinite Ultimate Duration: Enabled
+				Infinite Ultimate Duration: On
 				Jump Vertical Speed: 200%
 				Movement Gravity: 80%
 				Movement Speed: 150%
-				Passive Health Regeneration: Disabled
+				Passive Health Regeneration: On
 				Projectile Gravity: 150%
-				Role Passives: Enabled
-				Spawn With Ultimate Ready: Enabled
+				Role Passives: On
+				Spawn With Ultimate Ready: On
 				Ultimate Generation - Combat Molten Core: 240%
 				Ultimate Generation Molten Core: 155%
 			}
@@ -870,9 +871,9 @@ settings
 				Damage Dealt: 215%
 				Healing Received: 15%
 				Health: 429%
-				Passive Health Regeneration: Disabled
+				Passive Health Regeneration: On
 				Recall Cooldown Time: 230%
-				Role Passives: Disabled
+				Role Passives: Off
 				Ultimate Generation Pulse Bomb: 242%
 			}
 
@@ -884,9 +885,9 @@ settings
 				Health: 300%
 				Jump Vertical Speed: 135%
 				Movement Speed: 135%
-				Passive Health Regeneration: Disabled
+				Passive Health Regeneration: On
 				Projectile Speed: 100%
-				Role Passives: Disabled
+				Role Passives: Off
 				Soaring Slice Cooldown Time: 142%
 				Ultimate Generation Sundering Blade: 115%
 				Whirlwind Dash Cooldown Time: 30%
@@ -902,8 +903,8 @@ settings
 				Drill Dash Cooldown Time: 112%
 				Healing Received: 20%
 				Health: 300%
-				Passive Health Regeneration: Disabled
-				Role Passives: Disabled
+				Passive Health Regeneration: On
+				Role Passives: Off
 				Ultimate Duration: 200%
 				Ultimate Generation Tectonic Shock: 125%
 			}
@@ -918,10 +919,10 @@ settings
 				Healing Received: 10%
 				Health: 389%
 				Movement Gravity: 90%
-				Passive Health Regeneration: Disabled
+				Passive Health Regeneration: On
 				Projectile Gravity: 105%
 				Projectile Speed: 105%
-				Role Passives: Enabled
+				Role Passives: On
 				Ultimate Duration: 66%
 				Ultimate Generation Infra-Sight: 216%
 				Venom Mine Cooldown Time: 66%
@@ -940,9 +941,9 @@ settings
 				Jump Pack Knockback Scalar: 90%
 				Jump Vertical Speed: 150%
 				Movement Speed: 90%
-				Passive Health Regeneration: Disabled
-				Role Passives: Disabled
-				Secondary Fire: Disabled
+				Passive Health Regeneration: On
+				Role Passives: Off
+				Secondary Fire: Off
 				Ultimate Duration: 35%
 				Ultimate Generation - Combat Primal Rage: 240%
 				Ultimate Generation Primal Rage: 338%
@@ -958,10 +959,10 @@ settings
 				Healing Dealt: 10%
 				Healing Received: 15%
 				Health: 174%
-				Passive Health Regeneration: Disabled
+				Passive Health Regeneration: On
 				Piledriver Cooldown Time: 25%
 				Projectile Speed: 250%
-				Role Passives: Disabled
+				Role Passives: Off
 				Ultimate Generation - Combat Minefield: 275%
 				Ultimate Generation Minefield: 75%
 			}
@@ -974,9 +975,9 @@ settings
 				Healing Received: 10%
 				Health: 400%
 				Movement Speed: 108%
-				Passive Health Regeneration: Disabled
-				Restorative Stream: Disabled
-				Role Passives: Disabled
+				Passive Health Regeneration: On
+				Restorative Stream: Off
+				Role Passives: Off
 				Rushing Torrent Cooldown Time: 11%
 				Rushing Torrent Duration Scalar: 457%
 			}
@@ -993,9 +994,9 @@ settings
 				Movement Speed: 115%
 				Particle Barrier Cooldown Time: 145%
 				Particle Cannon Secondary Knockback Scalar: 300%
-				Passive Health Regeneration: Disabled
-				Projected Barrier: Disabled
-				Role Passives: Disabled
+				Passive Health Regeneration: On
+				Projected Barrier: Off
+				Role Passives: Off
 				Ultimate Generation - Combat Graviton Surge: 200%
 				Ultimate Generation Graviton Surge: 75%
 			}
@@ -1010,11 +1011,11 @@ settings
 				Jump Vertical Speed: 250%
 				Movement Gravity: 125%
 				Movement Speed: 90%
-				Orb of Harmony: Disabled
-				Passive Health Regeneration: Disabled
+				Orb of Harmony: Off
+				Passive Health Regeneration: On
 				Projectile Speed: 150%
-				Role Passives: Disabled
-				Secondary Fire: Disabled
+				Role Passives: Off
+				Secondary Fire: Off
 				Ultimate Generation - Combat Transcendence: 180%
 				Ultimate Generation Transcendence: 45%
 			}
@@ -1032,8 +1033,8 @@ settings
 				Damage Dealt: 67%
 				Healing Dealt: 10%
 				Healing Received: 95%
-				Passive Health Regeneration: Disabled
-				Role Passives: Enabled
+				Passive Health Regeneration: On
+				Role Passives: On
 				Sleep Dart Cooldown Time: 285%
 				Ultimate Generation - Combat Nano Boost: 0%
 				Ultimate Generation - Passive Nano Boost: 0%
@@ -1048,8 +1049,8 @@ settings
 				Healing Received: 80%
 				Inferno Rush Cooldown Time: 100%
 				Movement Speed: 115%
-				Passive Health Regeneration: Disabled
-				Role Passives: Enabled
+				Passive Health Regeneration: On
+				Role Passives: On
 				Ultimate Generation - Combat Vermillion Ascent: 250%
 				Ultimate Generation - Passive Vermillion Ascent: 200%
 			}
@@ -1062,8 +1063,8 @@ settings
 				Coach Gun Knockback Scalar Self: 75%
 				Damage Dealt: 67%
 				Dynamite Cooldown Time: 125%
-				Passive Health Regeneration: Disabled
-				Role Passives: Disabled
+				Passive Health Regeneration: On
+				Role Passives: Off
 				Ultimate Duration: 70%
 				Ultimate Generation - Combat B.O.B.: 250%
 				Ultimate Generation - Passive B.O.B.: 25%
@@ -1078,11 +1079,11 @@ settings
 				Healing Received: 140%
 				Health: 90%
 				Immortality Field Cooldown Time: 181%
-				Passive Health Regeneration: Disabled
+				Passive Health Regeneration: On
 				Projectile Gravity: 13%
 				Projectile Speed: 313%
 				Regenerative Burst Cooldown Time: 166%
-				Role Passives: Enabled
+				Role Passives: On
 				Ultimate Duration: 70%
 				Ultimate Generation - Combat Amplification Matrix: 340%
 				Ultimate Generation - Passive Amplification Matrix: 75%
@@ -1099,10 +1100,11 @@ settings
 				Healing Received: 40%
 				Health: 115%
 				Movement Speed: 80%
-				Passive Health Regeneration: Disabled
+				Passive Health Regeneration: On
 				Reconfigure Cooldown Time: 40%
-				Role Passives: Disabled
+				Role Passives: Off
 				Ultimate Duration: 75%
+				Ultimate Generation - Passive Configuration: Artillery: 102%
 				Ultimate Generation - Passive Configuration: Artillery: 46%
 			}
 
@@ -1114,9 +1116,9 @@ settings
 				Healing Dealt: 66%
 				Healing Received: 40%
 				Health: 200%
-				Passive Health Regeneration: Disabled
+				Passive Health Regeneration: On
 				Repair Pack Cooldown Time: 80%
-				Role Passives: Disabled
+				Role Passives: Off
 				Shield Bash Cooldown Time: 500%
 				Shield Bash Knockback Scalar: 80%
 				Ultimate Generation - Combat Rally: 116%
@@ -1131,8 +1133,8 @@ settings
 				Damage Dealt: 50%
 				Flashbang Cooldown Time: 125%
 				Health: 110%
-				Passive Health Regeneration: Disabled
-				Role Passives: Disabled
+				Passive Health Regeneration: On
+				Role Passives: Off
 				Ultimate Generation - Passive Deadeye: 33%
 				Ultimate Generation Deadeye: 88%
 			}
@@ -1147,8 +1149,8 @@ settings
 				Healing Received: 50%
 				Health: 50%
 				Micro Missiles Cooldown Time: 285%
-				Passive Health Regeneration: Disabled
-				Role Passives: Enabled
+				Passive Health Regeneration: On
+				Role Passives: On
 				Ultimate Generation - Combat Self-Destruct: 150%
 				Ultimate Generation - Passive Self-Destruct: 120%
 			}
@@ -1161,10 +1163,10 @@ settings
 				Damage Dealt: 60%
 				Healing Received: 40%
 				Health: 72%
-				Passive Health Regeneration: Disabled
+				Passive Health Regeneration: On
 				Projectile Speed: 80%
 				Reconstruction Heal Scalar: 150%
-				Role Passives: Disabled
+				Role Passives: Off
 				Sonic Repulsors Cooldown Time: 428%
 				Ultimate Barrier Health Scalar Panopticon: 300%
 				Ultimate Generation - Combat Panopticon: 200%
@@ -1178,12 +1180,12 @@ settings
 				Damage Dealt: 55%
 				Healing Received: 66%
 				Health: 74%
-				Passive Health Regeneration: Disabled
+				Passive Health Regeneration: On
 				Power Block Cooldown Time: 428%
 				Projectile Speed: 90%
 				Rocket Punch Cooldown Time: 250%
 				Rocket Punch Knockback Scalar: 75%
-				Role Passives: Enabled
+				Role Passives: On
 				Seismic Slam Cooldown Time: 62%
 				Ultimate Duration: 200%
 				Ultimate Generation - Combat Meteor Strike: 175%
@@ -1199,9 +1201,9 @@ settings
 				Focusing Beam Cooldown Time: 450%
 				Healing Received: 80%
 				Health: 33%
-				Passive Health Regeneration: Disabled
+				Passive Health Regeneration: On
 				Projectile Speed: 125%
-				Role Passives: Disabled
+				Role Passives: Off
 				Sticky Bombs Cooldown Time: 300%
 				Ultimate Generation - Combat Duplicate: 125%
 				Ultimate Generation - Passive Duplicate: 90%
@@ -1218,8 +1220,8 @@ settings
 				Healing Received: 90%
 				Health: 110%
 				Override Protocol Knockback Scalar: 200%
-				Passive Health Regeneration: Disabled
-				Role Passives: Disabled
+				Passive Health Regeneration: On
+				Role Passives: Off
 				Siphon Blaster Cooldown Time: 90%
 				Siphon Blaster Duration Scalar: 100%
 				Siphon Blaster Heat Scalar: 80%
@@ -1232,11 +1234,11 @@ settings
 				Ammunition Clip Size Scalar: 46%
 				Damage Dealt: 83%
 				Health: 112%
-				Passive Health Regeneration: Disabled
+				Passive Health Regeneration: On
 				Projectile Speed: 100%
 				Quick Dash Cooldown Time: 195%
 				Quick Dash Distance: 90%
-				Role Passives: Disabled
+				Role Passives: Off
 				Ultimate Generation Bola Shot: 160%
 				Updraft Cooldown Time: 130%
 				Updraft Height: 90%
@@ -1247,9 +1249,9 @@ settings
 				Ammunition Clip Size Scalar: 100%
 				Damage Dealt: 90%
 				Deflect Cooldown Time: 375%
-				Passive Health Regeneration: Disabled
+				Passive Health Regeneration: On
 				Projectile Speed: 100%
-				Role Passives: Disabled
+				Role Passives: Off
 				Swift Strike Cooldown Time: 112%
 				Ultimate Duration: 67%
 				Ultimate Generation - Combat Dragonblade: 0%
@@ -1262,10 +1264,10 @@ settings
 				Damage Dealt: 85%
 				Lunge Cooldown Time: 125%
 				Lunge Distance Scalar: 75%
-				Passive Health Regeneration: Disabled
+				Passive Health Regeneration: On
 				Projectile Gravity: 150%
 				Projectile Speed: 125%
-				Role Passives: Enabled
+				Role Passives: On
 				Sonic Arrow Cooldown Time: 250%
 				Storm Arrows Cooldown Time: 200%
 				Storm Arrows Quantity: 3
@@ -1280,8 +1282,8 @@ settings
 				Jagged Wall Cooldown Time: 133%
 				Jagged Wall Health: 100%
 				Movement Speed: 90%
-				Passive Health Regeneration: Disabled
-				Role Passives: Disabled
+				Passive Health Regeneration: On
+				Role Passives: Off
 				Spike Guard Movement Speed Penalty: 20%
 				Spike Guard Resource Cost: 175%
 				Spike Guard Resource Regeneration: 25%
@@ -1298,8 +1300,8 @@ settings
 				Healing Received: 95%
 				Health: 80%
 				Outburst Cooldown Time: 150%
-				Passive Health Regeneration: Disabled
-				Role Passives: Disabled
+				Passive Health Regeneration: On
+				Role Passives: Off
 				Solar Energy Maximum: 100%
 				Solar Energy Recharge Rate: 16%
 				Ultimate Generation - Combat Captive Sun: 200%
@@ -1312,9 +1314,9 @@ settings
 				Healing Dealt: 10%
 				Healing Received: 140%
 				Lifeline Cooldown Time: 400%
-				Passive Health Regeneration: Disabled
+				Passive Health Regeneration: On
 				Purr Cooldown Time: 333%
-				Role Passives: Enabled
+				Role Passives: On
 				Ultimate Generation - Combat Catnapper: 150%
 				Ultimate Generation - Passive Catnapper: 10%
 			}
@@ -1330,8 +1332,8 @@ settings
 				Jagged Blade Gracie Cooldown Time: 266%
 				Jagged Blade Delay Before Automatic Recall: 50%
 				Jagged Blade Knockback Scalar: 120%
-				Passive Health Regeneration: Disabled
-				Role Passives: Disabled
+				Passive Health Regeneration: On
+				Role Passives: Off
 				Ultimate Generation - Passive Rampage: 55%
 			}
 
@@ -1343,9 +1345,9 @@ settings
 				Frag Launcher Knockback Scalar: 120%
 				Healing Received: 90%
 				Health: 110%
-				Passive Health Regeneration: Disabled
-				Role Passives: Disabled
-				Steel Trap: Disabled
+				Passive Health Regeneration: On
+				Role Passives: Off
+				Steel Trap: Off
 				Ultimate Generation - Combat RIP-Tire: 125%
 				Ultimate Generation - Passive RIP-Tire: 60%
 			}
@@ -1359,9 +1361,9 @@ settings
 				Healing Received: 140%
 				Health: 33%
 				Hyper Ring Cooldown Time: 143%
-				Passive Health Regeneration: Disabled
+				Passive Health Regeneration: On
 				Pulsar Torpedoes Cooldown Time: 150%
-				Role Passives: Disabled
+				Role Passives: Off
 				Ultimate Generation Orbital Ray: 110%
 			}
 
@@ -1370,10 +1372,10 @@ settings
 				Ammunition Clip Size Scalar: 40%
 				Damage Dealt: 60%
 				Healing Dealt: 10%
-				Passive Health Regeneration: Disabled
+				Passive Health Regeneration: On
 				Projectile Speed: 140%
 				Protection Suzu Cooldown Time: 285%
-				Role Passives: Enabled
+				Role Passives: On
 				Swift Step Cooldown Time: 100%
 				Ultimate Generation - Combat Kitsune Rush: 103%
 				Ultimate Generation - Passive Kitsune Rush: 0%
@@ -1387,13 +1389,13 @@ settings
 				Health: 100%
 				Life Grip and Healing Blossom Range: 140%
 				Life Grip Cooldown Time: 222%
-				Passive Health Regeneration: Disabled
+				Passive Health Regeneration: On
 				Petal Platform Cooldown Time: 167%
 				Petal Platform Health: 55%
 				Projectile Speed: 50%
 				Rejuvenating Dash Cooldown Time: 180%
 				Rejuvenating Dash Healing: 83%
-				Role Passives: Enabled
+				Role Passives: On
 				Tree of Life Health: 75%
 				Ultimate Generation - Combat Tree of Life: 150%
 				Ultimate Generation - Passive Tree of Life: 40%
@@ -1408,9 +1410,9 @@ settings
 				Damage Received: 102%
 				Healing Dealt: 10%
 				Healing Received: 140%
-				Passive Health Regeneration: Disabled
+				Passive Health Regeneration: On
 				Projectile Speed: 160%
-				Role Passives: Enabled
+				Role Passives: On
 				Soundwave Cooldown Time: 500%
 				Soundwave Knockback Scalar: 4%
 				Ultimate Generation - Combat Sound Barrier: 115%
@@ -1425,8 +1427,8 @@ settings
 				Damage Dealt: 54%
 				Healing Dealt: 10%
 				Overrun Cooldown Time: 240%
-				Passive Health Regeneration: Disabled
-				Role Passives: Enabled
+				Passive Health Regeneration: On
+				Role Passives: On
 				Ultimate Generation - Combat Cage Fight: 80%
 				Ultimate Generation - Passive Cage Fight: 0%
 				Ultimate Generation Cage Fight: 88%
@@ -1442,9 +1444,9 @@ settings
 				Health: 92%
 				Ice Wall Cooldown Time: 250%
 				Movement Speed: 125%
-				Passive Health Regeneration: Disabled
+				Passive Health Regeneration: On
 				Projectile Speed: 125%
-				Role Passives: Disabled
+				Role Passives: Off
 				Ultimate Generation - Combat Blizzard: 90%
 				Ultimate Generation - Passive Blizzard: 0%
 				Ultimate Generation Blizzard: 99%
@@ -1457,17 +1459,17 @@ settings
 				Ammunition Clip Size Scalar: 63%
 				Damage Dealt: 10%
 				Damage Received: 75%
-				Flash Heal: Disabled
+				Flash Heal: Off
 				Guardian Angel Cooldown Time: 200%
 				Healing Dealt: 27%
 				Healing Received: 500%
 				Health: 45%
 				Movement Gravity: 80%
 				Movement Speed: 140%
-				Passive Health Regeneration: Enabled
+				Passive Health Regeneration: Off
 				Resurrect Cooldown Time: 17%
-				Role Passives: Disabled
-				Sympathetic Recovery: Enabled
+				Role Passives: Off
+				Sympathetic Recovery: On
 				Ultimate Generation - Combat Valkyrie: 200%
 				Ultimate Generation - Passive Valkyrie: 20%
 				Ultimate Generation Valkyrie: 160%
@@ -1482,9 +1484,9 @@ settings
 				Healing Kasa Cooldown Time: 500%
 				Healing Received: 75%
 				Katashiro Return Cooldown Time: 81%
-				Katashiro Return Duration Scalar: 
-				Passive Health Regeneration: Enabled
-				Role Passives: Enabled
+				Katashiro Return Duration Scalar: 218%
+				Passive Health Regeneration: Off
+				Role Passives: On
 				Ultimate Generation - Combat Kekkai Sanctuary: 115%
 				Ultimate Generation - Passive Kekkai Sanctuary: 0%
 				Ultimate Generation Kekkai Sanctuary: 95%
@@ -1500,9 +1502,9 @@ settings
 				Healing Dealt: 44%
 				Healing Received: 80%
 				Health: 112%
-				Passive Health Regeneration: Disabled
+				Passive Health Regeneration: On
 				Projectile Speed: 25%
-				Role Passives: Enabled
+				Role Passives: On
 				Ultimate Duration: 60%
 				Ultimate Generation - Combat Coalescence: 112%
 				Ultimate Generation - Passive Coalescence: 50%
@@ -1519,16 +1521,16 @@ settings
 				Health: 50%
 				Javelin Spin Cooldown Time: 312%
 				Movement Speed: 120%
-				Passive Health Regeneration: Disabled
+				Passive Health Regeneration: On
 				Projectile Speed: 60%
-				Role Passives: Enabled
+				Role Passives: On
 				Ultimate Generation - Combat Terra Surge: 200%
 				Ultimate Generation - Passive Terra Surge: 100%
 			}
 
 			Pharah
 			{
-				Concussive Blast: Disabled
+				Concussive Blast: Off
 				Damage Dealt: 35%
 				Healing Received: 75%
 				Health: 66%
@@ -1537,10 +1539,10 @@ settings
 				Jet Dash Cooldown Time: 77%
 				Jump Jet Acceleration Scalar: 75%
 				Movement Speed: 115%
-				Passive Health Regeneration: Disabled
+				Passive Health Regeneration: On
 				Projectile Speed: 218%
 				Rocket Launcher Knockback Scalar: 0%
-				Role Passives: Enabled
+				Role Passives: On
 				Ultimate Generation - Combat Barrage: 120%
 				Ultimate Generation - Passive Barrage: 150%
 				Ultimate Generation Barrage: 85%
@@ -1553,10 +1555,10 @@ settings
 				Healing Received: 40%
 				Health: 87%
 				Nemesis Form Cooldown Time: 143%
-				Passive Health Regeneration: Disabled
+				Passive Health Regeneration: On
 				Projectile Speed: 50%
 				Ravenous Vortex Cooldown Time: 219%
-				Role Passives: Enabled
+				Role Passives: On
 				Ultimate Duration: 500%
 				Ultimate Generation - Passive Annihilation: 56%
 				Void Barrier Omnic Form Cooldown Time: 75%
@@ -1568,8 +1570,8 @@ settings
 				Damage Dealt: 85%
 				Healing Dealt: 105%
 				Healing Received: 90%
-				Passive Health Regeneration: Disabled
-				Role Passives: Disabled
+				Passive Health Regeneration: On
+				Role Passives: Off
 				Shadow Step Cooldown Time: 60%
 				Ultimate Generation - Combat Death Blossom: 102%
 				Ultimate Generation - Passive Death Blossom: 60%
@@ -1586,9 +1588,9 @@ settings
 				Fire Strike Cooldown Time: 500%
 				Healing Received: 40%
 				Health: 134%
-				Passive Health Regeneration: Disabled
+				Passive Health Regeneration: On
 				Rocket Hammer Knockback Scalar: 13%
-				Role Passives: Disabled
+				Role Passives: Off
 				Ultimate Generation - Passive Earthshatter: 83%
 			}
 
@@ -1600,10 +1602,10 @@ settings
 				Healing Dealt: 60%
 				Healing Received: 66%
 				Health: 125%
-				Passive Health Regeneration: Disabled
-				Role Passives: Enabled
-				Take a Breather Maximum Time: 83%
-				Take a Breather Recharge Rate: 42%
+				Passive Health Regeneration: On
+				Role Passives: On
+				Take A Breather Maximum Time: 83%
+				Take A Breather Recharge Rate: 42%
 				Ultimate Generation - Passive Whole Hog: 6%
 				Ultimate Generation Whole Hog: 100%
 				Whole Hog Knockback Scalar: 40%
@@ -1618,8 +1620,8 @@ settings
 				Healing Received: 80%
 				Joyride Cooldown Time: 106%
 				Joyride Knockback Scalar: 0%
-				Passive Health Regeneration: Disabled
-				Role Passives: Disabled
+				Passive Health Regeneration: On
+				Role Passives: Off
 				Ultimate Generation - Combat Satsuriku Spree: 200%
 			}
 
@@ -1629,9 +1631,9 @@ settings
 				Anchor Drone Cooldown Time: 133%
 				Damage Dealt: 80%
 				Healing Received: 80%
-				Passive Health Regeneration: Disabled
+				Passive Health Regeneration: On
 				Projectile Speed: 100%
-				Role Passives: Disabled
+				Role Passives: Off
 				Tracking Shot Cooldown Time: 120%
 				Tremor Charge Cooldown Time: 329%
 				Tremor Charge Knockback Scalar: 0%
@@ -1649,24 +1651,24 @@ settings
 				Experimental Barrier Recharge Rate: 50%
 				Healing Received: 40%
 				Kinetic Grasp Cooldown Time: 166%
-				Passive Health Regeneration: Disabled
+				Passive Health Regeneration: On
 				Projectile Speed: 60%
-				Role Passives: Disabled
-				Ultimate Generation - Passive Gravitic Flux: 40%
+				Role Passives: Off
 				Ultimate Generation Gravitic Flux: 220%
+				Ultimate Generation - Passive Gravitic Flux: 40%
 			}
 
 			Sojourn
 			{
 				Ammunition Clip Size Scalar: 44%
-				Charged Shot Energy Charge Rate: 225%
 				Damage Dealt: 85%
 				Disruptor Shot Cooldown Time: 167%
 				Healing Received: 90%
 				Health: 112%
-				Passive Health Regeneration: Disabled
+				Passive Health Regeneration: On
 				Power Slide Cooldown Time: 114%
-				Role Passives: Disabled
+				Charged Shot Energy Charge Rate: 225%
+				Role Passives: Off
 				Ultimate Generation - Combat Overclock: 167%
 				Ultimate Generation - Passive Overclock: 80%
 			}
@@ -1680,9 +1682,9 @@ settings
 				Health: 90%
 				Helix Rockets Cooldown Time: 333%
 				Helix Rockets Knockback Scalar: 400%
-				Passive Health Regeneration: Disabled
+				Passive Health Regeneration: On
 				Projectile Speed: 60%
-				Role Passives: Disabled
+				Role Passives: Off
 				Ultimate Duration: 25%
 				Ultimate Generation - Combat Tactical Visor: 500%
 				Ultimate Generation - Passive Tactical Visor: 75%
@@ -1692,12 +1694,12 @@ settings
 			Sombra
 			{
 				Damage Dealt: 35%
-				Hack: Disabled
+				Hack: Off
 				Healing Received: 80%
 				Health: 66%
 				Movement Speed: 115%
-				Passive Health Regeneration: Disabled
-				Role Passives: Enabled
+				Passive Health Regeneration: On
+				Role Passives: On
 				Translocator Cooldown Time: 84%
 				Ultimate Generation - Combat EMP: 240%
 				Ultimate Generation - Passive EMP: 80%
@@ -1709,8 +1711,8 @@ settings
 			{
 				Ammunition Clip Size Scalar: 30%
 				Damage Dealt: 55%
-				Passive Health Regeneration: Disabled
-				Role Passives: Disabled
+				Passive Health Regeneration: On
+				Role Passives: Off
 				Sentry Turret Cooldown Time: 240%
 				Teleporter Cooldown Time: 500%
 				Ultimate Generation - Combat Photon Barrier: 275%
@@ -1725,8 +1727,8 @@ settings
 				Healing Received: 40%
 				Movement Speed: 80%
 				Overload Cooldown Time: 200%
-				Passive Health Regeneration: Disabled
-				Role Passives: Disabled
+				Passive Health Regeneration: On
+				Role Passives: Off
 				Ultimate Generation - Combat Molten Core: 105%
 				Ultimate Generation - Passive Molten Core: 85%
 			}
@@ -1737,9 +1739,9 @@ settings
 				Blink Cooldown Time: 112%
 				Damage Dealt: 92%
 				Health: 103%
-				Passive Health Regeneration: Disabled
+				Passive Health Regeneration: On
 				Recall Cooldown Time: 115%
-				Role Passives: Enabled
+				Role Passives: On
 				Ultimate Generation - Combat Pulse Bomb: 165%
 				Ultimate Generation - Passive Pulse Bomb: 65%
 				Ultimate Generation Pulse Bomb: 125%
@@ -1751,14 +1753,14 @@ settings
 				Healing Received: 85%
 				Health: 100%
 				Movement Speed: 110%
-				Passive Health Regeneration: Disabled
+				Passive Health Regeneration: On
 				Projectile Speed: 100%
-				Role Passives: Disabled
+				Role Passives: Off
 				Soaring Slice Cooldown Time: 171%
 				Ultimate Generation - Combat Sundering Blade: 0%
 				Ultimate Generation - Passive Sundering Blade: 500%
 				Ultimate Generation Sundering Blade: 245%
-				Warding Stance Regen Scalar: 
+				Warding Stance Regen Scalar: 135%
 				Whirlwind Dash Cooldown Time: 160%
 			}
 
@@ -1769,9 +1771,9 @@ settings
 				Damage Dealt: 50%
 				Drill Dash Cooldown Time: 75%
 				Healing Received: 82%
-				Passive Health Regeneration: Disabled
+				Passive Health Regeneration: On
 				Projectile Speed: 100%
-				Role Passives: Disabled
+				Role Passives: Off
 				Ultimate Duration: 120%
 				Ultimate Generation - Combat Tectonic Shock: 190%
 				Ultimate Generation - Passive Tectonic Shock: 90%
@@ -1784,8 +1786,8 @@ settings
 				Damage Dealt: 85%
 				Grappling Hook Cooldown Time: 120%
 				Health: 100%
-				Passive Health Regeneration: Disabled
-				Role Passives: Enabled
+				Passive Health Regeneration: On
+				Role Passives: On
 				Ultimate Duration: 26%
 				Ultimate Generation - Combat Infra-Sight: 166%
 				Ultimate Generation - Passive Infra-Sight: 66%
@@ -1801,8 +1803,8 @@ settings
 				Health: 108%
 				Jump Pack Cooldown Time: 140%
 				Jump Pack Knockback Scalar: 16%
-				Passive Health Regeneration: Disabled
-				Role Passives: Enabled
+				Passive Health Regeneration: On
+				Role Passives: On
 				Ultimate Duration: 50%
 				Ultimate Generation - Combat Primal Rage: 0%
 				Ultimate Generation - Passive Primal Rage: 500%
@@ -1818,9 +1820,9 @@ settings
 				Healing Received: 66%
 				Health: 125%
 				Minefield Knockback Scalar: 0%
-				Passive Health Regeneration: Disabled
+				Passive Health Regeneration: On
 				Piledriver Cooldown Time: 237%
-				Role Passives: Disabled
+				Role Passives: Off
 				Ultimate Duration: 90%
 				Ultimate Generation - Combat Minefield: 135%
 				Ultimate Generation - Passive Minefield: 80%
@@ -1832,14 +1834,14 @@ settings
 				Damage Dealt: 70%
 				Guardian Wave Cooldown Time: 128%
 				Guardian Wave Knockback Scalar: 10%
+				Health: 100%
 				Healing Dealt: 10%
 				Healing Received: 140%
-				Health: 100%
-				Passive Health Regeneration: Disabled
+				Passive Health Regeneration: On
 				Projectile Speed: 66%
 				Restorative Stream Drain Rate: 75%
 				Restorative Stream Recharge Rate: 50%
-				Role Passives: Disabled
+				Role Passives: Off
 				Rushing Torrent Cooldown Time: 62%
 				Rushing Torrent Duration Scalar: 285%
 				Ultimate Generation - Combat Tidal Blast: 133%
@@ -1857,9 +1859,9 @@ settings
 				Health: 80%
 				Particle Barrier Cooldown Time: 150%
 				Particle Cannon Secondary Knockback Scalar: 20%
-				Passive Health Regeneration: Disabled
+				Passive Health Regeneration: On
 				Projected Barrier Cooldown Time: 100%
-				Role Passives: Enabled
+				Role Passives: On
 				Ultimate Generation - Combat Graviton Surge: 125%
 				Ultimate Generation - Passive Graviton Surge: 90%
 				Ultimate Generation Graviton Surge: 90%
@@ -1871,9 +1873,9 @@ settings
 				Damage Dealt: 75%
 				Healing Dealt: 13%
 				Healing Received: 60%
-				Passive Health Regeneration: Disabled
+				Passive Health Regeneration: On
 				Projectile Speed: 120%
-				Role Passives: Disabled
+				Role Passives: Off
 				Ultimate Duration: 250%
 				Ultimate Generation - Combat Transcendence: 0%
 				Ultimate Generation - Passive Transcendence: 450%
@@ -1946,6 +1948,7 @@ variables
 		35: armour_pool
 		36: current_hero
 		37: PassiveAOEHeal
+		38: ReceiveAOEHeal
 		39: SpawnStats
 		40: health_pool
 		41: shield_pool
@@ -1954,6 +1957,8 @@ variables
 		44: timer
 		45: base_health
 		46: CD_saver
+		47: Ability2_Bool
+		48: Ability2_Toggle
 		49: SelfRes
 		50: Stunned
 		51: Sombra
@@ -2056,7 +2061,6 @@ rule("CORE: (BOSS) ALL - RESISTANCE STAT")
 			Global.BossResistanceStat = 0.500;
 		Else;
 			Global.BossResistanceStat = 0.400;
-		End;
 		End;
 		Wait(0.100, Ignore Condition);
 		Loop If Condition Is True;
@@ -2515,7 +2519,8 @@ rule("CORE: (WAIT) SELF KILL")
 
 	actions
 	{
-		Skip If((Hero Of(Event Player) == Hero(Ramattra) && Event Player.PlayerFX_3 && Team Of(Event Player) == Team 1) == True, 9);
+		Skip If((Hero Of(Event Player) == Hero(Ramattra) && Event Player.PlayerFX_3 && Team Of(Event Player) == Team 1) == True,
+			9);
 		Small Message(Event Player, 3);
 		Wait(1, Ignore Condition);
 		Small Message(Event Player, 2);
@@ -3548,12 +3553,11 @@ rule("CORE: (BOSS) Mercy - Switch")
 	{
 		Ongoing - Each Player;
 		Team 1;
-		All;
+		Mercy;
 	}
 
 	conditions
 	{
-		Event Player == Players On Hero(Hero(Mercy), Team 1);
 		Event Player.M == True;
 	}
 
@@ -3561,11 +3565,8 @@ rule("CORE: (BOSS) Mercy - Switch")
 	{
 		Event Player.M = Null;
 		Destroy Effect(Event Player.U);
-		Skip If(Event Player == Players On Hero(Hero(Moira), Team 1) || Event Player == Players On Hero(Hero(Lúcio), Team 1), 1);
 		Set Healing Received(Event Player, 100);
-		Skip If(Event Player == Players On Hero(Hero(D.Va), Team 1), 1);
 		Set Max Health(Event Player, 100);
-		Skip If(Event Player == Players On Hero(Hero(Sombra), Team 1) || Event Player == Players On Hero(Hero(Orisa), Team 1), 1);
 		Set Move Speed(Event Player, 100);
 	}
 }
@@ -3947,7 +3948,6 @@ rule("CORE: (BOSS) GENJI - SWITCH")
 		Skip If(Event Player.S == Null, 2);
 		Destroy Effect(Event Player.S);
 		Event Player.S = Null;
-		Skip If(Event Player.D && Event Player == Players On Hero(Hero(Genji), Team 1), 1);
 		Event Player.D = 0;
 		disabled Skip If(Array Contains(Array(Hero(Mercy), Hero(Symmetra), Hero(Zenyatta), Hero(Torbjörn)), Hero Of(Event Player)), 1);
 		disabled Set Ability 1 Enabled(Event Player, True);
@@ -3961,11 +3961,6 @@ rule("CORE: (BOSS) GENJI - DASH LOCK/UNLOCK")
 		Ongoing - Each Player;
 		Team 1;
 		Genji;
-	}
-
-	conditions
-	{
-		Hero Of(Event Player) == Hero(Genji);
 	}
 
 	actions
@@ -5051,13 +5046,9 @@ rule("CORE: (BOSS) MOIRA - SPAWN & INITIALIZE EFFECTS")
 		Event Player.F = 1;
 		disabled Wait(0.500, Abort When False);
 		Destroy Effect(Event Player.PlayerFX_1);
-		disabled Create Effect(Filtered Array(All Players(All Teams), Global.B), Energy Sound, Color(White), Eye Position(Event Player), 100,
-			Visible To Position and Radius);
 		Create Effect(Global.B, Energy Sound, Color(White), Eye Position(Event Player), 100, Visible To Position and Radius);
 		Event Player.PlayerFX_1 = Last Created Entity;
 		Destroy Effect(Event Player.PlayerFX_3);
-		disabled Create Effect(Filtered Array(All Players(All Teams), Global.B), Orb, Color(Yellow), Event Player + Vector(0, 1, 0)
-			+ Facing Direction Of(Event Player), 0.250, Visible To Position and Radius);
 		Create Effect(Global.B, Orb, Color(Yellow), Event Player + Vector(0, 1, 0) + Facing Direction Of(Event Player), 0.250,
 			Visible To Position and Radius);
 		Event Player.PlayerFX_3 = Last Created Entity;
@@ -5505,9 +5496,8 @@ rule("CORE: (BOSS) CASS - DODGE ABILITY")
 		Event Player.Ability_Toggle = True;
 		Destroy HUD Text(Global.BOSS_AbilityKey);
 		Skip If(Event Player.U != 0, 2);
-		Create HUD Text(All Players(Team 1), Custom String("{0}+crouch", Input Binding String(Button(Ability 1))), Custom String(
-			"EXTENDED"), Custom String("COMBAT ROLL"), Left, 1, Color(White), Color(White), Color(Orange), Visible To and String,
-			Default Visibility);
+		Create HUD Text(All Players(Team 1), Custom String("{0}+crouch", Input Binding String(Button(Ability 1))), Custom String("EXTENDED"),
+			Custom String("COMBAT ROLL"), Left, 1, Color(White), Color(White), Color(Orange), Visible To and String, Default Visibility);
 		Global.BOSS_AbilityKey = Last Text ID;
 		Skip If(Event Player.U == 0, 2);
 		Create HUD Text(All Players(Team 1), Icon String(No), Custom String("EXTENDED"), Custom String("COMBAT ROLL"), Left, 1, Color(Red),
@@ -5536,7 +5526,7 @@ rule("CORE: (BOSS) CASS - ROLL TIMER")
 	{
 		Wait(0.200, Ignore Condition);
 		Event Player.U = 2;
-		Wait(2.180, Ignore Condition);
+		Wait(2.18, Ignore Condition);
 		Event Player.U = 0;
 	}
 }
@@ -6370,18 +6360,12 @@ rule("CORE: (BOSS) JUNK - SWITCH DMG")
 	event
 	{
 		Ongoing - Each Player;
-		All;
-		All;
-	}
-
-	conditions
-	{
-		Event Player == Players On Hero(Hero(Junkrat), Team 1);
+		Team 1;
+		Junkrat;
 	}
 
 	actions
 	{
-		Skip If(Event Player == Players On Hero(Hero(Sombra), Team 1) || Event Player == Players On Hero(Hero(Tracer), Team 1), 1);
 		Set Damage Dealt(Event Player, 100);
 	}
 }
@@ -6398,8 +6382,7 @@ rule("CORE: (BOSS) General: SWITCH HEALTH")
 	conditions
 	{
 		Array Contains(Array(Hero(Orisa), Hero(D.Va), Hero(Kiriko), Hero(Wrecking Ball), Hero(Mercy), Hero(Tracer), Hero(Mercy), Hero(
-			Widowmaker), Hero(Sombra), Hero(Moira), Hero(Winston), Hero(Echo), Hero(Roadhog), Hero(Lúcio), Hero(Reaper)), Hero Of(
-			Event Player)) != True;
+			Widowmaker), Hero(Sombra), Hero(Moira), Hero(Winston), Hero(Echo), Hero(Roadhog), Hero(Lúcio), Hero(Reaper)), Hero Of(Event Player)) != True;
 		Has Spawned(Event Player) == True;
 	}
 
@@ -6906,8 +6889,8 @@ rule("ROLES: DEF+mercy unlock condition")
 
 	conditions
 	{
-		(!Is Hero Being Played(Hero(Mercy), Team 2) && Count Of(Filtered Array(All Players(Team 2), Current Array Element.Z[3] == 2)) < 2)
-			== True;
+		(!Is Hero Being Played(Hero(Mercy), Team 2) && Count Of(Filtered Array(All Players(Team 2),
+			Current Array Element.Z[3] == 2)) < 2) == True;
 		Count Of(Filtered Array(All Players(Team 2), Current Array Element.Z[3] == 1)) < 2;
 		Is Waiting For Players == False;
 	}
@@ -7003,8 +6986,8 @@ rule("ROLES: ENF+mercy unlock condition")
 
 	conditions
 	{
-		(!Is Hero Being Played(Hero(Mercy), Team 2) && Count Of(Filtered Array(All Players(Team 2), Current Array Element.Z[3] == 1)) < 2)
-			== True;
+		(!Is Hero Being Played(Hero(Mercy), Team 2) && Count Of(Filtered Array(All Players(Team 2),
+			Current Array Element.Z[3] == 1)) < 2) == True;
 		Count Of(Filtered Array(All Players(Team 2), Current Array Element.Z[3] == 2)) < 2;
 		Is Waiting For Players == False;
 	}
@@ -7321,7 +7304,6 @@ rule("ROLES: IN-GAME leaver: SWAP TAC")
 		Wait(0.016, Ignore Condition);
 		Set Player Allowed Heroes(Event Player, Remove From Array(Allowed Heroes(Event Player), Global.A[4]));
 		Event Player.Z[5] = Null;
-		Abort;
 	}
 }
 
@@ -7370,7 +7352,6 @@ rule("ROLES: IN-GAME joiner: ALLOW TAC")
 		Set Player Allowed Heroes(Event Player, Append To Array(Allowed Heroes(Event Player), Global.A[4]));
 		Wait(0.016, Ignore Condition);
 		Event Player.Z[5] = Null;
-		Abort;
 	}
 }
 
@@ -7626,8 +7607,7 @@ rule("MAPS: set threshold list 2")
 		Global.Enviro_Threshold = 7;
 		Skip If(Current Map != Map(King's Row) && Current Map != Map(King's Row Winter), 1);
 		Global.Enviro_Threshold = -100;
-		Skip If(Current Map != Map(Workshop Island) && Current Map != Map(Workshop Island Night) && Current Map != Map(Workshop Expanse)
-			&& Current Map != Map(Workshop Expanse Night), 1);
+		Skip If(Current Map != Map(Workshop Island) && Current Map != Map(Workshop Island Night) && Current Map != Map(Workshop Expanse) && Current Map != Map(Workshop Expanse Night), 1);
 		Global.Enviro_Threshold = -20;
 	}
 }
@@ -7721,7 +7701,6 @@ rule("CORE: (TIMER) NEGATIVE SOULS")
 		Skip If(Health(Event Player) - Absolute Value(13 * Absolute Value(Global.X[0])) <= 0.100, 1);
 		Damage(Event Player, Null, Absolute Value(13 * Absolute Value(Global.X[0])));
 		Loop If Condition Is True;
-		Abort If Condition Is False;
 	}
 }
 
@@ -8446,7 +8425,7 @@ rule("CORE: (TEAM) VENTURE - USE STUN")
 	{
 		Event Player.Stunned != True;
 		(Is Button Held(Event Player, Button(Ultimate)) && Is Button Held(Event Player, Button(Secondary Fire))
-			&& Event Player.Ability_Toggle) == True;
+			 && Event Player.Ability_Toggle) == True;
 		Event Player.primary_charge == 0;
 		Is Firing Secondary(Event Player) == True;
 		Is Using Ability 1(Event Player) == False;
@@ -9476,7 +9455,7 @@ rule("CORE: (TEAM) MOIRA - PRIMARY WARNING")
 	conditions
 	{
 		(Is Alive(Event Player) && Is Button Held(Event Player, Button(Primary Fire)) && !Is Using Ability 2(Event Player)
-			&& !Is Firing Primary(Event Player)) == True;
+			 && !Is Firing Primary(Event Player)) == True;
 		Ability Resource(Event Player, Button(Primary Fire)) > 23;
 		Event Player.primary_charge == 0;
 	}
@@ -10244,7 +10223,6 @@ rule("CORE: (TEAM) BAP - ABILITY 2 BUTTON OFF")
 	actions
 	{
 		Disallow Button(Event Player, Button(Ability 2));
-		Abort;
 	}
 }
 
@@ -10266,7 +10244,6 @@ rule("CORE: (TEAM) ALL - ABILITY 2 BUTTON ON")
 	actions
 	{
 		Allow Button(Event Player, Button(Ability 2));
-		Abort;
 	}
 }
 
@@ -10614,15 +10591,9 @@ rule("CORE: (BOSS) GENJI - RESET 2nd fire CD")
 		Set Secondary Fire Enabled(Event Player, True);
 		Stop Chasing Player Variable(Event Player, primary_charge);
 		Event Player.primary_charge = 0;
-		Skip If(Hero Of(Event Player) != Hero(Genji), 3);
 		Destroy HUD Text(Global.BOSS_AbilityKey);
 		Create HUD Text(All Players(Team 1), Ability Icon String(Hero(Genji), Button(Secondary Fire)), Custom String("secondary fire"),
 			Custom String("cooldown"), Left, 1, Color(Green), Color(Green), Color(White), Visible To and String, Default Visibility);
-		Global.BOSS_AbilityKey = Last Text ID;
-		Skip If(Hero Of(Event Player) == Hero(Genji), 3);
-		Destroy HUD Text(Global.BOSS_AbilityKey);
-		Create HUD Text(All Players(Team 1), Null, Null, Custom String("None"), Left, 1, Color(White), Color(White), Color(Red),
-			Visible To and String, Default Visibility);
 		Global.BOSS_AbilityKey = Last Text ID;
 	}
 }
@@ -10809,7 +10780,6 @@ rule("CORE: (BOSS) JUNK - FIRE DMG FROZEN")
 
 	conditions
 	{
-		Event Player == Players On Hero(Hero(Junkrat), Team 1);
 		Has Status(Event Player, Frozen) == True;
 		Is Waiting For Players == False;
 	}
@@ -10864,7 +10834,6 @@ rule("CORE: (BOSS) ASHE - DYNAMITE FROZEN")
 
 	conditions
 	{
-		Event Player == Players On Hero(Hero(Ashe), Team 1);
 		Has Status(Event Player, Frozen) == True;
 		disabled Is Waiting For Players == False;
 	}
@@ -10912,8 +10881,7 @@ rule("CORE: (BOSS) ALL - ABILITY 2 SET")
 
 	actions
 	{
-		Skip If(Array Contains(Array(Hero(Mercy), Hero(Zenyatta), Hero(Sombra), Hero(Symmetra), Hero(Ramattra)), Hero Of(Event Player)),
-			3);
+		Skip If(Array Contains(Array(Hero(Mercy), Hero(Zenyatta), Hero(Sombra), Hero(Symmetra), Hero(Ramattra)), Hero Of(Event Player)), 3);
 		Set Ability 2 Enabled(Event Player, True);
 		Allow Button(Event Player, Button(Ability 2));
 		Abort;
@@ -10940,8 +10908,7 @@ rule("CORE: (BOSS) ALL - ABILITY 1 SET")
 
 	actions
 	{
-		Skip If(Array Contains(Array(Hero(Mercy), Hero(Zenyatta), Hero(Sombra), Hero(Symmetra), Hero(Ramattra)), Hero Of(Event Player)),
-			3);
+		Skip If(Array Contains(Array(Hero(Mercy), Hero(Zenyatta), Hero(Sombra), Hero(Symmetra), Hero(Ramattra)), Hero Of(Event Player)), 3);
 		Set Ability 1 Enabled(Event Player, True);
 		Allow Button(Event Player, Button(Ability 1));
 		Abort;
@@ -11191,8 +11158,8 @@ rule("CORE: (BOSS) General: REMOVE POOLS")
 
 	conditions
 	{
-		Array Contains(Array(Hero(Genji), Hero(Hanzo), Hero(Widowmaker), Hero(Juno), Hero(Ashe), Hero(Domina), Hero(Echo), Hero(Shion),
-			Hero(Sigma), Hero(Winston)), Hero Of(Event Player)) != True;
+		Array Contains(Array(Hero(Genji), Hero(Hanzo), Hero(Widowmaker), Hero(Juno), Hero(Ashe), Hero(Domina), Hero(Echo), Hero(Shion), Hero(Sigma),
+			Hero(Winston)), Hero Of(Event Player)) != True;
 		Has Spawned(Event Player) == True;
 	}
 
@@ -11461,7 +11428,6 @@ rule("CORE: (BOSS) TORB - ULTIMATE FROZEN")
 
 	conditions
 	{
-		Event Player == Players On Hero(Hero(Torbjörn), Team 1);
 		Has Status(Event Player, Frozen) == True;
 	}
 
@@ -11549,7 +11515,7 @@ rule("CORE: (BOSS) HAM - SLAM FROZEN")
 
 	conditions
 	{
-		(Hero Of(Event Player) == Hero(Wrecking Ball) && Has Status(Event Player, Frozen)) == True;
+		Has Status(Event Player, Frozen) == True;
 	}
 
 	actions
@@ -11946,8 +11912,8 @@ rule("CORE: (TEAM) MERCY - PHARAH MERCY BEACON USE")
 		Destroy HUD Text(Global.MercyBeacon[7]);
 		Filtered Array(Players On Hero(Hero(Pharah), Team 2), Current Array Element.Ability_Bool).Ability_Toggle = False;
 		Filtered Array(Players On Hero(Hero(Pharah), Team 2), Current Array Element.Ability_Bool).primary_charge = 30;
-		Set Ability Cooldown(Filtered Array(Players On Hero(Hero(Pharah), Team 2), Current Array Element.Ability_Bool), Button(Ability 2),
-			30);
+		Set Ability Cooldown(Filtered Array(Players On Hero(Hero(Pharah), Team 2), Current Array Element.Ability_Bool), Button(
+			Ability 2), 30);
 		Players On Hero(Hero(Pharah), Team 2).Ability_Bool = False;
 		Set Ability 2 Enabled(Filtered Array(Players On Hero(Hero(Pharah), Team 2), !Current Array Element.Ability_Bool), True);
 		Play Effect(All Players(All Teams), Ring Explosion Sound, Color(White), Event Player, 50);
@@ -12362,7 +12328,6 @@ rule("CORE: (TEAM) PHARAH - ABILITY 2 BUTTON OFF")
 	actions
 	{
 		Disallow Button(Event Player, Button(Ability 2));
-		Abort;
 	}
 }
 
@@ -12970,7 +12935,6 @@ rule("CORE: (ALL) SPAWN - DELETE PLAYER FX")
 	actions
 	{
 		Destroy Effect(Event Player.PlayerFX_0);
-		Abort;
 	}
 }
 
@@ -12986,8 +12950,8 @@ rule("CORE: (TEAM) RAM - HUD TEXT")
 	conditions
 	{
 		Is Alive(Event Player) == True;
-		(!Has Status(Event Player, Stunned) && !Has Status(Event Player, Knocked Down) && !Has Status(Event Player, Frozen) && !Has Status(
-			Event Player, Asleep) && !Has Status(Event Player, Hacked) && True) == True;
+		(!Has Status(Event Player, Stunned) && !Has Status(Event Player, Knocked Down) && !Has Status(Event Player, Frozen)
+			 && !Has Status(Event Player, Asleep) && !Has Status(Event Player, Hacked) && True) == True;
 	}
 
 	actions
@@ -12998,7 +12962,8 @@ rule("CORE: (TEAM) RAM - HUD TEXT")
 		Create HUD Text(Event Player, Custom String("{0} x {1}", Ability Icon String(Hero(Baptiste), Button(Ability 1)),
 			Event Player.PassiveAOEHeal), Custom String("DEFENSIVE HEALING"), Custom String("({0})", Count Of(Remove From Array(
 			Players Within Radius(Eye Position(Event Player), Event Player.primary_charge, Team 2, Surfaces And Enemy Barriers),
-			Event Player))), Left, 10, Color(Purple), Color(Yellow), Color(Black), Visible To and String, Default Visibility);
+			Event Player))), Left, 10, Color(Purple), Color(Yellow), Color(Black), Visible To and String,
+			Default Visibility);
 		Event Player.team_abilityHUD[0] = Last Text ID;
 	}
 }
@@ -13367,8 +13332,8 @@ rule("CORE: (TEAM) VENDETTA: WHIRLWIND STUN USE")
 	actions
 	{
 		Wait(0.400, Abort When False);
-		Skip If(!Is Button Held(Event Player, Button(Ability 1)) || Ultimate Charge Percent(Event Player) < 25 || Ultimate Charge Percent(
-			Event Player) >= 100 || !Is Using Ability 1(Event Player), 14);
+		Skip If(!Is Button Held(Event Player, Button(Ability 1)) || Ultimate Charge Percent(Event Player)
+			< 25 || Ultimate Charge Percent(Event Player) >= 100 || !Is Using Ability 1(Event Player), 14);
 		Set Status(Players Within Radius(Event Player, 4, Team 1, Surfaces), Event Player, Stunned, 0.650);
 		Set Ultimate Charge(Event Player, Ultimate Charge Percent(Event Player) - 25);
 		Event Player.secondary_charge = 15;
@@ -13585,7 +13550,6 @@ rule("CORE: (ALL) SET SPAWN")
 	{
 		Event Player.SpawnStats[0] = Position Of(Event Player);
 		Event Player.SpawnStats[1] = Ultimate Charge Percent(Event Player);
-		Abort;
 	}
 }
 
@@ -13696,7 +13660,6 @@ rule("CORE: (BOSS) ALL - CLEAR CHARGE HUD")
 	actions
 	{
 		Destroy HUD Text(Event Player.charge_hud);
-		Abort;
 	}
 }
 
@@ -14076,7 +14039,6 @@ rule("CORE: (TEAM) SIG - SPAWN 2ndary charge")
 	actions
 	{
 		Event Player.secondary_charge = 0;
-		Abort;
 	}
 }
 
@@ -14154,8 +14116,8 @@ rule("CORE: (TEAM) REAP - ENERGY USE")
 	conditions
 	{
 		Event Player.Stunned != True;
-		(Event Player.Ability_Toggle && Is Button Held(Event Player, Button(Secondary Fire)) && !Has Status(Event Player, Rooted)
-			&& !Is Using Ability 2(Event Player) && !Is Using Ultimate(Event Player)) == True;
+		(Event Player.Ability_Toggle && Is Button Held(Event Player, Button(Secondary Fire)) && !Has Status(Event Player,
+			Rooted) && !Is Using Ability 2(Event Player) && !Is Using Ultimate(Event Player)) == True;
 		Event Player.secondary_charge != 1;
 	}
 
@@ -14312,8 +14274,9 @@ rule("CORE: (TEAM) REAP - TELE PLACEMENT")
 	conditions
 	{
 		Event Player.Stunned != True;
-		(Is Button Held(Event Player, Button(Ability 2)) && !Is Using Ability 1(Event Player) && !Is Using Ultimate(Event Player)
-			&& !Is Using Ability 2(Event Player) && !Event Player.Ability_Bool && !Has Status(Event Player, Rooted)) == True;
+		(Is Button Held(Event Player, Button(Ability 2)) && !Is Using Ability 1(Event Player) && !Is Using Ultimate(
+			Event Player) && !Is Using Ability 2(Event Player) && !Event Player.Ability_Bool && !Has Status(
+			Event Player, Rooted)) == True;
 		Event Player.secondary_charge != 1;
 		Ability Cooldown(Event Player, Button(Ability 2)) == 0;
 	}
@@ -14478,8 +14441,8 @@ rule("CORE: (TEAM) PHARAH - FIX STUCK BEACON")
 
 	conditions
 	{
-		(!Is Hero Being Played(Hero(Pharah), Team 2) || Is True For All(Filtered Array(All Players(Team 2), Hero Of(Current Array Element)
-			== Hero(Pharah)), Current Array Element.Ability_Bool == False)) == True;
+		(!Is Hero Being Played(Hero(Pharah), Team 2) || Is True For All(Filtered Array(All Players(Team 2), Hero Of(
+			Current Array Element) == Hero(Pharah)), Current Array Element.Ability_Bool == False)) == True;
 	}
 
 	actions
@@ -15055,7 +15018,8 @@ rule("CORE: (TEAM) CASS - USE MEDS")
 	conditions
 	{
 		Event Player.Stunned != True;
-		(Event Player.Ability_Toggle && Is Crouching(Event Player) && Is Button Held(Event Player, Button(Ultimate))) == True;
+		(Event Player.Ability_Toggle && Is Crouching(Event Player) && Is Button Held(Event Player, Button(Ultimate))
+			) == True;
 		Is In Air(Event Player) == False;
 	}
 
@@ -15108,7 +15072,8 @@ rule("CORE: (TEAM) CASS - LOOP MEDS")
 	conditions
 	{
 		Event Player.Stunned != True;
-		(Event Player.Ability_Bool && Is Crouching(Event Player) && Is Button Held(Event Player, Button(Ultimate))) == True;
+		(Event Player.Ability_Bool && Is Crouching(Event Player) && Is Button Held(Event Player, Button(Ultimate)))
+			== True;
 		Is In Air(Event Player) == False;
 		Event Player.primary_charge > 0;
 	}
@@ -15230,8 +15195,8 @@ rule("CORE: (TEAM) HAM - USE SLAM")
 	conditions
 	{
 		Event Player.Stunned != True;
-		(Is Button Held(Event Player, Button(Ultimate)) && Is Button Held(Event Player, Button(Crouch)) && Event Player.Ability_Toggle)
-			== True;
+		(Is Button Held(Event Player, Button(Ultimate)) && Is Button Held(Event Player, Button(Crouch))
+			 && Event Player.Ability_Toggle) == True;
 		Event Player.primary_charge == 0;
 		Ability Cooldown(Event Player, Button(Crouch)) > 18.400;
 		Altitude Of(Event Player) >= 2.250;
@@ -15269,9 +15234,9 @@ rule("CORE: (TEAM) HAM - END SLAM")
 
 	conditions
 	{
-		(!Is In Air(Event Player) || Is Dead(Event Player) || Has Status(Event Player, Hacked) || Has Status(Event Player, Knocked Down)
-			|| Has Status(Event Player, Asleep) || Has Status(Event Player, Frozen) || Has Status(Event Player, Stunned) || False || False)
-			== True;
+		(!Is In Air(Event Player) || Is Dead(Event Player) || Has Status(Event Player, Hacked) || Has Status(Event Player,
+			Knocked Down) || Has Status(Event Player, Asleep) || Has Status(Event Player, Frozen) || Has Status(Event Player, Stunned)
+			|| False || False) == True;
 		Event Player.Ability_Bool == True;
 	}
 
@@ -15326,8 +15291,8 @@ rule("MAPS: ANTI-ENVIRO actions")
 	conditions
 	{
 		(Has Spawned(Event Player) && !Array Contains(Array(Map(Ecopoint: Antarctica), Map(Hollywood), Map(King's Row), Map(
-			Temple of Anubis), Map(Château Guillard), Map(Horizon Lunar Colony), Map(Workshop Chamber), Map(Workshop Green Screen)),
-			Current Map)) == True;
+			Temple of Anubis), Map(Château Guillard), Map(Horizon Lunar Colony), Map(Workshop Chamber),
+			Map(Workshop Green Screen)), Current Map)) == True;
 		(Y Component Of(Position Of(Event Player)) < Global.Enviro_Threshold && !Is Waiting For Players) == True;
 	}
 
@@ -15385,8 +15350,8 @@ rule("CORE: (TEAM) SIG - LEVITATION ON")
 	conditions
 	{
 		Event Player.Stunned != True;
-		(Hero Of(Event Player) == Hero(Sigma) && !Has Status(Event Player, Rooted) && !Is Using Ultimate(Event Player)
-			&& Event Player.Ability_Toggle) == True;
+		(!Has Status(Event Player, Rooted) && !Is Using Ultimate(Event Player)
+			 && Event Player.Ability_Toggle) == True;
 		Is Button Held(Event Player, Button(Jump)) == True;
 	}
 
@@ -15582,7 +15547,7 @@ rule("CORE: (BOSS) ECHO - P.C. UP")
 	{
 		Ultimate Charge Percent(Event Player) < 100;
 		Event Player.Stunned != True;
-		(Is Button Held(Event Player, Button(Ultimate)) && Event Player.Ability_Toggle && Hero Of(Event Player) == Hero(Echo)
+		(Is Button Held(Event Player, Button(Ultimate)) && Event Player.Ability_Toggle
 			&& !Has Status(Event Player, Rooted) && !Is Duplicating(Event Player)) == True;
 	}
 
@@ -16145,6 +16110,7 @@ rule("CORE: (TEAM) LUCIO - SPAWN ABILITY HUD")
 	{
 		Event Player.primary_charge = 0;
 		Destroy HUD Text(Event Player.team_abilityHUD[0]);
+		Destroy Progress Bar HUD Text(Event Player.team_abilityHUD[0]);
 		Wait(0.016, Ignore Condition);
 		Create HUD Text(Event Player, Custom String("{0}%", Round To Integer(Event Player.primary_charge, Down)), Custom String(
 			"-> charging"), Custom String("mega amp heal song  {0} {1} {2}", Icon String(Arrow: Up), Ability Icon String(Hero(Lúcio),
@@ -16350,8 +16316,7 @@ rule("CORE: (TEAM) LW - HEAL ENERGY BAR")
 		Create Progress Bar HUD Text(Event Player, Event Player.primary_charge, Custom String("HEALING BLOSSOM ENERGY"), Left, 10,
 			Custom Color(150, 140, 0, 220), Color(White), Visible To Values and Color, Default Visibility);
 		Event Player.team_abilityHUD[0] = Last Text ID;
-		Wait Until(Event Player.primary_charge < 10 || Hero Of(Event Player) != Hero(Lifeweaver), 9999);
-		Abort If(Hero Of(Event Player) != Hero(Lifeweaver));
+		Wait Until(Event Player.primary_charge < 10, 9999);
 		Destroy HUD Text(Event Player.team_abilityHUD[0]);
 		Wait(0.016, Ignore Condition);
 		Destroy Progress Bar HUD Text(Event Player.team_abilityHUD[0]);
@@ -17131,8 +17096,8 @@ rule("CORE: (TEAM) PHARAH - TAG BOSS")
 		Destroy HUD Text(Event Player.charge_hud[0]);
 		Stop Chasing Player Variable(Event Player, timer);
 		Event Player.timer = 0;
-		Skip If(!Is In Line of Sight(Eye Position(Event Player), All Players(Team 1), Barriers Do Not Block LOS) || !Is In View Angle(
-			Event Player, All Players(Team 1), Event Player.Aim[1]), 11);
+		Skip If(!Is In Line of Sight(Eye Position(Event Player), All Players(Team 1), Barriers Do Not Block LOS)
+			 || !Is In View Angle(Event Player, All Players(Team 1), Event Player.Aim[1]), 11);
 		Destroy HUD Text(Event Player.charge_hud[0]);
 		Skip If(Is Waiting For Players, 2);
 		Create HUD Text(Event Player, Null, Custom String(
@@ -17308,9 +17273,9 @@ rule("CORE: (TEAM) BRIG - ARMOUR AIM")
 		Create Effect(Event Player, Good Aura, Color(Orange), Players On Hero(Hero(Mercy), Team 2), 1, Visible To Position and Radius);
 		Event Player.charge_hud[1] = Last Created Entity;
 		Event Player.Aim[0] = True;
-		Wait Until(!Is In View Angle(Event Player, Players On Hero(Hero(Mercy), Team 2), Event Player.Aim[1]) || !Is In Line of Sight(
-			Eye Position(Event Player), Players On Hero(Hero(Mercy), Team 2), Barriers Do Not Block LOS) || Is Dead(Players On Hero(Hero(
-			Mercy), Team 2)), 99999);
+		Wait Until(!Is In View Angle(Event Player, Players On Hero(Hero(Mercy), Team 2), Event Player.Aim[1])
+			 || !Is In Line of Sight(Eye Position(Event Player), Players On Hero(Hero(Mercy), Team 2), Barriers Do Not Block LOS)
+			 || Is Dead(Players On Hero(Hero(Mercy), Team 2)), 99999);
 		Skip If(!Is In View Angle(Event Player, Players On Hero(Hero(Mercy), Team 2), Event Player.Aim[1]), 1);
 		Wait(1, Restart When True);
 		Event Player.Aim[0] = False;
@@ -17799,7 +17764,7 @@ rule("CORE: (ALL) JQ - SHOUT HP")
 	conditions
 	{
 		(Max Health(Event Player) > 601 || (Max Health(Event Player) > Event Player.base_health && Team Of(Event Player) == Team 2))
-			== True;
+		 == True;
 	}
 
 	actions
@@ -18382,7 +18347,7 @@ rule("CORE: (TEAM) LUCIO - MEGA AMP END")
 	conditions
 	{
 		(Is In Alternate Form(Event Player) || Is Alive(Event Player) == False || Is Communicating Any Emote(Event Player)
-			|| !Is Using Ability 2(Event Player)) == True;
+			 || !Is Using Ability 2(Event Player)) == True;
 		Event Player.primary_charge < 100;
 		Event Player.Ability_Bool == True;
 	}
@@ -18857,7 +18822,6 @@ rule("OW2: (ALL) FILL HP")
 	{
 		Wait(0.250, Ignore Condition);
 		Heal(Event Player, Null, 10000);
-		Abort;
 	}
 }
 
@@ -19136,8 +19100,8 @@ rule("CORE: (BOSS) JQ shield cancel")
 
 	conditions
 	{
-		(Has Status(Event Player, Hacked) || Has Status(Event Player, Knocked Down) || Has Status(Event Player, Asleep) || Has Status(
-			Event Player, Frozen) || Has Status(Event Player, Stunned)) == True;
+		(Has Status(Event Player, Hacked) || Has Status(Event Player, Knocked Down) || Has Status(Event Player, Asleep)
+			 || Has Status(Event Player, Frozen) || Has Status(Event Player, Stunned)) == True;
 		Max Health(Event Player) > 600;
 	}
 
@@ -19523,8 +19487,8 @@ rule("(BOSS) KIRIKO STEP AIM")
 		Event Player.Ability_Bool == False;
 		Event Player.primary_charge == 0;
 		Is True For Any(Filtered Array(All Players(Team 2), Is Alive(Current Array Element)), (Is In View Angle(Event Player,
-			Current Array Element, 3) && !Is In Line of Sight(Eye Position(Event Player), Current Array Element,
-			Barriers Do Not Block LOS)) == True) == True;
+			Current Array Element, 3) && !Is In Line of Sight(Eye Position(Event Player), Current Array Element, Barriers Do Not Block LOS))
+			== True) == True;
 		Is In Line of Sight(Eye Position(Player Closest To Reticle(Event Player, Team 2)), Eye Position(Player Closest To Reticle(
 			Event Player, Team 2)) + Facing Direction Of(Event Player) * 4, Barriers Do Not Block LOS) == True;
 	}
@@ -19540,9 +19504,10 @@ rule("(BOSS) KIRIKO STEP AIM")
 			Visible To Position and String, Color(White), Default Visibility);
 		Event Player.PlayerFX_0 = Last Text ID;
 		Event Player.Ability_Toggle = True;
-		Wait Until(Is True For All(All Players(Team 2), (!Is In View Angle(Event Player, Current Array Element, 3) || !Is In Line of Sight(
-			Eye Position(Event Player), Current Array Element, Barriers Do Not Block LOS) || Event Player.Ability_Bool || Is Dead(
-			Event Player) || Event Player.primary_charge == 1 || !Is In Line of Sight(Eye Position(Player Closest To Reticle(Event Player,
+		Wait Until(Is True For All(All Players(Team 2), (!Is In View Angle(Event Player, Current Array Element, 3)
+			 || !Is In Line of Sight(Eye Position(Event Player), Current Array Element, Barriers Do Not Block LOS)
+			 || Event Player.Ability_Bool || Is Dead(Event Player)
+			 || Event Player.primary_charge == 1 || !Is In Line of Sight(Eye Position(Player Closest To Reticle(Event Player,
 			Team 2)), Eye Position(Player Closest To Reticle(Event Player, Team 2)) + Facing Direction Of(Event Player) * 4,
 			Barriers Do Not Block LOS)) == True), 999);
 		Event Player.Ability_Toggle = False;
@@ -19728,15 +19693,15 @@ rule("CORE: (ALL) TRACK CC")
 	conditions
 	{
 		(Has Status(Event Player, Hacked) || Has Status(Event Player, Knocked Down) || Has Status(Event Player, Asleep) || Has Status(
-			Event Player, Frozen) || Has Status(Event Player, Stunned) || Is Communicating Any Emote(Event Player) || Is Dead(Event Player)
-			|| !Has Spawned(Event Player)) != Event Player.Stunned;
+			Event Player, Frozen) || Has Status(Event Player, Stunned) || Is Communicating Any Emote(Event Player) || Is Dead(
+			Event Player) || !Has Spawned(Event Player)) != Event Player.Stunned;
 	}
 
 	actions
 	{
-		Event Player.Stunned = Has Status(Event Player, Hacked) || Has Status(Event Player, Knocked Down) || Has Status(Event Player,
-			Asleep) || Has Status(Event Player, Frozen) || Has Status(Event Player, Stunned) || Is Communicating Any Emote(Event Player)
-			|| Is Dead(Event Player) || !Has Spawned(Event Player);
+		Event Player.Stunned = (Has Status(Event Player, Hacked) || Has Status(Event Player, Knocked Down) || Has Status(Event Player, Asleep) || Has Status(
+			Event Player, Frozen) || Has Status(Event Player, Stunned) || Is Communicating Any Emote(Event Player) || Is Dead(
+			Event Player) || !Has Spawned(Event Player));
 		Wait(0.016, Ignore Condition);
 		Loop If Condition Is True;
 	}
@@ -20190,7 +20155,8 @@ rule("CORE: (TEAM) VENDETTA ULT LOOP")
 
 	conditions
 	{
-		(Event Player.primary_charge != 6 && Ultimate Charge Percent(Event Player) == 100 && !Is Using Ultimate(Event Player)) == True;
+		(Event Player.primary_charge != 6 && Ultimate Charge Percent(Event Player) == 100 && !Is Using Ultimate(Event Player))
+			== True;
 	}
 
 	actions
@@ -20259,8 +20225,8 @@ rule("CORE: (TEAM) ANRAN - IGNITION ACTIVE")
 	conditions
 	{
 		Has Status(Victim, Burning) == True;
-		(Array Contains(Array(Button(Ability 1), Button(Ability 2), Button(Ultimate)), Event Ability)
-			|| Event Damage > 2 * Global.BossResistanceStat * (Global.BossDamageReceived / 100)) == True;
+		(Array Contains(Array(Button(Ability 1), Button(Ability 2), Button(Ultimate)), Event Ability) ||
+			Event Damage > 2 * Global.BossResistanceStat * (Global.BossDamageReceived / 100)) == True;
 		Event Ability != Button(Melee);
 	}
 
@@ -20347,7 +20313,7 @@ rule("SUB: BOSS IGNITION EXPIRE")
 
 	actions
 	{
-		Global.BossDamageReceived *= 10 / 11.600;
+		Global.BossDamageReceived *= 10 / 11.6;
 		Set Damage Received(All Players(Team 1), Global.BossDamageReceived);
 		Destroy HUD Text(Global.BossStatus_Burning);
 	}
@@ -20372,7 +20338,7 @@ rule("CORE: (BOSS) ALL / (TEAM) ANRAN - DAMAGE AMPLIFIED")
 
 	actions
 	{
-		Global.BossIgnitedDamageTaken += Event Damage / 7.250;
+		Global.BossIgnitedDamageTaken += Event Damage / 7.25;
 	}
 }
 
@@ -20489,17 +20455,17 @@ rule("Damage Numbers 0")
 		Event Player.LastDamageNumberTime[0] = 0.333;
 		Create In-World Text(All Players(Team 2), Event Player.LastDamageNumber, Eye Position(Victim) + Vector(Random Real(-0.500, 0.500),
 			Random Real(0.500, 1), Random Real(-0.500, 0.500)), 1, Clip Against Surfaces, Visible To, Color(White), Default Visibility);
-		Skip If(Event Player.LastDamageNumber < 10 || Event Player.LastDamageNumber >= 45, 2);
+		Skip If((Event Player.LastDamageNumber < 10 || Event Player.LastDamageNumber >= 45), 2);
 		Event Player.LastDamageNumberTime[0] = 0.500;
 		Create In-World Text(All Players(Team 2), Event Player.LastDamageNumber, Eye Position(Victim) + Vector(Random Real(-0.500, 0.500),
 			Random Real(0.500, 1), Random Real(-0.500, 0.500)), 1.500, Clip Against Surfaces, Visible To, Custom Color(255, 255, 200, 255),
 			Default Visibility);
-		Skip If(Event Player.LastDamageNumber < 45 || Event Player.LastDamageNumber >= 90, 2);
+		Skip If((Event Player.LastDamageNumber < 45 || Event Player.LastDamageNumber >= 90), 2);
 		Event Player.LastDamageNumberTime[0] = 0.666;
 		Create In-World Text(All Players(Team 2), Event Player.LastDamageNumber, Eye Position(Victim) + Vector(Random Real(-0.500, 0.500),
 			Random Real(0.500, 1), Random Real(-0.500, 0.500)), 2, Clip Against Surfaces, Visible To, Custom Color(255, 255, 100, 255),
 			Default Visibility);
-		Skip If(Event Player.LastDamageNumber < 90 || Event Player.LastDamageNumber >= 160, 2);
+		Skip If((Event Player.LastDamageNumber < 90 || Event Player.LastDamageNumber >= 160), 2);
 		Event Player.LastDamageNumberTime[0] = 1;
 		Create In-World Text(All Players(Team 2), Event Player.LastDamageNumber, Eye Position(Victim) + Vector(Random Real(-0.500, 0.500),
 			Random Real(0.500, 1), Random Real(-0.500, 0.500)), 2.500, Clip Against Surfaces, Visible To, Color(Yellow),
@@ -20540,17 +20506,17 @@ rule("Damage Numbers 1")
 		Event Player.LastDamageNumberTime[1] = 0.333;
 		Create In-World Text(All Players(Team 2), Event Player.LastDamageNumber, Eye Position(Victim) + Vector(Random Real(-0.500, 0.500),
 			Random Real(0.500, 1), Random Real(-0.500, 0.500)), 1, Clip Against Surfaces, Visible To, Color(White), Default Visibility);
-		Skip If(Event Player.LastDamageNumber < 10 || Event Player.LastDamageNumber >= 45, 2);
+		Skip If((Event Player.LastDamageNumber < 10 || Event Player.LastDamageNumber >= 45), 2);
 		Event Player.LastDamageNumberTime[1] = 0.500;
 		Create In-World Text(All Players(Team 2), Event Player.LastDamageNumber, Eye Position(Victim) + Vector(Random Real(-0.500, 0.500),
 			Random Real(0.500, 1), Random Real(-0.500, 0.500)), 1.500, Clip Against Surfaces, Visible To, Custom Color(255, 255, 200, 255),
 			Default Visibility);
-		Skip If(Event Player.LastDamageNumber < 45 || Event Player.LastDamageNumber >= 90, 2);
+		Skip If((Event Player.LastDamageNumber < 45 || Event Player.LastDamageNumber >= 90), 2);
 		Event Player.LastDamageNumberTime[1] = 0.666;
 		Create In-World Text(All Players(Team 2), Event Player.LastDamageNumber, Eye Position(Victim) + Vector(Random Real(-0.500, 0.500),
 			Random Real(0.500, 1), Random Real(-0.500, 0.500)), 2, Clip Against Surfaces, Visible To, Custom Color(255, 255, 100, 255),
 			Default Visibility);
-		Skip If(Event Player.LastDamageNumber < 90 || Event Player.LastDamageNumber >= 160, 2);
+		Skip If((Event Player.LastDamageNumber < 90 || Event Player.LastDamageNumber >= 160), 2);
 		Event Player.LastDamageNumberTime[1] = 1;
 		Create In-World Text(All Players(Team 2), Event Player.LastDamageNumber, Eye Position(Victim) + Vector(Random Real(-0.500, 0.500),
 			Random Real(0.500, 1), Random Real(-0.500, 0.500)), 2.500, Clip Against Surfaces, Visible To, Color(Yellow),
