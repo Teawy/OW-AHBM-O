@@ -5044,7 +5044,6 @@ rule("CORE: (BOSS) MOIRA - SPAWN & INITIALIZE EFFECTS")
 		Global.B = False;
 		Stop Chasing Player Variable(Event Player, F);
 		Event Player.F = 1;
-		disabled Wait(0.500, Abort When False);
 		Destroy Effect(Event Player.PlayerFX_1);
 		Create Effect(Global.B, Energy Sound, Color(White), Eye Position(Event Player), 100, Visible To Position and Radius);
 		Event Player.PlayerFX_1 = Last Created Entity;
@@ -5052,6 +5051,7 @@ rule("CORE: (BOSS) MOIRA - SPAWN & INITIALIZE EFFECTS")
 		Create Effect(Global.B, Orb, Color(Yellow), Event Player + Vector(0, 1, 0) + Facing Direction Of(Event Player), 0.250,
 			Visible To Position and Radius);
 		Event Player.PlayerFX_3 = Last Created Entity;
+		Event Player.F = 2;
 	}
 }
 
@@ -5093,6 +5093,7 @@ rule("CORE: (BOSS) MOIRA - HEAL")
 		Wait Until(Global.BOSS_AbilityCD >= 100, 99999);
 		Stop Chasing Global Variable(BOSS_AbilityCD);
 		Play Effect(All Players(Team 1), Buff Explosion Sound, Color(White), Event Player, 50);
+		Wait(0.100, Ignore Condition);
 		Global.W = True;
 		Loop If Condition Is True;
 	}
