@@ -1736,7 +1736,7 @@ settings
 
 			Tracer
 			{
-				Ammunition Clip Size Scalar: 90%
+				Ammunition Clip Size Scalar: 75%
 				Blink Cooldown Time: 112%
 				Damage Dealt: 90%
 				Health: 86%
