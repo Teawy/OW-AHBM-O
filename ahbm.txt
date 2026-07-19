@@ -20644,7 +20644,7 @@ rule("CORE: (BOSS) FROZEN NOTIFICATION")
 		Stop Chasing Player Variable(Event Player, F);
 		Event Player.F = 15;
 		Chase Player Variable At Rate(Event Player, F, 0, 1, Destination and Rate);
-		Small Message(Event Player, Custom String("{0} Frozen: 15 seconds", Global.BossFrozen[1]));
+		Small Message(Event Player, Custom String("{0} Frozen: {1} seconds", Global.BossFrozen[1], Event Player.F));
 		Destroy HUD Text(Global.BOSS_AbilityKey);
 		Create HUD Text(Event Player, Custom String("{0} {1}", Ability Icon String(Hero(Mei), Button(Ultimate)), Round To Integer(
 			Event Player.F, Up)), Custom String("THAWING"), Global.BossFrozen[1], Left, 1, Color(Sky Blue), Color(White), Color(Sky Blue),
