@@ -18457,7 +18457,7 @@ rule("CORE: (TEAM) LUCIO - MEGA AMP USE")
 			Orange), Color(Green), Color(Yellow), Visible To and String, Default Visibility);
 		Event Player.team_abilityHUD[0] = Last Text ID;
 		Event Player.Ability_Bool = True;
-		Event Player.primary_charge = 0;
+		Event Player.primary_charge = 0.004;
 		Play Effect(All Players(All Teams), Buff Explosion Sound, Color(White), Event Player, 25);
 		Destroy Effect(Event Player.PlayerFX_1);
 		Destroy Effect(Event Player.PlayerFX_2);
@@ -18467,34 +18467,16 @@ rule("CORE: (TEAM) LUCIO - MEGA AMP USE")
 			Event Player), 1.666, Visible To Position and Radius);
 		Event Player.PlayerFX_2 = Last Created Entity;
 		Wait(0.016, Ignore Condition);
-		Play Effect(Remove From Array(All Players(All Teams), Event Player), Good Pickup Effect, Color(Yellow), Event Player, 1);
-		Heal(Players Within Radius(Event Player, 11.700, Team 2, Surfaces And Enemy Barriers), Event Player, 5);
-		Heal(Remove From Array(Players Within Radius(Event Player, 11.700, Team 2, Surfaces And Enemy Barriers), Players On Hero(Hero(
-			Mercy), Team 2)), Event Player, 57.500);
-		Heal(Filtered Array(Players Within Radius(Event Player, 11.700, Team 2, Surfaces And Enemy Barriers),
-			Current Array Element.Z[3] == 1), Event Player, 62.500);
-		Wait(0.737, Abort When False);
-		Play Effect(Remove From Array(All Players(All Teams), Event Player), Good Pickup Effect, Color(Yellow), Event Player, 1);
-		Heal(Players Within Radius(Event Player, 11.700, Team 2, Surfaces And Enemy Barriers), Event Player, 5);
-		Heal(Remove From Array(Players Within Radius(Event Player, 11.700, Team 2, Surfaces And Enemy Barriers), Players On Hero(Hero(
-			Mercy), Team 2)), Event Player, 57.500);
-		Heal(Filtered Array(Players Within Radius(Event Player, 11.700, Team 2, Surfaces And Enemy Barriers),
-			Current Array Element.Z[3] == 1), Event Player, 62.500);
-		Wait(0.737, Abort When False);
-		Play Effect(Remove From Array(All Players(All Teams), Event Player), Good Pickup Effect, Color(Yellow), Event Player, 1);
-		Heal(Players Within Radius(Event Player, 11.700, Team 2, Surfaces And Enemy Barriers), Event Player, 5);
-		Heal(Remove From Array(Players Within Radius(Event Player, 11.700, Team 2, Surfaces And Enemy Barriers), Players On Hero(Hero(
-			Mercy), Team 2)), Event Player, 57.500);
-		Heal(Filtered Array(Players Within Radius(Event Player, 11.700, Team 2, Surfaces And Enemy Barriers),
-			Current Array Element.Z[3] == 1), Event Player, 62.500);
-		Wait(0.737, Abort When False);
-		Play Effect(Remove From Array(All Players(All Teams), Event Player), Good Pickup Effect, Color(Yellow), Event Player, 1);
-		Heal(Players Within Radius(Event Player, 11.700, Team 2, Surfaces And Enemy Barriers), Event Player, 5);
-		Heal(Remove From Array(Players Within Radius(Event Player, 11.700, Team 2, Surfaces And Enemy Barriers), Players On Hero(Hero(
-			Mercy), Team 2)), Event Player, 57.500);
-		Heal(Filtered Array(Players Within Radius(Event Player, 11.700, Team 2, Surfaces And Enemy Barriers),
-			Current Array Element.Z[3] == 1), Event Player, 62.500);
-		Wait(0.700, Abort When False);
+		While(Event Player.primary_charge > 0);
+			Play Effect(Remove From Array(All Players(All Teams), Event Player), Good Pickup Effect, Color(Yellow), Event Player, 1);
+			Heal(Players Within Radius(Event Player, 11.700, Team 2, Surfaces And Enemy Barriers), Event Player, 5);
+			Heal(Remove From Array(Players Within Radius(Event Player, 11.700, Team 2, Surfaces And Enemy Barriers), Players On Hero(Hero(
+				Mercy), Team 2)), Event Player, 57.500);
+			Heal(Filtered Array(Players Within Radius(Event Player, 11.700, Team 2, Surfaces And Enemy Barriers),
+				Current Array Element.Z[3] == 1), Event Player, 62.500);
+			Event Player.primary_charge = Array(0, 0, 0.001, 0.002, 0.003)[Round To Integer(Event Player.primary_charge * 1000, To Nearest)];
+			Wait(0.700 + Round To Integer(Event Player.primary_charge, Up) * 0.037, Abort When False);
+		End;
 		Event Player.Ability_Toggle = False;
 	}
 }
