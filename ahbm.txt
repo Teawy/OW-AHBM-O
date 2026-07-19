@@ -1980,7 +1980,7 @@ subroutines
 	1: anti_enviro_OOM
 	2: BossIgnitionExpire
 	3: TEAMVendetta_StunReady
-	6: BossFrozenNotification
+	6: Boss
 }
 
 rule("CORE: (TIMER) SET START TIME")
@@ -10964,6 +10964,7 @@ rule("CORE: (BOSS) JUNK - FIRE DMG FROZEN")
 		Wait(0.250, Ignore Condition);
 		Set Damage Dealt(Event Player, 100);
 		Global.BossFrozen = Array(-1, Custom String("FIRE DMG"));
+		Clear Status(Event Player, Burning);
 		Call Subroutine(BossFrozenNotification);
 		Skip If(Is Waiting For Players, 2);
 		Create Effect(All Players(All Teams), Cloud, Color(White), Event Player, 1, Visible To Position and Radius);
@@ -20664,7 +20665,6 @@ rule("CORE: (BOSS) Frozen Notification")
 
 	actions
 	{
-		disabled Clear Status(Event Player, Burning);
 		Stop Chasing Player Variable(Event Player, F);
 		Event Player.F = 15;
 		Chase Player Variable At Rate(Event Player, F, 0, 1, Destination and Rate);
