@@ -1981,6 +1981,7 @@ subroutines
 	2: BossIgnitionExpire
 	3: TEAMVendetta_StunReady
 	6: BossFrozenNotification
+	7: BossClearFreeze
 }
 
 rule("CORE: (TIMER) SET START TIME")
@@ -11450,10 +11451,7 @@ rule("CORE: (BOSS) REIN - FIRE THAW")
 		Skip If(Is Alive(Event Player), 3);
 		Set Ability 2 Enabled(Event Player, True);
 		Event Player.primary_charge += 1;
-		Destroy HUD Text(Global.BOSS_AbilityKey);
-		Global.BossFrozen = 0;
-		Wait(0.050, Ignore Condition);
-		Destroy Effect(Event Player.PlayerFX_3);
+		Call Subroutine(BossClearFreeze);
 	}
 }
 
@@ -11475,7 +11473,7 @@ rule("CORE: (BOSS) HOG - ULTIMATE THAW")
 
 	actions
 	{
-		Destroy Effect(Event Player.PlayerFX_3);
+		Call Subroutine(BossClearFreeze);
 		Set Ultimate Ability Enabled(Event Player, True);
 		Wait(0.016, Ignore Condition);
 		Set Ultimate Charge(Event Player, Event Player.X[0]);
@@ -11483,12 +11481,9 @@ rule("CORE: (BOSS) HOG - ULTIMATE THAW")
 		Skip If(Ultimate Charge Percent(Event Player) < 100, 2);
 		Play Effect(All Players(All Teams), Bad Pickup Effect, Color(Red), Event Player, 1);
 		Set Status(Event Player, Null, Burning, 9999);
-		Destroy HUD Text(Global.BOSS_AbilityKey);
 		Create HUD Text(All Players(Team 1), Null, Null, Custom String("None"), Left, 1, Color(White), Color(White), Color(Red),
 			Visible To and String, Default Visibility);
 		Global.BOSS_AbilityKey = Last Text ID;
-		Stop Chasing Player Variable(Event Player, F);
-		Global.BossFrozen = 0;
 		Skip If(Is Waiting For Players, 4);
 		Skip If(Ultimate Charge Percent(Event Player) > 70, 2);
 		Destroy Effect(Event Player.H);
@@ -11508,13 +11503,10 @@ rule("CORE: (BOSS) HOG - ULTIMATE THAW DEATH")
 
 	actions
 	{
-		Destroy Effect(Event Player.PlayerFX_3);
-		Destroy HUD Text(Global.BOSS_AbilityKey);
+		Call Subroutine(BossClearFreeze);
 		Create HUD Text(All Players(Team 1), Null, Null, Custom String("None"), Left, 1, Color(White), Color(White), Color(Red),
 			Visible To and String, Default Visibility);
 		Global.BOSS_AbilityKey = Last Text ID;
-		Stop Chasing Player Variable(Event Player, F);
-		Event Player.F = 0;
 		Set Ultimate Ability Enabled(Event Player, True);
 		Skip If(Is Waiting For Players, 4);
 		Skip If(Ultimate Charge Percent(Event Player) > 70, 2);
@@ -11541,11 +11533,10 @@ rule("CORE: (BOSS) ASHE - DYNAMITE THAW")
 
 	actions
 	{
-		Destroy Effect(Event Player.PlayerFX_3);
+		Call Subroutine(BossClearFreeze);
 		Set Ability 2 Enabled(Event Player, True);
 		Set Ability Cooldown(Event Player, Button(Ability 2), Event Player.X[0]);
 		Allow Button(Event Player, Button(Ability 2));
-		Destroy HUD Text(Global.BOSS_AbilityKey);
 		Skip If(Event Player.Ability_Bool, 2);
 		Create HUD Text(All Players(Team 1), Ability Icon String(Hero(Ashe), Button(Primary Fire)), Custom String(
 			"Primary Ammo Active | Hold {0} to use/reload the scope", Input Binding String(Button(Secondary Fire))), Custom String(
@@ -11557,7 +11548,6 @@ rule("CORE: (BOSS) ASHE - DYNAMITE THAW")
 			Visible To and String, Default Visibility);
 		Global.BOSS_AbilityKey = Last Text ID;
 		Event Player.X[0] = 0;
-		Global.BossFrozen = 0;
 	}
 }
 
@@ -11602,15 +11592,12 @@ rule("CORE: (BOSS) TORB - ULTIMATE THAW")
 
 	actions
 	{
-		Destroy Effect(Event Player.PlayerFX_3);
+		Call Subroutine(BossClearFreeze);
 		Set Ultimate Ability Enabled(Event Player, True);
 		Wait(0.016, Ignore Condition);
-		Destroy HUD Text(Global.BOSS_AbilityKey);
 		Create HUD Text(All Players(Team 1), Null, Null, Custom String("None"), Left, 1, Color(White), Color(White), Color(Red),
 			Visible To and String, Default Visibility);
 		Global.BOSS_AbilityKey = Last Text ID;
-		Stop Chasing Player Variable(Event Player, F);
-		Global.BossFrozen = 0;
 	}
 }
 
@@ -11625,13 +11612,10 @@ rule("CORE: (BOSS) TORB - ULTIMATE THAW DEATH")
 
 	actions
 	{
-		Destroy Effect(Event Player.PlayerFX_3);
-		Destroy HUD Text(Global.BOSS_AbilityKey);
+		Call Subroutine(BossClearFreeze);
 		Create HUD Text(All Players(Team 1), Null, Null, Custom String("None"), Left, 1, Color(White), Color(White), Color(Red),
 			Visible To and String, Default Visibility);
 		Global.BOSS_AbilityKey = Last Text ID;
-		Stop Chasing Player Variable(Event Player, F);
-		Event Player.F = 0;
 		Set Ultimate Ability Enabled(Event Player, True);
 	}
 }
@@ -11677,10 +11661,8 @@ rule("CORE: (BOSS) HAM - SLAM THAW")
 
 	actions
 	{
+		Call Subroutine(BossClearFreeze);
 		Set Ability Cooldown(Event Player, Button(Crouch), 0);
-		Destroy Effect(Event Player.PlayerFX_3);
-		Global.BossFrozen = 0;
-		Destroy HUD Text(Global.BOSS_AbilityKey);
 		Skip If(Max Health(Event Player) < 1001, 2);
 		Create HUD Text(Event Player, Ability Icon String(Hero(Wrecking Ball), Button(Ability 2)), Custom String(
 			"rapidly press shields to keep them active!"), Custom String("SHIELDS ACTIVE"), Left, 1, Color(Green), Color(White), Color(
@@ -11690,8 +11672,6 @@ rule("CORE: (BOSS) HAM - SLAM THAW")
 			"rapidly press shields to keep them active!"), Custom String("SHIELDS DOWN"), Left, 1, Color(Red), Color(White), Color(Red),
 			Visible To and String, Default Visibility);
 		Global.BOSS_AbilityKey = Last Text ID;
-		Wait(0.050, Ignore Condition);
-		Destroy Effect(Event Player.PlayerFX_3);
 	}
 }
 
@@ -11737,11 +11717,8 @@ rule("CORE: (BOSS) OMNIC - JUMP THAW")
 
 	actions
 	{
+		Call Subroutine(BossClearFreeze);
 		Set Jump Vertical Speed(Event Player, 100);
-		Stop Chasing Player Variable(Event Player, F);
-		Event Player.F = 0;
-		Destroy Effect(Event Player.PlayerFX_3);
-		Global.BossFrozen = 0;
 		Destroy HUD Text(Global.BOSS_AbilityKey);
 		Create HUD Text(All Players(Team 1), Null, Null, Custom String("None"), Left, 1, Color(White), Color(White), Color(Red),
 			Visible To and String, Default Visibility);
@@ -11794,18 +11771,15 @@ rule("CORE: (BOSS) D.VA - MECH THAW")
 
 	actions
 	{
-		Destroy Effect(Event Player.PlayerFX_3);
+		Call Subroutine(BossClearFreeze);
 		Set Ultimate Ability Enabled(Event Player, True);
 		Set Ability 1 Enabled(Event Player, True);
 		Wait(0.016, Ignore Condition);
 		Skip If(Is In Alternate Form(Event Player), 1);
 		Set Ultimate Charge(Event Player, Event Player.X[0]);
-		Destroy HUD Text(Global.BOSS_AbilityKey);
 		Create HUD Text(All Players(Team 1), Null, Null, Custom String("None"), Left, 1, Color(White), Color(White), Color(Red),
 			Visible To and String, Default Visibility);
 		Global.BOSS_AbilityKey = Last Text ID;
-		Stop Chasing Player Variable(Event Player, F);
-		Global.BossFrozen = 0;
 		Skip If(Is Waiting For Players, 11);
 		Skip If(Ultimate Charge Percent(Event Player) > 33, 2);
 		Create Effect(All Players(All Teams), Cloud, Color(Gray), Event Player, 0.500, Visible To Position and Radius);
@@ -11834,13 +11808,10 @@ rule("CORE: (BOSS) D.VA - MECH THAW DEATH")
 
 	actions
 	{
-		Destroy Effect(Event Player.PlayerFX_3);
-		Destroy HUD Text(Global.BOSS_AbilityKey);
+		Call Subroutine(BossClearFreeze);
 		Create HUD Text(All Players(Team 1), Null, Null, Custom String("None"), Left, 1, Color(White), Color(White), Color(Red),
 			Visible To and String, Default Visibility);
 		Global.BOSS_AbilityKey = Last Text ID;
-		Stop Chasing Player Variable(Event Player, F);
-		Event Player.F = 0;
 		Set Ultimate Ability Enabled(Event Player, True);
 		Set Ability 1 Enabled(Event Player, True);
 	}
@@ -20654,5 +20625,23 @@ rule("CORE: (BOSS) FROZEN NOTIFICATION")
 		Skip If(Is Waiting For Players, 2);
 		Create Effect(All Players(All Teams), Cloud, Color(White), Event Player, Global.BossFrozen[2], Visible To Position and Radius);
 		Event Player.PlayerFX_3 = Last Created Entity;
+	}
+}
+
+rule("CORE: (BOSS) THAW RESET")
+{
+	event
+	{
+		Subroutine;
+		BossClearFreeze;
+	}
+
+	actions
+	{
+		Destroy Effect(Event Player.PlayerFX_3);
+		Destroy HUD Text(Global.BOSS_AbilityKey);
+		Stop Chasing Player Variable(Event Player, F);
+		Event Player.F = 0;
+		Global.BossFrozen = 0;
 	}
 }
