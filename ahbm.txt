@@ -1949,6 +1949,7 @@ variables
 		35: armour_pool
 		36: current_hero
 		37: PassiveAOEHeal
+		38: ReceiveAOEHeal
 		39: SpawnStats
 		40: health_pool
 		41: shield_pool
@@ -1957,6 +1958,8 @@ variables
 		44: timer
 		45: base_health
 		46: CD_saver
+		47: Ability2_Bool
+		48: Ability2_Toggle
 		49: SelfRes
 		50: Stunned
 		51: Sombra
@@ -1974,6 +1977,7 @@ variables
 
 subroutines
 {
+	0: BERSERK_activated
 	1: anti_enviro_OOM
 	2: BossIgnitionExpire
 	3: TEAMVendetta_StunReady
