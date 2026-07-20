@@ -1921,7 +1921,6 @@ variables
 		35: DeadTeam
 		36: BOSS_HealthPools
 		37: BossFrozen
-		38: ReceiveAOEHeal
 		38: MercyBeacon
 		39: SK_RESPAWN
 		40: BossTag
@@ -1950,6 +1949,7 @@ variables
 		35: armour_pool
 		36: current_hero
 		37: PassiveAOEHeal
+		38: ReceiveAOEHeal
 		39: SpawnStats
 		40: health_pool
 		41: shield_pool
