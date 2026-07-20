@@ -2521,7 +2521,8 @@ rule("CORE: (WAIT) SELF KILL")
 
 	actions
 	{
-		Skip If((Hero Of(Event Player) == Hero(Ramattra) && Event Player.PlayerFX_3 && Team Of(Event Player) == Team 1) == True, 9);
+		Skip If((Hero Of(Event Player) == Hero(Ramattra) && Event Player.PlayerFX_3 && Team Of(Event Player) == Team 1) == True,
+			9);
 		Small Message(Event Player, 3);
 		Wait(1, Ignore Condition);
 		Small Message(Event Player, 2);
@@ -19118,7 +19119,7 @@ rule("CORE: (ALL) KIRI - CRIT")
 
 	actions
 	{
-		Damage(Victim, Event Player, Team Of(Event Player) == Team 1 ? 15 : 7);
+		Damage(Victim, Event Player, (Team Of(Event Player) == Team(Team 1) ? 15 : 7));
 	}
 }
 
