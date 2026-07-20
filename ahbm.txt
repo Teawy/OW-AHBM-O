@@ -1921,6 +1921,7 @@ variables
 		35: DeadTeam
 		36: BOSS_HealthPools
 		37: BossFrozen
+		38: ReceiveAOEHeal
 		38: MercyBeacon
 		39: SK_RESPAWN
 		40: BossTag
@@ -1957,6 +1958,8 @@ variables
 		44: timer
 		45: base_health
 		46: CD_saver
+		47: Ability2_Bool
+		48: Ability2_Toggle
 		49: SelfRes
 		50: Stunned
 		51: Sombra
