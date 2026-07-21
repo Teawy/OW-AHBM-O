@@ -3820,7 +3820,6 @@ rule("CORE: (BOSS) GENJI - DASH AURA ON")
 
 	conditions
 	{
-		Event Player.D == 0;
 		disabled Is Waiting For Players == False;
 	}
 
