@@ -2029,6 +2029,7 @@ rule("CORE: (BOSS) ALL - SWITCH OFF")
 	}
 
 	actions
+	{	actions
 	{
 		Event Player.HeroSetupState = 0;
 		Event Player.current_hero = Hero Of(Event Player);
@@ -2043,8 +2044,13 @@ rule("CORE: (BOSS) ALL - SWITCH OFF")
 		Set Invisible(Event Player, None);
 		Stop Scaling Player(Event Player);
 		Stop Scaling Barriers(Event Player);
+		Stop Chasing Player Variable(Event Player, primary_charge);
+		Stop Chasing Player Variable(Event Player, secondary_charge);
+		Stop Chasing Player Variable(Event Player, F);
+		Stop Chasing Global Variable(BOSS_AbilityCD);
 		Set Secondary Fire Enabled(Event Player, !Array Contains(Array(Hero(Baptiste), Hero(Zenyatta), Hero(Illari), Hero(Genji), Hero(
 			Winston), Hero(Reaper)), Hero Of(Event Player)));
+		Destroy HUD Text(Global.BOSS_AbilityKey);
 		Skip If(!Entity Exists(Event Player.PlayerFX_0), 2);
 		Destroy Effect(Event Player.PlayerFX_0);
 		Event Player.PlayerFX_0 = Null;
@@ -2080,7 +2086,14 @@ rule("CORE: (BOSS) ALL - SWITCH OFF")
 		Event Player.U = Null;
 		Event Player.D = Null;
 		Event Player.M = Null;
+		Global.W = False;
+		Global.BOSS_AbilityCD = 0;
+		Event Player.Ability_Bool = False;
+		Event Player.Ability_Toggle = False;
+		Event Player.primary_charge = 0;
+		Event Player.secondary_charge = 0;
 		Set Ability 1 Enabled(Event Player, True);
+		Set Ability 2 Enabled(Event Player, True);
 		Allow Button(Event Player, Button(Ultimate));
 		Destroy HUD Text(Event Player.charge_hud);
 		Remove Health Pool From Player(Global.BOSS_HealthPools[0]);
@@ -2098,6 +2111,8 @@ rule("CORE: (BOSS) ALL - SWITCH OFF")
 		Destroy Effect(Event Player.N);
 		Event Player.N = Null;
 		Event Player.HeroSetupState = 1;
+	}
+}
 	}
 }
 
@@ -3094,12 +3109,11 @@ rule("CORE: (MSGS) BOSS ABILITIES ERASE")
 		Array Contains(Array(Hero(Reaper), Hero(Symmetra), Hero(Mercy), Hero(Soldier: 76), Hero(Tracer), Hero(Sombra), Hero(Moira), Hero(
 			Cassidy), Hero(Lúcio), Hero(Reinhardt), Hero(Kiriko), Hero(Ramattra), Hero(Genji), Hero(Junkrat), Hero(Brigitte), Hero(
 			Wrecking Ball), Hero(Hanzo), Hero(Ashe), Hero(Echo)), Hero Of(First Of(All Players(Team 1)))) == False;
-		Has Spawned(Event Player) == True;
+		Event Player.HeroSetupState == 6;
 	}
 
 	actions
 	{
-		Destroy HUD Text(Global.BOSS_AbilityKey);
 		Create HUD Text(All Players(Team 1), Null, Null, Custom String("None"), Left, 1, Color(White), Color(White), Color(Red),
 			Visible To and String, Default Visibility);
 		Global.BOSS_AbilityKey = Last Text ID;
@@ -3683,7 +3697,6 @@ rule("CORE: (BOSS) Mercy - FAST HEAL VARS")
 	actions
 	{
 		Event Player.Ability_Toggle = True;
-		Global.BOSS_AbilityCD = 0;
 		Destroy HUD Text(Global.BOSS_AbilityKey);
 		Create HUD Text(All Players(Team 1), Input Binding String(Button(Ability 1)), Custom String("HALF LIFE"), Custom String("Healing"),
 			Left, 1, Color(White), Color(White), Color(Yellow), Visible To and String, Default Visibility);
@@ -3817,7 +3830,7 @@ rule("CORE: (BOSS) REIN - FLAME ON")
 	conditions
 	{
 		Event Player.F == 0;
-		Has Spawned(Event Player) == True;
+		Event Player.HeroSetupState == 6;
 		disabled Is Waiting For Players == False;
 		Has Status(Event Player, Hacked) == False;
 	}
@@ -3949,7 +3962,7 @@ rule("CORE: (BOSS) REIN - FLAME HACKED")
 
 	conditions
 	{
-		Has Spawned(Event Player) == True;
+		Event Player.HeroSetupState == 6;
 		Is Waiting For Players == False;
 		Has Status(Event Player, Hacked) == True;
 	}
@@ -3973,7 +3986,7 @@ rule("CORE: (BOSS) REIN - FLAME UNHACKED")
 
 	conditions
 	{
-		(Event Player.F == 0 && Has Spawned(Event Player) && !Is Waiting For Players && !Has Status(Event Player, Hacked)) == True;
+		(Event Player.F == 0 && Event Player.HeroSetupState == 6 && !Is Waiting For Players && !Has Status(Event Player, Hacked)) == True;
 	}
 
 	actions
@@ -4002,16 +4015,12 @@ rule("CORE: (BOSS) REIN - SPAWN")
 
 	actions
 	{
-		Set Ability 2 Enabled(Event Player, True);
-		Destroy HUD Text(Global.BOSS_AbilityKey);
 		Create HUD Text(All Players(Team 1), Custom String("{0} {0}", Icon String(Fire)), Custom String("CHARGES OF"), Custom String(
 			"FIRE STRIKE"), Left, 1, Color(Red), Color(White), Color(Red), Visible To and String, Default Visibility);
 		Global.BOSS_AbilityKey = Last Text ID;
 		Skip If(Is Waiting For Players, 1);
 		Set Status(Event Player, Null, Burning, 9999);
-		Stop Chasing Player Variable(Event Player, F);
 		Event Player.F = 5;
-		Stop Chasing Player Variable(Event Player, primary_charge);
 		Event Player.primary_charge = 2;
 	}
 }
@@ -4028,7 +4037,7 @@ rule("CORE: (BOSS) GENJI - DASH AURA ON (check: does D have to = 0?)")
 	conditions
 	{
 		Event Player.D == 0;
-		Has Spawned(Event Player) == True;
+		Event Player.HeroSetupState == 6;
 		disabled Is Waiting For Players == False;
 	}
 
@@ -4482,7 +4491,6 @@ rule("CORE: (BOSS) REAP - ABILITY HUD")
 
 	actions
 	{
-		Destroy HUD Text(Global.BOSS_AbilityKey);
 		Create HUD Text(All Players(Team 1), Input Binding String(Button(Ability 1)), Custom String("ZERO GRAVITY"), Custom String(
 			"WRAITH FORM"), Left, 1, Color(White), Color(White), Color(Red), Visible To and String, Default Visibility);
 		Global.BOSS_AbilityKey = Last Text ID;
@@ -4627,7 +4635,7 @@ rule("CORE: (BOSS) TRACER - RECALL ON")
 	conditions
 	{
 		Event Player.R == 0;
-		Has Spawned(Event Player) == True;
+		Event Player.HeroSetupState == 6;
 		Is Waiting For Players == False;
 	}
 
@@ -4680,9 +4688,6 @@ rule("CORE: (BOSS) TRACER - SPAWN")
 
 	actions
 	{
-		Global.W = False;
-		Global.BOSS_AbilityCD = 0;
-		Stop Chasing Global Variable(BOSS_AbilityCD);
 		Create HUD Text(All Players(Team 1), Custom String("{0}%", Round To Integer(Global.BOSS_AbilityCD, Down)), Custom String(
 			"Charging Ultimate Ability"), Custom String("WARP SPEED: x2 DMG + INVISIBLE"), Left, 1, Color(Orange), Color(Orange), Color(
 			White), Visible To and String, Default Visibility);
@@ -4837,7 +4842,7 @@ rule("CORE: (BOSS) BRIG - BASH ON")
 	conditions
 	{
 		Event Player.L == 0;
-		Has Spawned(Event Player) == True;
+		Event Player.HeroSetupState == 6;
 		Is Waiting For Players == False;
 	}
 
@@ -4886,7 +4891,7 @@ rule("CORE: (BOSS) MOIRA - ORB ON")
 	conditions
 	{
 		Event Player.O == 0;
-		Has Spawned(Event Player) == True;
+		Event Player.HeroSetupState == 6;
 		Is Waiting For Players == False;
 	}
 
@@ -4994,10 +4999,8 @@ rule("CORE: (BOSS) MOIRA - SPAWN")
 
 	actions
 	{
-		Stop Chasing Global Variable(BOSS_AbilityCD);
 		Global.BOSS_AbilityCD = 100;
 		Wait(0.016, Ignore Condition);
-		Destroy HUD Text(Global.BOSS_AbilityKey);
 		Create HUD Text(All Players(Team 1), Custom String("{0}%", Global.BOSS_AbilityCD), Custom String("Primary Fire"), Custom String(
 			"Healing"), Left, 1, Color(White), Color(White), Color(Yellow), Visible To and String, Default Visibility);
 		Global.BOSS_AbilityKey = Last Text ID;
@@ -5315,12 +5318,6 @@ rule("CORE: (BOSS) SYM - SHIELD VARS")
 	actions
 	{
 		Event Player.Ability_Toggle = True;
-		Skip If(Event Player.PlayerFX_0 == Null, 1);
-		Destroy Effect(Event Player.PlayerFX_0);
-		Global.BOSS_AbilityCD = 0;
-		Skip If(Event Player.PlayerFX_1 == Null, 1);
-		Destroy Effect(Event Player.PlayerFX_1);
-		Destroy HUD Text(Global.BOSS_AbilityKey);
 		Create HUD Text(All Players(Team 1), Input Binding String(Button(Ability 1)), Custom String("PHOTOGEL"), Custom String(
 			"ABSORPTION SHIELD"), Left, 1, Color(White), Color(White), Color(Aqua), Visible To and String, Default Visibility);
 		Global.BOSS_AbilityKey = Last Text ID;
@@ -5344,8 +5341,6 @@ rule("CORE: (BOSS) 76 - POW JUMP VARS")
 	actions
 	{
 		Event Player.Ability_Toggle = True;
-		Global.BOSS_AbilityCD = 0;
-		Destroy HUD Text(Global.BOSS_AbilityKey);
 		Create HUD Text(All Players(Team 1), Custom String("{0}+{1}", Input Binding String(Button(Ability 1)), Input Binding String(Button(
 			Jump))), Null, Custom String("Power Jump"), Left, 1, Color(White), Color(White), Color(Blue), Visible To and String,
 			Default Visibility);
@@ -5410,7 +5405,6 @@ rule("CORE: (BOSS) SOMBRA SPAWN")
 
 	actions
 	{
-		Global.W = False;
 		Create HUD Text(All Players(Team 1), Input Binding String(Button(Ability 1)), Custom String("Damage"), Custom String("FOCUS"),
 			Left, 1, Color(White), Color(White), Color(Purple), Visible To and String, Default Visibility);
 		Global.BOSS_AbilityKey = Last Text ID;
@@ -5522,7 +5516,6 @@ rule("CORE: (BOSS) CASS - DODGE VARS")
 	actions
 	{
 		Event Player.Ability_Toggle = True;
-		Global.BOSS_AbilityCD = 0;
 		Create HUD Text(All Players(Team 1), Custom String("{0}+crouch", Input Binding String(Button(Ability 1))), Custom String(
 			"EXTENDED"), Custom String("COMBAT ROLL"), Left, 1, Color(White), Color(White), Color(Orange), Visible To and String,
 			Default Visibility);
@@ -10379,26 +10372,6 @@ rule("CORE: (TEAM) ALL - SWITCH - ALLOW ULT")
 	}
 }
 
-rule("CORE: (BOSS) GENJI - SET 2nd fire")
-{
-	event
-	{
-		Ongoing - Each Player;
-		Team 1;
-		Genji;
-	}
-
-	conditions
-	{
-		Event Player.HeroSetupState == 6;
-	}
-
-	actions
-	{
-		Event Player.primary_charge = 0;
-	}
-}
-
 rule("CORE: (BOSS) GENJI - USE 2nd fire")
 {
 	event
@@ -10580,7 +10553,7 @@ rule("CORE: (BOSS) JUNK - WAITING SPAWN HUD")
 
 	conditions
 	{
-		Has Spawned(Event Player) == True;
+		Event Player.HeroSetupState == 6;
 		Is Waiting For Players == True;
 	}
 
@@ -10702,7 +10675,7 @@ rule("CORE: (BOSS) ALL - ABILITY 2 SET")
 
 	conditions
 	{
-		Has Spawned(Event Player) == True;
+		Event Player.HeroSetupState == 6;
 		Is Alive(Event Player) == True;
 	}
 
@@ -10731,7 +10704,7 @@ rule("CORE: (BOSS) ALL - ABILITY 1 SET")
 	conditions
 	{
 		Hero Of(Event Player) != Hero(Genji);
-		Has Spawned(Event Player) == True;
+		Event Player.HeroSetupState == 6;
 		Is Alive(Event Player) == True;
 	}
 
@@ -11687,9 +11660,7 @@ rule("CORE: (BOSS) ASHE - SPAWN")
 
 	actions
 	{
-		Stop Chasing Player Variable(Event Player, primary_charge);
 		Event Player.primary_charge = 6;
-		Stop Chasing Player Variable(Event Player, secondary_charge);
 		Event Player.secondary_charge = 2;
 	}
 }
@@ -11902,12 +11873,11 @@ rule("CORE: (BOSS) BRIG - SPAWN REPAIR VARS")
 
 	conditions
 	{
-		Has Spawned(Event Player) == True;
+		Event Player.HeroSetupState == 6;
 	}
 
 	actions
 	{
-		Event Player.primary_charge = 0;
 		Event Player.Ability_Toggle = True;
 	}
 }
@@ -14225,7 +14195,7 @@ rule("temp (BOSS) DVA - SPAWN HP")
 
 	conditions
 	{
-		Has Spawned(Event Player) == True;
+		Event Player.HeroSetupState == 6;
 	}
 
 	actions
@@ -14946,7 +14916,7 @@ rule("CORE: (BOSS) ASHE - SCOPE HUD")
 
 	conditions
 	{
-		Has Spawned(Event Player) == True;
+		Event Player.HeroSetupState == 6;
 		Event Player.Ability_Bool == True;
 	}
 
@@ -14971,7 +14941,7 @@ rule("CORE: (BOSS) ASHE - HIP HUD")
 
 	conditions
 	{
-		Has Spawned(Event Player) == True;
+		Event Player.HeroSetupState == 6;
 		Event Player.Ability_Bool == False;
 	}
 
@@ -14997,23 +14967,18 @@ rule("CORE: (BOSS) ECHO - SPAWN")
 
 	conditions
 	{
-		Has Spawned(Event Player) == True;
+		Event Player.HeroSetupState == 6;
 	}
 
 	actions
 	{
-		Stop Chasing Player Variable(Event Player, primary_charge);
-		Stop Chasing Player Variable(Event Player, secondary_charge);
-		Stop Chasing Player Variable(Event Player, F);
 		Stop Chasing Player Variable(Event Player, L);
-		Destroy HUD Text(Global.BOSS_AbilityKey);
 		Wait(0.016, Ignore Condition);
 		Create HUD Text(Event Player, Custom String("- {0} -", Input Binding String(Button(Ultimate))), Custom String(
 			"throw an energy bomb that\r\n			ignores shields and charges duplicate"), Custom String("CHARGE BOMB"), Left, 1, Color(White),
 			Color(White), Color(Sky Blue), Visible To and String, Default Visibility);
 		Global.BOSS_AbilityKey = Last Text ID;
 		Event Player.secondary_charge = 1;
-		Event Player.Ability_Bool = False;
 		Event Player.Ability_Toggle = True;
 		Destroy HUD Text(Event Player.charge_hud);
 		Skip If(Is Waiting For Players, 1);
@@ -15101,7 +15066,7 @@ rule("CORE: (BOSS) ECHO - P.C. DOWN")
 	{
 		Event Player.Ability_Bool == True;
 		Event Player.secondary_charge == 0;
-		Has Spawned(Event Player) == True;
+		Event Player.HeroSetupState == 6;
 	}
 
 	actions
@@ -16665,7 +16630,7 @@ rule("CORE: (BOSS) GAME START remove BossTag")
 	conditions
 	{
 		Is Waiting For Players == False;
-		Has Spawned(Event Player) == True;
+		Event Player.HeroSetupState == 6;
 	}
 
 	actions
@@ -16961,7 +16926,7 @@ rule("CORE: (BOSS) ALL - BERSERK")
 	conditions
 	{
 		Is Waiting For Players == False;
-		Has Spawned(Event Player) == True;
+		Event Player.HeroSetupState == 6;
 		Player Stat(Event Player, All Damage Dealt) <= 0;
 		Match Time >= Array(Null, 106, 50)[Absolute Value(Global.BERSERK[1])];
 		Array Contains(Array(-1, -2), Global.BERSERK[1]) == True;
@@ -17052,7 +17017,7 @@ rule("CORE: (BOSS) SINGLE BERSERK HUD")
 
 	conditions
 	{
-		Has Spawned(Event Player) == True;
+		Event Player.HeroSetupState == 6;
 		Global.BERSERK[1] == -1;
 	}
 
@@ -17077,7 +17042,7 @@ rule("CORE: (BOSS) DOUBLE BERSERK HUD")
 
 	conditions
 	{
-		Has Spawned(Event Player) == True;
+		Event Player.HeroSetupState == 6;
 		Global.BERSERK[1] == -2;
 	}
 
@@ -17103,7 +17068,7 @@ rule("CORE: (BOSS) NO BERSERK HUD")
 
 	conditions
 	{
-		Has Spawned(Event Player) == True;
+		Event Player.HeroSetupState == 6;
 		Global.BERSERK[1] == 0;
 	}
 
@@ -18011,10 +17976,6 @@ rule("CORE: (BOSS) HANZO - SPAWN")
 			Custom String("LUNGE TWICE QUICKLY TO JUMP HIGHER"), Custom String("DOUBLE LUNGE"), Left, 1, Color(Sky Blue), Color(White),
 			Color(White), Visible To and String, Default Visibility);
 		Global.BOSS_AbilityKey = Last Text ID;
-		Stop Chasing Player Variable(Event Player, primary_charge);
-		Event Player.primary_charge = 0;
-		Event Player.Ability_Bool = False;
-		Event Player.Ability_Toggle = False;
 	}
 }
 
@@ -18662,11 +18623,6 @@ rule("CORE: (BOSS) RAM SPAWN")
 		Create HUD Text(All Players(Team 1), Input Binding String(Button(Ability 1)), Custom String("HOLD TO CHARGE:"), Custom String(
 			"NEMESIS JUMP"), Left, 1, Color(White), Color(White), Color(Rose), Visible To and String, Default Visibility);
 		Global.BOSS_AbilityKey = Last Text ID;
-		Stop Chasing Player Variable(Event Player, primary_charge);
-		Stop Chasing Player Variable(Event Player, secondary_charge);
-		Event Player.primary_charge = 0;
-		Event Player.secondary_charge = 0;
-		Event Player.Ability_Bool = False;
 		Event Player.Ability_Toggle = True;
 	}
 }
@@ -19798,26 +19754,6 @@ rule("temp bug fix - hazard ammo")
 		Skip If(Team Of(Event Player) == Team 2, 2);
 		Set Ammo(Event Player, 0, 3);
 		Set Max Ammo(Event Player, 0, 3);
-	}
-}
-
-rule("BUG FIX: (BOSS) - venture ammo")
-{
-	event
-	{
-		Ongoing - Each Player;
-		Team 1;
-		Venture;
-	}
-
-	conditions
-	{
-		Has Spawned(Event Player) == True;
-	}
-
-	actions
-	{
-		Set Ammo(Event Player, 0, 2);
 	}
 }
 
