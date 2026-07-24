@@ -59,6 +59,7 @@ settings
 			{
 				Ammunition Clip Size Scalar: 47%
 				Biotic Grenade Cooldown Time: 116%
+				Damage Dealt: 222%
 				Healing Dealt: 32%
 				Healing Received: 32%
 				Health: 240%
@@ -496,7 +497,7 @@ settings
 			{
 				Ammunition Clip Size Scalar: 75%
 				Amp It Up Cooldown Time: 0%
-				Damage Dealt: 244%
+				Damage Dealt: 222%
 				Healing Dealt: 10%
 				Healing Received: 10%
 				Health: 267%
@@ -654,7 +655,7 @@ settings
 				Damage Received: 20%
 				Health: 250%
 				Infinite Ultimate Duration: On
-				Movement Speed: 90%
+				Movement Speed: 110%
 				Nemesis Form Cooldown Time: 0%
 				Passive Health Regeneration: On
 				Role Passives: On
@@ -669,7 +670,7 @@ settings
 				Ammunition Clip Size Scalar: 75%
 				Damage Dealt: 234%
 				Damage Received: 48%
-				Healing Dealt: 500%
+				Healing Dealt: 416%
 				Healing Received: 21%
 				Health: 219%
 				Movement Speed: 90%
@@ -748,6 +749,7 @@ settings
 			Sierra
 			{
 				Ammunition Clip Size Scalar: 75%
+				Anchor Drone Cooldown Time: 109%
 				Healing Received: 30%
 				Health: 400%
 				Movement Gravity: 90%
@@ -1326,7 +1328,7 @@ settings
 			{
 				Ammunition Clip Size Scalar: 50%
 				Carnage Cooldown Time: 66%
-				Commanding Shout Cooldown Time: 133%
+				Commanding Shout Cooldown Time: 160%
 				Damage Dealt: 54%
 				Healing Received: 66%
 				Health: 120%
@@ -1372,7 +1374,7 @@ settings
 			{
 				Ammunition Clip Size Scalar: 40%
 				Damage Dealt: 60%
-				Healing Dealt: 10%
+				Healing Dealt: 11%
 				Passive Health Regeneration: On
 				Projectile Speed: 140%
 				Protection Suzu Cooldown Time: 285%
@@ -1423,7 +1425,7 @@ settings
 
 			Mauga
 			{
-				Ammunition Clip Size Scalar: 25%
+				Ammunition Clip Size Scalar: 30%
 				Cardiac Overdrive Cooldown Time: 138%
 				Damage Dealt: 54%
 				Healing Dealt: 10%
@@ -1569,7 +1571,7 @@ settings
 			{
 				Ammunition Clip Size Scalar: 50%
 				Damage Dealt: 85%
-				Healing Dealt: 105%
+				Healing Dealt: 88%
 				Healing Received: 90%
 				Passive Health Regeneration: On
 				Role Passives: Off
@@ -1629,7 +1631,7 @@ settings
 			Sierra
 			{
 				Ammunition Clip Size Scalar: 30%
-				Anchor Drone Cooldown Time: 133%
+				Anchor Drone Cooldown Time: 145%
 				Damage Dealt: 80%
 				Healing Received: 80%
 				Passive Health Regeneration: On
@@ -9024,7 +9026,7 @@ rule("CORE: (TEAM) Ana - Damage ultimate charge")
 	{
 		Event Player.Ability_Bool = True;
 		Set Ultimate Charge(Event Player, Ultimate Charge Percent(Event Player) + 4);
-		Wait(0.750, Ignore Condition);
+		Wait(0.670, Ignore Condition);
 		Event Player.Ability_Bool = False;
 	}
 }
@@ -11073,7 +11075,7 @@ rule("CORE: (BOSS) ALL - ABILITY 2 SET")
 
 	actions
 	{
-		Skip If(Array Contains(Array(Hero(Mercy), Hero(Zenyatta), Hero(Sombra), Hero(Symmetra), Hero(Ramattra)), Hero Of(Event Player)), 3);
+		Skip If(Array Contains(Array(Hero(Mercy), Hero(Zarya), Hero(Lifeweaver)), Hero Of(Event Player)), 3);
 		Set Ability 2 Enabled(Event Player, True);
 		Allow Button(Event Player, Button(Ability 2));
 		Abort;
@@ -11278,7 +11280,7 @@ rule("CORE: (BOSS) SIGMA: HEALTH & SIZE")
 		Remove Health Pool From Player(Global.BOSS_HealthPools[1]);
 		Add Health Pool To Player(Event Player, Health, 500, True, False);
 		Global.BOSS_HealthPools[0] = Last Created Health Pool;
-		Add Health Pool To Player(Event Player, Shields, 25, True, False);
+		Add Health Pool To Player(Event Player, Shields, 50, True, False);
 		Global.BOSS_HealthPools[1] = Last Created Health Pool;
 		Event Player.base_health = Max Health(Event Player);
 		Event Player.base_shields = Max Health Of Type(Event Player, Shields);
@@ -13691,7 +13693,7 @@ rule("CORE: (TEAM) SIG - HEALTH & SIZE")
 		Remove Health Pool From Player(Event Player.health_pool);
 		Remove Health Pool From Player(Event Player.shield_pool);
 		Remove Health Pool From Player(Event Player.armour_pool);
-		Add Health Pool To Player(Event Player, Health, 25, True, False);
+		Add Health Pool To Player(Event Player, Health, 50, True, False);
 		Event Player.health_pool = Last Created Health Pool;
 		Wait(0.016, Ignore Condition);
 		Event Player.base_health = Max Health(Event Player);
@@ -16587,6 +16589,7 @@ rule("CORE: (TEAM) LW - HEAL WARNING")
 		Create HUD Text(Event Player, Null, Custom String(
 			"\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\nHEAL BLOSSOM WARNING:"),
 			Null, Top, 8, Color(White), Color(White), Color(White), Visible To and String, Default Visibility);
+		Skip(1);
 		Create HUD Text(Event Player, Null, Custom String(
 			"\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\nHEAL BLOSSOM WARNING:"), Null, Top, 8, Color(
 			White), Color(White), Color(White), Visible To and String, Default Visibility);
