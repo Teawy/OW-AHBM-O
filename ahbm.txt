@@ -1951,7 +1951,6 @@ variables
 		35: armour_pool
 		36: current_hero
 		37: PassiveAOEHeal
-		38: ReceiveAOEHeal
 		39: SpawnStats
 		40: health_pool
 		41: shield_pool
@@ -1960,8 +1959,6 @@ variables
 		44: timer
 		45: base_health
 		46: CD_saver
-		47: Ability2_Bool
-		48: Ability2_Toggle
 		49: SelfRes
 		50: Stunned
 		51: Sombra
@@ -1979,7 +1976,6 @@ variables
 
 subroutines
 {
-	0: BERSERK_activated
 	1: anti_enviro_OOM
 	2: BossIgnitionExpire
 	3: TEAMVendetta_StunReady
@@ -2031,7 +2027,6 @@ rule("CORE: (BOSS) ALL - SWITCH OFF")
 	}
 
 	actions
-	{	actions
 	{
 		Event Player.HeroSetupState = 0;
 		Event Player.current_hero = Hero Of(Event Player);
@@ -2113,8 +2108,6 @@ rule("CORE: (BOSS) ALL - SWITCH OFF")
 		Destroy Effect(Event Player.N);
 		Event Player.N = Null;
 		Event Player.HeroSetupState = 1;
-	}
-}
 	}
 }
 
@@ -2770,8 +2763,7 @@ rule("CORE: (WAIT) SELF KILL")
 
 	actions
 	{
-		Skip If((Hero Of(Event Player) == Hero(Ramattra) && Event Player.PlayerFX_3 && Team Of(Event Player) == Team 1) == True,
-			9);
+		Skip If((Hero Of(Event Player) == Hero(Ramattra) && Event Player.PlayerFX_3 && Team Of(Event Player) == Team 1) == True, 9);
 		Small Message(Event Player, 3);
 		Wait(1, Ignore Condition);
 		Small Message(Event Player, 2);
@@ -10659,28 +10651,6 @@ rule("CORE: (BOSS) ALL - ABILITY 1 SET")
 	}
 }
 
-rule("CORE: (BOSS) ALL - ULTIMATE SET")
-{
-	event
-	{
-		Ongoing - Each Player;
-		Team 1;
-		All;
-	}
-
-	conditions
-	{
-		Is Hero Being Played(Hero(Ramattra), Team 1) == False;
-	}
-
-	actions
-	{
-		Skip If(Hero Of(Event Player) == Hero(Tracer), 2);
-		Set Ultimate Ability Enabled(Event Player, True);
-		Allow Button(Event Player, Button(Ultimate));
-	}
-}
-
 rule("CORE: (BOSS) WINSTON - RAGE HP")
 {
 	event
@@ -13874,21 +13844,6 @@ rule("CORE: (TEAM) WINSTON: ON RAGE X-SHIELDS")
 	}
 }
 
-rule("CORE: (TEAM) CASS - SPAWN")
-{
-	event
-	{
-		Ongoing - Each Player;
-		Team 2;
-		Cassidy;
-	}
-
-	actions
-	{
-		Event Player.primary_charge = 0;
-	}
-}
-
 rule("CORE: (TEAM) CASS - NO MEDS")
 {
 	event
@@ -15489,28 +15444,6 @@ rule("CORE: (TEAM) JUNO - HEAL CHARGE EMPTY")
 		Event Player.secondary_charge = 8;
 		Stop Chasing Player Variable(Event Player, timer);
 		Event Player.timer = 0;
-	}
-}
-
-rule("CORE: (TEAM) JUNO - SWITCH")
-{
-	event
-	{
-		Ongoing - Each Player;
-		Team 2;
-		All;
-	}
-
-	conditions
-	{
-		Hero Of(Event Player) != Hero(Juno);
-	}
-
-	actions
-	{
-		Stop Chasing Player Variable(Event Player, secondary_charge);
-		Stop Chasing Player Variable(Event Player, timer);
-		Stop Healing Modification(Event Player.heal_power);
 	}
 }
 
@@ -18399,7 +18332,7 @@ rule("CORE: (ALL) KIRI - CRIT")
 
 	actions
 	{
-		Damage(Victim, Event Player, (Team Of(Event Player) == Team(Team 1) ? 15 : 7));
+		Damage(Victim, Event Player, Team Of(Event Player) == Team 1 ? 15 : 7);
 	}
 }
 
@@ -19050,31 +18983,6 @@ rule("CORE: (BOSS) ALL / (TEAM) ANRAN - DAMAGE AMPLIFIED")
 	actions
 	{
 		Global.BossIgnitedDamageTaken += Event Damage / 7.250;
-	}
-}
-
-rule("temp bug fix - hazard ammo")
-{
-	event
-	{
-		Ongoing - Each Player;
-		All;
-		Hazard;
-	}
-
-	conditions
-	{
-		Has Spawned(Event Player) == True;
-	}
-
-	actions
-	{
-		Skip If(Team Of(Event Player) == Team 1, 2);
-		Set Ammo(Event Player, 0, 6);
-		Set Max Ammo(Event Player, 0, 6);
-		Skip If(Team Of(Event Player) == Team 2, 2);
-		Set Ammo(Event Player, 0, 3);
-		Set Max Ammo(Event Player, 0, 3);
 	}
 }
 
