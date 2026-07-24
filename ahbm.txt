@@ -655,7 +655,7 @@ settings
 				Damage Received: 20%
 				Health: 250%
 				Infinite Ultimate Duration: On
-				Movement Speed: 90%
+				Movement Speed: 110%
 				Nemesis Form Cooldown Time: 0%
 				Passive Health Regeneration: On
 				Role Passives: On
@@ -8863,7 +8863,7 @@ rule("CORE: (TEAM) Ana - Damage ultimate charge")
 	{
 		Event Player.Ability_Bool = True;
 		Set Ultimate Charge(Event Player, Ultimate Charge Percent(Event Player) + 4);
-		Wait(0.750, Ignore Condition);
+		Wait(0.670, Ignore Condition);
 		Event Player.Ability_Bool = False;
 	}
 }
@@ -10863,7 +10863,7 @@ rule("CORE: (BOSS) ALL - ABILITY 2 SET")
 
 	actions
 	{
-		Skip If(Array Contains(Array(Hero(Mercy), Hero(Zenyatta), Hero(Sombra), Hero(Symmetra), Hero(Ramattra)), Hero Of(Event Player)), 3);
+		Skip If(Array Contains(Array(Hero(Mercy), Hero(Zarya), Hero(Lifeweaver)), Hero Of(Event Player)), 3);
 		Set Ability 2 Enabled(Event Player, True);
 		Allow Button(Event Player, Button(Ability 2));
 		Abort;
@@ -16228,6 +16228,7 @@ rule("CORE: (TEAM) LW - HEAL WARNING")
 		Create HUD Text(Event Player, Null, Custom String(
 			"\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\nHEAL BLOSSOM WARNING:"),
 			Null, Top, 8, Color(White), Color(White), Color(White), Visible To and String, Default Visibility);
+		Skip(1);
 		Create HUD Text(Event Player, Null, Custom String(
 			"\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\nHEAL BLOSSOM WARNING:"), Null, Top, 8, Color(
 			White), Color(White), Color(White), Visible To and String, Default Visibility);
