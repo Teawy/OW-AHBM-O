@@ -3142,28 +3142,6 @@ rule("CORE: (TEAM) REIN - SHIELD SPEED")
 	}
 }
 
-rule("CORE: (TEAM) ALL - NORM SPEED")
-{
-	event
-	{
-		Ongoing - Each Player;
-		Team 2;
-		All;
-	}
-
-	conditions
-	{
-		Is Firing Secondary(Event Player) == False;
-		Hero Of(Event Player) != Hero(Pharah);
-		Hero Of(Event Player) != Hero(Sigma);
-	}
-
-	actions
-	{
-		Set Move Speed(Event Player, 100);
-	}
-}
-
 rule("OW2: (TEAM) Sym - TP cd fix")
 {
 	event
@@ -3564,7 +3542,7 @@ rule("CORE: (TEAM) ALL - GENERAL SWITCH")
 	event
 	{
 		Ongoing - Each Player;
-		All;
+		Team 2;
 		All;
 	}
 
@@ -3576,35 +3554,45 @@ rule("CORE: (TEAM) ALL - GENERAL SWITCH")
 	actions
 	{
 		Event Player.current_hero = Hero Of(Event Player);
-		If(Team Of(Event Player) == Team 2);
-			Stop Holding Button(Event Player, Button(Crouch));
-			Set Damage Dealt(Event Player, 100);
-			Destroy Effect(Event Player.PlayerFX_1);
-			Destroy Effect(Event Player.PlayerFX_2);
-			Destroy Effect(Event Player.PlayerFX_3);
-			If(Hero Of(Event Player) == Hero(Bastion));
-				Set Max Health(Event Player, 99.379);
-			Else If((Hero Of(Event Player) == Hero(Mercy) || Hero Of(Event Player) == Hero(Domina)));
-				Set Max Health(Event Player, 98.765);
-			Else If(Array Contains(Array(Hero(Moira), Hero(Freja), Hero(Sojourn)), Hero Of(Event Player)));
-				Set Max Health(Event Player, 99.206);
-			Else If(Hero Of(Event Player) == Hero(Tracer));
-				Set Max Health(Event Player, 99.668);
-				Event Player.base_shields = Max Health Of Type(Event Player, Shields);
-			Else If(Hero Of(Event Player) == Hero(Mei));
-				Set Max Health(Event Player, 99.638);
-			Else If(Hero Of(Event Player) == Hero(Doomfist));
-				Set Max Health(Event Player, 99.099);
-			Else If(Hero Of(Event Player) == Hero(Reinhardt));
-				Set Max Health(Event Player, 99.502);
-			Else If(Hero Of(Event Player) == Hero(Ramattra));
-				Set Max Health(Event Player, 99.550);
-			Else If((Hero Of(Event Player) != Hero(Winston) && Hero Of(Event Player) != Hero(Bastion) && Hero Of(Event Player) != Hero(Mei)
-					&& Hero Of(Event Player) != Hero(Echo)));
-				Set Max Health(Event Player, 100);
-			End;
-		End;
+		Event Player.HeroSetupState = 0;
+		Event Player.PassiveAOEHeal = 0;
+		Stop Chasing Player Variable(Event Player, timer);
+		Stop Chasing Player Variable(Event Player, primary_charge);
+		Stop Chasing Player Variable(Event Player, secondary_charge);
+		Stop Chasing Player Variable(Event Player, timer);
+		Destroy HUD Text(Event Player.team_abilityHUD[0]);
+		Destroy HUD Text(Event Player.team_abilityHUD[1]);
+		Destroy HUD Text(Event Player.team_abilityHUD[2]);
+		Destroy HUD Text(Event Player.team_abilityHUD[3]);
+		Destroy HUD Text(Event Player.team_abilityHUD[4]);
+		Destroy HUD Text(Event Player.team_abilityHUD[5]);
+		Destroy Progress Bar HUD Text(Event Player.team_abilityHUD[0]);
+		Destroy HUD Text(Event Player.charge_hud);
+		Destroy HUD Text(Event Player.charge_hud[0]);
+		Destroy Progress Bar HUD Text(Event Player.charge_hud[1]);
+		Stop Healing Modification(Event Player.heal_power);
+		Stop Healing Modification(Event Player.Shimada_Healing);
+		Stop Holding Button(Event Player, Button(Crouch));
+		Stop Scaling Player(Event Player);
+		Stop Scaling Barriers(Event Player);
+		Set Damage Dealt(Event Player, 100);
+		Set Healing Dealt(Event Player, 100);
+		Set Move Speed(Event Player, 100);
+		Destroy Effect(Event Player.PlayerFX_1);
+		Destroy Effect(Event Player.PlayerFX_2);
+		Destroy Effect(Event Player.PlayerFX_3);
+		Remove Health Pool From Player(Event Player.armour_pool);
+		Remove Health Pool From Player(Event Player.health_pool);
+		Remove Health Pool From Player(Event Player.shield_pool);
 		Wait(0.016, Ignore Condition);
+		Destroy Effect(Event Player.M);
+		Event Player.M = Null;
+		Event Player.S = False;
+		Event Player.timer = 0;
+		Event Player.primary_charge = 0;
+		Event Player.secondary_charge = 0;
+		Event Player.Ability_Bool = False;
+		Event Player.Ability_Toggle = False;
 		If(Hero Of(Event Player) == Hero(Illari) || Hero Of(Event Player) == Hero(Jetpack Cat));
 			Set Knockback Dealt(Event Player, 0);
 		Else If(Hero Of(Event Player) == Hero(Zenyatta));
@@ -3612,10 +3600,197 @@ rule("CORE: (TEAM) ALL - GENERAL SWITCH")
 		Else;
 			Set Knockback Dealt(Event Player, 100);
 		End;
+		Set Primary Fire Enabled(Event Player, True);
+		Set Secondary Fire Enabled(Event Player, True);
+		Set Ability 2 Enabled(Event Player, True);
+		Set Ultimate Ability Enabled(Event Player, True);
+		Allow Button(Event Player, Button(Ability 2));
+		Allow Button(Event Player, Button(Ultimate));
+		Event Player.HeroSetupState = 2;
+		Loop If Condition Is True;
+	}
+}
+
+rule("CORE: (TEAM) ALL - HEALTH")
+{
+	event
+	{
+		Ongoing - Each Player;
+		Team 2;
+		All;
+	}
+
+	conditions
+	{
+		Event Player.HeroSetupState == 2;
+	}
+
+	actions
+	{
+		Set Max Health(Event Player, 100);
+		If(Hero Of(Event Player) == Hero(Winston));
+			Set Max Health(Event Player, 99.715);
+		End;
+		Event Player.HeroSetupState = 3;
+	}
+}
+
+rule("CORE: (TEAM) ALL - HEALTH POOL")
+{
+	event
+	{
+		Ongoing - Each Player;
+		Team 2;
+		All;
+	}
+
+	conditions
+	{
+		Event Player.HeroSetupState == 3;
+	}
+
+	actions
+	{
+		If(Hero Of(Event Player) == Hero(Reinhardt));
+			Add Health Pool To Player(Event Player, Health, 16.667, True, False);
+			Event Player.health_pool = Last Created Health Pool;
+		Else If(Hero Of(Event Player) == Hero(Illari));
+			Add Health Pool To Player(Event Player, Health, 50, True, False);
+			Event Player.health_pool = Last Created Health Pool;
+		Else If(Hero Of(Event Player) == Hero(Venture));
+			Add Health Pool To Player(Event Player, Health, 25, True, False);
+			Event Player.health_pool = Last Created Health Pool;
+		Else If(Hero Of(Event Player) == Hero(Domina));
+			Add Health Pool To Player(Event Player, Health, 128.888, True, False);
+			Event Player.health_pool = Last Created Health Pool;
+			Add Health Pool To Player(Event Player, Shields, 15.555, True, False);
+			Event Player.shield_pool = Last Created Health Pool;
+		Else If(Hero Of(Event Player) == Hero(Juno));
+			Add Health Pool To Player(Event Player, Health, 150.250, True, False);
+			Event Player.health_pool = Last Created Health Pool;
+		Else If(Hero Of(Event Player) == Hero(Pharah));
+			Add Health Pool To Player(Event Player, Health, 1.500, True, False);
+			Event Player.health_pool = Last Created Health Pool;
+			Add Health Pool To Player(Event Player, Armor, 75, True, False);
+			Event Player.shield_pool = Last Created Health Pool;
+		Else If(Hero Of(Event Player) == Hero(Sombra));
+			Add Health Pool To Player(Event Player, Health, 1.500, True, False);
+			Event Player.health_pool = Last Created Health Pool;
+			Add Health Pool To Player(Event Player, Shields, 75, True, False);
+			Event Player.shield_pool = Last Created Health Pool;
+		Else If(Hero Of(Event Player) == Hero(Hazard));
+			Add Health Pool To Player(Event Player, Health, 222.500, True, False);
+			Event Player.health_pool = Last Created Health Pool;
+			Add Health Pool To Player(Event Player, Armor, 2.500, True, False);
+			Event Player.armour_pool = Last Created Health Pool;
+		Else If(Hero Of(Event Player) == Hero(Sigma));
+			Add Health Pool To Player(Event Player, Health, 25, True, False);
+			Event Player.health_pool = Last Created Health Pool;
+		Else If(Hero Of(Event Player) == Hero(Torbjörn));
+			Add Health Pool To Player(Event Player, Armor, 100, True, False);
+			Event Player.armour_pool = Last Created Health Pool;
+		Else If(Hero Of(Event Player) == Hero(Ramattra));
+			Add Health Pool To Player(Event Player, Armor, 163.392, True, False);
+			Event Player.armour_pool = Last Created Health Pool;
+			Add Health Pool To Player(Event Player, Health, 11.728, True, False);
+			Event Player.health_pool = Last Created Health Pool;
+		Else If(Hero Of(Event Player) == Hero(Zarya));
+			Add Health Pool To Player(Event Player, Shields, 20, True, False);
+			Event Player.shield_pool = Last Created Health Pool;
+			Add Health Pool To Player(Event Player, Health, 60, True, False);
+			Event Player.health_pool = Last Created Health Pool;
+		Else If(Hero Of(Event Player) == Hero(Orisa));
+			Add Health Pool To Player(Event Player, Health, 175, True, False);
+			Event Player.health_pool = Last Created Health Pool;
+		Else If(Hero Of(Event Player) == Hero(Winston));
+			Add Health Pool To Player(Event Player, Health, 7.693, True, False);
+			Event Player.health_pool = Last Created Health Pool;
+			Add Health Pool To Player(Event Player, Armor, 5.770, True, False);
+			Event Player.armour_pool = Last Created Health Pool;
+		Else If(Hero Of(Event Player) == Hero(Wrecking Ball));
+			Add Health Pool To Player(Event Player, Health, 31.250, True, False);
+			Event Player.health_pool = Last Created Health Pool;
+		End;
 		Event Player.base_health = Max Health(Event Player);
 		Event Player.base_shields = Max Health Of Type(Event Player, Shields);
-		Wait(0.100, Ignore Condition);
-		Loop If Condition Is True;
+		Event Player.HeroSetupState = 4;
+	}
+}
+
+rule("CORE: (TEAM) ALL - SIZE")
+{
+	event
+	{
+		Ongoing - Each Player;
+		Team 2;
+		All;
+	}
+
+	conditions
+	{
+		Event Player.HeroSetupState == 4;
+	}
+
+	actions
+	{
+		If(Hero Of(Event Player) == Hero(Winston));
+			Start Scaling Barriers(Event Player, 0.750, False);
+		Else If(Hero Of(Event Player) == Hero(Brigitte));
+			Start Scaling Player(Event Player, 1.100, False);
+			Start Scaling Barriers(Event Player, 1.500, False);
+		Else If(Hero Of(Event Player) == Hero(D.Va));
+			Start Scaling Player(Event Player, 0.900, False);
+		Else If(Hero Of(Event Player) == Hero(Torbjörn));
+			Start Scaling Player(Event Player, 1.125, False);
+		Else If(Hero Of(Event Player) == Hero(Ramattra));
+			Start Scaling Barriers(Event Player, 2, False);
+		Else If(Hero Of(Event Player) == Hero(Orisa));
+			Start Scaling Player(Event Player, 0.920, False);
+		Else If(Hero Of(Event Player) == Hero(Sigma));
+			Start Scaling Barriers(Event Player, 0.900, False);
+		Else If(Hero Of(Event Player) == Hero(Zarya));
+			Start Scaling Player(Event Player, 0.940, False);
+		Else If(Hero Of(Event Player) == Hero(Doomfist));
+			Start Scaling Player(Event Player, 0.888, False);
+		Else If(Hero Of(Event Player) == Hero(Hazard));
+			Start Scaling Player(Event Player, 0.800, False);
+		End;
+		Event Player.HeroSetupState = 5;
+	}
+}
+
+rule("CORE: (TEAM) ALL - AMMO")
+{
+	event
+	{
+		Ongoing - Each Player;
+		Team 2;
+		All;
+	}
+
+	conditions
+	{
+		Event Player.HeroSetupState == 5;
+	}
+
+	actions
+	{
+		If(Hero Of(Event Player) == Hero(Orisa));
+			Set Max Ammo(Event Player, 0, 17.200);
+		Else If(Hero Of(Event Player) == Hero(Mauga));
+			Set Max Ammo(Event Player, 0, 125);
+			Set Ammo(Event Player, 0, 125);
+		Else If(Hero Of(Event Player) == Hero(Juno));
+			Set Max Ammo(Event Player, 0, 60);
+			Set Ammo(Event Player, 0, 60);
+		Else If(Hero Of(Event Player) == Hero(Mei));
+			Set Ammo(Event Player, 0, 50);
+			Set Max Ammo(Event Player, 0, 50);
+		Else If(Hero Of(Event Player) == Hero(Hazard));
+			Set Ammo(Event Player, 0, 6);
+			Set Max Ammo(Event Player, 0, 6);
+		End;
+		Event Player.HeroSetupState = 6;
 	}
 }
 
@@ -5082,9 +5257,9 @@ rule("CORE: (BOSS) MOIRA - HEAL STOP")
 
 	conditions
 	{
-		(!Is Button Held(Event Player, Button(Primary Fire)) || Global.BOSS_AbilityCD == 0 || !Global.W || Has Status(
-			Event Player, Hacked) || Has Status(Event Player, Knocked Down) || Has Status(Event Player, Asleep) || Has Status(Event Player,
-			Frozen) || Has Status(Event Player, Stunned) || False) == True;
+		(!Is Button Held(Event Player, Button(Primary Fire)) || Global.BOSS_AbilityCD == 0 || !Global.W || Has Status(Event Player, Hacked)
+			|| Has Status(Event Player, Knocked Down) || Has Status(Event Player, Asleep) || Has Status(Event Player, Frozen)
+			|| Has Status(Event Player, Stunned) || False) == True;
 		Global.BOSS_AbilityCD < 100;
 		Global.B == True;
 	}
@@ -5138,15 +5313,13 @@ rule("CORE: (BOSS) MOIRA - HEAL CANCEL")
 
 	actions
 	{
-		Skip If(!Is Using Ability 1(Event Player) && !Is Using Ability 2(Event Player) && !Is Using Ultimate(Event Player)
-			&& !Has Status(Event Player, Hacked) && !Has Status(Event Player, Knocked Down) && !Has Status(
-			Event Player, Asleep) && !Has Status(Event Player, Frozen) && !Has Status(Event Player, Stunned)
-			 && True, 1);
+		Skip If(!Is Using Ability 1(Event Player) && !Is Using Ability 2(Event Player) && !Is Using Ultimate(Event Player) && !Has Status(
+			Event Player, Hacked) && !Has Status(Event Player, Knocked Down) && !Has Status(Event Player, Asleep) && !Has Status(
+			Event Player, Frozen) && !Has Status(Event Player, Stunned) && True, 1);
 		Global.W = False;
-		Skip If(!Is Using Ability 1(Event Player) && !Is Using Ability 2(Event Player) && !Is Using Ultimate(Event Player)
-			 && !Has Status(Event Player, Hacked) && !Has Status(Event Player, Knocked Down) && !Has Status(
-			Event Player, Asleep) && !Has Status(Event Player, Frozen) && !Has Status(Event Player, Stunned)
-			 && Global.BOSS_AbilityCD == 100, 1);
+		Skip If(!Is Using Ability 1(Event Player) && !Is Using Ability 2(Event Player) && !Is Using Ultimate(Event Player) && !Has Status(
+			Event Player, Hacked) && !Has Status(Event Player, Knocked Down) && !Has Status(Event Player, Asleep) && !Has Status(
+			Event Player, Frozen) && !Has Status(Event Player, Stunned) && Global.BOSS_AbilityCD == 100, 1);
 		Skip(1);
 		Global.W = True;
 		Wait(0.001, Ignore Condition);
@@ -5563,8 +5736,9 @@ rule("CORE: (BOSS) CASS - DODGE ABILITY")
 		Event Player.Ability_Toggle = True;
 		Destroy HUD Text(Global.BOSS_AbilityKey);
 		Skip If(Event Player.U != 0, 2);
-		Create HUD Text(All Players(Team 1), Custom String("{0}+crouch", Input Binding String(Button(Ability 1))), Custom String("EXTENDED"),
-			Custom String("COMBAT ROLL"), Left, 1, Color(White), Color(White), Color(Orange), Visible To and String, Default Visibility);
+		Create HUD Text(All Players(Team 1), Custom String("{0}+crouch", Input Binding String(Button(Ability 1))), Custom String(
+			"EXTENDED"), Custom String("COMBAT ROLL"), Left, 1, Color(White), Color(White), Color(Orange), Visible To and String,
+			Default Visibility);
 		Global.BOSS_AbilityKey = Last Text ID;
 		Skip If(Event Player.U == 0, 2);
 		Create HUD Text(All Players(Team 1), Icon String(No), Custom String("EXTENDED"), Custom String("COMBAT ROLL"), Left, 1, Color(Red),
@@ -5593,7 +5767,7 @@ rule("CORE: (BOSS) CASS - ROLL TIMER")
 	{
 		Wait(0.200, Ignore Condition);
 		Event Player.U = 2;
-		Wait(2.18, Ignore Condition);
+		Wait(2.180, Ignore Condition);
 		Event Player.U = 0;
 	}
 }
@@ -6258,6 +6432,21 @@ rule("CORE: (BOSS) JUNK - OFF FIRE")
 	}
 }
 
+rule("CORE: (BOSS) JUNK - SWITCH DMG")
+{
+	event
+	{
+		Ongoing - Each Player;
+		Team 1;
+		Junkrat;
+	}
+
+	actions
+	{
+		Set Damage Dealt(Event Player, 100);
+	}
+}
+
 rule("CORE: (AFX) CROUCH EYE LEVEL")
 {
 	event
@@ -6746,8 +6935,8 @@ rule("ROLES: DEF+mercy unlock condition")
 
 	conditions
 	{
-		(Is Hero Being Played(Hero(Mercy), Team 2) == False && Count Of(Filtered Array(All Players(Team 2),
-			Current Array Element.Z[3] == 2)) < 2) == True;
+		(!Is Hero Being Played(Hero(Mercy), Team 2) && Count Of(Filtered Array(All Players(Team 2), Current Array Element.Z[3] == 2)) < 2)
+			== True;
 		Count Of(Filtered Array(All Players(Team 2), Current Array Element.Z[3] == 1)) < 2;
 		Is Waiting For Players == False;
 	}
@@ -6843,8 +7032,8 @@ rule("ROLES: ENF+mercy unlock condition")
 
 	conditions
 	{
-		(Is Hero Being Played(Hero(Mercy), Team 2) == False && Count Of(Filtered Array(All Players(Team 2),
-			Current Array Element.Z[3] == 1)) < 2) == True;
+		(!Is Hero Being Played(Hero(Mercy), Team 2) && Count Of(Filtered Array(All Players(Team 2), Current Array Element.Z[3] == 1)) < 2)
+			== True;
 		Count Of(Filtered Array(All Players(Team 2), Current Array Element.Z[3] == 2)) < 2;
 		Is Waiting For Players == False;
 	}
@@ -7466,6 +7655,9 @@ rule("MAPS: set threshold list 2")
 		Global.Enviro_Threshold = 7;
 		Skip If(Current Map != Map(King's Row) && Current Map != Map(King's Row Winter), 1);
 		Global.Enviro_Threshold = -100;
+		Skip If(Current Map != Map(Workshop Island) && Current Map != Map(Workshop Island Night) && Current Map != Map(Workshop Expanse)
+			&& Current Map != Map(Workshop Expanse Night), 1);
+		Global.Enviro_Threshold = -20;
 	}
 }
 
@@ -7692,22 +7884,18 @@ rule("CORE: (TEAM) JUNK - SPAWN ABILITY HUD")
 
 	conditions
 	{
-		Has Spawned(Event Player) == True;
+		Event Player.HeroSetupState == 6;
 	}
 
 	actions
 	{
-		Destroy HUD Text(Event Player.team_abilityHUD[0]);
-		Wait(0.016, Ignore Condition);
 		Create HUD Text(Event Player, Icon String(Dizzy), Custom String("press {0} and hit the Boss", Input Binding String(Button(
 			Ability 2))), Custom String("STUN DAMAGE"), Left, 10, Color(Red), Color(White), Color(Red), Visible To and String,
 			Default Visibility);
 		Event Player.team_abilityHUD[0] = Last Text ID;
 		Wait(0.016, Ignore Condition);
 		Event Player.Ability_Toggle = True;
-		Event Player.Ability_Bool = False;
 		Event Player.primary_charge = 5;
-		Stop Chasing Player Variable(Event Player, primary_charge);
 	}
 }
 
@@ -7775,14 +7963,11 @@ rule("CORE: (TEAM) EMRE - SPAWN HUD")
 
 	conditions
 	{
-		Has Spawned(Event Player) == True;
+		Event Player.HeroSetupState == 6;
 	}
 
 	actions
 	{
-		Destroy HUD Text(Event Player.team_abilityHUD[0]);
-		Destroy Progress Bar HUD Text(Event Player.team_abilityHUD[0]);
-		Wait(0.016, Ignore Condition);
 		Create HUD Text(Event Player, Ability Icon String(Hero(Emre), Button(Ability 2)), Custom String("BRIEFLY STUNS THE BOSS"),
 			Custom String("CYBER FRAG"), Left, 10, Color(Red), Color(White), Color(Orange), Visible To and String, Default Visibility);
 		Event Player.team_abilityHUD[0] = Last Text ID;
@@ -7801,18 +7986,11 @@ rule("CORE: (TEAM) ASHE - SPAWN")
 
 	conditions
 	{
-		Has Spawned(Event Player) == True;
+		Event Player.HeroSetupState == 6;
 	}
 
 	actions
 	{
-		Destroy HUD Text(Event Player.team_abilityHUD[4]);
-		Destroy HUD Text(Event Player.team_abilityHUD[5]);
-		Destroy HUD Text(Event Player.charge_hud);
-		Destroy HUD Text(Event Player.charge_hud[0]);
-		Stop Chasing Player Variable(Event Player, primary_charge);
-		Stop Chasing Player Variable(Event Player, secondary_charge);
-		Stop Chasing Player Variable(Event Player, timer);
 		Event Player.primary_charge = 2;
 		Event Player.secondary_charge = Color(White);
 		Event Player.timer = 10;
@@ -8007,21 +8185,17 @@ rule("CORE: (TEAM) ZEN - HUD")
 
 	conditions
 	{
-		Has Spawned(Event Player) == True;
+		Event Player.HeroSetupState == 6;
 	}
 
 	actions
 	{
-		Destroy HUD Text(Event Player.team_abilityHUD[0]);
-		Destroy Progress Bar HUD Text(Event Player.team_abilityHUD[0]);
-		Wait(0.016, Ignore Condition);
 		Create HUD Text(Event Player, Custom String("{0}\r\n{1}", Ability Icon String(Hero(Zenyatta), Button(Ultimate)),
 			Ability Icon String(Hero(Zenyatta), Button(Ability 2))), Custom String(
 			"CHARGES QUICKLY BUT ONLY PROVIDES MEDIUM HEALING\r\nORB OF DISCORD CAN ONLY BE CAST WITH FULL CHARGE"), Custom String(
 			"TRANSCENDENCE / ORB OF DISCORD"), Left, 10, Color(Lime Green), Color(White), Color(Lime Green), Visible To and String,
 			Default Visibility);
 		Event Player.team_abilityHUD[0] = Last Text ID;
-		Event Player.Ability_Bool = False;
 	}
 }
 
@@ -8036,19 +8210,15 @@ rule("CORE: (TEAM) WINSTON - HUD")
 
 	conditions
 	{
-		Has Spawned(Event Player) == True;
+		Event Player.HeroSetupState == 6;
 	}
 
 	actions
 	{
-		Destroy HUD Text(Event Player.team_abilityHUD[0]);
-		Destroy Progress Bar HUD Text(Event Player.team_abilityHUD[0]);
-		Wait(0.016, Ignore Condition);
 		Create HUD Text(Event Player, Ability Icon String(Hero(Winston), Button(Ultimate)), Custom String(
 			"RAGE CHARGES PASSIVELY OVER 1 MIN\r\nDEATHS TAKE AWAY HALF CHARGE"), Custom String("PRIMAL DEFENSE"), Left, 10, Color(Blue),
 			Color(White), Color(Blue), Visible To and String, Default Visibility);
 		Event Player.team_abilityHUD[0] = Last Text ID;
-		Event Player.Ability_Bool = False;
 	}
 }
 
@@ -8063,19 +8233,15 @@ rule("CORE: (TEAM) TRACER - HUD")
 
 	conditions
 	{
-		Has Spawned(Event Player) == True;
+		Event Player.HeroSetupState == 6;
 	}
 
 	actions
 	{
-		Destroy HUD Text(Event Player.team_abilityHUD[0]);
-		Destroy Progress Bar HUD Text(Event Player.team_abilityHUD[0]);
-		Wait(0.016, Ignore Condition);
 		Create HUD Text(Event Player, Ability Icon String(Hero(Tracer), Button(Ultimate)), Custom String(
 			"BE AGGRESSIVE TO CHARGE UP QUICKLY"), Custom String("PULSE BOMB"), Left, 10, Color(Aqua), Color(White), Color(Orange),
 			Visible To and String, Default Visibility);
 		Event Player.team_abilityHUD[0] = Last Text ID;
-		Event Player.Ability_Bool = False;
 	}
 }
 
@@ -8090,19 +8256,15 @@ rule("CORE: (TEAM) REIN - HUD")
 
 	conditions
 	{
-		Has Spawned(Event Player) == True;
+		Event Player.HeroSetupState == 6;
 	}
 
 	actions
 	{
-		Destroy HUD Text(Event Player.team_abilityHUD[0]);
-		Destroy Progress Bar HUD Text(Event Player.team_abilityHUD[0]);
-		Wait(0.016, Ignore Condition);
 		Create HUD Text(Event Player, Ability Icon String(Hero(Reinhardt), Button(Secondary Fire)), Custom String(
 			"16 SEC COOLDOWN IF BROKEN"), Custom String("THE STRONGEST BARRIER"), Left, 10, Color(Blue), Color(White), Color(Sky Blue),
 			Visible To and String, Default Visibility);
 		Event Player.team_abilityHUD[0] = Last Text ID;
-		Event Player.Ability_Bool = False;
 	}
 }
 
@@ -8117,19 +8279,15 @@ rule("CORE: (TEAM) BASTION - HUD")
 
 	conditions
 	{
-		Has Spawned(Event Player) == True;
+		Event Player.HeroSetupState == 6;
 	}
 
 	actions
 	{
-		Destroy HUD Text(Event Player.team_abilityHUD[0]);
-		Destroy Progress Bar HUD Text(Event Player.team_abilityHUD[0]);
-		Wait(0.016, Ignore Condition);
 		Create HUD Text(Event Player, Ability Icon String(Hero(Bastion), Button(Ability 1)), Custom String(
 			"USE TO PRESSURE THE BOSS WITH RESISTANCE & HIGH DPS"), Custom String("SENTRY FORM"), Left, 10, Color(Orange), Color(White),
 			Color(Orange), Visible To and String, Default Visibility);
 		Event Player.team_abilityHUD[0] = Last Text ID;
-		Event Player.Ability_Bool = False;
 	}
 }
 
@@ -8144,21 +8302,16 @@ rule("CORE: (TEAM) SIG - SPAWN ABILITY HUD")
 
 	conditions
 	{
-		Has Spawned(Event Player) == True;
+		Event Player.HeroSetupState == 6;
 	}
 
 	actions
 	{
-		Destroy HUD Text(Event Player.team_abilityHUD[0]);
-		Destroy Progress Bar HUD Text(Event Player.team_abilityHUD[0]);
-		Event Player.Ability_Bool = False;
-		Wait(0.016, Ignore Condition);
 		Create HUD Text(Event Player, Icon String(Arrow: Up), Custom String("HOLD  [{0}]  BUTTON", Input Binding String(Button(Jump))),
 			Custom String("LEVITATION"), Left, 10, Color(Blue), Color(White), Color(Sky Blue), Visible To and String, Default Visibility);
 		Event Player.team_abilityHUD[0] = Last Text ID;
 		Event Player.Ability_Toggle = True;
 		Event Player.primary_charge = 100;
-		Stop Chasing Player Variable(Event Player, primary_charge);
 	}
 }
 
@@ -8173,20 +8326,15 @@ rule("CORE: (TEAM) ZAR - SPAWN ABILITY HUD")
 
 	conditions
 	{
-		Has Spawned(Event Player) == True;
+		Event Player.HeroSetupState == 6;
 	}
 
 	actions
 	{
-		Destroy HUD Text(Event Player.team_abilityHUD[0]);
-		Destroy Progress Bar HUD Text(Event Player.team_abilityHUD[0]);
-		Wait(0.016, Ignore Condition);
 		Create HUD Text(Event Player, Ability Icon String(Hero(Zarya), Button(Ability 2)), Custom String("16 second cooldown"),
 			Custom String("Projected Barrier"), Left, 10, Color(Rose), Color(White), Custom Color(250, 134, 196, 255),
 			Visible To and String, Default Visibility);
 		Event Player.team_abilityHUD[0] = Last Text ID;
-		Event Player.primary_charge = 0;
-		Stop Chasing Player Variable(Event Player, primary_charge);
 	}
 }
 
@@ -8207,31 +8355,6 @@ rule("BUG FIX: (TEAM) VENTURE - DRILL DASH COOLDOWN BUG")
 	actions
 	{
 		Set Ability Cooldown(Event Player, Button(Secondary Fire), 6);
-	}
-}
-
-rule("CORE: (TEAM) VENTURE - SPAWN")
-{
-	event
-	{
-		Ongoing - Each Player;
-		Team 2;
-		Venture;
-	}
-
-	conditions
-	{
-		Has Spawned(Event Player) == True;
-	}
-
-	actions
-	{
-		Destroy HUD Text(Event Player.team_abilityHUD[0]);
-		Wait(0.016, Ignore Condition);
-		Event Player.Ability_Toggle = False;
-		Event Player.Ability_Bool = False;
-		Stop Chasing Player Variable(Event Player, primary_charge);
-		Event Player.primary_charge = 0;
 	}
 }
 
@@ -8308,8 +8431,8 @@ rule("CORE: (TEAM) VENTURE - USE STUN")
 	conditions
 	{
 		Event Player.Stunned != True;
-		(Is Button Held(Event Player, Button(Ultimate)) == True && Is Button Held(Event Player, Button(Secondary Fire))
-			== True && Event Player.Ability_Toggle == True) == True;
+		(Is Button Held(Event Player, Button(Ultimate)) && Is Button Held(Event Player, Button(Secondary Fire))
+			&& Event Player.Ability_Toggle) == True;
 		Event Player.primary_charge == 0;
 		Is Firing Secondary(Event Player) == True;
 		Is Using Ability 1(Event Player) == False;
@@ -8406,20 +8529,15 @@ rule("CORE: (TEAM) JQ - SPAWN ABILITY HUD")
 
 	conditions
 	{
-		Has Spawned(Event Player) == True;
+		Event Player.HeroSetupState == 6;
 	}
 
 	actions
 	{
-		Destroy HUD Text(Event Player.team_abilityHUD[0]);
-		Destroy Progress Bar HUD Text(Event Player.team_abilityHUD[0]);
-		Wait(0.016, Ignore Condition);
 		Create HUD Text(Event Player, Custom String("{0} {1}", Ability Icon String(Hero(Junker Queen), Button(Secondary Fire)),
 			Icon String(Dizzy)), Custom String("Damage with knife to stun Boss"), Custom String("Jagged Blade Stun"), Left, 10, Color(Red),
 			Color(White), Color(Red), Visible To and String, Default Visibility);
 		Event Player.team_abilityHUD[0] = Last Text ID;
-		Stop Chasing Player Variable(Event Player, secondary_charge);
-		Event Player.secondary_charge = 0;
 		Event Player.primary_charge = Custom String("G.READY");
 	}
 }
@@ -8773,7 +8891,7 @@ rule("CORE: (TEAM) BRIG - SPAWN ABILITY HUD")
 
 	conditions
 	{
-		Has Spawned(Event Player) == True;
+		Event Player.HeroSetupState == 6;
 	}
 
 	actions
@@ -8934,7 +9052,7 @@ rule("CORE: (TEAM) BRIG - NEW MERCY")
 	conditions
 	{
 		Is Hero Being Played(Hero(Brigitte), Team 2) == True;
-		Has Spawned(Event Player) == True;
+		Event Player.HeroSetupState == 6;
 		Global.mercyChecker == -1;
 	}
 
@@ -9017,7 +9135,7 @@ rule("CORE: (TEAM) BRIG - MERCY SPAWN VARS")
 
 	conditions
 	{
-		Has Spawned(Event Player) == True;
+		Event Player.HeroSetupState == 6;
 	}
 
 	actions
@@ -9157,7 +9275,7 @@ rule("CORE: (TEAM) DVA - SPAWN ABILITY")
 
 	conditions
 	{
-		Has Spawned(Event Player) == True;
+		Event Player.HeroSetupState == 6;
 	}
 
 	actions
@@ -9278,7 +9396,7 @@ rule("CORE: (TEAM) MOIRA - SPAWN NO HEAL")
 
 	conditions
 	{
-		Has Spawned(Event Player) == True;
+		Event Player.HeroSetupState == 6;
 	}
 
 	actions
@@ -9312,27 +9430,6 @@ rule("CORE: (TEAM) MOIRA - USE HEAL ORB")
 	}
 }
 
-rule("CORE: (TEAM) ALL - RE-ENABLE PRIMARY")
-{
-	event
-	{
-		Ongoing - Each Player;
-		Team 2;
-		All;
-	}
-
-	conditions
-	{
-		(Hero Of(Event Player) != Hero(Moira) && Hero Of(Event Player) != Hero(Lifeweaver)) == True;
-		Has Spawned(Event Player) == True;
-	}
-
-	actions
-	{
-		Set Primary Fire Enabled(Event Player, True);
-	}
-}
-
 rule("CORE: (TEAM) MOIRA - PRIMARY WARNING")
 {
 	event
@@ -9344,8 +9441,8 @@ rule("CORE: (TEAM) MOIRA - PRIMARY WARNING")
 
 	conditions
 	{
-		(Is Alive(Event Player) && Is Button Held(Event Player, Button(Primary Fire)) && Is Using Ability 2(Event Player)
-			== False && Is Firing Primary(Event Player) == False) == True;
+		(Is Alive(Event Player) && Is Button Held(Event Player, Button(Primary Fire)) && !Is Using Ability 2(Event Player)
+			&& !Is Firing Primary(Event Player)) == True;
 		Ability Resource(Event Player, Button(Primary Fire)) > 23;
 		Event Player.primary_charge == 0;
 	}
@@ -9582,27 +9679,6 @@ rule("CORE: (TEAM) MOIRA - USE DMG ORB")
 	}
 }
 
-rule("CORE: (TEAM) ALL - RE-ENABLE SECONDARY")
-{
-	event
-	{
-		Ongoing - Each Player;
-		Team 2;
-		All;
-	}
-
-	conditions
-	{
-		Has Spawned(Event Player) == True;
-		(Hero Of(Event Player) != Hero(D.Va) && Hero Of(Event Player) != Hero(Sombra) && Hero Of(Event Player) != Hero(Reaper)) == True;
-	}
-
-	actions
-	{
-		Set Secondary Fire Enabled(Event Player, True);
-	}
-}
-
 rule("CORE: (TEAM) ALL - DISABLE SECONDARY FIRE")
 {
 	event
@@ -9614,7 +9690,7 @@ rule("CORE: (TEAM) ALL - DISABLE SECONDARY FIRE")
 
 	conditions
 	{
-		Has Spawned(Event Player) == True;
+		Event Player.HeroSetupState == 6;
 		(Hero Of(Event Player) == Hero(Sombra) || Hero Of(Event Player) == Hero(Reaper)) == True;
 	}
 
@@ -9635,25 +9711,16 @@ rule("CORE: (TEAM) WIDOW - SPAWN ABILITY HUD")
 
 	conditions
 	{
-		Has Spawned(Event Player) == True;
+		Event Player.HeroSetupState == 6;
 	}
 
 	actions
 	{
-		Destroy HUD Text(Event Player.team_abilityHUD[0]);
-		Wait(0.016, Ignore Condition);
 		Create HUD Text(Event Player, Custom String("{0}%", Round To Integer(Ultimate Charge Percent(Event Player), Down)), Custom String(
 			"charging ultimate ability"), Custom String("double damage shot"), Left, 10, Color(Orange), Color(Orange), Color(Blue),
 			Visible To and String, Default Visibility);
 		Event Player.team_abilityHUD[0] = Last Text ID;
-		Event Player.Ability_Toggle = False;
-		Event Player.Ability_Bool = False;
-		Event Player.primary_charge = 0;
-		Stop Chasing Player Variable(Event Player, primary_charge);
 		disabled Chase Player Variable At Rate(Event Player, primary_charge, 100, 0.090, Destination and Rate);
-		Destroy Effect(Event Player.PlayerFX_1);
-		Destroy Effect(Event Player.PlayerFX_2);
-		Destroy Effect(Event Player.PlayerFX_3);
 	}
 }
 
@@ -9856,17 +9923,12 @@ rule("CORE: (TEAM) BAP - SPAWN ABILITY")
 
 	conditions
 	{
-		Has Spawned(Event Player) == True;
+		Event Player.HeroSetupState == 6;
 	}
 
 	actions
 	{
-		Event Player.Ability_Toggle = False;
 		Event Player.Ability_Bool = 0;
-		Event Player.primary_charge = 0;
-		Event Player.secondary_charge = 0;
-		Event Player.timer = 0;
-		Stop Chasing Player Variable(Event Player, primary_charge);
 	}
 }
 
@@ -10000,58 +10062,6 @@ rule("CORE: (TEAM) BAP - ABILITY CD RESET")
 	}
 }
 
-rule("CORE: (BOSS) BALL - AMMO")
-{
-	event
-	{
-		Ongoing - Each Player;
-		Team 1;
-		Wrecking Ball;
-	}
-
-	conditions
-	{
-		Ammo(Event Player, 0) > 5;
-	}
-
-	actions
-	{
-		Set Ammo(Event Player, 0, 5);
-		Set Max Ammo(Event Player, 0, 5);
-	}
-}
-
-rule("CORE: (TEAM) ORISA - AMMO")
-{
-	event
-	{
-		Ongoing - Each Player;
-		Team 2;
-		Orisa;
-	}
-
-	actions
-	{
-		Set Max Ammo(Event Player, 0, 17.200);
-	}
-}
-
-rule("CORE: (TEAM) MAUGA - AMMO")
-{
-	event
-	{
-		Ongoing - Each Player;
-		Team 2;
-		Mauga;
-	}
-
-	actions
-	{
-		Set Max Ammo(Event Player, 0, 125);
-		Set Ammo(Event Player, 0, 125);
-	}
-}
-
 rule("CORE: (TEAM) BAP - IMMORTALITY SPEED")
 {
 	event
@@ -10092,56 +10102,13 @@ rule("CORE: (TEAM) BAP - ABILITY 2 BUTTON OFF")
 
 	conditions
 	{
-		Has Spawned(Event Player) == True;
+		Event Player.HeroSetupState == 6;
 	}
 
 	actions
 	{
 		Disallow Button(Event Player, Button(Ability 2));
 		Abort;
-	}
-}
-
-rule("CORE: (TEAM) ALL - ABILITY 2 BUTTON ON")
-{
-	event
-	{
-		Ongoing - Each Player;
-		Team 2;
-		All;
-	}
-
-	conditions
-	{
-		Has Spawned(Event Player) == True;
-		(Hero Of(Event Player) != Hero(Baptiste) && Hero Of(Event Player) != Hero(Pharah)) == True;
-	}
-
-	actions
-	{
-		Allow Button(Event Player, Button(Ability 2));
-		Abort;
-	}
-}
-
-rule("CORE: (TEAM) ALL - HEALING DEALT DEFAULT")
-{
-	event
-	{
-		Ongoing - Each Player;
-		Team 2;
-		All;
-	}
-
-	conditions
-	{
-		Hero Of(Event Player) != Hero(Ana);
-		Has Spawned(Event Player) == True;
-	}
-
-	actions
-	{
-		Set Healing Dealt(Event Player, 100);
 	}
 }
 
@@ -10156,26 +10123,17 @@ rule("CORE: (TEAM) ECHO - SPAWN ABILITY HUD")
 
 	conditions
 	{
-		Has Spawned(Event Player) == True;
+		Event Player.HeroSetupState == 6;
 	}
 
 	actions
 	{
-		Set Ultimate Ability Enabled(Event Player, True);
 		Set Ultimate Charge(Event Player, 0);
-		Destroy HUD Text(Event Player.team_abilityHUD[0]);
 		Wait(0.016, Ignore Condition);
 		Create HUD Text(Event Player, Custom String("{0}%", Round To Integer(Ultimate Charge Percent(Event Player), Down)), Custom String(
 			"charging ultimate ability"), Custom String("cooldown reduction"), Left, 10, Color(Orange), Color(Orange), Color(Sky Blue),
 			Visible To and String, Default Visibility);
 		Event Player.team_abilityHUD[0] = Last Text ID;
-		Event Player.Ability_Toggle = False;
-		Event Player.Ability_Bool = False;
-		Event Player.primary_charge = 0;
-		Stop Chasing Player Variable(Event Player, primary_charge);
-		Destroy Effect(Event Player.PlayerFX_1);
-		Destroy Effect(Event Player.PlayerFX_2);
-		Destroy Effect(Event Player.PlayerFX_3);
 		Disallow Button(Event Player, Button(Ultimate));
 	}
 }
@@ -10350,27 +10308,6 @@ rule("CORE: (TEAM) ECHO - ULTIMATE STICKY")
 	actions
 	{
 		Set Ability Cooldown(Event Player, Button(Secondary Fire), 3);
-	}
-}
-
-rule("CORE: (TEAM) ALL - SWITCH - ALLOW ULT")
-{
-	event
-	{
-		Ongoing - Each Player;
-		Team 2;
-		All;
-	}
-
-	conditions
-	{
-		Hero Of(Event Player) != Hero(Echo);
-		Has Spawned(Event Player) == True;
-	}
-
-	actions
-	{
-		Allow Button(Event Player, Button(Ultimate));
 	}
 }
 
@@ -10711,8 +10648,8 @@ rule("CORE: (BOSS) ALL - ABILITY 1 SET")
 
 	actions
 	{
-		Skip If(Hero Of(Event Player) == Hero(Mercy) || Hero Of(Event Player) == Hero(Zenyatta) || Hero Of(Event Player) == Hero(Sombra)
-			|| Hero Of(Event Player) == Hero(Symmetra) || Hero Of(Event Player) == Hero(Ramattra), 2);
+		Skip If(Array Contains(Array(Hero(Mercy), Hero(Zenyatta), Hero(Sombra), Hero(Symmetra), Hero(Ramattra)), Hero Of(Event Player)),
+			3);
 		Set Ability 1 Enabled(Event Player, True);
 		Allow Button(Event Player, Button(Ability 1));
 		Skip If(Hero Of(Event Player) != Hero(Mercy) && Hero Of(Event Player) != Hero(Zenyatta) && Hero Of(Event Player) != Hero(Sombra)
@@ -10788,49 +10725,6 @@ rule("CORE: (ALL) BASTION - SIZE")
 	{
 		Start Scaling Player(Event Player, 1.111, False);
 		Start Scaling Barriers(Event Player, 1, False);
-	}
-}
-
-rule("CORE: (TEAM) General - SIZE")
-{
-	event
-	{
-		Ongoing - Each Player;
-		Team 2;
-		All;
-	}
-
-	conditions
-	{
-		Has Spawned(Event Player) == True;
-		Hero Of(Event Player) != Hero(Bastion);
-	}
-
-	actions
-	{
-		Stop Scaling Player(Event Player);
-		Stop Scaling Barriers(Event Player);
-		If(Hero Of(Event Player) == Hero(Winston));
-			Start Scaling Barriers(Event Player, 0.750, False);
-		Else If(Hero Of(Event Player) == Hero(Brigitte));
-			Start Scaling Player(Event Player, 1.100, False);
-			Start Scaling Barriers(Event Player, 1.500, False);
-		Else If(Hero Of(Event Player) == Hero(D.Va));
-			Start Scaling Player(Event Player, 0.900, False);
-		Else If(Hero Of(Event Player) == Hero(Torbjörn));
-			Start Scaling Player(Event Player, 1.125, False);
-		Else If(Hero Of(Event Player) == Hero(Ramattra));
-			Start Scaling Barriers(Event Player, 2, False);
-		Else If(Hero Of(Event Player) == Hero(Orisa));
-			Start Scaling Player(Event Player, 0.920, False);
-		Else If(Hero Of(Event Player) == Hero(Sigma));
-			Start Scaling Barriers(Event Player, 0.900, False);
-		Else If(Hero Of(Event Player) == Hero(Zarya));
-			Start Scaling Player(Event Player, 0.940, False);
-		Else If(Hero Of(Event Player) == Hero(Doomfist));
-			Start Scaling Player(Event Player, 0.888, False);
-		Else If(Hero Of(Event Player) == Hero(Hazard));
-			Start Scaling Player(Event Player, 0.800, False);
 	}
 }
 
@@ -11316,29 +11210,17 @@ rule("CORE: (TEAM) PHARAH - SPAWN ABILITY HUD")
 
 	conditions
 	{
-		Has Spawned(Event Player) == True;
+		Event Player.HeroSetupState == 6;
 	}
 
 	actions
 	{
-		Set Move Speed(Event Player, 100);
-		Event Player.primary_charge = 0;
-		Destroy HUD Text(Event Player.team_abilityHUD[1]);
-		Destroy Progress Bar HUD Text(Event Player.team_abilityHUD[0]);
-		Destroy HUD Text(Event Player.team_abilityHUD[2]);
-		Destroy HUD Text(Event Player.team_abilityHUD[3]);
-		Wait(0.016, Ignore Condition);
 		Create HUD Text(Event Player, Null, Null, Custom String(
 			"\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\nTACTICIAN Abilities:\r\n			-----------------\r\n			{0} Tag Boss: {1}+{2}\r\n			-----------------",
 			Icon String(Warning), Input Binding String(Button(Interact)), Input Binding String(Button(Jump))), Left, 8, Color(White),
 			Color(White), Color(White), Visible To and String, Default Visibility);
 		Event Player.team_abilityHUD[3] = Last Text ID;
-		Event Player.Ability_Bool = False;
 		Event Player.Ability_Toggle = True;
-		Set Ability 2 Enabled(Event Player, True);
-		Stop Chasing Player Variable(Event Player, primary_charge);
-		Stop Chasing Player Variable(Event Player, timer);
-		Event Player.timer = 0;
 	}
 }
 
@@ -11468,10 +11350,10 @@ rule("CORE: (TEAM) MERCY - PHARAH MERCY BEACON USE")
 	actions
 	{
 		Destroy HUD Text(Global.MercyBeacon[7]);
-		Filtered Array(Players On Hero(Hero(Pharah), Team 2), Current Array Element.Ability_Bool == True).Ability_Toggle = False;
-		Filtered Array(Players On Hero(Hero(Pharah), Team 2), Current Array Element.Ability_Bool == True).primary_charge = 30;
-		Set Ability Cooldown(Filtered Array(Players On Hero(Hero(Pharah), Team 2), Current Array Element.Ability_Bool == True), Button(
-			Ability 2), 30);
+		Filtered Array(Players On Hero(Hero(Pharah), Team 2), Current Array Element.Ability_Bool).Ability_Toggle = False;
+		Filtered Array(Players On Hero(Hero(Pharah), Team 2), Current Array Element.Ability_Bool).primary_charge = 30;
+		Set Ability Cooldown(Filtered Array(Players On Hero(Hero(Pharah), Team 2), Current Array Element.Ability_Bool), Button(Ability 2),
+			30);
 		Players On Hero(Hero(Pharah), Team 2).Ability_Bool = False;
 		Set Ability 2 Enabled(Filtered Array(Players On Hero(Hero(Pharah), Team 2), Current Array Element.Ability_Bool == False), True);
 		Play Effect(All Players(All Teams), Ring Explosion Sound, Color(White), Event Player, 50);
@@ -11769,7 +11651,7 @@ rule("CORE: (TEAM) ALL - ROLE HUD")
 	{
 		Is Alive(Event Player) == True;
 		(Hero Of(Event Player) != Hero(Pharah) && Hero Of(Event Player) != Hero(Lúcio) && Hero Of(Event Player) != Hero(Vendetta)) == True;
-		Has Spawned(Event Player) == True;
+		Event Player.HeroSetupState == 6;
 	}
 
 	actions
@@ -11815,33 +11697,6 @@ rule("CORE: (TEAM) ALL - ROLE HUD")
 	}
 }
 
-rule("CORE: (TEAM) ALL - REMOVE HEALTH POOLS")
-{
-	event
-	{
-		Ongoing - Each Player;
-		Team 2;
-		All;
-	}
-
-	conditions
-	{
-		Array Contains(Array(Hero(Winston), Hero(D.Va), Hero(Zarya), Hero(Ramattra), Hero(Illari), Hero(Reinhardt), Hero(Sigma), Hero(
-			Torbjörn), Hero(Juno), Hero(Echo), Hero(Hazard), Hero(Sombra), Hero(Pharah), Hero(Orisa), Hero(Wrecking Ball), Hero(Venture),
-			Hero(Domina)), Hero Of(Event Player)) != True;
-		Has Spawned(Event Player) == True;
-	}
-
-	actions
-	{
-		Remove Health Pool From Player(Event Player.armour_pool);
-		Remove Health Pool From Player(Event Player.health_pool);
-		Remove Health Pool From Player(Event Player.shield_pool);
-		Event Player.base_health = Max Health(Event Player);
-		Event Player.base_shields = Max Health Of Type(Event Player, Shields);
-	}
-}
-
 rule("CORE: (TEAM) PHARAH - ABILITY 2 BUTTON OFF")
 {
 	event
@@ -11853,7 +11708,7 @@ rule("CORE: (TEAM) PHARAH - ABILITY 2 BUTTON OFF")
 
 	conditions
 	{
-		Has Spawned(Event Player) == True;
+		Event Player.HeroSetupState == 6;
 	}
 
 	actions
@@ -12089,13 +11944,11 @@ rule("CORE: (TEAM) RAM - SET AOE HEAL")
 
 	conditions
 	{
-		Has Spawned(Event Player) == True;
+		Event Player.HeroSetupState == 6;
 	}
 
 	actions
 	{
-		Stop Chasing Player Variable(Event Player, primary_charge);
-		Stop Chasing Player Variable(Event Player, secondary_charge);
 		Stop Chasing Player Variable(Event Player, D);
 		Event Player.PassiveAOEHeal = 1;
 		Event Player.primary_charge = 16;
@@ -12245,28 +12098,6 @@ rule("CORE: (TEAM) JUNK - ABILITY 2 OFF - TRAP")
 	}
 }
 
-rule("CORE: (TEAM) ALL - ABILITY 2 ON")
-{
-	event
-	{
-		Ongoing - Each Player;
-		Team 2;
-		All;
-	}
-
-	conditions
-	{
-		Has Spawned(Event Player) == True;
-		(Hero Of(Event Player) != Hero(Pharah) && Hero Of(Event Player) != Hero(Junkrat) && Hero Of(Event Player) != Hero(Genji)
-			&& Hero Of(Event Player) != Hero(Zenyatta)) == True;
-	}
-
-	actions
-	{
-		Set Ability 2 Enabled(Event Player, True);
-	}
-}
-
 rule("CORE: (TEAM) ZEN - DISCORD OFF")
 {
 	event
@@ -12278,6 +12109,7 @@ rule("CORE: (TEAM) ZEN - DISCORD OFF")
 
 	conditions
 	{
+		Event Player.HeroSetupState == 6;
 		Ultimate Charge Percent(Event Player) < 100;
 	}
 
@@ -12482,8 +12314,8 @@ rule("CORE: (TEAM) RAM - HUD TEXT")
 	conditions
 	{
 		Is Alive(Event Player) == True;
-		(Has Status(Event Player, Stunned) != True && Has Status(Event Player, Knocked Down) != True && Has Status(Event Player, Frozen)
-			!= True && Has Status(Event Player, Asleep) != True && Has Status(Event Player, Hacked) != True && True) == True;
+		(!Has Status(Event Player, Stunned) && !Has Status(Event Player, Knocked Down) && !Has Status(Event Player, Frozen) && !Has Status(
+			Event Player, Asleep) && !Has Status(Event Player, Hacked) && True) == True;
 	}
 
 	actions
@@ -12579,96 +12411,6 @@ rule("CORE: (TEAM) D.VA - PILOT POOLS")
 	}
 }
 
-rule("CORE: (TEAM) REIN: HEALTH")
-{
-	event
-	{
-		Ongoing - Each Player;
-		Team 2;
-		Reinhardt;
-	}
-
-	actions
-	{
-		Remove Health Pool From Player(Event Player.health_pool);
-		Remove Health Pool From Player(Event Player.shield_pool);
-		Remove Health Pool From Player(Event Player.armour_pool);
-		Add Health Pool To Player(Event Player, Health, 16.667, True, False);
-		Event Player.health_pool = Last Created Health Pool;
-		Wait(0.016, Ignore Condition);
-		Event Player.base_health = Max Health(Event Player);
-		Event Player.base_shields = Max Health Of Type(Event Player, Shields);
-	}
-}
-
-rule("CORE: (TEAM) ILLARI: HEALTH")
-{
-	event
-	{
-		Ongoing - Each Player;
-		Team 2;
-		Illari;
-	}
-
-	actions
-	{
-		Remove Health Pool From Player(Event Player.health_pool);
-		Remove Health Pool From Player(Event Player.shield_pool);
-		Remove Health Pool From Player(Event Player.armour_pool);
-		Add Health Pool To Player(Event Player, Health, 50, True, False);
-		Event Player.health_pool = Last Created Health Pool;
-		Wait(0.016, Ignore Condition);
-		Event Player.base_health = Max Health(Event Player);
-		Event Player.base_shields = Max Health Of Type(Event Player, Shields);
-	}
-}
-
-rule("CORE: (TEAM) VENTURE: HEALTH")
-{
-	event
-	{
-		Ongoing - Each Player;
-		Team 2;
-		Venture;
-	}
-
-	actions
-	{
-		Remove Health Pool From Player(Event Player.health_pool);
-		Remove Health Pool From Player(Event Player.shield_pool);
-		Remove Health Pool From Player(Event Player.armour_pool);
-		Add Health Pool To Player(Event Player, Health, 25, True, False);
-		Event Player.health_pool = Last Created Health Pool;
-		Wait(0.016, Ignore Condition);
-		Event Player.base_health = Max Health(Event Player);
-		Event Player.base_shields = Max Health Of Type(Event Player, Shields);
-	}
-}
-
-rule("CORE: (TEAM) DOM: HEALTH")
-{
-	event
-	{
-		Ongoing - Each Player;
-		Team 2;
-		Domina;
-	}
-
-	actions
-	{
-		Remove Health Pool From Player(Event Player.health_pool);
-		Remove Health Pool From Player(Event Player.shield_pool);
-		Remove Health Pool From Player(Event Player.armour_pool);
-		Add Health Pool To Player(Event Player, Health, 128.888, True, False);
-		Event Player.health_pool = Last Created Health Pool;
-		Add Health Pool To Player(Event Player, Shields, 15.555, True, False);
-		Event Player.shield_pool = Last Created Health Pool;
-		Wait(0.016, Ignore Condition);
-		Event Player.base_health = Max Health(Event Player);
-		Event Player.base_shields = Max Health Of Type(Event Player, Shields);
-	}
-}
-
 rule("CORE: (TEAM) VENDETTA: SPAWN IN")
 {
 	event
@@ -12680,10 +12422,6 @@ rule("CORE: (TEAM) VENDETTA: SPAWN IN")
 
 	actions
 	{
-		Destroy HUD Text(Event Player.team_abilityHUD[1]);
-		Destroy HUD Text(Event Player.team_abilityHUD[2]);
-		Destroy HUD Text(Event Player.team_abilityHUD[3]);
-		Destroy HUD Text(Event Player.team_abilityHUD[5]);
 		Create HUD Text(Event Player, Null, Null, Custom String(
 			"\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\nENFORCER Abilities:"), Left, 8, Color(White), Color(White), Color(
 			White), Visible To and String, Default Visibility);
@@ -12706,10 +12444,8 @@ rule("CORE: (TEAM) VENDETTA: SPAWN IN")
 			"base cooldowns reduce as ultimate charges"), Custom String("auto charge + activation"), Left, 10, Color(Red), Color(White),
 			Color(Gray), Visible To and String, Default Visibility);
 		Event Player.team_abilityHUD[0] = Last Text ID;
-		Stop Chasing Player Variable(Event Player, primary_charge);
 		Event Player.primary_charge = 6;
 		Chase Player Variable At Rate(Event Player, secondary_charge, 0, 1, Destination and Rate);
-		Event Player.secondary_charge = 0;
 	}
 }
 
@@ -12823,8 +12559,8 @@ rule("CORE: (TEAM) VENDETTA: WHIRLWIND STUN USE")
 	actions
 	{
 		Wait(0.400, Abort When False);
-		Skip If((Is Button Held(Event Player, Button(Ability 1)) == False || Ultimate Charge Percent(Event Player)
-			< 25 || Ultimate Charge Percent(Event Player) >= 100 || Is Using Ability 1(Event Player) == False) == True, 14);
+		Skip If(!Is Button Held(Event Player, Button(Ability 1)) || Ultimate Charge Percent(Event Player) < 25 || Ultimate Charge Percent(
+			Event Player) >= 100 || !Is Using Ability 1(Event Player), 14);
 		Set Status(Players Within Radius(Event Player, 4, Team 1, Surfaces), Event Player, Stunned, 0.650);
 		Set Ultimate Charge(Event Player, Ultimate Charge Percent(Event Player) - 25);
 		Event Player.secondary_charge = 15;
@@ -12863,156 +12599,6 @@ rule("CORE: (TEAM) VENDETTA: RESPAWN")
 	actions
 	{
 		Set Ability Cooldown(Event Player, Button(Ability 2), 0);
-	}
-}
-
-rule("CORE: (TEAM) JUNO: HEALTH")
-{
-	event
-	{
-		Ongoing - Each Player;
-		Team 2;
-		Juno;
-	}
-
-	actions
-	{
-		Remove Health Pool From Player(Event Player.health_pool);
-		Remove Health Pool From Player(Event Player.shield_pool);
-		Remove Health Pool From Player(Event Player.armour_pool);
-		Add Health Pool To Player(Event Player, Health, 150.250, True, False);
-		Event Player.health_pool = Last Created Health Pool;
-		Wait(0.016, Ignore Condition);
-		Event Player.base_health = Max Health(Event Player);
-		Event Player.base_shields = Max Health Of Type(Event Player, Shields);
-		Set Max Ammo(Event Player, 0, 60);
-		Set Ammo(Event Player, 0, 60);
-	}
-}
-
-rule("CORE: (TEAM) PHARAH: HEALTH")
-{
-	event
-	{
-		Ongoing - Each Player;
-		Team 2;
-		Pharah;
-	}
-
-	actions
-	{
-		Remove Health Pool From Player(Event Player.health_pool);
-		Remove Health Pool From Player(Event Player.shield_pool);
-		Remove Health Pool From Player(Event Player.armour_pool);
-		Add Health Pool To Player(Event Player, Health, 1.500, True, False);
-		Event Player.health_pool = Last Created Health Pool;
-		Add Health Pool To Player(Event Player, Armor, 75, True, False);
-		Event Player.shield_pool = Last Created Health Pool;
-		Wait(0.016, Ignore Condition);
-		Event Player.base_health = Max Health(Event Player);
-		Event Player.base_shields = Max Health Of Type(Event Player, Shields);
-	}
-}
-
-rule("CORE: (TEAM) SOMBRA: HEALTH")
-{
-	event
-	{
-		Ongoing - Each Player;
-		Team 2;
-		Sombra;
-	}
-
-	actions
-	{
-		Remove Health Pool From Player(Event Player.health_pool);
-		Remove Health Pool From Player(Event Player.shield_pool);
-		Remove Health Pool From Player(Event Player.armour_pool);
-		Add Health Pool To Player(Event Player, Health, 1.500, True, False);
-		Event Player.health_pool = Last Created Health Pool;
-		Add Health Pool To Player(Event Player, Shields, 75, True, False);
-		Event Player.shield_pool = Last Created Health Pool;
-		Wait(0.016, Ignore Condition);
-		Event Player.base_health = Max Health(Event Player);
-		Event Player.base_shields = Max Health Of Type(Event Player, Shields);
-	}
-}
-
-rule("CORE: (TEAM) HAZARD - HEALTH")
-{
-	event
-	{
-		Ongoing - Each Player;
-		Team 2;
-		Hazard;
-	}
-
-	conditions
-	{
-		Has Spawned(Event Player) == True;
-	}
-
-	actions
-	{
-		Remove Health Pool From Player(Event Player.health_pool);
-		Remove Health Pool From Player(Event Player.shield_pool);
-		Remove Health Pool From Player(Event Player.armour_pool);
-		Add Health Pool To Player(Event Player, Health, 222.500, True, False);
-		Event Player.health_pool = Last Created Health Pool;
-		Add Health Pool To Player(Event Player, Armor, 2.500, True, False);
-		Event Player.armour_pool = Last Created Health Pool;
-		Wait(0.016, Ignore Condition);
-		Event Player.base_health = Max Health(Event Player);
-		Event Player.base_shields = Max Health Of Type(Event Player, Shields);
-	}
-}
-
-rule("CORE: (TEAM) SIG - HEALTH")
-{
-	event
-	{
-		Ongoing - Each Player;
-		Team 2;
-		Sigma;
-	}
-
-	conditions
-	{
-		Has Spawned(Event Player) == True;
-	}
-
-	actions
-	{
-		Remove Health Pool From Player(Event Player.health_pool);
-		Remove Health Pool From Player(Event Player.shield_pool);
-		Remove Health Pool From Player(Event Player.armour_pool);
-		Add Health Pool To Player(Event Player, Health, 50, True, False);
-		Event Player.health_pool = Last Created Health Pool;
-		Wait(0.016, Ignore Condition);
-		Event Player.base_health = Max Health(Event Player);
-		Event Player.base_shields = Max Health Of Type(Event Player, Shields);
-	}
-}
-
-rule("CORE: (TEAM) TORB: HEALTH")
-{
-	event
-	{
-		Ongoing - Each Player;
-		Team 2;
-		Torbjörn;
-	}
-
-	actions
-	{
-		Remove Health Pool From Player(Event Player.health_pool);
-		Remove Health Pool From Player(Event Player.shield_pool);
-		Remove Health Pool From Player(Event Player.armour_pool);
-		Add Health Pool To Player(Event Player, Armor, 100, True, False);
-		Event Player.armour_pool = Last Created Health Pool;
-		Wait(0.016, Ignore Condition);
-		Event Player.base_health = Max Health(Event Player);
-		Event Player.base_shields = Max Health Of Type(Event Player, Shields);
 	}
 }
 
@@ -13279,7 +12865,7 @@ rule("CORE: (TEAM) ALL - ABILITY 1 SET")
 
 	conditions
 	{
-		Has Spawned(Event Player) == True;
+		Event Player.HeroSetupState == 6;
 		Is Alive(Event Player) == True;
 	}
 
@@ -13487,27 +13073,6 @@ rule("CORE: (TEAM) SIG - BARRIER broken CD")
 	}
 }
 
-rule("CORE: (TEAM) SIG - SPAWN 2ndary charge")
-{
-	event
-	{
-		Ongoing - Each Player;
-		Team 2;
-		Sigma;
-	}
-
-	conditions
-	{
-		Has Spawned(Event Player) == True;
-	}
-
-	actions
-	{
-		Event Player.secondary_charge = 0;
-		Abort;
-	}
-}
-
 rule("CORE: (TEAM) REAP - SPAWN ABILITY HUD")
 {
 	event
@@ -13519,26 +13084,15 @@ rule("CORE: (TEAM) REAP - SPAWN ABILITY HUD")
 
 	conditions
 	{
-		Has Spawned(Event Player) == True;
+		Event Player.HeroSetupState == 6;
 	}
 
 	actions
 	{
-		Event Player.primary_charge = 0;
-		Destroy HUD Text(Event Player.team_abilityHUD[0]);
-		Destroy Progress Bar HUD Text(Event Player.team_abilityHUD[0]);
-		Wait(0.016, Ignore Condition);
 		Create HUD Text(Event Player, Custom String("{0}%", Round To Integer(Event Player.primary_charge, Down)), Custom String(
 			"charging"), Custom String("the reaper energy  {0}", Icon String(Bolt)), Left, 10, Color(Orange), Color(Orange), Color(Black),
 			Visible To and String, Default Visibility);
 		Event Player.team_abilityHUD[0] = Last Text ID;
-		Event Player.Ability_Toggle = False;
-		Event Player.Ability_Bool = False;
-		Stop Chasing Player Variable(Event Player, primary_charge);
-		Destroy Effect(Event Player.PlayerFX_1);
-		Destroy Effect(Event Player.PlayerFX_2);
-		Destroy Effect(Event Player.PlayerFX_3);
-		Event Player.secondary_charge = 0;
 	}
 }
 
@@ -13582,8 +13136,8 @@ rule("CORE: (TEAM) REAP - ENERGY USE")
 	conditions
 	{
 		Event Player.Stunned != True;
-		(Event Player.Ability_Toggle == True && Is Button Held(Event Player, Button(Secondary Fire)) == True && Has Status(Event Player,
-			Rooted) == False && Is Using Ability 2(Event Player) == False && Is Using Ultimate(Event Player) == False) == True;
+		(Event Player.Ability_Toggle && Is Button Held(Event Player, Button(Secondary Fire)) && !Has Status(Event Player, Rooted)
+			&& !Is Using Ability 2(Event Player) && !Is Using Ultimate(Event Player)) == True;
 		Event Player.secondary_charge != 1;
 	}
 
@@ -13740,9 +13294,8 @@ rule("CORE: (TEAM) REAP - TELE PLACEMENT")
 	conditions
 	{
 		Event Player.Stunned != True;
-		(Is Button Held(Event Player, Button(Ability 2)) == True && Is Using Ability 1(Event Player) == False && Is Using Ultimate(
-			Event Player) == False && Is Using Ability 2(Event Player) == False && Event Player.Ability_Bool == False && Has Status(
-			Event Player, Rooted) == False) == True;
+		(Is Button Held(Event Player, Button(Ability 2)) && !Is Using Ability 1(Event Player) && !Is Using Ultimate(Event Player)
+			&& !Is Using Ability 2(Event Player) && !Event Player.Ability_Bool && !Has Status(Event Player, Rooted)) == True;
 		Event Player.secondary_charge != 1;
 		Ability Cooldown(Event Player, Button(Ability 2)) == 0;
 	}
@@ -13907,8 +13460,8 @@ rule("CORE: (TEAM) PHARAH - FIX STUCK BEACON")
 
 	conditions
 	{
-		(Is Hero Being Played(Hero(Pharah), Team 2) == False || Is True For All(Filtered Array(All Players(Team 2), Hero Of(
-			Current Array Element) == Hero(Pharah)), Current Array Element.Ability_Bool == False)) == True;
+		(!Is Hero Being Played(Hero(Pharah), Team 2) || Is True For All(Filtered Array(All Players(Team 2), Hero Of(Current Array Element)
+			== Hero(Pharah)), Current Array Element.Ability_Bool == False)) == True;
 	}
 
 	actions
@@ -14222,15 +13775,6 @@ rule("CORE: (TEAM) RAM: HEALTH")
 
 	actions
 	{
-		Remove Health Pool From Player(Event Player.health_pool);
-		Remove Health Pool From Player(Event Player.shield_pool);
-		Remove Health Pool From Player(Event Player.armour_pool);
-		Add Health Pool To Player(Event Player, Armor, 163.392, True, False);
-		Event Player.armour_pool = Last Created Health Pool;
-		Add Health Pool To Player(Event Player, Health, 11.728, True, False);
-		Event Player.health_pool = Last Created Health Pool;
-		Event Player.base_health = Max Health(Event Player);
-		Event Player.base_shields = Max Health Of Type(Event Player, Shields);
 		Stop Chasing Player Variable(Event Player, D);
 		Event Player.D = 0;
 	}
@@ -14279,71 +13823,6 @@ rule("CORE: (TEAM) RAM: OMNIC ARMOR FIX")
 		Remove Health Pool From Player(Event Player.shield_pool);
 		Event Player.base_health = Max Health(Event Player);
 		Event Player.base_shields = Max Health Of Type(Event Player, Shields);
-	}
-}
-
-rule("CORE: (TEAM) ZAR: HEALTH")
-{
-	event
-	{
-		Ongoing - Each Player;
-		Team 2;
-		Zarya;
-	}
-
-	actions
-	{
-		Remove Health Pool From Player(Event Player.health_pool);
-		Remove Health Pool From Player(Event Player.shield_pool);
-		Remove Health Pool From Player(Event Player.armour_pool);
-		Add Health Pool To Player(Event Player, Shields, 20, True, False);
-		Event Player.shield_pool = Last Created Health Pool;
-		Add Health Pool To Player(Event Player, Health, 60, True, False);
-		Event Player.health_pool = Last Created Health Pool;
-		Event Player.base_health = Max Health(Event Player);
-		Event Player.base_shields = Max Health Of Type(Event Player, Shields);
-	}
-}
-
-rule("CORE: (TEAM) ORISA: HEALTH")
-{
-	event
-	{
-		Ongoing - Each Player;
-		Team 2;
-		Orisa;
-	}
-
-	actions
-	{
-		Remove Health Pool From Player(Event Player.health_pool);
-		Remove Health Pool From Player(Event Player.shield_pool);
-		Remove Health Pool From Player(Event Player.armour_pool);
-		Add Health Pool To Player(Event Player, Health, 175, True, False);
-		Event Player.health_pool = Last Created Health Pool;
-		Event Player.base_health = Max Health(Event Player);
-		Event Player.base_shields = Max Health Of Type(Event Player, Shields);
-	}
-}
-
-rule("CORE: (TEAM) WINSTON: HEALTH")
-{
-	event
-	{
-		Ongoing - Each Player;
-		Team 2;
-		Winston;
-	}
-
-	actions
-	{
-		Set Max Health(Event Player, 99.715);
-		Remove Health Pool From Player(Event Player.armour_pool);
-		Remove Health Pool From Player(Event Player.health_pool);
-		Add Health Pool To Player(Event Player, Health, 7.693, True, False);
-		Event Player.health_pool = Last Created Health Pool;
-		Add Health Pool To Player(Event Player, Armor, 5.770, True, False);
-		Event Player.armour_pool = Last Created Health Pool;
 	}
 }
 
@@ -14482,8 +13961,7 @@ rule("CORE: (TEAM) CASS - USE MEDS")
 	conditions
 	{
 		Event Player.Stunned != True;
-		(Event Player.Ability_Toggle == True && Is Crouching(Event Player) == True && Is Button Held(Event Player, Button(Ultimate))
-			== True) == True;
+		(Event Player.Ability_Toggle && Is Crouching(Event Player) && Is Button Held(Event Player, Button(Ultimate))) == True;
 		Is In Air(Event Player) == False;
 	}
 
@@ -14536,8 +14014,7 @@ rule("CORE: (TEAM) CASS - LOOP MEDS")
 	conditions
 	{
 		Event Player.Stunned != True;
-		(Event Player.Ability_Bool == True && Is Crouching(Event Player) == True && Is Button Held(Event Player, Button(Ultimate)) == True)
-			== True;
+		(Event Player.Ability_Bool && Is Crouching(Event Player) && Is Button Held(Event Player, Button(Ultimate))) == True;
 		Is In Air(Event Player) == False;
 		Event Player.primary_charge > 0;
 	}
@@ -14659,8 +14136,8 @@ rule("CORE: (TEAM) HAM - USE SLAM")
 	conditions
 	{
 		Event Player.Stunned != True;
-		(Is Button Held(Event Player, Button(Ultimate)) == True && Is Button Held(Event Player, Button(Crouch))
-			== True && Event Player.Ability_Toggle == True) == True;
+		(Is Button Held(Event Player, Button(Ultimate)) && Is Button Held(Event Player, Button(Crouch)) && Event Player.Ability_Toggle)
+			== True;
 		Event Player.primary_charge == 0;
 		Ability Cooldown(Event Player, Button(Crouch)) > 18.400;
 		Altitude Of(Event Player) >= 2.250;
@@ -14698,9 +14175,9 @@ rule("CORE: (TEAM) HAM - END SLAM")
 
 	conditions
 	{
-		(Is In Air(Event Player) == False || Is Dead(Event Player) || Has Status(Event Player, Hacked) || Has Status(Event Player,
-			Knocked Down) || Has Status(Event Player, Asleep) || Has Status(Event Player, Frozen) || Has Status(Event Player, Stunned)
-			|| False || False) == True;
+		(!Is In Air(Event Player) || Is Dead(Event Player) || Has Status(Event Player, Hacked) || Has Status(Event Player, Knocked Down)
+			|| Has Status(Event Player, Asleep) || Has Status(Event Player, Frozen) || Has Status(Event Player, Stunned) || False || False)
+			== True;
 		Event Player.Ability_Bool == True;
 	}
 
@@ -14754,13 +14231,10 @@ rule("MAPS: ANTI-ENVIRO actions")
 
 	conditions
 	{
-		(Has Spawned(Event Player) == True && Current Map != Map(Ecopoint: Antarctica) && Current Map != Map(Hollywood)
-			&& Current Map != Map(King's Row) && Current Map != Map(King's Row) && Current Map != Map(Temple of Anubis)
-			&& Current Map != Map(Château Guillard) && Current Map != Map(Château Guillard) && Current Map != Map(Horizon Lunar Colony)
-			&& Current Map != Map(Workshop Chamber) && Current Map != Map(Workshop Expanse) && Current Map != Map(Workshop Expanse)
-			&& Current Map != Map(Workshop Island) && Current Map != Map(Workshop Island) && Current Map != Map(Workshop Green Screen))
-			== True;
-		(Y Component Of(Position Of(Event Player)) < Global.Enviro_Threshold && Is Waiting For Players == False) == True;
+		(Has Spawned(Event Player) && !Array Contains(Array(Map(Ecopoint: Antarctica), Map(Hollywood), Map(King's Row), Map(
+			Temple of Anubis), Map(Château Guillard), Map(Horizon Lunar Colony), Map(Workshop Chamber), Map(Workshop Green Screen)),
+			Current Map)) == True;
+		(Y Component Of(Position Of(Event Player)) < Global.Enviro_Threshold && !Is Waiting For Players) == True;
 	}
 
 	actions
@@ -14817,8 +14291,7 @@ rule("CORE: (TEAM) SIG - LEVITATION ON")
 	conditions
 	{
 		Event Player.Stunned != True;
-		(Hero Of(Event Player) == Hero(Sigma) && Has Status(Event Player, Rooted) == False && Is Using Ultimate(Event Player)
-			== False && Event Player.Ability_Toggle == True) == True;
+		(!Has Status(Event Player, Rooted) && !Is Using Ultimate(Event Player) && Event Player.Ability_Toggle) == True;
 		Is Button Held(Event Player, Button(Jump)) == True;
 	}
 
@@ -15008,8 +14481,8 @@ rule("CORE: (BOSS) ECHO - P.C. UP")
 	{
 		Ultimate Charge Percent(Event Player) < 100;
 		Event Player.Stunned != True;
-		(Is Button Held(Event Player, Button(Ultimate)) == True && Event Player.Ability_Toggle == True && Hero Of(Event Player) == Hero(
-			Echo) && Has Status(Event Player, Rooted) == False && Is Duplicating(Event Player) == False) == True;
+		(Is Button Held(Event Player, Button(Ultimate)) && Event Player.Ability_Toggle && !Has Status(Event Player, Rooted)
+			&& !Is Duplicating(Event Player)) == True;
 	}
 
 	actions
@@ -15564,32 +15037,22 @@ rule("CORE: (TEAM) LUCIO - SPAWN ABILITY HUD")
 
 	conditions
 	{
-		Has Spawned(Event Player) == True;
+		Event Player.HeroSetupState == 6;
 	}
 
 	actions
 	{
-		Event Player.primary_charge = 0;
-		Destroy HUD Text(Event Player.team_abilityHUD[0]);
-		Wait(0.016, Ignore Condition);
 		Create HUD Text(Event Player, Custom String("{0}%", Round To Integer(Event Player.primary_charge, Down)), Custom String(
 			"-> charging"), Custom String("mega amp heal song  {0} {1} {2}", Icon String(Arrow: Up), Ability Icon String(Hero(Lúcio),
 			Button(Ability 2)), Ability Icon String(Hero(Baptiste), Button(Ability 1))), Left, 10, Color(Orange), Color(Orange), Color(
 			Yellow), Visible To and String, Default Visibility);
 		Event Player.team_abilityHUD[0] = Last Text ID;
-		Destroy HUD Text(Event Player.team_abilityHUD[1]);
-		Destroy Progress Bar HUD Text(Event Player.team_abilityHUD[0]);
-		Destroy HUD Text(Event Player.team_abilityHUD[3]);
 		Wait(0.016, Ignore Condition);
 		Create HUD Text(Event Player, Null, Null, Custom String(
 			"\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\nTACTICIAN Abilities:\r\n			-----------------\r\n			{0} Soundwave (2.5m): Stun + Extra Damage\r\n			-------",
 			Ability Icon String(Hero(Lúcio), Button(Secondary Fire))), Left, 8, Color(White), Color(White), Color(White),
 			Visible To and String, Default Visibility);
 		Event Player.team_abilityHUD[3] = Last Text ID;
-		Event Player.Ability_Bool = False;
-		Event Player.Ability_Toggle = False;
-		Stop Chasing Player Variable(Event Player, primary_charge);
-		Event Player.primary_charge = 0;
 	}
 }
 
@@ -15604,19 +15067,15 @@ rule("CORE: (TEAM) 76 - HUD")
 
 	conditions
 	{
-		Has Spawned(Event Player) == True;
+		Event Player.HeroSetupState == 6;
 	}
 
 	actions
 	{
-		Destroy HUD Text(Event Player.team_abilityHUD[0]);
-		Destroy Progress Bar HUD Text(Event Player.team_abilityHUD[0]);
-		Wait(0.016, Ignore Condition);
 		Create HUD Text(Event Player, Ability Icon String(Hero(Soldier: 76), Button(Ability 2)), Custom String(
 			"USE HEALING ON ALLIES TO QUICKLY CHARGE ULTIMATE"), Custom String("HEAL IS STRONGER ON ALLIES THAN SELF"), Left, 10, Color(
 			Yellow), Color(Yellow), Color(Orange), Visible To and String, Default Visibility);
 		Event Player.team_abilityHUD[0] = Last Text ID;
-		Event Player.Ability_Bool = False;
 	}
 }
 
@@ -15631,19 +15090,15 @@ rule("CORE: (TEAM) Kiriko - HUD")
 
 	conditions
 	{
-		Has Spawned(Event Player) == True;
+		Event Player.HeroSetupState == 6;
 	}
 
 	actions
 	{
-		Destroy HUD Text(Event Player.team_abilityHUD[0]);
-		Destroy Progress Bar HUD Text(Event Player.team_abilityHUD[0]);
-		Wait(0.016, Ignore Condition);
 		Create HUD Text(Event Player, Custom String("{0} {1} {2}", Ability Icon String(Hero(Kiriko), Button(Primary Fire)),
 			Hero Icon String(Hero(Genji)), Hero Icon String(Hero(Hanzo))), Custom String("ONLY GOOD ON GENJI & HANZO"), Custom String(
 			"SHIMADA HEALING OFUDA"), Left, 10, Color(Aqua), Color(Aqua), Color(Yellow), Visible To and String, Default Visibility);
 		Event Player.team_abilityHUD[0] = Last Text ID;
-		Event Player.Ability_Bool = False;
 	}
 }
 
@@ -15658,19 +15113,15 @@ rule("CORE: (TEAM) SOMBRA - HUD")
 
 	conditions
 	{
-		Has Spawned(Event Player) == True;
+		Event Player.HeroSetupState == 6;
 	}
 
 	actions
 	{
-		Destroy HUD Text(Event Player.team_abilityHUD[0]);
-		Destroy Progress Bar HUD Text(Event Player.team_abilityHUD[0]);
-		Wait(0.016, Ignore Condition);
 		Create HUD Text(Event Player, Ability Icon String(Hero(Sombra), Button(Ultimate)), Custom String(
 			"HIT THE BOSS WITH VIRUS TO CHARGE EMP QUICKLY"), Custom String("EMP HACK"), Left, 10, Color(Violet), Color(White), Color(
 			Rose), Visible To and String, Default Visibility);
 		Event Player.team_abilityHUD[0] = Last Text ID;
-		Event Player.Ability_Bool = False;
 	}
 }
 
@@ -15685,23 +15136,15 @@ rule("CORE: (TEAM) MEI - HUD")
 
 	conditions
 	{
-		Has Spawned(Event Player) == True;
+		Event Player.HeroSetupState == 6;
 	}
 
 	actions
 	{
-		Stop Chasing Player Variable(Event Player, primary_charge);
-		Event Player.primary_charge = 0;
-		Destroy HUD Text(Event Player.team_abilityHUD[0]);
-		Destroy Progress Bar HUD Text(Event Player.team_abilityHUD[0]);
-		Wait(0.016, Ignore Condition);
 		Create HUD Text(Event Player, Ability Icon String(Hero(Mei), Button(Ultimate)), Custom String(
 			"LAND AN ENTIRE CLIP OF FROST ON THE BOSS TO FREEZE THEM"), Custom String("BOSS FREEZE"), Left, 10, Color(Sky Blue), Color(
 			White), Color(Aqua), Visible To and String, Default Visibility);
 		Event Player.team_abilityHUD[0] = Last Text ID;
-		Event Player.Ability_Bool = False;
-		Set Ammo(Event Player, 0, 50);
-		Set Max Ammo(Event Player, 0, 50);
 	}
 }
 
@@ -15716,21 +15159,15 @@ rule("CORE: (TEAM) LW - HUD")
 
 	conditions
 	{
-		Has Spawned(Event Player) == True;
+		Event Player.HeroSetupState == 6;
 	}
 
 	actions
 	{
-		Stop Chasing Player Variable(Event Player, primary_charge);
-		Event Player.primary_charge = 0;
-		Destroy HUD Text(Event Player.team_abilityHUD[0]);
-		Destroy Progress Bar HUD Text(Event Player.team_abilityHUD[0]);
-		Wait(0.016, Ignore Condition);
 		Create HUD Text(Event Player, Ability Icon String(Hero(Lifeweaver), Button(Primary Fire)), Custom String(
 			"DEAL DAMAGE WITH THORN VOLLEY TO CHARGE"), Custom String("HEALING BLOSSOM ENERGY"), Left, 10, Color(Yellow), Color(White),
 			Custom Color(250, 242, 195, 255), Visible To and String, Default Visibility);
 		Event Player.team_abilityHUD[0] = Last Text ID;
-		Event Player.Ability_Bool = False;
 	}
 }
 
@@ -15927,29 +15364,15 @@ rule("CORE: (TEAM) JUNO - SPAWN ABILITY HUD")
 
 	conditions
 	{
-		Has Spawned(Event Player) == True;
+		Event Player.HeroSetupState == 6;
 	}
 
 	actions
 	{
-		Stop Chasing Player Variable(Event Player, secondary_charge);
-		Stop Chasing Player Variable(Event Player, timer);
-		Stop Chasing Player Variable(Event Player, primary_charge);
-		Event Player.primary_charge = 0;
-		Destroy HUD Text(Event Player.team_abilityHUD[0]);
-		Destroy Progress Bar HUD Text(Event Player.team_abilityHUD[0]);
-		Destroy Progress Bar HUD Text(Event Player.charge_hud[1]);
-		Wait(0.016, Ignore Condition);
 		Create Progress Bar HUD Text(Event Player, Event Player.secondary_charge, Custom String("HEALING POWER"), Left, 10, Color(Yellow),
 			Color(White), Visible To Values and Color, Default Visibility);
 		Event Player.charge_hud[1] = Last Text ID;
-		Event Player.Ability_Toggle = False;
-		Event Player.Ability_Bool = False;
-		Destroy Effect(Event Player.PlayerFX_1);
-		Destroy Effect(Event Player.PlayerFX_2);
-		Destroy Effect(Event Player.PlayerFX_3);
 		Event Player.secondary_charge = 8;
-		Event Player.timer = 0;
 		Event Player.heal_rate = 1.500;
 		Start Healing Modification(All Players(Team 2), Event Player, Event Player.secondary_charge * 10,
 			Receivers Healers and Healing Percent);
@@ -16307,28 +15730,6 @@ rule("CORE: (BOSS) ECHO - FULL ULTIMATE")
 	}
 }
 
-rule("CORE: (TEAM) ALL - REMOVE CHARGE BAR")
-{
-	event
-	{
-		Ongoing - Each Player;
-		Team 2;
-		All;
-	}
-
-	conditions
-	{
-		Hero Of(Event Player) != Hero(Baptiste);
-		Hero Of(Event Player) != Hero(Juno);
-		Has Spawned(Event Player) == True;
-	}
-
-	actions
-	{
-		Destroy Progress Bar HUD Text(Event Player.charge_hud[1]);
-	}
-}
-
 rule("CORE: (TEAM) GENJI - DEFLECT ON")
 {
 	event
@@ -16360,6 +15761,7 @@ rule("CORE: (TEAM) GENJI - DEFLECT OFF")
 
 	conditions
 	{
+		Event Player.HeroSetupState == 6;
 		Ultimate Charge Percent(Event Player) < 60;
 	}
 
@@ -16401,19 +15803,15 @@ rule("CORE: (TEAM) GENJI - HUD")
 
 	conditions
 	{
-		Has Spawned(Event Player) == True;
+		Event Player.HeroSetupState == 6;
 	}
 
 	actions
 	{
-		Destroy HUD Text(Event Player.team_abilityHUD[0]);
-		Destroy Progress Bar HUD Text(Event Player.team_abilityHUD[0]);
-		Wait(0.016, Ignore Condition);
 		Create HUD Text(Event Player, Ability Icon String(Hero(Genji), Button(Ultimate)), Custom String(
 			"CHARGES PASSIVELY OVER 40 SEC\r\nDEFLECT REQUIRES 60% CHARGE"), Custom String("DRAGON BLADE"), Left, 10, Color(Green), Color(
 			White), Color(Lime Green), Visible To and String, Default Visibility);
 		Event Player.team_abilityHUD[0] = Last Text ID;
-		Event Player.Ability_Bool = False;
 	}
 }
 
@@ -16428,19 +15826,15 @@ rule("CORE: (TEAM) HANZO - HUD")
 
 	conditions
 	{
-		Has Spawned(Event Player) == True;
+		Event Player.HeroSetupState == 6;
 	}
 
 	actions
 	{
-		Destroy HUD Text(Event Player.team_abilityHUD[0]);
-		Destroy Progress Bar HUD Text(Event Player.team_abilityHUD[0]);
-		Wait(0.016, Ignore Condition);
 		Create HUD Text(Event Player, Custom String("{0} {1}", Ability Icon String(Hero(Hanzo), Button(Ability 2)), Ability Icon String(
 			Hero(Hanzo), Button(Ultimate))), Custom String("LAND STORM ARROWS FOR BONUS ULTIMATE"), Custom String("DRAGONSTRIKE CHARGE"),
 			Left, 10, Color(Blue), Color(White), Color(Aqua), Visible To and String, Default Visibility);
 		Event Player.team_abilityHUD[0] = Last Text ID;
-		Event Player.Ability_Bool = False;
 	}
 }
 
@@ -16566,8 +15960,8 @@ rule("CORE: (TEAM) PHARAH - TAG BOSS")
 		Destroy HUD Text(Event Player.charge_hud[0]);
 		Stop Chasing Player Variable(Event Player, timer);
 		Event Player.timer = 0;
-		Skip If(Is In Line of Sight(Eye Position(Event Player), All Players(Team 1), Barriers Do Not Block LOS)
-			== False || Is In View Angle(Event Player, All Players(Team 1), Event Player.Aim[1]) == False, 11);
+		Skip If(!Is In Line of Sight(Eye Position(Event Player), All Players(Team 1), Barriers Do Not Block LOS) || !Is In View Angle(
+			Event Player, All Players(Team 1), Event Player.Aim[1]), 11);
 		Destroy HUD Text(Event Player.charge_hud[0]);
 		Skip If(Is Waiting For Players, 1);
 		Create HUD Text(Event Player, Null, Custom String(
@@ -16603,7 +15997,7 @@ rule("CORE: (TEAM) GAME START remove chargehud")
 	conditions
 	{
 		Is Waiting For Players == False;
-		Has Spawned(Event Player) == True;
+		Event Player.HeroSetupState == 6;
 	}
 
 	actions
@@ -16743,10 +16137,10 @@ rule("CORE: (TEAM) BRIG - ARMOUR AIM")
 		Create Effect(Event Player, Good Aura, Color(Orange), Players On Hero(Hero(Mercy), Team 2), 1, Visible To Position and Radius);
 		Event Player.charge_hud[1] = Last Created Entity;
 		Event Player.Aim[0] = True;
-		Wait Until(Is In View Angle(Event Player, Players On Hero(Hero(Mercy), Team 2), Event Player.Aim[1])
-			== False || Is In Line of Sight(Eye Position(Event Player), Players On Hero(Hero(Mercy), Team 2), Barriers Do Not Block LOS)
-			== False || Is Dead(Players On Hero(Hero(Mercy), Team 2)), 99999);
-		Skip If(Is In View Angle(Event Player, Players On Hero(Hero(Mercy), Team 2), Event Player.Aim[1]) == False, 1);
+		Wait Until(!Is In View Angle(Event Player, Players On Hero(Hero(Mercy), Team 2), Event Player.Aim[1]) || !Is In Line of Sight(
+			Eye Position(Event Player), Players On Hero(Hero(Mercy), Team 2), Barriers Do Not Block LOS) || Is Dead(Players On Hero(Hero(
+			Mercy), Team 2)), 99999);
+		Skip If(!Is In View Angle(Event Player, Players On Hero(Hero(Mercy), Team 2), Event Player.Aim[1]), 1);
 		Wait(1, Restart When True);
 		Event Player.Aim[0] = False;
 		Destroy HUD Text(Event Player.charge_hud[0]);
@@ -17128,38 +16522,6 @@ rule("CORE: (TEAM) SOMBRA - VIRUS EMP CHARGE")
 	}
 }
 
-rule("CORE: (TEAM) HAM - SPAWN")
-{
-	event
-	{
-		Ongoing - Each Player;
-		Team 2;
-		Wrecking Ball;
-	}
-
-	conditions
-	{
-		Has Spawned(Event Player) == True;
-	}
-
-	actions
-	{
-		Destroy HUD Text(Event Player.team_abilityHUD[0]);
-		Destroy Progress Bar HUD Text(Event Player.team_abilityHUD[0]);
-		Remove Health Pool From Player(Event Player.armour_pool);
-		Remove Health Pool From Player(Event Player.health_pool);
-		Remove Health Pool From Player(Event Player.shield_pool);
-		Add Health Pool To Player(Event Player, Health, 31.250, True, False);
-		Event Player.health_pool = Last Created Health Pool;
-		Event Player.Ability_Toggle = False;
-		Event Player.Ability_Bool = False;
-		Stop Chasing Player Variable(Event Player, primary_charge);
-		Event Player.primary_charge = 0;
-		Stop Chasing Player Variable(Event Player, secondary_charge);
-		Event Player.secondary_charge = 0;
-	}
-}
-
 rule("CORE: (TEAM) HAM - PILEDRIVER MICRO-STUN")
 {
 	event
@@ -17192,8 +16554,8 @@ rule("CORE: (ALL) JQ - SHOUT HP")
 
 	conditions
 	{
-		(Max Health(Event Player) > 601 || (Max Health(Event Player) > Event Player.base_health && Team Of(Event Player) == Team 2)
-			== True) == True;
+		(Max Health(Event Player) > 601 || (Max Health(Event Player) > Event Player.base_health && Team Of(Event Player) == Team 2))
+			== True;
 	}
 
 	actions
@@ -17439,33 +16801,6 @@ rule("CORE: (TEAM) ANA - EQ HEAL")
 		Event Player.secondary_charge = 2;
 		Wait(0.750, Ignore Condition);
 		Event Player.secondary_charge = 1;
-	}
-}
-
-rule("CORE: (TEAM) SYM - SPAWN ABILITY HUD")
-{
-	event
-	{
-		Ongoing - Each Player;
-		Team 2;
-		Symmetra;
-	}
-
-	conditions
-	{
-		Has Spawned(Event Player) == True;
-	}
-
-	actions
-	{
-		Destroy HUD Text(Event Player.team_abilityHUD[0]);
-		Destroy Progress Bar HUD Text(Event Player.team_abilityHUD[0]);
-		Event Player.Ability_Toggle = False;
-		Event Player.Ability_Bool = False;
-		Stop Chasing Player Variable(Event Player, primary_charge);
-		Event Player.primary_charge = 0;
-		Stop Chasing Player Variable(Event Player, secondary_charge);
-		Event Player.secondary_charge = 0;
 	}
 }
 
@@ -17775,8 +17110,8 @@ rule("CORE: (TEAM) LUCIO - MEGA AMP END")
 
 	conditions
 	{
-		(Is In Alternate Form(Event Player) == True || Is Alive(Event Player) == False || Is Communicating Any Emote(Event Player)
-			== True || Is Using Ability 2(Event Player) == False) == True;
+		(Is In Alternate Form(Event Player) || Is Alive(Event Player) == False || Is Communicating Any Emote(Event Player)
+			|| !Is Using Ability 2(Event Player)) == True;
 		Event Player.primary_charge < 100;
 		Event Player.Ability_Bool == True;
 	}
@@ -18289,7 +17624,7 @@ rule("CORE: (TEAM) KIRIKO - START SHIMADA HEALING")
 
 	conditions
 	{
-		Has Spawned(Event Player) == True;
+		Event Player.HeroSetupState == 6;
 	}
 
 	actions
@@ -18494,8 +17829,8 @@ rule("CORE: (BOSS) JQ shield cancel")
 
 	conditions
 	{
-		(Has Status(Event Player, Hacked) == True || Has Status(Event Player, Knocked Down) == True || Has Status(Event Player, Asleep)
-			== True || Has Status(Event Player, Frozen) == True || Has Status(Event Player, Stunned) == True) == True;
+		(Has Status(Event Player, Hacked) || Has Status(Event Player, Knocked Down) || Has Status(Event Player, Asleep) || Has Status(
+			Event Player, Frozen) || Has Status(Event Player, Stunned)) == True;
 		Max Health(Event Player) > 600;
 	}
 
@@ -18875,8 +18210,8 @@ rule("(BOSS) KIRIKO STEP AIM")
 		Event Player.Ability_Bool == False;
 		Event Player.primary_charge == 0;
 		Is True For Any(Filtered Array(All Players(Team 2), Is Alive(Current Array Element)), (Is In View Angle(Event Player,
-			Current Array Element, 3) && Is In Line of Sight(Eye Position(Event Player), Current Array Element, Barriers Do Not Block LOS))
-			== True) == True;
+			Current Array Element, 3) && !Is In Line of Sight(Eye Position(Event Player), Current Array Element,
+			Barriers Do Not Block LOS)) == True) == True;
 		Is In Line of Sight(Eye Position(Player Closest To Reticle(Event Player, Team 2)), Eye Position(Player Closest To Reticle(
 			Event Player, Team 2)) + Facing Direction Of(Event Player) * 4, Barriers Do Not Block LOS) == True;
 	}
@@ -18892,10 +18227,9 @@ rule("(BOSS) KIRIKO STEP AIM")
 			Visible To Position and String, Color(White), Default Visibility);
 		Event Player.PlayerFX_0 = Last Text ID;
 		Event Player.Ability_Toggle = True;
-		Wait Until(Is True For All(All Players(Team 2), (Is In View Angle(Event Player, Current Array Element, 3)
-			== False || Is In Line of Sight(Eye Position(Event Player), Current Array Element, Barriers Do Not Block LOS)
-			== False || Event Player.Ability_Bool == True || Is Dead(Event Player)
-			== True || Event Player.primary_charge == 1 || Is In Line of Sight(Eye Position(Player Closest To Reticle(Event Player,
+		Wait Until(Is True For All(All Players(Team 2), (!Is In View Angle(Event Player, Current Array Element, 3) || !Is In Line of Sight(
+			Eye Position(Event Player), Current Array Element, Barriers Do Not Block LOS) || Event Player.Ability_Bool || Is Dead(
+			Event Player) || Event Player.primary_charge == 1 || !Is In Line of Sight(Eye Position(Player Closest To Reticle(Event Player,
 			Team 2)), Eye Position(Player Closest To Reticle(Event Player, Team 2)) + Facing Direction Of(Event Player) * 4,
 			Barriers Do Not Block LOS) == False) == True), 999);
 		Event Player.Ability_Toggle = False;
@@ -19065,7 +18399,7 @@ rule("CORE: (ALL) KIRI - CRIT")
 
 	actions
 	{
-		Damage(Victim, Event Player, 15);
+		Damage(Victim, Event Player, (Team Of(Event Player) == Team(Team 1) ? 15 : 7));
 	}
 }
 
@@ -19081,18 +18415,15 @@ rule("CORE: (ALL) TRACK CC")
 	conditions
 	{
 		(Has Status(Event Player, Hacked) || Has Status(Event Player, Knocked Down) || Has Status(Event Player, Asleep) || Has Status(
-			Event Player, Frozen) || Has Status(Event Player, Stunned) || Is Communicating Any Emote(Event Player) || Is Alive(
-			Event Player) != True || Has Spawned(Event Player) != True) == True;
+			Event Player, Frozen) || Has Status(Event Player, Stunned) || Is Communicating Any Emote(Event Player) || Is Dead(Event Player)
+			|| !Has Spawned(Event Player)) != Event Player.Stunned;
 	}
 
 	actions
 	{
-		Event Player.Stunned = True;
-		Wait(0.016, Ignore Condition);
-		Wait Until(!Has Status(Event Player, Hacked) && !Has Status(Event Player, Knocked Down) && !Has Status(Event Player, Asleep)
-			&& !Has Status(Event Player, Frozen) && !Has Status(Event Player, Stunned) && Is Alive(Event Player)
-			&& !Is Communicating Any Emote(Event Player) && Has Spawned(Event Player), 99999);
-		Event Player.Stunned = False;
+		Event Player.Stunned = Has Status(Event Player, Hacked) || Has Status(Event Player, Knocked Down) || Has Status(Event Player,
+			Asleep) || Has Status(Event Player, Frozen) || Has Status(Event Player, Stunned) || Is Communicating Any Emote(Event Player)
+			|| Is Dead(Event Player) || !Has Spawned(Event Player);
 		Wait(0.016, Ignore Condition);
 		Loop If Condition Is True;
 	}
@@ -19216,17 +18547,12 @@ rule("CORE: (TEAM) FREJA - SPAWN VARS")
 
 	conditions
 	{
-		Has Spawned(Event Player) == True;
+		Event Player.HeroSetupState == 6;
 	}
 
 	actions
 	{
-		Stop Chasing Player Variable(Event Player, primary_charge);
-		Stop Chasing Player Variable(Event Player, secondary_charge);
-		Event Player.primary_charge = 0;
 		Event Player.secondary_charge = 13;
-		Destroy HUD Text(Event Player.team_abilityHUD[0]);
-		Destroy Progress Bar HUD Text(Event Player.team_abilityHUD[0]);
 		Wait(0.016, Ignore Condition);
 		Create HUD Text(Event Player, Ability Icon String(Hero(Freja), Button(Ability 2)), Custom String("USE AGAIN WITHIN 1 SECOND"),
 			Custom String("DOUBLE UPDRAFT"), Left, 10, Color(Aqua), Color(White), Color(Aqua), Visible To and String, Default Visibility);
@@ -19416,16 +18742,11 @@ rule("CORE: (TEAM) WUYANG SPAWN HUD")
 
 	conditions
 	{
-		Has Spawned(Event Player) == True;
+		Event Player.HeroSetupState == 6;
 	}
 
 	actions
 	{
-		Stop Chasing Player Variable(Event Player, primary_charge);
-		Event Player.primary_charge = 0;
-		Destroy HUD Text(Event Player.team_abilityHUD[0]);
-		Destroy Progress Bar HUD Text(Event Player.team_abilityHUD[0]);
-		Wait(0.016, Ignore Condition);
 		Create HUD Text(Event Player, Ability Icon String(Hero(Wuyang), Button(Ability 2)), Custom String(
 			"{0} USE GUARDIAN WAVE TO EMPOWER RESTORATIVE BEAM", Ability Icon String(Hero(Wuyang), Button(Secondary Fire))), Custom String(
 			"{0} WAVE HEAL CHARGES TIDAL BLAST", Ability Icon String(Hero(Wuyang), Button(Ultimate))), Left, 10, Color(Aqua), Color(
@@ -19546,8 +18867,7 @@ rule("CORE: (TEAM) VENDETTA ULT LOOP")
 
 	conditions
 	{
-		(Event Player.primary_charge != 6 && Ultimate Charge Percent(Event Player) == 100 && Is Using Ultimate(Event Player) == False)
-			== True;
+		(Event Player.primary_charge != 6 && Ultimate Charge Percent(Event Player) == 100 && !Is Using Ultimate(Event Player)) == True;
 	}
 
 	actions
@@ -19580,7 +18900,7 @@ rule("CORE: (TEAM) ANRAN - SPAWN")
 
 	conditions
 	{
-		Has Spawned(Event Player) == True;
+		Event Player.HeroSetupState == 6;
 		Is Alive(Event Player) == True;
 	}
 
@@ -19616,7 +18936,7 @@ rule("CORE: (TEAM) ANRAN - IGNITION ACTIVE")
 	conditions
 	{
 		Has Status(Victim, Burning) == True;
-		(Event Ability == Button(Ability 1) || Event Ability == Button(Ability 2) || Event Ability == Button(Ultimate)
+		(Array Contains(Array(Button(Ability 1), Button(Ability 2), Button(Ultimate)), Event Ability)
 			|| Event Damage > 2 * Global.BossResistanceStat * (Global.BossDamageReceived / 100)) == True;
 		Event Ability != Button(Melee);
 	}
@@ -19805,17 +19125,17 @@ rule("Damage Numbers 0")
 		Event Player.LastDamageNumberTime[0] = 0.333;
 		Create In-World Text(All Players(Team 2), Event Player.LastDamageNumber, Eye Position(Victim) + Vector(Random Real(-0.500, 0.500),
 			Random Real(0.500, 1), Random Real(-0.500, 0.500)), 1, Clip Against Surfaces, Visible To, Color(White), Default Visibility);
-		Skip If((Event Player.LastDamageNumber < 10 || Event Player.LastDamageNumber >= 45) == True, 2);
+		Skip If(Event Player.LastDamageNumber < 10 || Event Player.LastDamageNumber >= 45, 2);
 		Event Player.LastDamageNumberTime[0] = 0.500;
 		Create In-World Text(All Players(Team 2), Event Player.LastDamageNumber, Eye Position(Victim) + Vector(Random Real(-0.500, 0.500),
 			Random Real(0.500, 1), Random Real(-0.500, 0.500)), 1.500, Clip Against Surfaces, Visible To, Custom Color(255, 255, 200, 255),
 			Default Visibility);
-		Skip If((Event Player.LastDamageNumber < 45 || Event Player.LastDamageNumber >= 90) == True, 2);
+		Skip If(Event Player.LastDamageNumber < 45 || Event Player.LastDamageNumber >= 90, 2);
 		Event Player.LastDamageNumberTime[0] = 0.666;
 		Create In-World Text(All Players(Team 2), Event Player.LastDamageNumber, Eye Position(Victim) + Vector(Random Real(-0.500, 0.500),
 			Random Real(0.500, 1), Random Real(-0.500, 0.500)), 2, Clip Against Surfaces, Visible To, Custom Color(255, 255, 100, 255),
 			Default Visibility);
-		Skip If((Event Player.LastDamageNumber < 90 || Event Player.LastDamageNumber >= 160) == True, 2);
+		Skip If(Event Player.LastDamageNumber < 90 || Event Player.LastDamageNumber >= 160, 2);
 		Event Player.LastDamageNumberTime[0] = 1;
 		Create In-World Text(All Players(Team 2), Event Player.LastDamageNumber, Eye Position(Victim) + Vector(Random Real(-0.500, 0.500),
 			Random Real(0.500, 1), Random Real(-0.500, 0.500)), 2.500, Clip Against Surfaces, Visible To, Color(Yellow),
@@ -19856,17 +19176,17 @@ rule("Damage Numbers 1")
 		Event Player.LastDamageNumberTime[1] = 0.333;
 		Create In-World Text(All Players(Team 2), Event Player.LastDamageNumber, Eye Position(Victim) + Vector(Random Real(-0.500, 0.500),
 			Random Real(0.500, 1), Random Real(-0.500, 0.500)), 1, Clip Against Surfaces, Visible To, Color(White), Default Visibility);
-		Skip If((Event Player.LastDamageNumber < 10 || Event Player.LastDamageNumber >= 45) == True, 2);
+		Skip If(Event Player.LastDamageNumber < 10 || Event Player.LastDamageNumber >= 45, 2);
 		Event Player.LastDamageNumberTime[1] = 0.500;
 		Create In-World Text(All Players(Team 2), Event Player.LastDamageNumber, Eye Position(Victim) + Vector(Random Real(-0.500, 0.500),
 			Random Real(0.500, 1), Random Real(-0.500, 0.500)), 1.500, Clip Against Surfaces, Visible To, Custom Color(255, 255, 200, 255),
 			Default Visibility);
-		Skip If((Event Player.LastDamageNumber < 45 || Event Player.LastDamageNumber >= 90) == True, 2);
+		Skip If(Event Player.LastDamageNumber < 45 || Event Player.LastDamageNumber >= 90, 2);
 		Event Player.LastDamageNumberTime[1] = 0.666;
 		Create In-World Text(All Players(Team 2), Event Player.LastDamageNumber, Eye Position(Victim) + Vector(Random Real(-0.500, 0.500),
 			Random Real(0.500, 1), Random Real(-0.500, 0.500)), 2, Clip Against Surfaces, Visible To, Custom Color(255, 255, 100, 255),
 			Default Visibility);
-		Skip If((Event Player.LastDamageNumber < 90 || Event Player.LastDamageNumber >= 160) == True, 2);
+		Skip If(Event Player.LastDamageNumber < 90 || Event Player.LastDamageNumber >= 160, 2);
 		Event Player.LastDamageNumberTime[1] = 1;
 		Create In-World Text(All Players(Team 2), Event Player.LastDamageNumber, Eye Position(Victim) + Vector(Random Real(-0.500, 0.500),
 			Random Real(0.500, 1), Random Real(-0.500, 0.500)), 2.500, Clip Against Surfaces, Visible To, Color(Yellow),
