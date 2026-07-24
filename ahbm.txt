@@ -655,7 +655,7 @@ settings
 				Damage Received: 20%
 				Health: 250%
 				Infinite Ultimate Duration: On
-				Movement Speed: 90%
+				Movement Speed: 110%
 				Nemesis Form Cooldown Time: 0%
 				Passive Health Regeneration: On
 				Role Passives: On
