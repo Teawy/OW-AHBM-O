@@ -3928,7 +3928,6 @@ rule("CORE: (BOSS) GENJI - SWITCH")
 		Skip If(Event Player.S == Null, 2);
 		Destroy Effect(Event Player.S);
 		Event Player.S = Null;
-		Event Player.D = 0;
 		disabled Skip If(Array Contains(Array(Hero(Mercy), Hero(Symmetra), Hero(Zenyatta), Hero(Torbjörn)), Hero Of(Event Player)), 1);
 		disabled Set Ability 1 Enabled(Event Player, True);
 	}
