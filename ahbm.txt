@@ -7899,8 +7899,7 @@ rule("CORE: (MSGS) TEAM HUD ERASE")
 
 	conditions
 	{
-		Array Contains(Array(Hero(Doomfist), Hero(Jetpack Cat), Hero(Roadhog), Hero(Mauga), Hero(Illari), Hero(Mercy), Hero(Torbjörn),
-			Hero(Sojourn), Hero(Orisa), Hero(Domina), Hero(Mizuki)), Hero Of(Event Player)) == True;
+		Array Contains(Array(Hero(Doomfist), Hero(Jetpack Cat), Hero(Roadhog), Hero(Mauga), Hero(Illari), Hero(Mercy), Hero(Torbjörn), Hero(Sojourn), Hero(Orisa), Hero(Domina), Hero(Mizuki), Hero(Hazard), Hero(Sierra), Hero(Shion)), Hero Of(Event Player)) == True;
 	}
 
 	actions
@@ -13519,12 +13518,14 @@ rule("CORE: (BOSS) ALL - CLEAR CHARGE HUD")
 	conditions
 	{
 		Has Spawned(Event Player) == True;
-		Array Contains(Array(Hero(Ashe), Hero(Genji), Hero(Sombra), Hero(Reinhardt), Hero(Echo)), Hero Of(Event Player)) == False;
+		Array Contains(Array(Hero(Ashe), Hero(Genji), Hero(Sombra), Hero(Reinhardt), Hero(Echo), Hero(Ramattra)), Hero Of(Event Player)) == False;
 	}
 
 	actions
 	{
 		Destroy HUD Text(Event Player.charge_hud);
+		Destroy HUD Text(Event Player.charge_hud[0]);
+		Destroy Progress Bar HUD Text(Event Player.charge_hud[1]);
 	}
 }
 
@@ -15954,7 +15955,7 @@ rule("CORE: (TEAM) LUCIO - SPAWN ABILITY HUD")
 		Destroy HUD Text(Event Player.team_abilityHUD[3]);
 		Wait(0.016, Ignore Condition);
 		Create HUD Text(Event Player, Null, Null, Custom String(
-			"\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\nTACTICIAN Abilities:\r\n			-----------------\r\n			{0} Soundwave (2.5m): Stun + Extra Damage\r\n			-------",
+			"\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\nTACTICIAN Abilities:\r\n			-----------------\r\n			{0} (2.5m): Stun + Extra Damage\r\n			-------",
 			Ability Icon String(Hero(Lúcio), Button(Secondary Fire))), Left, 8, Color(White), Color(White), Color(White),
 			Visible To and String, Default Visibility);
 		Event Player.team_abilityHUD[3] = Last Text ID;
@@ -18981,7 +18982,8 @@ rule("CORE: (BOSS) RAM SPAWN")
 	actions
 	{
 		Destroy HUD Text(Global.BOSS_AbilityKey);
-		Create HUD Text(All Players(Team 1), Input Binding String(Button(Ability 1)), Custom String("HOLD TO CHARGE:"), Custom String(
+		Destroy HUD Text(Event Player.charge_hud);
+		Create HUD Text(All Players(Team 1), Input Binding String(Button(Ability 1)), Custom String("PRESS TO CHARGE:"), Custom String(
 			"NEMESIS JUMP"), Left, 1, Color(White), Color(White), Color(Rose), Visible To and String, Default Visibility);
 		Global.BOSS_AbilityKey = Last Text ID;
 		Stop Chasing Player Variable(Event Player, primary_charge);
@@ -19006,18 +19008,34 @@ rule("CORE: (BOSS) RAM CHARGE JUMP")
 	{
 		Is Button Held(Event Player, Button(Ability 1)) == True;
 		Event Player.Ability_Toggle == True;
+		Event Player.Ability_Bool == False;
 	}
 
 	actions
 	{
+		Wait Until(!Is Button Held(Event Player, Button(Ability 1)), 999);
 		Event Player.Ability_Bool = True;
 		Set Status(Event Player, Null, Rooted, 5);
 		Chase Player Variable At Rate(Event Player, primary_charge, 5, 1, Destination and Rate);
 		Destroy HUD Text(Global.BOSS_AbilityKey);
 		Create HUD Text(All Players(Team 1), Input Binding String(Button(Ability 1)), Custom String("CHARGING...  {0}%", Round To Integer(
-			Event Player.primary_charge * 20, Up)), Custom String("NEMESIS JUMP"), Left, 1, Color(Rose), Color(Orange), Color(White),
+			Event Player.primary_charge * 20, Up)), Custom String("NEMESIS JUMP"), Left, 1, Color(White), Color(Orange), Color(Rose),
 			Visible To and String, Default Visibility);
 		Global.BOSS_AbilityKey = Last Text ID;
+		Destroy HUD Text(Event Player.charge_hud[0]);
+		Skip If(Is Waiting For Players, 2);
+		Create HUD Text(Event Player, Null, Custom String(
+			" \r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n"),
+			Null, Top, 8, Color(White), Color(White), Color(White), Visible To and String, Default Visibility);
+		Skip(1);
+		Create HUD Text(Event Player, Null, Custom String(
+			" \r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n"), Null, Top, 8, Color(
+			White), Color(White), Color(White), Visible To and String, Default Visibility);
+		Event Player.charge_hud[0] = Last Text ID;
+		Destroy Progress Bar HUD Text(Event Player.charge_hud[1]);
+		Create Progress Bar HUD Text(Event Player, Event Player.primary_charge * 20, Custom String("PRESS AGAIN TO JUMP"), Top, 9, Color(Rose),
+			Color(White), Visible To Values and Color, Default Visibility);
+		Event Player.charge_hud[1] = Last Text ID;
 		Destroy Effect(Event Player.PlayerFX_2);
 		Create Effect(All Players(Team 2), Bad Aura, Color(Rose), Event Player, Event Player.primary_charge,
 			Visible To Position and Radius);
@@ -19037,12 +19055,14 @@ rule("CORE: (BOSS) RAM JUMP")
 	conditions
 	{
 		Event Player.Ability_Bool == True;
-		(!Is Button Held(Event Player, Button(Ability 1)) || Event Player.secondary_charge >= 5) == True;
+		Is Button Held(Event Player, Button(Ability 1)) == True;
 	}
 
 	actions
 	{
 		Destroy Effect(Event Player.PlayerFX_2);
+		Destroy HUD Text(Event Player.charge_hud[0]);
+		Destroy Progress Bar HUD Text(Event Player.charge_hud[1]);
 		Event Player.Ability_Toggle = False;
 		Clear Status(Event Player, Rooted);
 		Set Move Speed(Event Player, 150);
@@ -19052,7 +19072,6 @@ rule("CORE: (BOSS) RAM JUMP")
 		Create HUD Text(All Players(Team 1), Round To Integer(Event Player.secondary_charge, Up), Custom String("Cooldown"), Custom String(
 			"NEMESIS JUMP"), Left, 1, Color(Orange), Color(White), Color(Rose), Visible To and String, Default Visibility);
 		Global.BOSS_AbilityKey = Last Text ID;
-		Chase Player Variable At Rate(Event Player, primary_charge, 5, 1, Destination and Rate);
 		Skip If(Event Player.primary_charge < 2.500, 2);
 		Apply Impulse(Event Player, Up, 5 * Event Player.primary_charge, To World, Cancel Contrary Motion);
 		Skip(1);
@@ -19101,7 +19120,7 @@ rule("CORE: (BOSS) RAM JUMP RESET")
 		Stop Chasing Player Variable(Event Player, secondary_charge);
 		Play Effect(Event Player, Buff Impact Sound, Color(White), Event Player, 25);
 		Destroy HUD Text(Global.BOSS_AbilityKey);
-		Create HUD Text(All Players(Team 1), Input Binding String(Button(Ability 1)), Custom String("HOLD TO CHARGE:"), Custom String(
+		Create HUD Text(All Players(Team 1), Input Binding String(Button(Ability 1)), Custom String("PRESS TO CHARGE:"), Custom String(
 			"NEMESIS JUMP"), Left, 1, Color(White), Color(White), Color(Rose), Visible To and String, Default Visibility);
 		Global.BOSS_AbilityKey = Last Text ID;
 		Stop Chasing Player Variable(Event Player, primary_charge);
