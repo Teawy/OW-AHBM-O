@@ -3248,7 +3248,6 @@ rule("CORE: (TEAM) MERCY: RES AURA RECREATE")
 	conditions
 	{
 		Is Hero Being Played(Hero(Mercy), Team 2) == True;
-		Has Spawned(Event Player) == True;
 		Is Waiting For Players == False;
 	}
 
@@ -3445,11 +3444,6 @@ rule("CORE: (BOSS) Mercy - FAST HEAL VARS")
 		Mercy;
 	}
 
-	conditions
-	{
-		Has Spawned(Event Player) == True;
-	}
-
 	actions
 	{
 		Event Player.Ability_Toggle = True;
@@ -3587,7 +3581,6 @@ rule("CORE: (BOSS) REIN - FLAME ON")
 	conditions
 	{
 		Event Player.F == 0;
-		Has Spawned(Event Player) == True;
 		disabled Is Waiting For Players == False;
 		Has Status(Event Player, Hacked) == False;
 	}
@@ -3719,7 +3712,6 @@ rule("CORE: (BOSS) REIN - FLAME HACKED")
 
 	conditions
 	{
-		Has Spawned(Event Player) == True;
 		Is Waiting For Players == False;
 		Has Status(Event Player, Hacked) == True;
 	}
@@ -3743,7 +3735,7 @@ rule("CORE: (BOSS) REIN - FLAME UNHACKED")
 
 	conditions
 	{
-		(Event Player.F == 0 && Has Spawned(Event Player) && !Is Waiting For Players && !Has Status(Event Player, Hacked)) == True;
+		(Event Player.F == 0 && !Is Waiting For Players && !Has Status(Event Player, Hacked)) == True;
 	}
 
 	actions
@@ -3786,11 +3778,6 @@ rule("CORE: (BOSS) REIN - SWITCH ON")
 		Reinhardt;
 	}
 
-	conditions
-	{
-		Has Spawned(Event Player) == True;
-	}
-
 	actions
 	{
 		Skip If(Is Waiting For Players, 1);
@@ -3809,11 +3796,6 @@ rule("CORE: (BOSS) REIN - SPAWN")
 		Ongoing - Each Player;
 		Team 1;
 		Reinhardt;
-	}
-
-	conditions
-	{
-		Has Spawned(Event Player) == True;
 	}
 
 	actions
@@ -3839,7 +3821,6 @@ rule("CORE: (BOSS) GENJI - DASH AURA ON (check: does D have to = 0?)")
 	conditions
 	{
 		Event Player.D == 0;
-		Has Spawned(Event Player) == True;
 		disabled Is Waiting For Players == False;
 	}
 
@@ -4403,11 +4384,6 @@ rule("CORE: (BOSS) REAP - ABILITY HUD")
 		Reaper;
 	}
 
-	conditions
-	{
-		Has Spawned(Event Player) == True;
-	}
-
 	actions
 	{
 		Destroy HUD Text(Global.BOSS_AbilityKey);
@@ -4555,7 +4531,6 @@ rule("CORE: (BOSS) TRACER - RECALL ON")
 	conditions
 	{
 		Event Player.R == 0;
-		Has Spawned(Event Player) == True;
 		Is Waiting For Players == False;
 	}
 
@@ -4599,11 +4574,6 @@ rule("CORE: (BOSS) TRACER - SPAWN")
 		Ongoing - Each Player;
 		Team 1;
 		Tracer;
-	}
-
-	conditions
-	{
-		Has Spawned(Event Player) == True;
 	}
 
 	actions
@@ -4826,7 +4796,6 @@ rule("CORE: (BOSS) BRIG - BASH ON")
 	conditions
 	{
 		Event Player.L == 0;
-		Has Spawned(Event Player) == True;
 		Is Waiting For Players == False;
 	}
 
@@ -4897,7 +4866,6 @@ rule("CORE: (BOSS) MOIRA - ORB ON")
 	conditions
 	{
 		Event Player.O == 0;
-		Has Spawned(Event Player) == True;
 		Is Waiting For Players == False;
 	}
 
@@ -5027,11 +4995,6 @@ rule("CORE: (BOSS) MOIRA - SPAWN & INITIALIZE EFFECTS")
 		Ongoing - Each Player;
 		Team 1;
 		Moira;
-	}
-
-	conditions
-	{
-		Has Spawned(Event Player) == True;
 	}
 
 	actions
@@ -5185,11 +5148,6 @@ rule("CORE: (BOSS) SYM - SHIELD VARS")
 		Symmetra;
 	}
 
-	conditions
-	{
-		Has Spawned(Event Player) == True;
-	}
-
 	actions
 	{
 		Event Player.Ability_Toggle = True;
@@ -5240,11 +5198,6 @@ rule("CORE: (BOSS) 76 - POW JUMP VARS")
 		Ongoing - Each Player;
 		Team 1;
 		Soldier: 76;
-	}
-
-	conditions
-	{
-		Has Spawned(Event Player) == True;
 	}
 
 	actions
@@ -5307,11 +5260,6 @@ rule("CORE: (BOSS) SOMBRA SPAWN")
 		Ongoing - Each Player;
 		Team 1;
 		Sombra;
-	}
-
-	conditions
-	{
-		Has Spawned(Event Player) == True;
 	}
 
 	actions
@@ -5444,11 +5392,6 @@ rule("CORE: (BOSS) CASS - DODGE VARS")
 		Ongoing - Each Player;
 		Team 1;
 		Cassidy;
-	}
-
-	conditions
-	{
-		Has Spawned(Event Player) == True;
 	}
 
 	actions
@@ -5691,11 +5634,6 @@ rule("CORE: (BOSS) ZEN: HEALTH")
 		Zenyatta;
 	}
 
-	conditions
-	{
-		Has Spawned(Event Player) == True;
-	}
-
 	actions
 	{
 		Set Max Health(Event Player, 99.920);
@@ -5709,11 +5647,6 @@ rule("CORE: (BOSS) SOMBRA: HEALTH")
 		Ongoing - Each Player;
 		Team 1;
 		Sombra;
-	}
-
-	conditions
-	{
-		Has Spawned(Event Player) == True;
 	}
 
 	actions
@@ -5734,7 +5667,6 @@ rule("CORE: (BOSS) Mobile Healer: HEALTH")
 	conditions
 	{
 		Array Contains(Array(Hero(Mercy), Hero(Kiriko), Hero(Moira), Hero(Lúcio)), Hero Of(Event Player)) == True;
-		Has Spawned(Event Player) == True;
 	}
 
 	actions
@@ -5753,11 +5685,6 @@ rule("CORE: (BOSS) ORISA: HEALTH")
 		Orisa;
 	}
 
-	conditions
-	{
-		Has Spawned(Event Player) == True;
-	}
-
 	actions
 	{
 		Set Max Health(Event Player, 99.875);
@@ -5771,11 +5698,6 @@ rule("CORE: (BOSS) TRACER: HEALTH")
 		Ongoing - Each Player;
 		Team 1;
 		Tracer;
-	}
-
-	conditions
-	{
-		Has Spawned(Event Player) == True;
 	}
 
 	actions
@@ -5793,11 +5715,6 @@ rule("CORE: (BOSS) WRECKING BALL: HEALTH")
 		Wrecking Ball;
 	}
 
-	conditions
-	{
-		Has Spawned(Event Player) == True;
-	}
-
 	actions
 	{
 		Set Max Health(Event Player, 99.950);
@@ -5811,11 +5728,6 @@ rule("CORE: (BOSS) REAPER: HEALTH")
 		Ongoing - Each Player;
 		Team 1;
 		Reaper;
-	}
-
-	conditions
-	{
-		Has Spawned(Event Player) == True;
 	}
 
 	actions
@@ -6188,11 +6100,6 @@ rule("CORE: (BOSS) LUCIO - SPAWN")
 		Lúcio;
 	}
 
-	conditions
-	{
-		Has Spawned(Event Player) == True;
-	}
-
 	actions
 	{
 		Destroy HUD Text(Global.BOSS_AbilityKey);
@@ -6406,11 +6313,6 @@ rule("CORE: (BOSS) General: SWITCH HEAL REC")
 		Ongoing - Each Player;
 		Team 1;
 		All;
-	}
-
-	conditions
-	{
-		Has Spawned(Event Player) == True;
 	}
 
 	actions
@@ -7770,11 +7672,6 @@ rule("CORE: (BOSS) RAM: NEM")
 		Ramattra;
 	}
 
-	conditions
-	{
-		Has Spawned(Event Player) == True;
-	}
-
 	actions
 	{
 		Wait(5, Ignore Condition);
@@ -7812,11 +7709,6 @@ rule("CORE: (TEAM) JUNK - SPAWN ABILITY HUD")
 		Junkrat;
 	}
 
-	conditions
-	{
-		Has Spawned(Event Player) == True;
-	}
-
 	actions
 	{
 		Destroy HUD Text(Event Player.team_abilityHUD[0]);
@@ -7844,8 +7736,7 @@ rule("CORE: (MSGS) TEAM HUD ERASE")
 
 	conditions
 	{
-		Array Contains(Array(Hero(Doomfist), Hero(Jetpack Cat), Hero(Roadhog), Hero(Mauga), Hero(Illari), Hero(Mercy), Hero(Torbjörn),
-			Hero(Sojourn), Hero(Orisa), Hero(Domina), Hero(Mizuki)), Hero Of(Event Player)) == True;
+		Array Contains(Array(Hero(Doomfist), Hero(Jetpack Cat), Hero(Roadhog), Hero(Mauga), Hero(Illari), Hero(Mercy), Hero(Torbjörn), Hero(Sojourn), Hero(Orisa), Hero(Domina), Hero(Mizuki), Hero(Hazard), Hero(Sierra), Hero(Shion)), Hero Of(Event Player)) == True;
 	}
 
 	actions
@@ -7895,11 +7786,6 @@ rule("CORE: (TEAM) EMRE - SPAWN HUD")
 		Emre;
 	}
 
-	conditions
-	{
-		Has Spawned(Event Player) == True;
-	}
-
 	actions
 	{
 		Destroy HUD Text(Event Player.team_abilityHUD[0]);
@@ -7919,11 +7805,6 @@ rule("CORE: (TEAM) ASHE - SPAWN")
 		Ongoing - Each Player;
 		Team 2;
 		Ashe;
-	}
-
-	conditions
-	{
-		Has Spawned(Event Player) == True;
 	}
 
 	actions
@@ -8126,11 +8007,6 @@ rule("CORE: (TEAM) ZEN - HUD")
 		Zenyatta;
 	}
 
-	conditions
-	{
-		Has Spawned(Event Player) == True;
-	}
-
 	actions
 	{
 		Destroy HUD Text(Event Player.team_abilityHUD[0]);
@@ -8155,11 +8031,6 @@ rule("CORE: (TEAM) WINSTON - HUD")
 		Winston;
 	}
 
-	conditions
-	{
-		Has Spawned(Event Player) == True;
-	}
-
 	actions
 	{
 		Destroy HUD Text(Event Player.team_abilityHUD[0]);
@@ -8180,11 +8051,6 @@ rule("CORE: (TEAM) TRACER - HUD")
 		Ongoing - Each Player;
 		Team 2;
 		Tracer;
-	}
-
-	conditions
-	{
-		Has Spawned(Event Player) == True;
 	}
 
 	actions
@@ -8209,11 +8075,6 @@ rule("CORE: (TEAM) REIN - HUD")
 		Reinhardt;
 	}
 
-	conditions
-	{
-		Has Spawned(Event Player) == True;
-	}
-
 	actions
 	{
 		Destroy HUD Text(Event Player.team_abilityHUD[0]);
@@ -8234,11 +8095,6 @@ rule("CORE: (TEAM) BASTION - HUD")
 		Ongoing - Each Player;
 		Team 2;
 		Bastion;
-	}
-
-	conditions
-	{
-		Has Spawned(Event Player) == True;
 	}
 
 	actions
@@ -8263,11 +8119,6 @@ rule("CORE: (TEAM) SIG - SPAWN ABILITY HUD")
 		Sigma;
 	}
 
-	conditions
-	{
-		Has Spawned(Event Player) == True;
-	}
-
 	actions
 	{
 		Destroy HUD Text(Event Player.team_abilityHUD[0]);
@@ -8290,11 +8141,6 @@ rule("CORE: (TEAM) ZAR - SPAWN ABILITY HUD")
 		Ongoing - Each Player;
 		Team 2;
 		Zarya;
-	}
-
-	conditions
-	{
-		Has Spawned(Event Player) == True;
 	}
 
 	actions
@@ -8338,11 +8184,6 @@ rule("CORE: (TEAM) VENTURE - SPAWN")
 		Ongoing - Each Player;
 		Team 2;
 		Venture;
-	}
-
-	conditions
-	{
-		Has Spawned(Event Player) == True;
 	}
 
 	actions
@@ -8523,11 +8364,6 @@ rule("CORE: (TEAM) JQ - SPAWN ABILITY HUD")
 		Ongoing - Each Player;
 		Team 2;
 		Junker Queen;
-	}
-
-	conditions
-	{
-		Has Spawned(Event Player) == True;
 	}
 
 	actions
@@ -8892,11 +8728,6 @@ rule("CORE: (TEAM) BRIG - SPAWN ABILITY HUD")
 		Brigitte;
 	}
 
-	conditions
-	{
-		Has Spawned(Event Player) == True;
-	}
-
 	actions
 	{
 		Event Player.Aim[0] = False;
@@ -9052,7 +8883,6 @@ rule("CORE: (TEAM) BRIG - NEW MERCY")
 	conditions
 	{
 		Is Hero Being Played(Hero(Brigitte), Team 2) == True;
-		Has Spawned(Event Player) == True;
 		Global.mercyChecker == -1;
 	}
 
@@ -9131,11 +8961,6 @@ rule("CORE: (TEAM) BRIG - MERCY SPAWN VARS")
 		Ongoing - Each Player;
 		Team 2;
 		Mercy;
-	}
-
-	conditions
-	{
-		Has Spawned(Event Player) == True;
 	}
 
 	actions
@@ -9270,11 +9095,6 @@ rule("CORE: (TEAM) DVA - SPAWN ABILITY")
 		D.Va;
 	}
 
-	conditions
-	{
-		Has Spawned(Event Player) == True;
-	}
-
 	actions
 	{
 		Event Player.Ability_Bool = True;
@@ -9389,11 +9209,6 @@ rule("CORE: (TEAM) MOIRA - SPAWN NO HEAL")
 		Ongoing - Each Player;
 		Team 2;
 		Moira;
-	}
-
-	conditions
-	{
-		Has Spawned(Event Player) == True;
 	}
 
 	actions
@@ -9729,7 +9544,6 @@ rule("CORE: (TEAM) ALL - DISABLE SECONDARY FIRE")
 
 	conditions
 	{
-		Has Spawned(Event Player) == True;
 		(Hero Of(Event Player) == Hero(Sombra) || Hero Of(Event Player) == Hero(Reaper)) == True;
 	}
 
@@ -9746,11 +9560,6 @@ rule("CORE: (TEAM) WIDOW - SPAWN ABILITY HUD")
 		Ongoing - Each Player;
 		Team 2;
 		Widowmaker;
-	}
-
-	conditions
-	{
-		Has Spawned(Event Player) == True;
 	}
 
 	actions
@@ -9967,11 +9776,6 @@ rule("CORE: (TEAM) BAP - SPAWN ABILITY")
 		Ongoing - Each Player;
 		Team 2;
 		Baptiste;
-	}
-
-	conditions
-	{
-		Has Spawned(Event Player) == True;
 	}
 
 	actions
@@ -10220,11 +10024,6 @@ rule("CORE: (TEAM) BAP - ABILITY 2 BUTTON OFF")
 		Baptiste;
 	}
 
-	conditions
-	{
-		Has Spawned(Event Player) == True;
-	}
-
 	actions
 	{
 		Disallow Button(Event Player, Button(Ability 2));
@@ -10301,11 +10100,6 @@ rule("CORE: (TEAM) ECHO - SPAWN ABILITY HUD")
 		Ongoing - Each Player;
 		Team 2;
 		Echo;
-	}
-
-	conditions
-	{
-		Has Spawned(Event Player) == True;
 	}
 
 	actions
@@ -10532,11 +10326,6 @@ rule("CORE: (BOSS) GENJI - SET 2nd fire")
 		Genji;
 	}
 
-	conditions
-	{
-		Has Spawned(Event Player) == True;
-	}
-
 	actions
 	{
 		Event Player.primary_charge = 0;
@@ -10637,7 +10426,6 @@ rule("CORE: (BOSS) DISABLE 2nd FIRE")
 	conditions
 	{
 		Array Contains(Array(Hero(Baptiste), Hero(Zenyatta), Hero(Illari), Hero(Winston), Hero(Reaper)), Hero Of(Event Player)) == True;
-		Has Spawned(Event Player) == True;
 	}
 
 	actions
@@ -10761,7 +10549,6 @@ rule("CORE: (BOSS) JUNK - WAITING SPAWN HUD")
 
 	conditions
 	{
-		Has Spawned(Event Player) == True;
 		Is Waiting For Players == True;
 	}
 
@@ -10953,11 +10740,6 @@ rule("CORE: (BOSS) WIDOW: SHIELD POOL")
 		Widowmaker;
 	}
 
-	conditions
-	{
-		Has Spawned(Event Player) == True;
-	}
-
 	actions
 	{
 		Set Max Health(Event Player, 99.971);
@@ -10983,7 +10765,6 @@ rule("CORE: (BOSS) ASHE & HANZO: ARMOUR POOL (+HEALTH)")
 	conditions
 	{
 		(Hero Of(Event Player) == Hero(Ashe) || Hero Of(Event Player) == Hero(Hanzo)) == True;
-		Has Spawned(Event Player) == True;
 	}
 
 	actions
@@ -11026,11 +10807,6 @@ rule("CORE: (BOSS) JUNO: HEALTH POOL")
 		Juno;
 	}
 
-	conditions
-	{
-		Has Spawned(Event Player) == True;
-	}
-
 	actions
 	{
 		Remove Health Pool From Player(Global.BOSS_HealthPools[0]);
@@ -11052,11 +10828,6 @@ rule("CORE: (BOSS) SHION: HEALTH POOL")
 		Shion;
 	}
 
-	conditions
-	{
-		Has Spawned(Event Player) == True;
-	}
-
 	actions
 	{
 		Remove Health Pool From Player(Global.BOSS_HealthPools[0]);
@@ -11076,11 +10847,6 @@ rule("CORE: (BOSS) SIGMA: HEALTH & SIZE")
 		Ongoing - Each Player;
 		Team 1;
 		Sigma;
-	}
-
-	conditions
-	{
-		Has Spawned(Event Player) == True;
 	}
 
 	actions
@@ -11105,11 +10871,6 @@ rule("CORE: (BOSS) WINSTON - HEALTH")
 		Ongoing - Each Player;
 		Team 1;
 		Winston;
-	}
-
-	conditions
-	{
-		Has Spawned(Event Player) == True;
 	}
 
 	actions
@@ -11184,11 +10945,6 @@ rule("CORE: (TEAM) BRIG - SIZE")
 		Brigitte;
 	}
 
-	conditions
-	{
-		Has Spawned(Event Player) == True;
-	}
-
 	actions
 	{
 		Start Scaling Player(Event Player, 1.100, False);
@@ -11203,11 +10959,6 @@ rule("CORE: (ALL) BASTION - SIZE")
 		Ongoing - Each Player;
 		All;
 		Bastion;
-	}
-
-	conditions
-	{
-		Has Spawned(Event Player) == True;
 	}
 
 	actions
@@ -11269,11 +11020,6 @@ rule("CORE: (BOSS) ZAR - SIZE")
 		Ongoing - Each Player;
 		Team 1;
 		Zarya;
-	}
-
-	conditions
-	{
-		Has Spawned(Event Player) == True;
 	}
 
 	actions
@@ -11761,11 +11507,6 @@ rule("CORE: (TEAM) PHARAH - SPAWN ABILITY HUD")
 		Pharah;
 	}
 
-	conditions
-	{
-		Has Spawned(Event Player) == True;
-	}
-
 	actions
 	{
 		Set Move Speed(Event Player, 100);
@@ -12101,11 +11842,6 @@ rule("CORE: (BOSS) GENJI: SHIELD POOL")
 		Genji;
 	}
 
-	conditions
-	{
-		Has Spawned(Event Player) == True;
-	}
-
 	actions
 	{
 		Remove Health Pool From Player(Global.BOSS_HealthPools[0]);
@@ -12124,11 +11860,6 @@ rule("CORE: (BOSS) ASHE - SPAWN")
 		Ongoing - Each Player;
 		Team 1;
 		Ashe;
-	}
-
-	conditions
-	{
-		Has Spawned(Event Player) == True;
 	}
 
 	actions
@@ -12325,11 +12056,6 @@ rule("CORE: (TEAM) PHARAH - ABILITY 2 BUTTON OFF")
 		Pharah;
 	}
 
-	conditions
-	{
-		Has Spawned(Event Player) == True;
-	}
-
 	actions
 	{
 		Disallow Button(Event Player, Button(Ability 2));
@@ -12343,11 +12069,6 @@ rule("CORE: (BOSS) BRIG - SPAWN REPAIR VARS")
 		Ongoing - Each Player;
 		Team 1;
 		Brigitte;
-	}
-
-	conditions
-	{
-		Has Spawned(Event Player) == True;
 	}
 
 	actions
@@ -12559,11 +12280,6 @@ rule("CORE: (TEAM) RAM - SET AOE HEAL")
 		Ongoing - Each Player;
 		Team 2;
 		Ramattra;
-	}
-
-	conditions
-	{
-		Has Spawned(Event Player) == True;
 	}
 
 	actions
@@ -13061,11 +12777,6 @@ rule("CORE: (TEAM) D.VA - SIZE")
 		D.Va;
 	}
 
-	conditions
-	{
-		Has Spawned(Event Player) == True;
-	}
-
 	actions
 	{
 		Start Scaling Player(Event Player, 0.900, False);
@@ -13080,11 +12791,6 @@ rule("CORE: (TEAM) DOOM - SIZE")
 		Ongoing - Each Player;
 		Team 2;
 		Doomfist;
-	}
-
-	conditions
-	{
-		Has Spawned(Event Player) == True;
 	}
 
 	actions
@@ -13461,11 +13167,6 @@ rule("CORE: (TEAM) HAZARD - HEALTH & SIZE")
 		Hazard;
 	}
 
-	conditions
-	{
-		Has Spawned(Event Player) == True;
-	}
-
 	actions
 	{
 		Start Scaling Player(Event Player, 0.800, False);
@@ -13490,11 +13191,6 @@ rule("CORE: (TEAM) SIG - HEALTH & SIZE")
 		Ongoing - Each Player;
 		Team 2;
 		Sigma;
-	}
-
-	conditions
-	{
-		Has Spawned(Event Player) == True;
 	}
 
 	actions
@@ -13659,12 +13355,14 @@ rule("CORE: (BOSS) ALL - CLEAR CHARGE HUD")
 	conditions
 	{
 		Has Spawned(Event Player) == True;
-		Array Contains(Array(Hero(Ashe), Hero(Genji), Hero(Sombra), Hero(Reinhardt), Hero(Echo)), Hero Of(Event Player)) == False;
+		Array Contains(Array(Hero(Ashe), Hero(Genji), Hero(Sombra), Hero(Reinhardt), Hero(Echo), Hero(Ramattra)), Hero Of(Event Player)) == False;
 	}
 
 	actions
 	{
 		Destroy HUD Text(Event Player.charge_hud);
+		Destroy HUD Text(Event Player.charge_hud[0]);
+		Destroy Progress Bar HUD Text(Event Player.charge_hud[1]);
 	}
 }
 
@@ -14036,11 +13734,6 @@ rule("CORE: (TEAM) SIG - SPAWN 2ndary charge")
 		Sigma;
 	}
 
-	conditions
-	{
-		Has Spawned(Event Player) == True;
-	}
-
 	actions
 	{
 		Event Player.secondary_charge = 0;
@@ -14054,11 +13747,6 @@ rule("CORE: (TEAM) REAP - SPAWN ABILITY HUD")
 		Ongoing - Each Player;
 		Team 2;
 		Reaper;
-	}
-
-	conditions
-	{
-		Has Spawned(Event Player) == True;
 	}
 
 	actions
@@ -14730,11 +14418,6 @@ rule("temp (BOSS) DVA - SPAWN HP")
 		Ongoing - Each Player;
 		Team 1;
 		D.Va;
-	}
-
-	conditions
-	{
-		Has Spawned(Event Player) == True;
 	}
 
 	actions
@@ -15430,11 +15113,6 @@ rule("CORE: (BOSS) KIRI - SPAWN")
 		Kiriko;
 	}
 
-	conditions
-	{
-		Has Spawned(Event Player) == True;
-	}
-
 	actions
 	{
 		Destroy HUD Text(Global.BOSS_AbilityKey);
@@ -15456,7 +15134,6 @@ rule("CORE: (BOSS) ASHE - SCOPE HUD")
 
 	conditions
 	{
-		Has Spawned(Event Player) == True;
 		Event Player.Ability_Bool == True;
 	}
 
@@ -15481,7 +15158,6 @@ rule("CORE: (BOSS) ASHE - HIP HUD")
 
 	conditions
 	{
-		Has Spawned(Event Player) == True;
 		Event Player.Ability_Bool == False;
 	}
 
@@ -15503,11 +15179,6 @@ rule("CORE: (BOSS) ECHO - SPAWN")
 		Ongoing - Each Player;
 		Team 1;
 		Echo;
-	}
-
-	conditions
-	{
-		Has Spawned(Event Player) == True;
 	}
 
 	actions
@@ -15611,7 +15282,6 @@ rule("CORE: (BOSS) ECHO - P.C. DOWN")
 	{
 		Event Player.Ability_Bool == True;
 		Event Player.secondary_charge == 0;
-		Has Spawned(Event Player) == True;
 	}
 
 	actions
@@ -16106,11 +15776,6 @@ rule("CORE: (TEAM) LUCIO - SPAWN ABILITY HUD")
 		Lúcio;
 	}
 
-	conditions
-	{
-		Has Spawned(Event Player) == True;
-	}
-
 	actions
 	{
 		Event Player.primary_charge = 0;
@@ -16127,7 +15792,7 @@ rule("CORE: (TEAM) LUCIO - SPAWN ABILITY HUD")
 		Destroy HUD Text(Event Player.team_abilityHUD[3]);
 		Wait(0.016, Ignore Condition);
 		Create HUD Text(Event Player, Null, Null, Custom String(
-			"\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\nTACTICIAN Abilities:\r\n			-----------------\r\n			{0} Soundwave (2.5m): Stun + Extra Damage\r\n			-------",
+			"\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\nTACTICIAN Abilities:\r\n			-----------------\r\n			{0} (2.5m): Stun + Extra Damage\r\n			-------",
 			Ability Icon String(Hero(Lúcio), Button(Secondary Fire))), Left, 8, Color(White), Color(White), Color(White),
 			Visible To and String, Default Visibility);
 		Event Player.team_abilityHUD[3] = Last Text ID;
@@ -16145,11 +15810,6 @@ rule("CORE: (TEAM) 76 - HUD")
 		Ongoing - Each Player;
 		Team 2;
 		Soldier: 76;
-	}
-
-	conditions
-	{
-		Has Spawned(Event Player) == True;
 	}
 
 	actions
@@ -16174,11 +15834,6 @@ rule("CORE: (TEAM) Kiriko - HUD")
 		Kiriko;
 	}
 
-	conditions
-	{
-		Has Spawned(Event Player) == True;
-	}
-
 	actions
 	{
 		Destroy HUD Text(Event Player.team_abilityHUD[0]);
@@ -16201,11 +15856,6 @@ rule("CORE: (TEAM) SOMBRA - HUD")
 		Sombra;
 	}
 
-	conditions
-	{
-		Has Spawned(Event Player) == True;
-	}
-
 	actions
 	{
 		Destroy HUD Text(Event Player.team_abilityHUD[0]);
@@ -16226,11 +15876,6 @@ rule("CORE: (TEAM) MEI - HUD")
 		Ongoing - Each Player;
 		Team 2;
 		Mei;
-	}
-
-	conditions
-	{
-		Has Spawned(Event Player) == True;
 	}
 
 	actions
@@ -16257,11 +15902,6 @@ rule("CORE: (TEAM) LW - HUD")
 		Ongoing - Each Player;
 		Team 2;
 		Lifeweaver;
-	}
-
-	conditions
-	{
-		Has Spawned(Event Player) == True;
 	}
 
 	actions
@@ -16466,11 +16106,6 @@ rule("CORE: (TEAM) JUNO - SPAWN ABILITY HUD")
 		Ongoing - Each Player;
 		Team 2;
 		Juno;
-	}
-
-	conditions
-	{
-		Has Spawned(Event Player) == True;
 	}
 
 	actions
@@ -16935,11 +16570,6 @@ rule("CORE: (TEAM) GENJI - HUD")
 		Genji;
 	}
 
-	conditions
-	{
-		Has Spawned(Event Player) == True;
-	}
-
 	actions
 	{
 		Destroy HUD Text(Event Player.team_abilityHUD[0]);
@@ -16960,11 +16590,6 @@ rule("CORE: (TEAM) HANZO - HUD")
 		Ongoing - Each Player;
 		Team 2;
 		Hanzo;
-	}
-
-	conditions
-	{
-		Has Spawned(Event Player) == True;
 	}
 
 	actions
@@ -17665,11 +17290,6 @@ rule("CORE: (ALL) ECHO: HEALTH")
 		Echo;
 	}
 
-	conditions
-	{
-		Has Spawned(Event Player) == True;
-	}
-
 	actions
 	{
 		Skip If(Team Of(Event Player) == Team 1, 8);
@@ -17712,11 +17332,6 @@ rule("CORE: (TEAM) HAM - SPAWN")
 		Ongoing - Each Player;
 		Team 2;
 		Wrecking Ball;
-	}
-
-	conditions
-	{
-		Has Spawned(Event Player) == True;
 	}
 
 	actions
@@ -18026,11 +17641,6 @@ rule("CORE: (TEAM) SYM - SPAWN ABILITY HUD")
 		Ongoing - Each Player;
 		Team 2;
 		Symmetra;
-	}
-
-	conditions
-	{
-		Has Spawned(Event Player) == True;
 	}
 
 	actions
@@ -18433,11 +18043,6 @@ rule("CORE: (TEAM) RAM - SIZE")
 		Ramattra;
 	}
 
-	conditions
-	{
-		Has Spawned(Event Player) == True;
-	}
-
 	actions
 	{
 		Start Scaling Player(Event Player, 1, False);
@@ -18452,11 +18057,6 @@ rule("CORE: (TEAM) ORISA - SIZE")
 		Ongoing - Each Player;
 		Team 2;
 		Orisa;
-	}
-
-	conditions
-	{
-		Has Spawned(Event Player) == True;
 	}
 
 	actions
@@ -18581,11 +18181,6 @@ rule("CORE: (BOSS) HANZO - SPAWN")
 		Ongoing - Each Player;
 		Team 1;
 		Hanzo;
-	}
-
-	conditions
-	{
-		Has Spawned(Event Player) == True;
 	}
 
 	actions
@@ -18902,11 +18497,6 @@ rule("CORE: (TEAM) KIRIKO - START SHIMADA HEALING")
 		Ongoing - Each Player;
 		Team 2;
 		Kiriko;
-	}
-
-	conditions
-	{
-		Has Spawned(Event Player) == True;
 	}
 
 	actions
@@ -19226,15 +18816,11 @@ rule("CORE: (BOSS) RAM SPAWN")
 		Ramattra;
 	}
 
-	conditions
-	{
-		Has Spawned(Event Player) == True;
-	}
-
 	actions
 	{
 		Destroy HUD Text(Global.BOSS_AbilityKey);
-		Create HUD Text(All Players(Team 1), Input Binding String(Button(Ability 1)), Custom String("HOLD TO CHARGE:"), Custom String(
+		Destroy HUD Text(Event Player.charge_hud);
+		Create HUD Text(All Players(Team 1), Input Binding String(Button(Ability 1)), Custom String("PRESS TO CHARGE:"), Custom String(
 			"NEMESIS JUMP"), Left, 1, Color(White), Color(White), Color(Rose), Visible To and String, Default Visibility);
 		Global.BOSS_AbilityKey = Last Text ID;
 		Stop Chasing Player Variable(Event Player, primary_charge);
@@ -19259,18 +18845,34 @@ rule("CORE: (BOSS) RAM CHARGE JUMP")
 	{
 		Is Button Held(Event Player, Button(Ability 1)) == True;
 		Event Player.Ability_Toggle == True;
+		Event Player.Ability_Bool == False;
 	}
 
 	actions
 	{
+		Wait Until(!Is Button Held(Event Player, Button(Ability 1)), 999);
 		Event Player.Ability_Bool = True;
 		Set Status(Event Player, Null, Rooted, 5);
 		Chase Player Variable At Rate(Event Player, primary_charge, 5, 1, Destination and Rate);
 		Destroy HUD Text(Global.BOSS_AbilityKey);
 		Create HUD Text(All Players(Team 1), Input Binding String(Button(Ability 1)), Custom String("CHARGING...  {0}%", Round To Integer(
-			Event Player.primary_charge * 20, Up)), Custom String("NEMESIS JUMP"), Left, 1, Color(Rose), Color(Orange), Color(White),
+			Event Player.primary_charge * 20, Up)), Custom String("NEMESIS JUMP"), Left, 1, Color(White), Color(Orange), Color(Rose),
 			Visible To and String, Default Visibility);
 		Global.BOSS_AbilityKey = Last Text ID;
+		Destroy HUD Text(Event Player.charge_hud[0]);
+		Skip If(Is Waiting For Players, 2);
+		Create HUD Text(Event Player, Null, Custom String(
+			" \r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n"),
+			Null, Top, 8, Color(White), Color(White), Color(White), Visible To and String, Default Visibility);
+		Skip(1);
+		Create HUD Text(Event Player, Null, Custom String(
+			" \r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n"), Null, Top, 8, Color(
+			White), Color(White), Color(White), Visible To and String, Default Visibility);
+		Event Player.charge_hud[0] = Last Text ID;
+		Destroy Progress Bar HUD Text(Event Player.charge_hud[1]);
+		Create Progress Bar HUD Text(Event Player, Event Player.primary_charge * 20, Custom String("PRESS AGAIN TO JUMP"), Top, 9, Color(Rose),
+			Color(White), Visible To Values and Color, Default Visibility);
+		Event Player.charge_hud[1] = Last Text ID;
 		Destroy Effect(Event Player.PlayerFX_2);
 		Create Effect(All Players(Team 2), Bad Aura, Color(Rose), Event Player, Event Player.primary_charge,
 			Visible To Position and Radius);
@@ -19290,12 +18892,14 @@ rule("CORE: (BOSS) RAM JUMP")
 	conditions
 	{
 		Event Player.Ability_Bool == True;
-		(!Is Button Held(Event Player, Button(Ability 1)) || Event Player.secondary_charge >= 5) == True;
+		Is Button Held(Event Player, Button(Ability 1)) == True;
 	}
 
 	actions
 	{
 		Destroy Effect(Event Player.PlayerFX_2);
+		Destroy HUD Text(Event Player.charge_hud[0]);
+		Destroy Progress Bar HUD Text(Event Player.charge_hud[1]);
 		Event Player.Ability_Toggle = False;
 		Clear Status(Event Player, Rooted);
 		Set Move Speed(Event Player, 150);
@@ -19305,7 +18909,6 @@ rule("CORE: (BOSS) RAM JUMP")
 		Create HUD Text(All Players(Team 1), Round To Integer(Event Player.secondary_charge, Up), Custom String("Cooldown"), Custom String(
 			"NEMESIS JUMP"), Left, 1, Color(Orange), Color(White), Color(Rose), Visible To and String, Default Visibility);
 		Global.BOSS_AbilityKey = Last Text ID;
-		Chase Player Variable At Rate(Event Player, primary_charge, 5, 1, Destination and Rate);
 		Skip If(Event Player.primary_charge < 2.500, 2);
 		Apply Impulse(Event Player, Up, 5 * Event Player.primary_charge, To World, Cancel Contrary Motion);
 		Skip(1);
@@ -19354,7 +18957,7 @@ rule("CORE: (BOSS) RAM JUMP RESET")
 		Stop Chasing Player Variable(Event Player, secondary_charge);
 		Play Effect(Event Player, Buff Impact Sound, Color(White), Event Player, 25);
 		Destroy HUD Text(Global.BOSS_AbilityKey);
-		Create HUD Text(All Players(Team 1), Input Binding String(Button(Ability 1)), Custom String("HOLD TO CHARGE:"), Custom String(
+		Create HUD Text(All Players(Team 1), Input Binding String(Button(Ability 1)), Custom String("PRESS TO CHARGE:"), Custom String(
 			"NEMESIS JUMP"), Left, 1, Color(White), Color(White), Color(Rose), Visible To and String, Default Visibility);
 		Global.BOSS_AbilityKey = Last Text ID;
 		Stop Chasing Player Variable(Event Player, primary_charge);
@@ -19829,11 +19432,6 @@ rule("CORE: (TEAM) FREJA - SPAWN VARS")
 		Freja;
 	}
 
-	conditions
-	{
-		Has Spawned(Event Player) == True;
-	}
-
 	actions
 	{
 		Stop Chasing Player Variable(Event Player, primary_charge);
@@ -20029,11 +19627,6 @@ rule("CORE: (TEAM) WUYANG SPAWN HUD")
 		Wuyang;
 	}
 
-	conditions
-	{
-		Has Spawned(Event Player) == True;
-	}
-
 	actions
 	{
 		Stop Chasing Player Variable(Event Player, primary_charge);
@@ -20195,7 +19788,6 @@ rule("CORE: (TEAM) ANRAN - SPAWN")
 
 	conditions
 	{
-		Has Spawned(Event Player) == True;
 		Is Alive(Event Player) == True;
 	}
 
@@ -20378,11 +19970,6 @@ rule("temp bug fix - hazard ammo")
 		Hazard;
 	}
 
-	conditions
-	{
-		Has Spawned(Event Player) == True;
-	}
-
 	actions
 	{
 		Skip If(Team Of(Event Player) == Team 1, 3);
@@ -20401,11 +19988,6 @@ rule("BUG FIX: (BOSS) - venture ammo")
 		Ongoing - Each Player;
 		Team 1;
 		Venture;
-	}
-
-	conditions
-	{
-		Has Spawned(Event Player) == True;
 	}
 
 	actions
