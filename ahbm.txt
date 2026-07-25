@@ -2012,7 +2012,48 @@ rule("CORE: (TIMER) SET START TIME")
 	}
 }
 
-rule("CORE: (BOSS) ALL - SWITCH OFF")
+rule("CORE: (ALL) ALL - SWITCH OFF")
+{
+	event
+	{
+		Ongoing - Each Player;
+		All;
+		All;
+	}
+	
+	conditions
+	{
+		Event Player.current_hero != Hero Of(Event Player);
+	}
+	
+	actions
+	{
+		Event Player.HeroSetupState = 0;
+		Event Player.current_hero = Hero Of(Event Player);
+		Destroy Effect(Event Player.PlayerFX_1);
+		Destroy Effect(Event Player.PlayerFX_2);
+		Destroy Effect(Event Player.PlayerFX_3);
+		Destroy HUD Text(Event Player.charge_hud);
+		Event Player.PlayerFX_1 = Null;
+		Event Player.PlayerFX_2 = Null;
+		Event Player.PlayerFX_3 = Null;
+		Stop Scaling Player(Event Player);
+		Stop Scaling Barriers(Event Player);
+		Stop Chasing Player Variable(Event Player, primary_charge);
+		Stop Chasing Player Variable(Event Player, secondary_charge);
+		Event Player.primary_charge = 0;
+		Event Player.secondary_charge = 0;
+		Event Player.Ability_Bool = False;
+		Event Player.Ability_Toggle = False;
+		Set Move Speed(Event Player, 100);
+		Set Damage Dealt(Event Player, 100);
+		Set Healing Dealt(Event Player, 100);
+		Event Player.HeroSetupState = 2;
+	}
+}
+
+
+rule("CORE: (BOSS) ALL - RESET")
 {
 	event
 	{
@@ -2023,26 +2064,17 @@ rule("CORE: (BOSS) ALL - SWITCH OFF")
 
 	conditions
 	{
-		Event Player.current_hero != Hero Of(Event Player);
+		Event Player.HeroSetupState == 2;
 	}
 
 	actions
 	{
-		Event Player.HeroSetupState = 0;
-		Event Player.current_hero = Hero Of(Event Player);
 		Global.BossDamageReceived = 100;
 		Set Max Health(Event Player, 100);
-		Set Healing Dealt(Event Player, 100);
 		Set Healing Received(Event Player, 100);
-		Set Move Speed(Event Player, 100);
-		Set Damage Dealt(Event Player, 100);
 		Set Damage Received(Event Player, Global.BossDamageReceived);
 		Set Gravity(Event Player, 100);
 		Set Invisible(Event Player, None);
-		Stop Scaling Player(Event Player);
-		Stop Scaling Barriers(Event Player);
-		Stop Chasing Player Variable(Event Player, primary_charge);
-		Stop Chasing Player Variable(Event Player, secondary_charge);
 		Stop Chasing Player Variable(Event Player, F);
 		Stop Chasing Global Variable(BOSS_AbilityCD);
 		Set Secondary Fire Enabled(Event Player, !Array Contains(Array(Hero(Baptiste), Hero(Zenyatta), Hero(Illari), Hero(Genji), Hero(
@@ -2051,15 +2083,6 @@ rule("CORE: (BOSS) ALL - SWITCH OFF")
 		Skip If(!Entity Exists(Event Player.PlayerFX_0), 2);
 		Destroy Effect(Event Player.PlayerFX_0);
 		Event Player.PlayerFX_0 = Null;
-		Skip If(!Entity Exists(Event Player.PlayerFX_1), 2);
-		Destroy Effect(Event Player.PlayerFX_1);
-		Event Player.PlayerFX_1 = Null;
-		Skip If(!Entity Exists(Event Player.PlayerFX_2), 2);
-		Destroy Effect(Event Player.PlayerFX_2);
-		Event Player.PlayerFX_2 = Null;
-		Skip If(!Entity Exists(Event Player.PlayerFX_3), 2);
-		Destroy Effect(Event Player.PlayerFX_3);
-		Event Player.PlayerFX_3 = Null;
 		Skip If(!Entity Exists(Event Player.C), 2);
 		Destroy Effect(Event Player.C);
 		Event Player.C = Null;
@@ -2085,29 +2108,17 @@ rule("CORE: (BOSS) ALL - SWITCH OFF")
 		Event Player.M = Null;
 		Global.W = False;
 		Global.BOSS_AbilityCD = 0;
-		Event Player.Ability_Bool = False;
-		Event Player.Ability_Toggle = False;
-		Event Player.primary_charge = 0;
-		Event Player.secondary_charge = 0;
 		Set Ability 1 Enabled(Event Player, True);
 		Set Ability 2 Enabled(Event Player, True);
 		Allow Button(Event Player, Button(Ultimate));
-		Destroy HUD Text(Event Player.charge_hud);
 		Remove Health Pool From Player(Global.BOSS_HealthPools[0]);
 		Remove Health Pool From Player(Global.BOSS_HealthPools[1]);
-		If(Hero Of(Event Player) == Hero(Illari) || Hero Of(Event Player) == Hero(Jetpack Cat));
-			Set Knockback Dealt(Event Player, 0);
-		Else If(Hero Of(Event Player) == Hero(Zenyatta));
-			Set Knockback Dealt(Event Player, 4);
-		Else;
-			Set Knockback Dealt(Event Player, 100);
-		End;
 		Skip If(Is Waiting For Players, 4);
 		Clear Status(Event Player, Burning);
 		Skip If(!Entity Exists(Event Player.N), 2);
 		Destroy Effect(Event Player.N);
 		Event Player.N = Null;
-		Event Player.HeroSetupState = 1;
+		Event Player.HeroSetupState = 3;
 	}
 }
 
@@ -2122,7 +2133,7 @@ rule("CORE: (BOSS) ALL - RESISTANCE STAT")
 
 	conditions
 	{
-		Event Player.HeroSetupState == 1;
+		Event Player.HeroSetupState == 3;
 	}
 
 	actions
@@ -2160,7 +2171,7 @@ rule("CORE: (BOSS) ALL - RESISTANCE STAT")
 		Else;
 			Global.BossResistanceStat = 0.400;
 		End;
-		Event Player.HeroSetupState = 2;
+		Event Player.HeroSetupState = 4;
 	}
 }
 
@@ -2175,7 +2186,7 @@ rule("CORE: (BOSS) ALL - HEALTH")
 
 	conditions
 	{
-		Event Player.HeroSetupState == 2;
+		Event Player.HeroSetupState == 4;
 	}
 
 	actions
@@ -2201,8 +2212,10 @@ rule("CORE: (BOSS) ALL - HEALTH")
 			Set Max Health(Event Player, 99.971);
 		Else If(Hero Of(Event Player) == Hero(Winston));
 			Set Max Health(Event Player, 99.613);
+		Else If(Hero Of(Event Player) == Hero(Echo));
+			Set Max Health(Event Player, 99.875);
 		End;
-		Event Player.HeroSetupState = 3;
+		Event Player.HeroSetupState = 5;
 		Wait(0.250, Ignore Condition);
 		Heal(Event Player, Null, 50);
 	}
@@ -2219,7 +2232,7 @@ rule("CORE: (BOSS) ALL - HEALTH POOL")
 
 	conditions
 	{
-		Event Player.HeroSetupState == 3;
+		Event Player.HeroSetupState == 5;
 	}
 
 	actions
@@ -2254,7 +2267,7 @@ rule("CORE: (BOSS) ALL - HEALTH POOL")
 		End;
 		Event Player.base_health = Max Health(Event Player);
 		Event Player.base_shields = Max Health Of Type(Event Player, Shields);
-		Event Player.HeroSetupState = 4;
+		Event Player.HeroSetupState = 6;
 	}
 }
 
@@ -2269,7 +2282,7 @@ rule("CORE: (BOSS) ALL - SIZE")
 
 	conditions
 	{
-		Event Player.HeroSetupState == 4;
+		Event Player.HeroSetupState == 6;
 	}
 
 	actions
@@ -2279,7 +2292,7 @@ rule("CORE: (BOSS) ALL - SIZE")
 		Else If(Hero Of(Event Player) == Hero(Zarya));
 			Start Scaling Player(Event Player, 1.166, False);
 		End;
-		Event Player.HeroSetupState = 5;
+		Event Player.HeroSetupState = 7;
 	}
 }
 
@@ -2294,7 +2307,7 @@ rule("CORE: (BOSS) ALL - AMMO")
 
 	conditions
 	{
-		Event Player.HeroSetupState == 5;
+		Event Player.HeroSetupState == 7;
 	}
 
 	actions
@@ -2307,7 +2320,271 @@ rule("CORE: (BOSS) ALL - AMMO")
 		Else If(Hero Of(Event Player) == Hero(Orisa));
 			Set Max Ammo(Event Player, 0, 20);
 		End;
+		Event Player.HeroSetupState = 11;
+	}
+}
+
+rule("CORE: (TEAM) ALL - GENERAL SWITCH")
+{
+	event
+	{
+		Ongoing - Each Player;
+		Team 2;
+		All;
+	}
+
+	conditions
+	{
+		Event Player.HeroSetupState == 2;
+	}
+
+	actions
+	{
+		Event Player.PassiveAOEHeal = 0;
+		Stop Chasing Player Variable(Event Player, timer);
+		Destroy HUD Text(Event Player.team_abilityHUD[0]);
+		Destroy HUD Text(Event Player.team_abilityHUD[1]);
+		Destroy HUD Text(Event Player.team_abilityHUD[2]);
+		Destroy HUD Text(Event Player.team_abilityHUD[3]);
+		Destroy HUD Text(Event Player.team_abilityHUD[4]);
+		Destroy HUD Text(Event Player.team_abilityHUD[5]);
+		Destroy Progress Bar HUD Text(Event Player.team_abilityHUD[0]);
+		Destroy HUD Text(Event Player.charge_hud[0]);
+		Destroy Progress Bar HUD Text(Event Player.charge_hud[1]);
+		Stop Healing Modification(Event Player.heal_power);
+		Stop Healing Modification(Event Player.Shimada_Healing);
+		Stop Holding Button(Event Player, Button(Crouch));
+		Remove Health Pool From Player(Event Player.armour_pool);
+		Remove Health Pool From Player(Event Player.health_pool);
+		Remove Health Pool From Player(Event Player.shield_pool);
+		Destroy Effect(Event Player.M);
+		Event Player.M = Null;
+		Event Player.S = False;
+		Event Player.timer = 0;
+		Set Primary Fire Enabled(Event Player, True);
+		Set Secondary Fire Enabled(Event Player, True);
+		Set Ability 2 Enabled(Event Player, True);
+		Set Ultimate Ability Enabled(Event Player, True);
+		Allow Button(Event Player, Button(Ability 2));
+		Allow Button(Event Player, Button(Ultimate));
+		Event Player.HeroSetupState = 4;
+		Loop If Condition Is True;
+	}
+}
+
+rule("CORE: (TEAM) ALL - HEALTH")
+{
+	event
+	{
+		Ongoing - Each Player;
+		Team 2;
+		All;
+	}
+
+	conditions
+	{
+		Event Player.HeroSetupState == 4;
+	}
+
+	actions
+	{
+		Set Max Health(Event Player, 100);
+		If(Hero Of(Event Player) == Hero(Winston));
+			Set Max Health(Event Player, 99.715);
+		End;
+		Event Player.HeroSetupState = 5;
+	}
+}
+
+rule("CORE: (TEAM) ALL - HEALTH POOL")
+{
+	event
+	{
+		Ongoing - Each Player;
+		Team 2;
+		All;
+	}
+
+	conditions
+	{
+		Event Player.HeroSetupState == 5;
+	}
+
+	actions
+	{
+		If(Hero Of(Event Player) == Hero(Reinhardt));
+			Add Health Pool To Player(Event Player, Health, 16.667, True, False);
+			Event Player.health_pool = Last Created Health Pool;
+		Else If(Hero Of(Event Player) == Hero(Illari));
+			Add Health Pool To Player(Event Player, Health, 50, True, False);
+			Event Player.health_pool = Last Created Health Pool;
+		Else If(Hero Of(Event Player) == Hero(Venture));
+			Add Health Pool To Player(Event Player, Health, 25, True, False);
+			Event Player.health_pool = Last Created Health Pool;
+		Else If(Hero Of(Event Player) == Hero(Domina));
+			Add Health Pool To Player(Event Player, Health, 128.888, True, False);
+			Event Player.health_pool = Last Created Health Pool;
+			Add Health Pool To Player(Event Player, Shields, 15.555, True, False);
+			Event Player.shield_pool = Last Created Health Pool;
+		Else If(Hero Of(Event Player) == Hero(Juno));
+			Add Health Pool To Player(Event Player, Health, 150.250, True, False);
+			Event Player.health_pool = Last Created Health Pool;
+		Else If(Hero Of(Event Player) == Hero(Pharah));
+			Add Health Pool To Player(Event Player, Health, 1.500, True, False);
+			Event Player.health_pool = Last Created Health Pool;
+			Add Health Pool To Player(Event Player, Armor, 75, True, False);
+			Event Player.shield_pool = Last Created Health Pool;
+		Else If(Hero Of(Event Player) == Hero(Sombra));
+			Add Health Pool To Player(Event Player, Health, 1.500, True, False);
+			Event Player.health_pool = Last Created Health Pool;
+			Add Health Pool To Player(Event Player, Shields, 75, True, False);
+			Event Player.shield_pool = Last Created Health Pool;
+		Else If(Hero Of(Event Player) == Hero(Hazard));
+			Add Health Pool To Player(Event Player, Health, 222.500, True, False);
+			Event Player.health_pool = Last Created Health Pool;
+			Add Health Pool To Player(Event Player, Armor, 2.500, True, False);
+			Event Player.armour_pool = Last Created Health Pool;
+		Else If(Hero Of(Event Player) == Hero(Sigma));
+			Add Health Pool To Player(Event Player, Health, 25, True, False);
+			Event Player.health_pool = Last Created Health Pool;
+		Else If(Hero Of(Event Player) == Hero(Torbjörn));
+			Add Health Pool To Player(Event Player, Armor, 100, True, False);
+			Event Player.armour_pool = Last Created Health Pool;
+		Else If(Hero Of(Event Player) == Hero(Ramattra));
+			Add Health Pool To Player(Event Player, Armor, 163.392, True, False);
+			Event Player.armour_pool = Last Created Health Pool;
+			Add Health Pool To Player(Event Player, Health, 11.728, True, False);
+			Event Player.health_pool = Last Created Health Pool;
+		Else If(Hero Of(Event Player) == Hero(Zarya));
+			Add Health Pool To Player(Event Player, Shields, 20, True, False);
+			Event Player.shield_pool = Last Created Health Pool;
+			Add Health Pool To Player(Event Player, Health, 60, True, False);
+			Event Player.health_pool = Last Created Health Pool;
+		Else If(Hero Of(Event Player) == Hero(Orisa));
+			Add Health Pool To Player(Event Player, Health, 175, True, False);
+			Event Player.health_pool = Last Created Health Pool;
+		Else If(Hero Of(Event Player) == Hero(Winston));
+			Add Health Pool To Player(Event Player, Health, 7.693, True, False);
+			Event Player.health_pool = Last Created Health Pool;
+			Add Health Pool To Player(Event Player, Armor, 5.770, True, False);
+			Event Player.armour_pool = Last Created Health Pool;
+		Else If(Hero Of(Event Player) == Hero(Wrecking Ball));
+			Add Health Pool To Player(Event Player, Health, 31.250, True, False);
+			Event Player.health_pool = Last Created Health Pool;
+		Else If(Hero Of(Event Player) == Hero(Echo));
+			Add Health Pool To Player(Event Player, Health, 175.500, True, False);
+			Event Player.health_pool = Last Created Health Pool;
+		End;
+		Event Player.base_health = Max Health(Event Player);
+		Event Player.base_shields = Max Health Of Type(Event Player, Shields);
 		Event Player.HeroSetupState = 6;
+	}
+}
+
+rule("CORE: (TEAM) ALL - SIZE")
+{
+	event
+	{
+		Ongoing - Each Player;
+		Team 2;
+		All;
+	}
+
+	conditions
+	{
+		Event Player.HeroSetupState == 6;
+	}
+
+	actions
+	{
+		If(Hero Of(Event Player) == Hero(Winston));
+			Start Scaling Barriers(Event Player, 0.750, False);
+		Else If(Hero Of(Event Player) == Hero(Brigitte));
+			Start Scaling Player(Event Player, 1.100, False);
+			Start Scaling Barriers(Event Player, 1.500, False);
+		Else If(Hero Of(Event Player) == Hero(D.Va));
+			Start Scaling Player(Event Player, 0.900, False);
+		Else If(Hero Of(Event Player) == Hero(Torbjörn));
+			Start Scaling Player(Event Player, 1.125, False);
+		Else If(Hero Of(Event Player) == Hero(Ramattra));
+			Start Scaling Barriers(Event Player, 2, False);
+		Else If(Hero Of(Event Player) == Hero(Orisa));
+			Start Scaling Player(Event Player, 0.920, False);
+		Else If(Hero Of(Event Player) == Hero(Sigma));
+			Start Scaling Barriers(Event Player, 0.900, False);
+		Else If(Hero Of(Event Player) == Hero(Zarya));
+			Start Scaling Player(Event Player, 0.940, False);
+		Else If(Hero Of(Event Player) == Hero(Doomfist));
+			Start Scaling Player(Event Player, 0.888, False);
+		Else If(Hero Of(Event Player) == Hero(Hazard));
+			Start Scaling Player(Event Player, 0.800, False);
+		End;
+		Event Player.HeroSetupState = 7;
+	}
+}
+
+rule("CORE: (TEAM) ALL - AMMO")
+{
+	event
+	{
+		Ongoing - Each Player;
+		Team 2;
+		All;
+	}
+
+	conditions
+	{
+		Event Player.HeroSetupState == 7;
+	}
+
+	actions
+	{
+		If(Hero Of(Event Player) == Hero(Orisa));
+			Set Max Ammo(Event Player, 0, 17.200);
+		Else If(Hero Of(Event Player) == Hero(Mauga));
+			Set Max Ammo(Event Player, 0, 125);
+			Set Ammo(Event Player, 0, 125);
+		Else If(Hero Of(Event Player) == Hero(Juno));
+			Set Max Ammo(Event Player, 0, 60);
+			Set Ammo(Event Player, 0, 60);
+		Else If(Hero Of(Event Player) == Hero(Mei));
+			Set Ammo(Event Player, 0, 50);
+			Set Max Ammo(Event Player, 0, 50);
+		Else If(Hero Of(Event Player) == Hero(Hazard));
+			Set Ammo(Event Player, 0, 6);
+			Set Max Ammo(Event Player, 0, 6);
+		End;
+		Event Player.HeroSetupState = 11;
+	}
+}
+
+rule("CORE: (ALL) ALL - Setup")
+{
+	event
+	{
+		Ongoing - Each Player;
+		All;
+		All;
+	}
+	
+	conditions
+	{
+		Event Player.HeroSetupState = 11;
+	}
+	
+	actions
+	{
+		If(Hero Of(Event Player) == Hero(Bastion));
+			Start Scaling Player(Event Player, 1.111, False);
+		End;
+		If(Hero Of(Event Player) == Hero(Illari) || Hero Of(Event Player) == Hero(Jetpack Cat));
+			Set Knockback Dealt(Event Player, 0);
+		Else If(Hero Of(Event Player) == Hero(Zenyatta));
+			Set Knockback Dealt(Event Player, 4);
+		Else;
+			Set Knockback Dealt(Event Player, 100);
+		End;
+		Event Player.HeroSetupState = 13;
 	}
 }
 
@@ -3103,7 +3380,7 @@ rule("CORE: (MSGS) BOSS ABILITIES ERASE")
 		Array Contains(Array(Hero(Reaper), Hero(Symmetra), Hero(Mercy), Hero(Soldier: 76), Hero(Tracer), Hero(Sombra), Hero(Moira), Hero(
 			Cassidy), Hero(Lúcio), Hero(Reinhardt), Hero(Kiriko), Hero(Ramattra), Hero(Genji), Hero(Junkrat), Hero(Brigitte), Hero(
 			Wrecking Ball), Hero(Hanzo), Hero(Ashe), Hero(Echo)), Hero Of(First Of(All Players(Team 1)))) == False;
-		Event Player.HeroSetupState == 6;
+		Event Player.HeroSetupState == 13;
 	}
 
 	actions
@@ -3529,263 +3806,6 @@ rule("CORE: (TEAM) MERCY: HERO ICON ON + HERO ICON OFF")
 	}
 }
 
-rule("CORE: (TEAM) ALL - GENERAL SWITCH")
-{
-	event
-	{
-		Ongoing - Each Player;
-		Team 2;
-		All;
-	}
-
-	conditions
-	{
-		Event Player.current_hero != Hero Of(Event Player);
-	}
-
-	actions
-	{
-		Event Player.current_hero = Hero Of(Event Player);
-		Event Player.HeroSetupState = 0;
-		Event Player.PassiveAOEHeal = 0;
-		Stop Chasing Player Variable(Event Player, timer);
-		Stop Chasing Player Variable(Event Player, primary_charge);
-		Stop Chasing Player Variable(Event Player, secondary_charge);
-		Stop Chasing Player Variable(Event Player, timer);
-		Destroy HUD Text(Event Player.team_abilityHUD[0]);
-		Destroy HUD Text(Event Player.team_abilityHUD[1]);
-		Destroy HUD Text(Event Player.team_abilityHUD[2]);
-		Destroy HUD Text(Event Player.team_abilityHUD[3]);
-		Destroy HUD Text(Event Player.team_abilityHUD[4]);
-		Destroy HUD Text(Event Player.team_abilityHUD[5]);
-		Destroy Progress Bar HUD Text(Event Player.team_abilityHUD[0]);
-		Destroy HUD Text(Event Player.charge_hud);
-		Destroy HUD Text(Event Player.charge_hud[0]);
-		Destroy Progress Bar HUD Text(Event Player.charge_hud[1]);
-		Stop Healing Modification(Event Player.heal_power);
-		Stop Healing Modification(Event Player.Shimada_Healing);
-		Stop Holding Button(Event Player, Button(Crouch));
-		Stop Scaling Player(Event Player);
-		Stop Scaling Barriers(Event Player);
-		Set Damage Dealt(Event Player, 100);
-		Set Healing Dealt(Event Player, 100);
-		Set Move Speed(Event Player, 100);
-		Destroy Effect(Event Player.PlayerFX_1);
-		Destroy Effect(Event Player.PlayerFX_2);
-		Destroy Effect(Event Player.PlayerFX_3);
-		Remove Health Pool From Player(Event Player.armour_pool);
-		Remove Health Pool From Player(Event Player.health_pool);
-		Remove Health Pool From Player(Event Player.shield_pool);
-		Wait(0.016, Ignore Condition);
-		Destroy Effect(Event Player.M);
-		Event Player.M = Null;
-		Event Player.S = False;
-		Event Player.timer = 0;
-		Event Player.primary_charge = 0;
-		Event Player.secondary_charge = 0;
-		Event Player.Ability_Bool = False;
-		Event Player.Ability_Toggle = False;
-		If(Hero Of(Event Player) == Hero(Illari) || Hero Of(Event Player) == Hero(Jetpack Cat));
-			Set Knockback Dealt(Event Player, 0);
-		Else If(Hero Of(Event Player) == Hero(Zenyatta));
-			Set Knockback Dealt(Event Player, 4);
-		Else;
-			Set Knockback Dealt(Event Player, 100);
-		End;
-		Set Primary Fire Enabled(Event Player, True);
-		Set Secondary Fire Enabled(Event Player, True);
-		Set Ability 2 Enabled(Event Player, True);
-		Set Ultimate Ability Enabled(Event Player, True);
-		Allow Button(Event Player, Button(Ability 2));
-		Allow Button(Event Player, Button(Ultimate));
-		Event Player.HeroSetupState = 2;
-		Loop If Condition Is True;
-	}
-}
-
-rule("CORE: (TEAM) ALL - HEALTH")
-{
-	event
-	{
-		Ongoing - Each Player;
-		Team 2;
-		All;
-	}
-
-	conditions
-	{
-		Event Player.HeroSetupState == 2;
-	}
-
-	actions
-	{
-		Set Max Health(Event Player, 100);
-		If(Hero Of(Event Player) == Hero(Winston));
-			Set Max Health(Event Player, 99.715);
-		End;
-		Event Player.HeroSetupState = 3;
-	}
-}
-
-rule("CORE: (TEAM) ALL - HEALTH POOL")
-{
-	event
-	{
-		Ongoing - Each Player;
-		Team 2;
-		All;
-	}
-
-	conditions
-	{
-		Event Player.HeroSetupState == 3;
-	}
-
-	actions
-	{
-		If(Hero Of(Event Player) == Hero(Reinhardt));
-			Add Health Pool To Player(Event Player, Health, 16.667, True, False);
-			Event Player.health_pool = Last Created Health Pool;
-		Else If(Hero Of(Event Player) == Hero(Illari));
-			Add Health Pool To Player(Event Player, Health, 50, True, False);
-			Event Player.health_pool = Last Created Health Pool;
-		Else If(Hero Of(Event Player) == Hero(Venture));
-			Add Health Pool To Player(Event Player, Health, 25, True, False);
-			Event Player.health_pool = Last Created Health Pool;
-		Else If(Hero Of(Event Player) == Hero(Domina));
-			Add Health Pool To Player(Event Player, Health, 128.888, True, False);
-			Event Player.health_pool = Last Created Health Pool;
-			Add Health Pool To Player(Event Player, Shields, 15.555, True, False);
-			Event Player.shield_pool = Last Created Health Pool;
-		Else If(Hero Of(Event Player) == Hero(Juno));
-			Add Health Pool To Player(Event Player, Health, 150.250, True, False);
-			Event Player.health_pool = Last Created Health Pool;
-		Else If(Hero Of(Event Player) == Hero(Pharah));
-			Add Health Pool To Player(Event Player, Health, 1.500, True, False);
-			Event Player.health_pool = Last Created Health Pool;
-			Add Health Pool To Player(Event Player, Armor, 75, True, False);
-			Event Player.shield_pool = Last Created Health Pool;
-		Else If(Hero Of(Event Player) == Hero(Sombra));
-			Add Health Pool To Player(Event Player, Health, 1.500, True, False);
-			Event Player.health_pool = Last Created Health Pool;
-			Add Health Pool To Player(Event Player, Shields, 75, True, False);
-			Event Player.shield_pool = Last Created Health Pool;
-		Else If(Hero Of(Event Player) == Hero(Hazard));
-			Add Health Pool To Player(Event Player, Health, 222.500, True, False);
-			Event Player.health_pool = Last Created Health Pool;
-			Add Health Pool To Player(Event Player, Armor, 2.500, True, False);
-			Event Player.armour_pool = Last Created Health Pool;
-		Else If(Hero Of(Event Player) == Hero(Sigma));
-			Add Health Pool To Player(Event Player, Health, 25, True, False);
-			Event Player.health_pool = Last Created Health Pool;
-		Else If(Hero Of(Event Player) == Hero(Torbjörn));
-			Add Health Pool To Player(Event Player, Armor, 100, True, False);
-			Event Player.armour_pool = Last Created Health Pool;
-		Else If(Hero Of(Event Player) == Hero(Ramattra));
-			Add Health Pool To Player(Event Player, Armor, 163.392, True, False);
-			Event Player.armour_pool = Last Created Health Pool;
-			Add Health Pool To Player(Event Player, Health, 11.728, True, False);
-			Event Player.health_pool = Last Created Health Pool;
-		Else If(Hero Of(Event Player) == Hero(Zarya));
-			Add Health Pool To Player(Event Player, Shields, 20, True, False);
-			Event Player.shield_pool = Last Created Health Pool;
-			Add Health Pool To Player(Event Player, Health, 60, True, False);
-			Event Player.health_pool = Last Created Health Pool;
-		Else If(Hero Of(Event Player) == Hero(Orisa));
-			Add Health Pool To Player(Event Player, Health, 175, True, False);
-			Event Player.health_pool = Last Created Health Pool;
-		Else If(Hero Of(Event Player) == Hero(Winston));
-			Add Health Pool To Player(Event Player, Health, 7.693, True, False);
-			Event Player.health_pool = Last Created Health Pool;
-			Add Health Pool To Player(Event Player, Armor, 5.770, True, False);
-			Event Player.armour_pool = Last Created Health Pool;
-		Else If(Hero Of(Event Player) == Hero(Wrecking Ball));
-			Add Health Pool To Player(Event Player, Health, 31.250, True, False);
-			Event Player.health_pool = Last Created Health Pool;
-		End;
-		Event Player.base_health = Max Health(Event Player);
-		Event Player.base_shields = Max Health Of Type(Event Player, Shields);
-		Event Player.HeroSetupState = 4;
-	}
-}
-
-rule("CORE: (TEAM) ALL - SIZE")
-{
-	event
-	{
-		Ongoing - Each Player;
-		Team 2;
-		All;
-	}
-
-	conditions
-	{
-		Event Player.HeroSetupState == 4;
-	}
-
-	actions
-	{
-		If(Hero Of(Event Player) == Hero(Winston));
-			Start Scaling Barriers(Event Player, 0.750, False);
-		Else If(Hero Of(Event Player) == Hero(Brigitte));
-			Start Scaling Player(Event Player, 1.100, False);
-			Start Scaling Barriers(Event Player, 1.500, False);
-		Else If(Hero Of(Event Player) == Hero(D.Va));
-			Start Scaling Player(Event Player, 0.900, False);
-		Else If(Hero Of(Event Player) == Hero(Torbjörn));
-			Start Scaling Player(Event Player, 1.125, False);
-		Else If(Hero Of(Event Player) == Hero(Ramattra));
-			Start Scaling Barriers(Event Player, 2, False);
-		Else If(Hero Of(Event Player) == Hero(Orisa));
-			Start Scaling Player(Event Player, 0.920, False);
-		Else If(Hero Of(Event Player) == Hero(Sigma));
-			Start Scaling Barriers(Event Player, 0.900, False);
-		Else If(Hero Of(Event Player) == Hero(Zarya));
-			Start Scaling Player(Event Player, 0.940, False);
-		Else If(Hero Of(Event Player) == Hero(Doomfist));
-			Start Scaling Player(Event Player, 0.888, False);
-		Else If(Hero Of(Event Player) == Hero(Hazard));
-			Start Scaling Player(Event Player, 0.800, False);
-		End;
-		Event Player.HeroSetupState = 5;
-	}
-}
-
-rule("CORE: (TEAM) ALL - AMMO")
-{
-	event
-	{
-		Ongoing - Each Player;
-		Team 2;
-		All;
-	}
-
-	conditions
-	{
-		Event Player.HeroSetupState == 5;
-	}
-
-	actions
-	{
-		If(Hero Of(Event Player) == Hero(Orisa));
-			Set Max Ammo(Event Player, 0, 17.200);
-		Else If(Hero Of(Event Player) == Hero(Mauga));
-			Set Max Ammo(Event Player, 0, 125);
-			Set Ammo(Event Player, 0, 125);
-		Else If(Hero Of(Event Player) == Hero(Juno));
-			Set Max Ammo(Event Player, 0, 60);
-			Set Ammo(Event Player, 0, 60);
-		Else If(Hero Of(Event Player) == Hero(Mei));
-			Set Ammo(Event Player, 0, 50);
-			Set Max Ammo(Event Player, 0, 50);
-		Else If(Hero Of(Event Player) == Hero(Hazard));
-			Set Ammo(Event Player, 0, 6);
-			Set Max Ammo(Event Player, 0, 6);
-		End;
-		Event Player.HeroSetupState = 6;
-	}
-}
-
 rule("CORE: (BOSS) Mercy - Valkyrie Health")
 {
 	event
@@ -3860,7 +3880,7 @@ rule("CORE: (BOSS) Mercy - FAST HEAL VARS")
 
 	conditions
 	{
-		Event Player.HeroSetupState == 6;
+		Event Player.HeroSetupState == 13;
 	}
 
 	actions
@@ -3999,7 +4019,7 @@ rule("CORE: (BOSS) REIN - FLAME ON")
 	conditions
 	{
 		Event Player.F == 0;
-		Event Player.HeroSetupState == 6;
+		Event Player.HeroSetupState == 13;
 		disabled Is Waiting For Players == False;
 		Has Status(Event Player, Hacked) == False;
 	}
@@ -4131,7 +4151,7 @@ rule("CORE: (BOSS) REIN - FLAME HACKED")
 
 	conditions
 	{
-		Event Player.HeroSetupState == 6;
+		Event Player.HeroSetupState == 13;
 		Is Waiting For Players == False;
 		Has Status(Event Player, Hacked) == True;
 	}
@@ -4179,7 +4199,7 @@ rule("CORE: (BOSS) REIN - SPAWN")
 
 	conditions
 	{
-		Event Player.HeroSetupState == 6;
+		Event Player.HeroSetupState == 13;
 	}
 
 	actions
@@ -4206,7 +4226,7 @@ rule("CORE: (BOSS) GENJI - DASH AURA ON (check: does D have to = 0?)")
 	conditions
 	{
 		Event Player.D == 0;
-		Event Player.HeroSetupState == 6;
+		Event Player.HeroSetupState == 13;
 		disabled Is Waiting For Players == False;
 	}
 
@@ -4655,7 +4675,7 @@ rule("CORE: (BOSS) REAP - ABILITY HUD")
 
 	conditions
 	{
-		Event Player.HeroSetupState == 6;
+		Event Player.HeroSetupState == 13;
 	}
 
 	actions
@@ -4804,7 +4824,7 @@ rule("CORE: (BOSS) TRACER - RECALL ON")
 	conditions
 	{
 		Event Player.R == 0;
-		Event Player.HeroSetupState == 6;
+		Event Player.HeroSetupState == 13;
 		Is Waiting For Players == False;
 	}
 
@@ -4852,7 +4872,7 @@ rule("CORE: (BOSS) TRACER - SPAWN")
 
 	conditions
 	{
-		Event Player.HeroSetupState == 6;
+		Event Player.HeroSetupState == 13;
 	}
 
 	actions
@@ -5011,7 +5031,7 @@ rule("CORE: (BOSS) BRIG - BASH ON")
 	conditions
 	{
 		Event Player.L == 0;
-		Event Player.HeroSetupState == 6;
+		Event Player.HeroSetupState == 13;
 		Is Waiting For Players == False;
 	}
 
@@ -5060,7 +5080,7 @@ rule("CORE: (BOSS) MOIRA - ORB ON")
 	conditions
 	{
 		Event Player.O == 0;
-		Event Player.HeroSetupState == 6;
+		Event Player.HeroSetupState == 13;
 		Is Waiting For Players == False;
 	}
 
@@ -5163,7 +5183,7 @@ rule("CORE: (BOSS) MOIRA - SPAWN")
 
 	conditions
 	{
-		Event Player.HeroSetupState == 6;
+		Event Player.HeroSetupState == 13;
 	}
 
 	actions
@@ -5479,7 +5499,7 @@ rule("CORE: (BOSS) SYM - SHIELD VARS")
 
 	conditions
 	{
-		Event Player.HeroSetupState == 6;
+		Event Player.HeroSetupState == 13;
 	}
 
 	actions
@@ -5502,7 +5522,7 @@ rule("CORE: (BOSS) 76 - POW JUMP VARS")
 
 	conditions
 	{
-		Event Player.HeroSetupState == 6;
+		Event Player.HeroSetupState == 13;
 	}
 
 	actions
@@ -5567,7 +5587,7 @@ rule("CORE: (BOSS) SOMBRA SPAWN")
 
 	conditions
 	{
-		Event Player.HeroSetupState == 6;
+		Event Player.HeroSetupState == 13;
 	}
 
 	actions
@@ -5677,7 +5697,7 @@ rule("CORE: (BOSS) CASS - DODGE VARS")
 
 	conditions
 	{
-		Event Player.HeroSetupState == 6;
+		Event Player.HeroSetupState == 13;
 	}
 
 	actions
@@ -6255,7 +6275,7 @@ rule("CORE: (BOSS) LUCIO - SPAWN")
 
 	conditions
 	{
-		Event Player.HeroSetupState == 6;
+		Event Player.HeroSetupState == 13;
 	}
 
 	actions
@@ -6421,21 +6441,6 @@ rule("CORE: (BOSS) JUNK - OFF FIRE")
 		Create HUD Text(All Players(Team 1), Icon String(Warning), Custom String("get kills to deal more damage"), Custom String(
 			"fire damage"), Left, 1, Color(Red), Color(White), Color(Orange), Visible To and String, Default Visibility);
 		Global.BOSS_AbilityKey = Last Text ID;
-	}
-}
-
-rule("CORE: (BOSS) JUNK - SWITCH DMG")
-{
-	event
-	{
-		Ongoing - Each Player;
-		Team 1;
-		Junkrat;
-	}
-
-	actions
-	{
-		Set Damage Dealt(Event Player, 100);
 	}
 }
 
@@ -7809,7 +7814,7 @@ rule("CORE: (BOSS) RAM: NEM")
 
 	conditions
 	{
-		Event Player.HeroSetupState == 6;
+		Event Player.HeroSetupState == 13;
 	}
 
 	actions
@@ -7876,7 +7881,7 @@ rule("CORE: (TEAM) JUNK - SPAWN ABILITY HUD")
 
 	conditions
 	{
-		Event Player.HeroSetupState == 6;
+		Event Player.HeroSetupState == 13;
 	}
 
 	actions
@@ -7955,7 +7960,7 @@ rule("CORE: (TEAM) EMRE - SPAWN HUD")
 
 	conditions
 	{
-		Event Player.HeroSetupState == 6;
+		Event Player.HeroSetupState == 13;
 	}
 
 	actions
@@ -7978,7 +7983,7 @@ rule("CORE: (TEAM) ASHE - SPAWN")
 
 	conditions
 	{
-		Event Player.HeroSetupState == 6;
+		Event Player.HeroSetupState == 13;
 	}
 
 	actions
@@ -8177,7 +8182,7 @@ rule("CORE: (TEAM) ZEN - HUD")
 
 	conditions
 	{
-		Event Player.HeroSetupState == 6;
+		Event Player.HeroSetupState == 13;
 	}
 
 	actions
@@ -8202,7 +8207,7 @@ rule("CORE: (TEAM) WINSTON - HUD")
 
 	conditions
 	{
-		Event Player.HeroSetupState == 6;
+		Event Player.HeroSetupState == 13;
 	}
 
 	actions
@@ -8225,7 +8230,7 @@ rule("CORE: (TEAM) TRACER - HUD")
 
 	conditions
 	{
-		Event Player.HeroSetupState == 6;
+		Event Player.HeroSetupState == 13;
 	}
 
 	actions
@@ -8248,7 +8253,7 @@ rule("CORE: (TEAM) REIN - HUD")
 
 	conditions
 	{
-		Event Player.HeroSetupState == 6;
+		Event Player.HeroSetupState == 13;
 	}
 
 	actions
@@ -8271,7 +8276,7 @@ rule("CORE: (TEAM) BASTION - HUD")
 
 	conditions
 	{
-		Event Player.HeroSetupState == 6;
+		Event Player.HeroSetupState == 13;
 	}
 
 	actions
@@ -8294,7 +8299,7 @@ rule("CORE: (TEAM) SIG - SPAWN ABILITY HUD")
 
 	conditions
 	{
-		Event Player.HeroSetupState == 6;
+		Event Player.HeroSetupState == 13;
 	}
 
 	actions
@@ -8318,7 +8323,7 @@ rule("CORE: (TEAM) ZAR - SPAWN ABILITY HUD")
 
 	conditions
 	{
-		Event Player.HeroSetupState == 6;
+		Event Player.HeroSetupState == 13;
 	}
 
 	actions
@@ -8521,7 +8526,7 @@ rule("CORE: (TEAM) JQ - SPAWN ABILITY HUD")
 
 	conditions
 	{
-		Event Player.HeroSetupState == 6;
+		Event Player.HeroSetupState == 13;
 	}
 
 	actions
@@ -8883,7 +8888,7 @@ rule("CORE: (TEAM) BRIG - SPAWN ABILITY HUD")
 
 	conditions
 	{
-		Event Player.HeroSetupState == 6;
+		Event Player.HeroSetupState == 13;
 	}
 
 	actions
@@ -9044,7 +9049,7 @@ rule("CORE: (TEAM) BRIG - NEW MERCY")
 	conditions
 	{
 		Is Hero Being Played(Hero(Brigitte), Team 2) == True;
-		Event Player.HeroSetupState == 6;
+		Event Player.HeroSetupState == 13;
 		Global.mercyChecker == -1;
 	}
 
@@ -9127,7 +9132,7 @@ rule("CORE: (TEAM) BRIG - MERCY SPAWN VARS")
 
 	conditions
 	{
-		Event Player.HeroSetupState == 6;
+		Event Player.HeroSetupState == 13;
 	}
 
 	actions
@@ -9267,7 +9272,7 @@ rule("CORE: (TEAM) DVA - SPAWN ABILITY")
 
 	conditions
 	{
-		Event Player.HeroSetupState == 6;
+		Event Player.HeroSetupState == 13;
 	}
 
 	actions
@@ -9388,7 +9393,7 @@ rule("CORE: (TEAM) MOIRA - SPAWN NO HEAL")
 
 	conditions
 	{
-		Event Player.HeroSetupState == 6;
+		Event Player.HeroSetupState == 13;
 	}
 
 	actions
@@ -9682,7 +9687,7 @@ rule("CORE: (TEAM) ALL - DISABLE SECONDARY FIRE")
 
 	conditions
 	{
-		Event Player.HeroSetupState == 6;
+		Event Player.HeroSetupState == 13;
 		(Hero Of(Event Player) == Hero(Sombra) || Hero Of(Event Player) == Hero(Reaper)) == True;
 	}
 
@@ -9703,7 +9708,7 @@ rule("CORE: (TEAM) WIDOW - SPAWN ABILITY HUD")
 
 	conditions
 	{
-		Event Player.HeroSetupState == 6;
+		Event Player.HeroSetupState == 13;
 	}
 
 	actions
@@ -9915,7 +9920,7 @@ rule("CORE: (TEAM) BAP - SPAWN ABILITY")
 
 	conditions
 	{
-		Event Player.HeroSetupState == 6;
+		Event Player.HeroSetupState == 13;
 	}
 
 	actions
@@ -10094,7 +10099,7 @@ rule("CORE: (TEAM) BAP - ABILITY 2 BUTTON OFF")
 
 	conditions
 	{
-		Event Player.HeroSetupState == 6;
+		Event Player.HeroSetupState == 13;
 	}
 
 	actions
@@ -10115,7 +10120,7 @@ rule("CORE: (TEAM) ECHO - SPAWN ABILITY HUD")
 
 	conditions
 	{
-		Event Player.HeroSetupState == 6;
+		Event Player.HeroSetupState == 13;
 	}
 
 	actions
@@ -10484,7 +10489,7 @@ rule("CORE: (BOSS) JUNK - WAITING SPAWN HUD")
 
 	conditions
 	{
-		Event Player.HeroSetupState == 6;
+		Event Player.HeroSetupState == 13;
 		Is Waiting For Players == True;
 	}
 
@@ -10606,7 +10611,7 @@ rule("CORE: (BOSS) ALL - ABILITY 2 SET")
 
 	conditions
 	{
-		Event Player.HeroSetupState == 6;
+		Event Player.HeroSetupState == 13;
 		Is Alive(Event Player) == True;
 	}
 
@@ -10615,8 +10620,7 @@ rule("CORE: (BOSS) ALL - ABILITY 2 SET")
 		Skip If(Array Contains(Array(Hero(Mercy), Hero(Zarya), Hero(Lifeweaver)), Hero Of(Event Player)), 3);
 		Set Ability 2 Enabled(Event Player, True);
 		Allow Button(Event Player, Button(Ability 2));
-		Skip If(Hero Of(Event Player) != Hero(Mercy) && Hero Of(Event Player) != Hero(Zarya) && Hero Of(Event Player) != Hero(Lifeweaver),
-			2);
+		Skip(2);
 		Set Ability 2 Enabled(Event Player, False);
 		Disallow Button(Event Player, Button(Ability 2));
 	}
@@ -10634,7 +10638,7 @@ rule("CORE: (BOSS) ALL - ABILITY 1 SET")
 	conditions
 	{
 		Hero Of(Event Player) != Hero(Genji);
-		Event Player.HeroSetupState == 6;
+		Event Player.HeroSetupState == 13;
 		Is Alive(Event Player) == True;
 	}
 
@@ -10644,8 +10648,7 @@ rule("CORE: (BOSS) ALL - ABILITY 1 SET")
 			3);
 		Set Ability 1 Enabled(Event Player, True);
 		Allow Button(Event Player, Button(Ability 1));
-		Skip If(Hero Of(Event Player) != Hero(Mercy) && Hero Of(Event Player) != Hero(Zenyatta) && Hero Of(Event Player) != Hero(Sombra)
-			&& Hero Of(Event Player) != Hero(Symmetra) && Hero Of(Event Player) != Hero(Ramattra), 2);
+		Skip(2);
 		Set Ability 1 Enabled(Event Player, False);
 		Disallow Button(Event Player, Button(Ability 1));
 	}
@@ -10674,27 +10677,6 @@ rule("CORE: (BOSS) WINSTON - RAGE HP")
 		Set Max Health(Event Player, 99.613);
 		Event Player.base_health = Max Health(Event Player);
 		Event Player.base_shields = Max Health Of Type(Event Player, Shields);
-	}
-}
-
-rule("CORE: (ALL) BASTION - SIZE")
-{
-	event
-	{
-		Ongoing - Each Player;
-		All;
-		Bastion;
-	}
-
-	conditions
-	{
-		Has Spawned(Event Player) == True;
-	}
-
-	actions
-	{
-		Start Scaling Player(Event Player, 1.111, False);
-		Start Scaling Barriers(Event Player, 1, False);
 	}
 }
 
@@ -11180,7 +11162,7 @@ rule("CORE: (TEAM) PHARAH - SPAWN ABILITY HUD")
 
 	conditions
 	{
-		Event Player.HeroSetupState == 6;
+		Event Player.HeroSetupState == 13;
 	}
 
 	actions
@@ -11508,7 +11490,7 @@ rule("CORE: (BOSS) ASHE - SPAWN")
 
 	conditions
 	{
-		Event Player.HeroSetupState == 6;
+		Event Player.HeroSetupState == 13;
 	}
 
 	actions
@@ -11621,7 +11603,7 @@ rule("CORE: (TEAM) ALL - ROLE HUD")
 	{
 		Is Alive(Event Player) == True;
 		(Hero Of(Event Player) != Hero(Pharah) && Hero Of(Event Player) != Hero(Lúcio) && Hero Of(Event Player) != Hero(Vendetta)) == True;
-		Event Player.HeroSetupState == 6;
+		Event Player.HeroSetupState == 13;
 	}
 
 	actions
@@ -11678,7 +11660,7 @@ rule("CORE: (TEAM) PHARAH - ABILITY 2 BUTTON OFF")
 
 	conditions
 	{
-		Event Player.HeroSetupState == 6;
+		Event Player.HeroSetupState == 13;
 	}
 
 	actions
@@ -11699,7 +11681,7 @@ rule("CORE: (BOSS) BRIG - SPAWN REPAIR VARS")
 
 	conditions
 	{
-		Event Player.HeroSetupState == 6;
+		Event Player.HeroSetupState == 13;
 	}
 
 	actions
@@ -11914,7 +11896,7 @@ rule("CORE: (TEAM) RAM - SET AOE HEAL")
 
 	conditions
 	{
-		Event Player.HeroSetupState == 6;
+		Event Player.HeroSetupState == 13;
 	}
 
 	actions
@@ -12079,7 +12061,7 @@ rule("CORE: (TEAM) ZEN - DISCORD OFF")
 
 	conditions
 	{
-		Event Player.HeroSetupState == 6;
+		Event Player.HeroSetupState == 13;
 		Ultimate Charge Percent(Event Player) < 100;
 	}
 
@@ -12835,7 +12817,7 @@ rule("CORE: (TEAM) ALL - ABILITY 1 SET")
 
 	conditions
 	{
-		Event Player.HeroSetupState == 6;
+		Event Player.HeroSetupState == 13;
 		Is Alive(Event Player) == True;
 	}
 
@@ -13054,7 +13036,7 @@ rule("CORE: (TEAM) REAP - SPAWN ABILITY HUD")
 
 	conditions
 	{
-		Event Player.HeroSetupState == 6;
+		Event Player.HeroSetupState == 13;
 	}
 
 	actions
@@ -13719,7 +13701,7 @@ rule("temp (BOSS) DVA - SPAWN HP")
 
 	conditions
 	{
-		Event Player.HeroSetupState == 6;
+		Event Player.HeroSetupState == 13;
 	}
 
 	actions
@@ -14322,7 +14304,7 @@ rule("CORE: (BOSS) KIRI - SPAWN")
 
 	conditions
 	{
-		Event Player.HeroSetupState == 6;
+		Event Player.HeroSetupState == 13;
 	}
 
 	actions
@@ -14345,7 +14327,7 @@ rule("CORE: (BOSS) ASHE - SCOPE HUD")
 
 	conditions
 	{
-		Event Player.HeroSetupState == 6;
+		Event Player.HeroSetupState == 13;
 		Event Player.Ability_Bool == True;
 	}
 
@@ -14370,7 +14352,7 @@ rule("CORE: (BOSS) ASHE - HIP HUD")
 
 	conditions
 	{
-		Event Player.HeroSetupState == 6;
+		Event Player.HeroSetupState == 13;
 		Event Player.Ability_Bool == False;
 	}
 
@@ -14396,7 +14378,7 @@ rule("CORE: (BOSS) ECHO - SPAWN")
 
 	conditions
 	{
-		Event Player.HeroSetupState == 6;
+		Event Player.HeroSetupState == 13;
 	}
 
 	actions
@@ -14495,7 +14477,7 @@ rule("CORE: (BOSS) ECHO - P.C. DOWN")
 	{
 		Event Player.Ability_Bool == True;
 		Event Player.secondary_charge == 0;
-		Event Player.HeroSetupState == 6;
+		Event Player.HeroSetupState == 13;
 	}
 
 	actions
@@ -14992,7 +14974,7 @@ rule("CORE: (TEAM) LUCIO - SPAWN ABILITY HUD")
 
 	conditions
 	{
-		Event Player.HeroSetupState == 6;
+		Event Player.HeroSetupState == 13;
 	}
 
 	actions
@@ -15022,7 +15004,7 @@ rule("CORE: (TEAM) 76 - HUD")
 
 	conditions
 	{
-		Event Player.HeroSetupState == 6;
+		Event Player.HeroSetupState == 13;
 	}
 
 	actions
@@ -15045,7 +15027,7 @@ rule("CORE: (TEAM) Kiriko - HUD")
 
 	conditions
 	{
-		Event Player.HeroSetupState == 6;
+		Event Player.HeroSetupState == 13;
 	}
 
 	actions
@@ -15068,7 +15050,7 @@ rule("CORE: (TEAM) SOMBRA - HUD")
 
 	conditions
 	{
-		Event Player.HeroSetupState == 6;
+		Event Player.HeroSetupState == 13;
 	}
 
 	actions
@@ -15091,7 +15073,7 @@ rule("CORE: (TEAM) MEI - HUD")
 
 	conditions
 	{
-		Event Player.HeroSetupState == 6;
+		Event Player.HeroSetupState == 13;
 	}
 
 	actions
@@ -15114,7 +15096,7 @@ rule("CORE: (TEAM) LW - HUD")
 
 	conditions
 	{
-		Event Player.HeroSetupState == 6;
+		Event Player.HeroSetupState == 13;
 	}
 
 	actions
@@ -15319,7 +15301,7 @@ rule("CORE: (TEAM) JUNO - SPAWN ABILITY HUD")
 
 	conditions
 	{
-		Event Player.HeroSetupState == 6;
+		Event Player.HeroSetupState == 13;
 	}
 
 	actions
@@ -15694,7 +15676,7 @@ rule("CORE: (TEAM) GENJI - DEFLECT OFF")
 
 	conditions
 	{
-		Event Player.HeroSetupState == 6;
+		Event Player.HeroSetupState == 13;
 		Ultimate Charge Percent(Event Player) < 60;
 	}
 
@@ -15736,7 +15718,7 @@ rule("CORE: (TEAM) GENJI - HUD")
 
 	conditions
 	{
-		Event Player.HeroSetupState == 6;
+		Event Player.HeroSetupState == 13;
 	}
 
 	actions
@@ -15759,7 +15741,7 @@ rule("CORE: (TEAM) HANZO - HUD")
 
 	conditions
 	{
-		Event Player.HeroSetupState == 6;
+		Event Player.HeroSetupState == 13;
 	}
 
 	actions
@@ -15930,7 +15912,7 @@ rule("CORE: (TEAM) GAME START remove chargehud")
 	conditions
 	{
 		Is Waiting For Players == False;
-		Event Player.HeroSetupState == 6;
+		Event Player.HeroSetupState == 13;
 	}
 
 	actions
@@ -15958,7 +15940,7 @@ rule("CORE: (BOSS) GAME START remove BossTag")
 	conditions
 	{
 		Is Waiting For Players == False;
-		Event Player.HeroSetupState == 6;
+		Event Player.HeroSetupState == 13;
 	}
 
 	actions
@@ -16254,7 +16236,7 @@ rule("CORE: (BOSS) ALL - BERSERK")
 	conditions
 	{
 		Is Waiting For Players == False;
-		Event Player.HeroSetupState == 6;
+		Event Player.HeroSetupState == 13;
 		Player Stat(Event Player, All Damage Dealt) <= 0;
 		Match Time >= Array(Null, 106, 50)[Absolute Value(Global.BERSERK[1])];
 		Array Contains(Array(-1, -2), Global.BERSERK[1]) == True;
@@ -16345,7 +16327,7 @@ rule("CORE: (BOSS) SINGLE BERSERK HUD")
 
 	conditions
 	{
-		Event Player.HeroSetupState == 6;
+		Event Player.HeroSetupState == 13;
 		Global.BERSERK[1] == -1;
 	}
 
@@ -16370,7 +16352,7 @@ rule("CORE: (BOSS) DOUBLE BERSERK HUD")
 
 	conditions
 	{
-		Event Player.HeroSetupState == 6;
+		Event Player.HeroSetupState == 13;
 		Global.BERSERK[1] == -2;
 	}
 
@@ -16396,7 +16378,7 @@ rule("CORE: (BOSS) NO BERSERK HUD")
 
 	conditions
 	{
-		Event Player.HeroSetupState == 6;
+		Event Player.HeroSetupState == 13;
 		Global.BERSERK[1] == 0;
 	}
 
@@ -17236,7 +17218,7 @@ rule("CORE: (BOSS) HANZO - SPAWN")
 
 	conditions
 	{
-		Event Player.HeroSetupState == 6;
+		Event Player.HeroSetupState == 13;
 	}
 
 	actions
@@ -17557,7 +17539,7 @@ rule("CORE: (TEAM) KIRIKO - START SHIMADA HEALING")
 
 	conditions
 	{
-		Event Player.HeroSetupState == 6;
+		Event Player.HeroSetupState == 13;
 	}
 
 	actions
@@ -17884,7 +17866,7 @@ rule("CORE: (BOSS) RAM SPAWN")
 
 	conditions
 	{
-		Event Player.HeroSetupState == 6;
+		Event Player.HeroSetupState == 13;
 	}
 
 	actions
@@ -18480,7 +18462,7 @@ rule("CORE: (TEAM) FREJA - SPAWN VARS")
 
 	conditions
 	{
-		Event Player.HeroSetupState == 6;
+		Event Player.HeroSetupState == 13;
 	}
 
 	actions
@@ -18675,7 +18657,7 @@ rule("CORE: (TEAM) WUYANG SPAWN HUD")
 
 	conditions
 	{
-		Event Player.HeroSetupState == 6;
+		Event Player.HeroSetupState == 13;
 	}
 
 	actions
@@ -18833,7 +18815,7 @@ rule("CORE: (TEAM) ANRAN - SPAWN")
 
 	conditions
 	{
-		Event Player.HeroSetupState == 6;
+		Event Player.HeroSetupState == 13;
 		Is Alive(Event Player) == True;
 	}
 
