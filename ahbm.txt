@@ -3352,7 +3352,7 @@ rule("CORE: (TEAM) ALL - GENERAL SWITCH")
 				Set Max Health(Event Player, 99.502);
 			Else If(Hero Of(Event Player) == Hero(Ramattra));
 				Set Max Health(Event Player, 99.550);
-			Else If(!Array Contains(Array(Hero(Winston), Hero(Bastion), Hero(Mei), Hero(Echo)), Hero Of(Event Player));
+			Else If(!Array Contains(Array(Hero(Winston), Hero(Bastion), Hero(Mei), Hero(Echo)), Hero Of(Event Player)));
 				Set Max Health(Event Player, 100);
 			End;
 		End;
