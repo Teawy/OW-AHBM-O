@@ -1982,6 +1982,7 @@ subroutines
 	1: anti_enviro_OOM
 	2: BossIgnitionExpire
 	3: TEAMVendetta_StunReady
+	4: BOSSNoAbility_Hud
 }
 
 rule("CORE: (TIMER) SET START TIME")
@@ -2868,10 +2869,7 @@ rule("CORE: (MSGS) BOSS ABILITIES ERASE")
 
 	actions
 	{
-		Destroy HUD Text(Global.BOSS_AbilityKey);
-		Create HUD Text(All Players(Team 1), Null, Null, Custom String("None"), Left, 1, Color(White), Color(White), Color(Red),
-			Visible To and String, Default Visibility);
-		Global.BOSS_AbilityKey = Last Text ID;
+		Call Subroutine(BOSSNoAbility_Hud);
 	}
 }
 
@@ -10743,10 +10741,7 @@ rule("CORE: (BOSS) JUNK - WAITING SPAWN HUD")
 
 	actions
 	{
-		Destroy HUD Text(Global.BOSS_AbilityKey);
-		Create HUD Text(All Players(Team 1), Null, Null, Custom String("NONE"), Left, 1, Color(Red), Color(Red), Color(Red),
-			Visible To and String, Default Visibility);
-		Global.BOSS_AbilityKey = Last Text ID;
+		Call Subroutine(BOSSNoAbility_Hud);
 	}
 }
 
@@ -11279,10 +11274,7 @@ rule("CORE: (BOSS) HOG - ULTIMATE THAW")
 		Skip If(Ultimate Charge Percent(Event Player) < 100, 2);
 		Play Effect(All Players(All Teams), Bad Pickup Effect, Color(Red), Event Player, 1);
 		Set Status(Event Player, Null, Burning, 9999);
-		Destroy HUD Text(Global.BOSS_AbilityKey);
-		Create HUD Text(All Players(Team 1), Null, Null, Custom String("None"), Left, 1, Color(White), Color(White), Color(Red),
-			Visible To and String, Default Visibility);
-		Global.BOSS_AbilityKey = Last Text ID;
+		Call Subroutine(BOSSNoAbility_Hud);
 		Stop Chasing Player Variable(Event Player, F);
 		Global.BossFrozen = 0;
 		Skip If(Is Waiting For Players, 4);
@@ -11305,10 +11297,7 @@ rule("CORE: (BOSS) HOG - ULTIMATE THAW DEATH")
 	actions
 	{
 		Destroy Effect(Event Player.PlayerFX_3);
-		Destroy HUD Text(Global.BOSS_AbilityKey);
-		Create HUD Text(All Players(Team 1), Null, Null, Custom String("None"), Left, 1, Color(White), Color(White), Color(Red),
-			Visible To and String, Default Visibility);
-		Global.BOSS_AbilityKey = Last Text ID;
+		Call Subroutine(BOSSNoAbility_Hud);
 		Stop Chasing Player Variable(Event Player, F);
 		Event Player.F = 0;
 		Set Ultimate Ability Enabled(Event Player, True);
@@ -11413,10 +11402,7 @@ rule("CORE: (BOSS) TORB - ULTIMATE THAW")
 		Destroy Effect(Event Player.PlayerFX_3);
 		Set Ultimate Ability Enabled(Event Player, True);
 		Wait(0.016, Ignore Condition);
-		Destroy HUD Text(Global.BOSS_AbilityKey);
-		Create HUD Text(All Players(Team 1), Null, Null, Custom String("None"), Left, 1, Color(White), Color(White), Color(Red),
-			Visible To and String, Default Visibility);
-		Global.BOSS_AbilityKey = Last Text ID;
+		Call Subroutine(BOSSNoAbility_Hud);
 		Stop Chasing Player Variable(Event Player, F);
 		Global.BossFrozen = 0;
 	}
@@ -11434,10 +11420,7 @@ rule("CORE: (BOSS) TORB - ULTIMATE THAW DEATH")
 	actions
 	{
 		Destroy Effect(Event Player.PlayerFX_3);
-		Destroy HUD Text(Global.BOSS_AbilityKey);
-		Create HUD Text(All Players(Team 1), Null, Null, Custom String("None"), Left, 1, Color(White), Color(White), Color(Red),
-			Visible To and String, Default Visibility);
-		Global.BOSS_AbilityKey = Last Text ID;
+		Call Subroutine(BOSSNoAbility_Hud);
 		Stop Chasing Player Variable(Event Player, F);
 		Event Player.F = 0;
 		Set Ultimate Ability Enabled(Event Player, True);
@@ -11571,10 +11554,7 @@ rule("CORE: (BOSS) OMNIC - JUMP THAW")
 		Event Player.F = 0;
 		Destroy Effect(Event Player.PlayerFX_3);
 		Global.BossFrozen = 0;
-		Destroy HUD Text(Global.BOSS_AbilityKey);
-		Create HUD Text(All Players(Team 1), Null, Null, Custom String("None"), Left, 1, Color(White), Color(White), Color(Red),
-			Visible To and String, Default Visibility);
-		Global.BOSS_AbilityKey = Last Text ID;
+		Call Subroutine(BOSSNoAbility_Hud);
 	}
 }
 
@@ -11641,10 +11621,7 @@ rule("CORE: (BOSS) D.VA - MECH THAW")
 		Wait(0.016, Ignore Condition);
 		Skip If(Is In Alternate Form(Event Player), 1);
 		Set Ultimate Charge(Event Player, Event Player.X[0]);
-		Destroy HUD Text(Global.BOSS_AbilityKey);
-		Create HUD Text(All Players(Team 1), Null, Null, Custom String("None"), Left, 1, Color(White), Color(White), Color(Red),
-			Visible To and String, Default Visibility);
-		Global.BOSS_AbilityKey = Last Text ID;
+		Call Subroutine(BOSSNoAbility_Hud);
 		Stop Chasing Player Variable(Event Player, F);
 		Global.BossFrozen = 0;
 		Skip If(Is Waiting For Players, 11);
@@ -11676,10 +11653,7 @@ rule("CORE: (BOSS) D.VA - MECH THAW DEATH")
 	actions
 	{
 		Destroy Effect(Event Player.PlayerFX_3);
-		Destroy HUD Text(Global.BOSS_AbilityKey);
-		Create HUD Text(All Players(Team 1), Null, Null, Custom String("None"), Left, 1, Color(White), Color(White), Color(Red),
-			Visible To and String, Default Visibility);
-		Global.BOSS_AbilityKey = Last Text ID;
+		Call Subroutine(BOSSNoAbility_Hud);
 		Stop Chasing Player Variable(Event Player, F);
 		Event Player.F = 0;
 		Set Ultimate Ability Enabled(Event Player, True);
@@ -20306,5 +20280,22 @@ rule("Damage Numbers 1")
 		Event Player.LastDamageNumberInstance = 2;
 		Wait(Event Player.LastDamageNumberTime[1], Restart When True);
 		Destroy In-World Text(Event Player.LastDamage[1]);
+	}
+}
+
+rule("SUB: (BOSS) Init No Ability HUD")
+{
+	event
+	{
+		Subroutine;
+		BOSSNoAbility_Hud;
+	}
+
+	actions
+	{
+		Destroy HUD Text(Global.BOSS_AbilityKey);
+		Create HUD Text(Event Player, Null, Null, Custom String("None"), Left, 1, Color(White), Color(White), Color(Red),
+			None, Default Visibility);
+		Global.BOSS_AbilityKey = Last Text ID;
 	}
 }
