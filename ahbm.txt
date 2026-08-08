@@ -1982,6 +1982,7 @@ subroutines
 	1: anti_enviro_OOM
 	2: BossIgnitionExpire
 	3: TEAMVendetta_StunReady
+	4: BOSSNoAbility_Hud
 }
 
 rule("CORE: (TIMER) SET START TIME")
@@ -2868,10 +2869,7 @@ rule("CORE: (MSGS) BOSS ABILITIES ERASE")
 
 	actions
 	{
-		Destroy HUD Text(Global.BOSS_AbilityKey);
-		Create HUD Text(All Players(Team 1), Null, Null, Custom String("None"), Left, 1, Color(White), Color(White), Color(Red),
-			Visible To and String, Default Visibility);
-		Global.BOSS_AbilityKey = Last Text ID;
+		Call Subroutine(BOSSNoAbility_Hud);
 	}
 }
 
@@ -4988,7 +4986,7 @@ rule("CORE: (BOSS) MOIRA - ULTIMATE DOWN")
 	}
 }
 
-rule("CORE: (BOSS) MOIRA - SPAWN")
+rule("CORE: (BOSS) MOIRA - SPAWN & INITIALIZE EFFECTS")
 {
 	event
 	{
@@ -5001,21 +4999,28 @@ rule("CORE: (BOSS) MOIRA - SPAWN")
 	{
 		Stop Chasing Global Variable(BOSS_AbilityCD);
 		Global.BOSS_AbilityCD = 100;
-		Wait(0.016, Ignore Condition);
 		Destroy HUD Text(Global.BOSS_AbilityKey);
-		Create HUD Text(All Players(Team 1), Custom String("{0}%", Global.BOSS_AbilityCD), Custom String("Primary Fire"), Custom String(
-			"Healing"), Left, 1, Color(White), Color(White), Color(Yellow), Visible To and String, Default Visibility);
+		Create HUD Text(All Players(Team 1), Custom String("{0}%", Round To Integer(Global.BOSS_AbilityCD, Down)), Custom String(
+			"Primary Fire"), Custom String("Healing"), Left, 1, Global.W ? Color(White) : Color(Orange), Color(White), Color(Yellow),
+			Visible To String and Color, Default Visibility);
 		Global.BOSS_AbilityKey = Last Text ID;
-		Wait(0.250, Ignore Condition);
+		Wait(0.250, Abort When False);
 		Global.W = True;
-		Wait(0.016, Ignore Condition);
 		Global.B = False;
 		Stop Chasing Player Variable(Event Player, F);
 		Event Player.F = 1;
+		Destroy Effect(Event Player.PlayerFX_1);
+		Create Effect(Global.B, Energy Sound, Color(White), Eye Position(Event Player), 100, Visible To Position and Radius);
+		Event Player.PlayerFX_1 = Last Created Entity;
+		Destroy Effect(Event Player.PlayerFX_3);
+		Create Effect(Global.B, Orb, Color(Yellow), Event Player + Vector(0, 1, 0) + Facing Direction Of(Event Player), 0.250,
+			Visible To Position and Radius);
+		Event Player.PlayerFX_3 = Last Created Entity;
+		Event Player.F = 2;
 	}
 }
 
-rule("CORE: (BOSS) MOIRA - HEAL USING")
+rule("CORE: (BOSS) MOIRA - HEAL")
 {
 	event
 	{
@@ -5026,10 +5031,9 @@ rule("CORE: (BOSS) MOIRA - HEAL USING")
 
 	conditions
 	{
-		Global.W == True;
 		Is Button Held(Event Player, Button(Primary Fire)) == True;
+		Global.W == True;
 		Global.BOSS_AbilityCD > 0;
-		Is Button Held(Event Player, Button(Secondary Fire)) == False;
 		Is Using Ability 1(Event Player) == False;
 		Is Using Ability 2(Event Player) == False;
 		Is Using Ultimate(Event Player) == False;
@@ -5039,194 +5043,24 @@ rule("CORE: (BOSS) MOIRA - HEAL USING")
 
 	actions
 	{
+		Skip If(Is Button Held(Event Player, Button(Secondary Fire)), 3);
+		Stop Chasing Global Variable(BOSS_AbilityCD);
+		Global.W = True;
 		Global.B = True;
-		Wait(0.050, Abort When False);
+		Wait(0.050, Ignore Condition);
+		Skip If(Is Button Held(Event Player, Button(Secondary Fire)), 2);
 		Heal(Event Player, Event Player, 13.750);
 		Global.BOSS_AbilityCD -= 1;
 		Loop If Condition Is True;
-	}
-}
-
-rule("CORE: (BOSS) MOIRA - HEAL RECHARGE")
-{
-	event
-	{
-		Ongoing - Each Player;
-		Team 1;
-		Moira;
-	}
-
-	conditions
-	{
-		(!Is Button Held(Event Player, Button(Primary Fire)) || Global.BOSS_AbilityCD == 0 || !Global.W) == True;
-		Global.BOSS_AbilityCD < 100;
-	}
-
-	actions
-	{
-		Wait(0.250, Abort When False);
-		Global.W = False;
-		Global.BOSS_AbilityCD += 1;
-		Loop If Condition Is True;
-	}
-}
-
-rule("CORE: (BOSS) MOIRA - HEAL STOP")
-{
-	event
-	{
-		Ongoing - Each Player;
-		Team 1;
-		Moira;
-	}
-
-	conditions
-	{
-		(!Is Button Held(Event Player, Button(Primary Fire)) || Global.BOSS_AbilityCD == 0 || !Global.W || Has Status(
-			Event Player, Hacked) || Has Status(Event Player, Knocked Down) || Has Status(Event Player, Asleep) || Has Status(Event Player,
-			Frozen) || Has Status(Event Player, Stunned) || False) == True;
-		Global.BOSS_AbilityCD < 100;
-		Global.B == True;
-	}
-
-	actions
-	{
 		Global.B = False;
-		Destroy HUD Text(Global.BOSS_AbilityKey);
-		Create HUD Text(All Players(Team 1), Custom String("{0}%", Global.BOSS_AbilityCD), Custom String("Primary Fire"), Custom String(
-			"Healing"), Left, 1, Color(Orange), Color(White), Color(Yellow), Visible To and String, Default Visibility);
-		Global.BOSS_AbilityKey = Last Text ID;
-		disabled Wait(0.049, Abort When False);
 		Global.W = False;
-	}
-}
-
-rule("CORE: (BOSS) MOIRA - HEAL READY")
-{
-	event
-	{
-		Ongoing - Each Player;
-		Team 1;
-		Moira;
-	}
-
-	conditions
-	{
-		Global.BOSS_AbilityCD == 100;
-	}
-
-	actions
-	{
-		Destroy HUD Text(Global.BOSS_AbilityKey);
-		Create HUD Text(All Players(Team 1), Custom String("{0}%", Global.BOSS_AbilityCD), Custom String("Primary Fire"), Custom String(
-			"Healing"), Left, 1, Color(White), Color(White), Color(Yellow), Visible To and String, Default Visibility);
-		Global.BOSS_AbilityKey = Last Text ID;
+		Chase Global Variable At Rate(BOSS_AbilityCD, 100, 4, Destination and Rate);
+		Wait Until(Global.BOSS_AbilityCD >= 100, 99999);
+		Stop Chasing Global Variable(BOSS_AbilityCD);
 		Play Effect(All Players(Team 1), Buff Explosion Sound, Color(White), Event Player, 50);
 		Wait(0.100, Ignore Condition);
 		Global.W = True;
-	}
-}
-
-rule("CORE: (BOSS) MOIRA - HEAL CANCEL")
-{
-	event
-	{
-		Ongoing - Each Player;
-		Team 1;
-		Moira;
-	}
-
-	actions
-	{
-		Skip If(!Is Using Ability 1(Event Player) && !Is Using Ability 2(Event Player) && !Is Using Ultimate(Event Player)
-			&& !Has Status(Event Player, Hacked) && !Has Status(Event Player, Knocked Down) && !Has Status(
-			Event Player, Asleep) && !Has Status(Event Player, Frozen) && !Has Status(Event Player, Stunned)
-			 && True, 1);
-		Global.W = False;
-		Skip If(!Is Using Ability 1(Event Player) && !Is Using Ability 2(Event Player) && !Is Using Ultimate(Event Player)
-			 && !Has Status(Event Player, Hacked) && !Has Status(Event Player, Knocked Down) && !Has Status(
-			Event Player, Asleep) && !Has Status(Event Player, Frozen) && !Has Status(Event Player, Stunned)
-			 && Global.BOSS_AbilityCD == 100, 1);
-		Skip(1);
-		Global.W = True;
-		Wait(0.001, Ignore Condition);
 		Loop If Condition Is True;
-	}
-}
-
-rule("CORE: (BOSS) MOIRA - HEAL EFFECT")
-{
-	event
-	{
-		Ongoing - Each Player;
-		Team 1;
-		Moira;
-	}
-
-	conditions
-	{
-		Global.B == True;
-	}
-
-	actions
-	{
-		Wait(0.016, Abort When False);
-		Skip If(Event Player.F == 1, 1);
-		Destroy Effect(Event Player.PlayerFX_1);
-		Create Effect(All Players(All Teams), Energy Sound, Color(White), Event Player, 100, Position and Radius);
-		Event Player.PlayerFX_1 = Last Created Entity;
-		Wait(0.016, Abort When False);
-		Skip If(Event Player.F == 1, 1);
-		Destroy Effect(Event Player.PlayerFX_3);
-		Create Effect(All Players(All Teams), Orb, Color(Yellow), Event Player + Up + Facing Direction Of(Event Player),
-			0.250, Visible To Position and Radius);
-		Event Player.PlayerFX_3 = Last Created Entity;
-		disabled Wait(1.111, Abort When False);
-		disabled Loop If Condition Is True;
-		Event Player.F = 2;
-	}
-}
-
-rule("CORE: (BOSS) MOIRA - HEAL EFFECT ERASE")
-{
-	event
-	{
-		Ongoing - Each Player;
-		Team 1;
-		Moira;
-	}
-
-	conditions
-	{
-		Global.B == False;
-	}
-
-	actions
-	{
-		Wait(0.049, Abort When False);
-		Destroy Effect(Event Player.PlayerFX_1);
-		Destroy Effect(Event Player.PlayerFX_3);
-	}
-}
-
-rule("CORE: (BOSS) MOIRA - HEAL EFCT BUG FIX 1")
-{
-	event
-	{
-		Ongoing - Each Player;
-		Team 1;
-		Moira;
-	}
-
-	conditions
-	{
-		Is Using Ability 1(Event Player) == True;
-	}
-
-	actions
-	{
-		Destroy Effect(Event Player.PlayerFX_1);
-		Destroy Effect(Event Player.PlayerFX_3);
 	}
 }
 
@@ -7840,31 +7674,6 @@ rule("CORE: (BOSS) RAM: NEM")
 	{
 		Wait(5, Ignore Condition);
 		Press Button(Event Player, Button(Ultimate));
-	}
-}
-
-rule("CORE: (BOSS) MOIRA - HEAL EFCT BUG FIX 2")
-{
-	event
-	{
-		Ongoing - Each Player;
-		Team 1;
-		Moira;
-	}
-
-	conditions
-	{
-		Is Button Held(Event Player, Button(Primary Fire)) == False;
-	}
-
-	actions
-	{
-		Wait(0.049, Ignore Condition);
-		Destroy Effect(Event Player.PlayerFX_1);
-		Wait(0.049, Ignore Condition);
-		Destroy Effect(Event Player.PlayerFX_3);
-		Skip If(Global.BOSS_AbilityCD != 100, 1);
-		Global.W = True;
 	}
 }
 
@@ -10743,10 +10552,7 @@ rule("CORE: (BOSS) JUNK - WAITING SPAWN HUD")
 
 	actions
 	{
-		Destroy HUD Text(Global.BOSS_AbilityKey);
-		Create HUD Text(All Players(Team 1), Null, Null, Custom String("NONE"), Left, 1, Color(Red), Color(Red), Color(Red),
-			Visible To and String, Default Visibility);
-		Global.BOSS_AbilityKey = Last Text ID;
+		Call Subroutine(BOSSNoAbility_Hud);
 	}
 }
 
@@ -11279,10 +11085,7 @@ rule("CORE: (BOSS) HOG - ULTIMATE THAW")
 		Skip If(Ultimate Charge Percent(Event Player) < 100, 2);
 		Play Effect(All Players(All Teams), Bad Pickup Effect, Color(Red), Event Player, 1);
 		Set Status(Event Player, Null, Burning, 9999);
-		Destroy HUD Text(Global.BOSS_AbilityKey);
-		Create HUD Text(All Players(Team 1), Null, Null, Custom String("None"), Left, 1, Color(White), Color(White), Color(Red),
-			Visible To and String, Default Visibility);
-		Global.BOSS_AbilityKey = Last Text ID;
+		Call Subroutine(BOSSNoAbility_Hud);
 		Stop Chasing Player Variable(Event Player, F);
 		Global.BossFrozen = 0;
 		Skip If(Is Waiting For Players, 4);
@@ -11305,10 +11108,7 @@ rule("CORE: (BOSS) HOG - ULTIMATE THAW DEATH")
 	actions
 	{
 		Destroy Effect(Event Player.PlayerFX_3);
-		Destroy HUD Text(Global.BOSS_AbilityKey);
-		Create HUD Text(All Players(Team 1), Null, Null, Custom String("None"), Left, 1, Color(White), Color(White), Color(Red),
-			Visible To and String, Default Visibility);
-		Global.BOSS_AbilityKey = Last Text ID;
+		Call Subroutine(BOSSNoAbility_Hud);
 		Stop Chasing Player Variable(Event Player, F);
 		Event Player.F = 0;
 		Set Ultimate Ability Enabled(Event Player, True);
@@ -11413,10 +11213,7 @@ rule("CORE: (BOSS) TORB - ULTIMATE THAW")
 		Destroy Effect(Event Player.PlayerFX_3);
 		Set Ultimate Ability Enabled(Event Player, True);
 		Wait(0.016, Ignore Condition);
-		Destroy HUD Text(Global.BOSS_AbilityKey);
-		Create HUD Text(All Players(Team 1), Null, Null, Custom String("None"), Left, 1, Color(White), Color(White), Color(Red),
-			Visible To and String, Default Visibility);
-		Global.BOSS_AbilityKey = Last Text ID;
+		Call Subroutine(BOSSNoAbility_Hud);
 		Stop Chasing Player Variable(Event Player, F);
 		Global.BossFrozen = 0;
 	}
@@ -11434,10 +11231,7 @@ rule("CORE: (BOSS) TORB - ULTIMATE THAW DEATH")
 	actions
 	{
 		Destroy Effect(Event Player.PlayerFX_3);
-		Destroy HUD Text(Global.BOSS_AbilityKey);
-		Create HUD Text(All Players(Team 1), Null, Null, Custom String("None"), Left, 1, Color(White), Color(White), Color(Red),
-			Visible To and String, Default Visibility);
-		Global.BOSS_AbilityKey = Last Text ID;
+		Call Subroutine(BOSSNoAbility_Hud);
 		Stop Chasing Player Variable(Event Player, F);
 		Event Player.F = 0;
 		Set Ultimate Ability Enabled(Event Player, True);
@@ -11571,10 +11365,7 @@ rule("CORE: (BOSS) OMNIC - JUMP THAW")
 		Event Player.F = 0;
 		Destroy Effect(Event Player.PlayerFX_3);
 		Global.BossFrozen = 0;
-		Destroy HUD Text(Global.BOSS_AbilityKey);
-		Create HUD Text(All Players(Team 1), Null, Null, Custom String("None"), Left, 1, Color(White), Color(White), Color(Red),
-			Visible To and String, Default Visibility);
-		Global.BOSS_AbilityKey = Last Text ID;
+		Call Subroutine(BOSSNoAbility_Hud);
 	}
 }
 
@@ -11641,10 +11432,7 @@ rule("CORE: (BOSS) D.VA - MECH THAW")
 		Wait(0.016, Ignore Condition);
 		Skip If(Is In Alternate Form(Event Player), 1);
 		Set Ultimate Charge(Event Player, Event Player.X[0]);
-		Destroy HUD Text(Global.BOSS_AbilityKey);
-		Create HUD Text(All Players(Team 1), Null, Null, Custom String("None"), Left, 1, Color(White), Color(White), Color(Red),
-			Visible To and String, Default Visibility);
-		Global.BOSS_AbilityKey = Last Text ID;
+		Call Subroutine(BOSSNoAbility_Hud);
 		Stop Chasing Player Variable(Event Player, F);
 		Global.BossFrozen = 0;
 		Skip If(Is Waiting For Players, 11);
@@ -11676,10 +11464,7 @@ rule("CORE: (BOSS) D.VA - MECH THAW DEATH")
 	actions
 	{
 		Destroy Effect(Event Player.PlayerFX_3);
-		Destroy HUD Text(Global.BOSS_AbilityKey);
-		Create HUD Text(All Players(Team 1), Null, Null, Custom String("None"), Left, 1, Color(White), Color(White), Color(Red),
-			Visible To and String, Default Visibility);
-		Global.BOSS_AbilityKey = Last Text ID;
+		Call Subroutine(BOSSNoAbility_Hud);
 		Stop Chasing Player Variable(Event Player, F);
 		Event Player.F = 0;
 		Set Ultimate Ability Enabled(Event Player, True);
@@ -17262,7 +17047,7 @@ rule("CORE: (TEAM) REAP - LOSE ENERGY")
 	}
 }
 
-rule("CORE: (BOSS) ALL - BERSERK 1")
+rule("CORE: (BOSS) ALL - BERSERK")
 {
 	event
 	{
@@ -17275,48 +17060,39 @@ rule("CORE: (BOSS) ALL - BERSERK 1")
 	{
 		Is Waiting For Players == False;
 		Has Spawned(Event Player) == True;
-		Match Time >= 106;
 		Player Stat(Event Player, All Damage Dealt) <= 0;
-		Global.BERSERK[1] == -1;
+		Match Time >= Array(Null, 106, 50)[Absolute Value(Global.BERSERK[1])];
+		Array Contains(Array(-1, -2), Global.BERSERK[1]) == True;
 		(Is Button Held(Event Player, Button(Interact)) || Is Button Held(Host Player, Button(Interact))) == True;
 	}
 
 	actions
 	{
-		Wait Until((Is Button Held(Event Player, Button(Interact)) || Is Button Held(Host Player, Button(Interact))) == False, 1.500);
-		Skip If((Is Button Held(Event Player, Button(Interact)) || Is Button Held(Host Player, Button(Interact))) == False, 3);
-		Skip If(Global.BERSERK[1] == 0, 2);
-		Global.BERSERK[0] = 1;
-		Call Subroutine(BERSERK_activated);
-	}
-}
-
-rule("CORE: (BOSS) ALL - BERSERK 2")
-{
-	event
-	{
-		Ongoing - Each Player;
-		Team 1;
-		All;
-	}
-
-	conditions
-	{
-		Is Waiting For Players == False;
-		Has Spawned(Event Player) == True;
-		Match Time >= 50;
-		Player Stat(Event Player, All Damage Dealt) <= 0;
-		Global.BERSERK[1] == -2;
-		(Is Button Held(Event Player, Button(Interact)) || Is Button Held(Host Player, Button(Interact))) == True;
-	}
-
-	actions
-	{
-		Wait Until((Is Button Held(Event Player, Button(Interact)) || Is Button Held(Host Player, Button(Interact))) == False, 1.500);
-		Skip If((Is Button Held(Event Player, Button(Interact)) || Is Button Held(Host Player, Button(Interact))) == False, 3);
-		Skip If(Global.BERSERK[1] == 0, 2);
-		Global.BERSERK[0] = 2;
-		Call Subroutine(BERSERK_activated);
+		Wait Until(!(Is Button Held(Event Player, Button(Interact)) || Is Button Held(Host Player, Button(Interact))), 1.500);
+		Abort If(!(Is Button Held(Event Player, Button(Interact)) || Is Button Held(Host Player, Button(Interact))));
+		Abort If(Global.BERSERK[1] == 0);
+		Global.BERSERK[0] = Absolute Value(Global.BERSERK[1]);
+		Global.BERSERK[2] = 1;
+		Wait(0.016, Ignore Condition);
+		Global.BERSERK[1] = 0;
+		Set Match Time(Match Time / 2 + 0.500);
+		Play Effect(All Players(Team 1), Good Explosion, Color(Red), Eye Position(Event Player) + Facing Direction Of(Event Player) * 1,
+			5);
+		Play Effect(All Players(All Teams), Ring Explosion Sound, Color(White), All Players(All Teams), 250);
+		Skip If(Global.BERSERK[0] == 2, 5);
+		Small Message(All Players(Team 1), Custom String("BERSERK ACTIVE"));
+		Small Message(All Players(Team 2), Custom String("BOSS IS BERSERKING"));
+		Global.MAX_TIME = 61;
+		Global.BERSERK[1] = -2;
+		Set Objective Description(All Players(All Teams), Custom String("BERSERK MATCH"), Visible To and String);
+		Skip If(Global.BERSERK[0] == 1, 5);
+		Small Message(All Players(Team 1), Custom String("DOUBLE BERSERK"));
+		Small Message(All Players(Team 2), Custom String("BOSS IS DOUBLE BERSERKING"));
+		Global.MAX_TIME = 31;
+		Global.BERSERK[1] = 0;
+		Set Objective Description(All Players(All Teams), Custom String("DOUBLE BERSERK MATCH"), Visible To and String);
+		Wait(0.016, Ignore Condition);
+		Global.BERSERK[2] = 0;
 	}
 }
 
@@ -17343,40 +17119,6 @@ rule("SUB: ANTI-ENVIRO OOM")
 	}
 }
 
-rule("SUB: BERSERK ACTIVATED")
-{
-	event
-	{
-		Subroutine;
-		BERSERK_activated;
-	}
-
-	actions
-	{
-		Global.BERSERK[2] = 1;
-		Wait(0.016, Ignore Condition);
-		Global.BERSERK[1] = 0;
-		Set Match Time(Match Time / 2 + 0.500);
-		Play Effect(All Players(Team 1), Good Explosion, Color(Red), Eye Position(Event Player) + Facing Direction Of(Event Player) * 1,
-			5);
-		Play Effect(All Players(All Teams), Ring Explosion Sound, Color(White), All Players(All Teams), 250);
-		Skip If(Global.BERSERK[0] == 2, 5);
-		Small Message(All Players(Team 1), Custom String("BERSERK ACTIVE"));
-		Small Message(All Players(Team 2), Custom String("BOSS IS BERSERKING"));
-		Global.MAX_TIME = 61;
-		Global.BERSERK[1] = -2;
-		Set Objective Description(All Players(All Teams), Custom String("BERSERK MATCH"), Visible To and String);
-		Skip If(Global.BERSERK[0] == 1, 5);
-		Small Message(All Players(Team 1), Custom String("DOUBLE BERSERK"));
-		Small Message(All Players(Team 2), Custom String("BOSS IS DOUBLE BERSERKING"));
-		Global.MAX_TIME = 31;
-		Global.BERSERK[1] = 0;
-		Set Objective Description(All Players(All Teams), Custom String("DOUBLE BERSERK MATCH"), Visible To and String);
-		Wait(0.016, Ignore Condition);
-		Global.BERSERK[2] = 0;
-	}
-}
-
 rule("CORE: (BOSS) NO BERSERK RIGHTS")
 {
 	event
@@ -17388,8 +17130,7 @@ rule("CORE: (BOSS) NO BERSERK RIGHTS")
 
 	conditions
 	{
-		(Player Stat(Event Player, All Damage Dealt) > 0 || (Global.BERSERK[0] == 0 && Match Time < 106) || (
-			Global.BERSERK[0] == 1 && Match Time < 50) || (Global.BERSERK[0] == 2 && Match Time < 21)) == True;
+		(Player Stat(Event Player, All Damage Dealt) > 0 || Match Time < Array(106, 50, 21)[Global.BERSERK[0]]) == True;
 	}
 
 	actions
@@ -20306,5 +20047,22 @@ rule("Damage Numbers 1")
 		Event Player.LastDamageNumberInstance = 2;
 		Wait(Event Player.LastDamageNumberTime[1], Restart When True);
 		Destroy In-World Text(Event Player.LastDamage[1]);
+	}
+}
+
+rule("SUB: (BOSS) Init No Ability HUD")
+{
+	event
+	{
+		Subroutine;
+		BOSSNoAbility_Hud;
+	}
+
+	actions
+	{
+		Destroy HUD Text(Global.BOSS_AbilityKey);
+		Create HUD Text(Event Player, Null, Null, Custom String("None"), Left, 1, Color(White), Color(White), Color(Red),
+			None, Default Visibility);
+		Global.BOSS_AbilityKey = Last Text ID;
 	}
 }
