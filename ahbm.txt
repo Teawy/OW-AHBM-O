@@ -19934,15 +19934,16 @@ rule("SUB: (BOSS) Init No Ability HUD")
 	event
 	{
 		Subroutine;
-  }
+		BOSSNoAbility_Hud;
+	}
   
-  actions
-  {
+	actions
+	{
 		Destroy HUD Text(Global.BOSS_AbilityKey);
 		Create HUD Text(Event Player, Null, Null, Custom String("None"), Left, 1, Color(White), Color(White), Color(Red),
 			None, Default Visibility);
 		Global.BOSS_AbilityKey = Last Text ID;
-  }
+	}
 }
 
 rule("CORE: (BOSS) FROZEN NOTIFICATION")
