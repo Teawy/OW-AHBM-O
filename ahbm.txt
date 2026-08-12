@@ -4986,7 +4986,7 @@ rule("CORE: (BOSS) MOIRA - ULTIMATE DOWN")
 	}
 }
 
-rule("CORE: (BOSS) MOIRA - SPAWN")
+rule("CORE: (BOSS) MOIRA - SPAWN & INITIALIZE EFFECTS")
 {
 	event
 	{
@@ -4999,21 +4999,28 @@ rule("CORE: (BOSS) MOIRA - SPAWN")
 	{
 		Stop Chasing Global Variable(BOSS_AbilityCD);
 		Global.BOSS_AbilityCD = 100;
-		Wait(0.016, Ignore Condition);
 		Destroy HUD Text(Global.BOSS_AbilityKey);
-		Create HUD Text(All Players(Team 1), Custom String("{0}%", Global.BOSS_AbilityCD), Custom String("Primary Fire"), Custom String(
-			"Healing"), Left, 1, Color(White), Color(White), Color(Yellow), Visible To and String, Default Visibility);
+		Create HUD Text(All Players(Team 1), Custom String("{0}%", Round To Integer(Global.BOSS_AbilityCD, Down)), Custom String(
+			"Primary Fire"), Custom String("Healing"), Left, 1, Global.W ? Color(White) : Color(Orange), Color(White), Color(Yellow),
+			Visible To String and Color, Default Visibility);
 		Global.BOSS_AbilityKey = Last Text ID;
-		Wait(0.250, Ignore Condition);
+		Wait(0.250, Abort When False);
 		Global.W = True;
-		Wait(0.016, Ignore Condition);
 		Global.B = False;
 		Stop Chasing Player Variable(Event Player, F);
 		Event Player.F = 1;
+		Destroy Effect(Event Player.PlayerFX_1);
+		Create Effect(Global.B, Energy Sound, Color(White), Eye Position(Event Player), 100, Visible To Position and Radius);
+		Event Player.PlayerFX_1 = Last Created Entity;
+		Destroy Effect(Event Player.PlayerFX_3);
+		Create Effect(Global.B, Orb, Color(Yellow), Event Player + Vector(0, 1, 0) + Facing Direction Of(Event Player), 0.250,
+			Visible To Position and Radius);
+		Event Player.PlayerFX_3 = Last Created Entity;
+		Event Player.F = 2;
 	}
 }
 
-rule("CORE: (BOSS) MOIRA - HEAL USING")
+rule("CORE: (BOSS) MOIRA - HEAL")
 {
 	event
 	{
@@ -5024,10 +5031,9 @@ rule("CORE: (BOSS) MOIRA - HEAL USING")
 
 	conditions
 	{
-		Global.W == True;
 		Is Button Held(Event Player, Button(Primary Fire)) == True;
+		Global.W == True;
 		Global.BOSS_AbilityCD > 0;
-		Is Button Held(Event Player, Button(Secondary Fire)) == False;
 		Is Using Ability 1(Event Player) == False;
 		Is Using Ability 2(Event Player) == False;
 		Is Using Ultimate(Event Player) == False;
@@ -5037,194 +5043,24 @@ rule("CORE: (BOSS) MOIRA - HEAL USING")
 
 	actions
 	{
+		Skip If(Is Button Held(Event Player, Button(Secondary Fire)), 3);
+		Stop Chasing Global Variable(BOSS_AbilityCD);
+		Global.W = True;
 		Global.B = True;
-		Wait(0.050, Abort When False);
+		Wait(0.050, Ignore Condition);
+		Skip If(Is Button Held(Event Player, Button(Secondary Fire)), 2);
 		Heal(Event Player, Event Player, 13.750);
 		Global.BOSS_AbilityCD -= 1;
 		Loop If Condition Is True;
-	}
-}
-
-rule("CORE: (BOSS) MOIRA - HEAL RECHARGE")
-{
-	event
-	{
-		Ongoing - Each Player;
-		Team 1;
-		Moira;
-	}
-
-	conditions
-	{
-		(!Is Button Held(Event Player, Button(Primary Fire)) || Global.BOSS_AbilityCD == 0 || !Global.W) == True;
-		Global.BOSS_AbilityCD < 100;
-	}
-
-	actions
-	{
-		Wait(0.250, Abort When False);
-		Global.W = False;
-		Global.BOSS_AbilityCD += 1;
-		Loop If Condition Is True;
-	}
-}
-
-rule("CORE: (BOSS) MOIRA - HEAL STOP")
-{
-	event
-	{
-		Ongoing - Each Player;
-		Team 1;
-		Moira;
-	}
-
-	conditions
-	{
-		(!Is Button Held(Event Player, Button(Primary Fire)) || Global.BOSS_AbilityCD == 0 || !Global.W || Has Status(
-			Event Player, Hacked) || Has Status(Event Player, Knocked Down) || Has Status(Event Player, Asleep) || Has Status(Event Player,
-			Frozen) || Has Status(Event Player, Stunned) || False) == True;
-		Global.BOSS_AbilityCD < 100;
-		Global.B == True;
-	}
-
-	actions
-	{
 		Global.B = False;
-		Destroy HUD Text(Global.BOSS_AbilityKey);
-		Create HUD Text(All Players(Team 1), Custom String("{0}%", Global.BOSS_AbilityCD), Custom String("Primary Fire"), Custom String(
-			"Healing"), Left, 1, Color(Orange), Color(White), Color(Yellow), Visible To and String, Default Visibility);
-		Global.BOSS_AbilityKey = Last Text ID;
-		disabled Wait(0.049, Abort When False);
 		Global.W = False;
-	}
-}
-
-rule("CORE: (BOSS) MOIRA - HEAL READY")
-{
-	event
-	{
-		Ongoing - Each Player;
-		Team 1;
-		Moira;
-	}
-
-	conditions
-	{
-		Global.BOSS_AbilityCD == 100;
-	}
-
-	actions
-	{
-		Destroy HUD Text(Global.BOSS_AbilityKey);
-		Create HUD Text(All Players(Team 1), Custom String("{0}%", Global.BOSS_AbilityCD), Custom String("Primary Fire"), Custom String(
-			"Healing"), Left, 1, Color(White), Color(White), Color(Yellow), Visible To and String, Default Visibility);
-		Global.BOSS_AbilityKey = Last Text ID;
+		Chase Global Variable At Rate(BOSS_AbilityCD, 100, 4, Destination and Rate);
+		Wait Until(Global.BOSS_AbilityCD >= 100, 99999);
+		Stop Chasing Global Variable(BOSS_AbilityCD);
 		Play Effect(All Players(Team 1), Buff Explosion Sound, Color(White), Event Player, 50);
 		Wait(0.100, Ignore Condition);
 		Global.W = True;
-	}
-}
-
-rule("CORE: (BOSS) MOIRA - HEAL CANCEL")
-{
-	event
-	{
-		Ongoing - Each Player;
-		Team 1;
-		Moira;
-	}
-
-	actions
-	{
-		Skip If(!Is Using Ability 1(Event Player) && !Is Using Ability 2(Event Player) && !Is Using Ultimate(Event Player)
-			&& !Has Status(Event Player, Hacked) && !Has Status(Event Player, Knocked Down) && !Has Status(
-			Event Player, Asleep) && !Has Status(Event Player, Frozen) && !Has Status(Event Player, Stunned)
-			 && True, 1);
-		Global.W = False;
-		Skip If(!Is Using Ability 1(Event Player) && !Is Using Ability 2(Event Player) && !Is Using Ultimate(Event Player)
-			 && !Has Status(Event Player, Hacked) && !Has Status(Event Player, Knocked Down) && !Has Status(
-			Event Player, Asleep) && !Has Status(Event Player, Frozen) && !Has Status(Event Player, Stunned)
-			 && Global.BOSS_AbilityCD == 100, 1);
-		Skip(1);
-		Global.W = True;
-		Wait(0.001, Ignore Condition);
 		Loop If Condition Is True;
-	}
-}
-
-rule("CORE: (BOSS) MOIRA - HEAL EFFECT")
-{
-	event
-	{
-		Ongoing - Each Player;
-		Team 1;
-		Moira;
-	}
-
-	conditions
-	{
-		Global.B == True;
-	}
-
-	actions
-	{
-		Wait(0.016, Abort When False);
-		Skip If(Event Player.F == 1, 1);
-		Destroy Effect(Event Player.PlayerFX_1);
-		Create Effect(All Players(All Teams), Energy Sound, Color(White), Event Player, 100, Position and Radius);
-		Event Player.PlayerFX_1 = Last Created Entity;
-		Wait(0.016, Abort When False);
-		Skip If(Event Player.F == 1, 1);
-		Destroy Effect(Event Player.PlayerFX_3);
-		Create Effect(All Players(All Teams), Orb, Color(Yellow), Event Player + Vector(0, 1, 0) + Facing Direction Of(Event Player),
-			0.250, Visible To Position and Radius);
-		Event Player.PlayerFX_3 = Last Created Entity;
-		disabled Wait(1.111, Abort When False);
-		disabled Loop If Condition Is True;
-		Event Player.F = 2;
-	}
-}
-
-rule("CORE: (BOSS) MOIRA - HEAL EFFECT ERASE")
-{
-	event
-	{
-		Ongoing - Each Player;
-		Team 1;
-		Moira;
-	}
-
-	conditions
-	{
-		Global.B == False;
-	}
-
-	actions
-	{
-		Wait(0.049, Abort When False);
-		Destroy Effect(Event Player.PlayerFX_1);
-		Destroy Effect(Event Player.PlayerFX_3);
-	}
-}
-
-rule("CORE: (BOSS) MOIRA - HEAL EFCT BUG FIX 1")
-{
-	event
-	{
-		Ongoing - Each Player;
-		Team 1;
-		Moira;
-	}
-
-	conditions
-	{
-		Is Using Ability 1(Event Player) == True;
-	}
-
-	actions
-	{
-		Destroy Effect(Event Player.PlayerFX_1);
-		Destroy Effect(Event Player.PlayerFX_3);
 	}
 }
 
@@ -7838,31 +7674,6 @@ rule("CORE: (BOSS) RAM: NEM")
 	{
 		Wait(5, Ignore Condition);
 		Press Button(Event Player, Button(Ultimate));
-	}
-}
-
-rule("CORE: (BOSS) MOIRA - HEAL EFCT BUG FIX 2")
-{
-	event
-	{
-		Ongoing - Each Player;
-		Team 1;
-		Moira;
-	}
-
-	conditions
-	{
-		Is Button Held(Event Player, Button(Primary Fire)) == False;
-	}
-
-	actions
-	{
-		Wait(0.049, Ignore Condition);
-		Destroy Effect(Event Player.PlayerFX_1);
-		Wait(0.049, Ignore Condition);
-		Destroy Effect(Event Player.PlayerFX_3);
-		Skip If(Global.BOSS_AbilityCD != 100, 1);
-		Global.W = True;
 	}
 }
 
