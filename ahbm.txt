@@ -187,6 +187,7 @@ settings
 				[PH] Assemble Mech Knockback Scalar: 400%
 				[PH] Skewer Knockback Scalar: 150%
 				Damage Dealt: 200%
+				Fusion Repeater Cooldown Time: 150%
 				Healing Received: 10%
 				Health: 200%
 				Passive Health Regeneration: On
@@ -1164,7 +1165,7 @@ settings
 				[PH] Propulsion Knockback Scalar: 0%
 				[PH] Skewer Knockback Scalar: 16%
 				Damage Dealt: 70%
-				Fusion Repeater Cooldown Time: 250%
+				Fusion Repeater Cooldown Time: 375%
 				Healing Received: 40%
 				Health: 124%
 				Passive Health Regeneration: On
