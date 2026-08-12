@@ -182,6 +182,23 @@ settings
 				Ultimate Generation Deadeye: 233%
 			}
 
+			D.Mon
+			{
+				[PH] Assemble Mech Knockback Scalar: 400%
+				[PH] Skewer Knockback Scalar: 150%
+				Damage Dealt: 200%
+				Healing Received: 10%
+				Health: 200%
+				Passive Health Regeneration: On
+				Power Barrier Cooldown Time: 60%
+				Power Barrier Recharge Rate: 200%
+				Propulsors Cooldown Time: 50%
+				Propulsors Maximum Time: 200%
+				Propulsors Recharge Rate: 80%
+				Role Passives: Off
+				Ultimate Generation - Passive Limit Break : 0%
+			}
+
 			D.Va
 			{
 				Boosters Cooldown Time: 75%
@@ -219,7 +236,7 @@ settings
 				Role Passives: Off
 				Sonic Repulsors Cooldown Time: 71%
 				Sonic Repulsors Knockback Scalar: 166%
-				Ultimate Barrier Health Scalar Panopticon: 100%
+				Ultimate Barrier Health Scalar Panopticon: 90%
 				Ultimate Generation - Combat Panopticon: 180%
 				Ultimate Generation - Passive Panopticon: 10%
 				Ultimate Generation Panopticon: 112%
@@ -284,7 +301,7 @@ settings
 				Siphon Blaster Duration Scalar: 500%
 				Siphon Blaster Heat Scalar: 20%
 				Ultimate Duration: 90%
-				Ultimate Generation - Combat Override Protocol: 275%
+				Ultimate Generation - Combat Override Protocol: 260%
 				Ultimate Generation - Passive Override Protocol: 0%
 			}
 
@@ -316,7 +333,7 @@ settings
 				Swift Strike Cooldown Time: 0%
 				Ultimate Duration: 60%
 				Ultimate Generation - Combat Dragonblade: 175%
-				Ultimate Generation Dragonblade: 63%
+				Ultimate Generation Dragonblade: 60%
 			}
 
 			Hanzo
@@ -350,6 +367,7 @@ settings
 				Role Passives: On
 				Spike Guard Resource Cost: 100%
 				Spike Guard Resource Regeneration: 90%
+				Ultimate Generation - Combat Downpour: 110%
 				Violent Leap Cooldown Time: 50%
 			}
 
@@ -383,12 +401,12 @@ settings
 				Healing Received: 10%
 				Health: 400%
 				Lifeline: Off
-				Movement Speed: 125%
+				Movement Speed: 105%
 				Passive Health Regeneration: On
 				Projectile Speed: 125%
 				Role Passives: On
 				Ultimate Generation - Combat Catnapper: 250%
-				Ultimate Generation - Passive Catnapper: 5%
+				Ultimate Generation - Passive Catnapper: 7%
 			}
 
 			Junker Queen
@@ -521,7 +539,7 @@ settings
 				Health: 300%
 				Passive Health Regeneration: On
 				Movement Gravity: 80%
-				Overrun Cooldown Time: 120%
+				Overrun Cooldown Time: 100%
 				Role Passives: On
 				Ultimate Generation Cage Fight: 75%
 			}
@@ -580,7 +598,7 @@ settings
 				Healing Kasa: Off
 				Healing Received: 10%
 				Health: 250%
-				Katashiro Return Cooldown Time: 90%
+				Katashiro Return Cooldown Time: 83.333%
 				Katashiro Return Duration Scalar: 145%
 				Movement Speed: 115%
 				Passive Health Regeneration: On
@@ -630,7 +648,7 @@ settings
 			Pharah
 			{
 				Ammunition Clip Size Scalar: 166%
-				Concussive Blast Cooldown Time: 250%
+				Concussive Blast Cooldown Time: 200%
 				Concussive Blast Knockback Scalar: 50%
 				Damage Received: 30%
 				Healing Received: 40%
@@ -874,7 +892,7 @@ settings
 				Healing Received: 15%
 				Health: 429%
 				Passive Health Regeneration: On
-				Recall Cooldown Time: 230%
+				Recall Cooldown Time: 250%
 				Role Passives: Off
 				Ultimate Generation Pulse Bomb: 242%
 			}
@@ -908,7 +926,7 @@ settings
 				Passive Health Regeneration: On
 				Role Passives: Off
 				Ultimate Duration: 200%
-				Ultimate Generation Tectonic Shock: 125%
+				Ultimate Generation Tectonic Shock: 115%
 			}
 
 			Widowmaker
@@ -948,7 +966,7 @@ settings
 				Secondary Fire: Off
 				Ultimate Duration: 35%
 				Ultimate Generation - Combat Primal Rage: 240%
-				Ultimate Generation Primal Rage: 338%
+				Ultimate Generation Primal Rage: 317.7%
 			}
 
 			Wrecking Ball
@@ -1141,6 +1159,24 @@ settings
 				Ultimate Generation Deadeye: 88%
 			}
 
+			D.Mon
+			{
+				[PH] Propulsion Knockback Scalar: 0%
+				[PH] Skewer Knockback Scalar: 16%
+				Damage Dealt: 70%
+				Fusion Repeater Cooldown Time: 250%
+				Healing Received: 40%
+				Health: 124%
+				Passive Health Regeneration: On
+				Power Barrier Cooldown Time: 200%
+				Power Barrier Recharge Rate: 124%
+				Propulsors Maximum Time: 120%
+				Propulsors Recharge Rate: 60%
+				Role Passives: Off
+				Ultimate Generation - Combat Limit Break : 125%
+				Ultimate Generation - Passive Limit Break : 50%
+			}
+
 			D.Va
 			{
 				Boosters Cooldown Time: 150%
@@ -1170,7 +1206,7 @@ settings
 				Reconstruction Heal Scalar: 150%
 				Role Passives: Off
 				Sonic Repulsors Cooldown Time: 428%
-				Ultimate Barrier Health Scalar Panopticon: 300%
+				Ultimate Barrier Health Scalar Panopticon: 270%
 				Ultimate Generation - Combat Panopticon: 200%
 				Ultimate Generation - Passive Panopticon: 105%
 				Ultimate Generation Panopticon: 112%
@@ -1228,7 +1264,7 @@ settings
 				Siphon Blaster Duration Scalar: 100%
 				Siphon Blaster Heat Scalar: 80%
 				Ultimate Generation - Combat Override Protocol: 275%
-				Ultimate Generation - Passive Override Protocol: 175%
+				Ultimate Generation - Passive Override Protocol: 165%
 			}
 
 			Freja
@@ -1257,7 +1293,7 @@ settings
 				Swift Strike Cooldown Time: 112%
 				Ultimate Duration: 67%
 				Ultimate Generation - Combat Dragonblade: 0%
-				Ultimate Generation - Passive Dragonblade: 425%
+				Ultimate Generation - Passive Dragonblade: 400%
 				Ultimate Generation Dragonblade: 250%
 			}
 
@@ -1289,6 +1325,7 @@ settings
 				Spike Guard Movement Speed Penalty: 20%
 				Spike Guard Resource Cost: 175%
 				Spike Guard Resource Regeneration: 25%
+				Ultimate Generation Downpour: 107%
 				Violent Leap Cooldown Time: 109%
 				Violent Leap Distance: 150%
 			}
@@ -1425,11 +1462,11 @@ settings
 
 			Mauga
 			{
-				Ammunition Clip Size Scalar: 30%
+				Ammunition Clip Size Scalar: 30.1%
 				Cardiac Overdrive Cooldown Time: 138%
 				Damage Dealt: 54%
 				Healing Dealt: 10%
-				Overrun Cooldown Time: 240%
+				Overrun Cooldown Time: 200%
 				Passive Health Regeneration: On
 				Role Passives: On
 				Ultimate Generation - Combat Cage Fight: 80%
@@ -1486,7 +1523,7 @@ settings
 				Healing Dealt: 50%
 				Healing Kasa Cooldown Time: 500%
 				Healing Received: 75%
-				Katashiro Return Cooldown Time: 81%
+				Katashiro Return Cooldown Time: 75%
 				Katashiro Return Duration Scalar: 218%
 				Passive Health Regeneration: Off
 				Role Passives: On
@@ -1743,7 +1780,7 @@ settings
 				Damage Dealt: 90%
 				Health: 86%
 				Passive Health Regeneration: On
-				Recall Cooldown Time: 115%
+				Recall Cooldown Time: 125%
 				Role Passives: On
 				Ultimate Generation - Combat Pulse Bomb: 165%
 				Ultimate Generation - Passive Pulse Bomb: 65%
@@ -1780,7 +1817,7 @@ settings
 				Ultimate Duration: 120%
 				Ultimate Generation - Combat Tectonic Shock: 190%
 				Ultimate Generation - Passive Tectonic Shock: 90%
-				Ultimate Generation Tectonic Shock: 150%
+				Ultimate Generation Tectonic Shock: 138%
 			}
 
 			Widowmaker
@@ -1811,7 +1848,7 @@ settings
 				Ultimate Duration: 50%
 				Ultimate Generation - Combat Primal Rage: 0%
 				Ultimate Generation - Passive Primal Rage: 500%
-				Ultimate Generation Primal Rage: 166%
+				Ultimate Generation Primal Rage: 156%
 			}
 
 			Wrecking Ball
@@ -2863,7 +2900,7 @@ rule("CORE: (MSGS) BOSS ABILITIES ERASE")
 	{
 		Array Contains(Array(Hero(Reaper), Hero(Symmetra), Hero(Mercy), Hero(Soldier: 76), Hero(Tracer), Hero(Sombra), Hero(Moira), Hero(
 			Cassidy), Hero(Lúcio), Hero(Reinhardt), Hero(Kiriko), Hero(Ramattra), Hero(Genji), Hero(Junkrat), Hero(Brigitte), Hero(
-			Wrecking Ball), Hero(Hanzo), Hero(Ashe), Hero(Echo)), Hero Of(First Of(All Players(Team 1)))) == False;
+			Wrecking Ball), Hero(Hanzo), Hero(Ashe), Hero(Echo), Hero(D.Mon)), Hero Of(First Of(All Players(Team 1)))) == False;
 		Has Spawned(Event Player) == True;
 	}
 
@@ -3344,6 +3381,8 @@ rule("CORE: (TEAM) ALL - GENERAL SWITCH")
 				Event Player.base_shields = Max Health Of Type(Event Player, Shields);
 			Else If(Hero Of(Event Player) == Hero(Mei));
 				Set Max Health(Event Player, 99.638);
+			Else If(Hero Of(Event Player) == Hero(D.Mon));
+				Set Max Health(Event Player, 99.256);
 			Else If(Hero Of(Event Player) == Hero(Doomfist));
 				Set Max Health(Event Player, 99.099);
 			Else If(Hero Of(Event Player) == Hero(Reinhardt));
@@ -6636,7 +6675,7 @@ rule("CORE: INITIALIZE ROLES (GLOBAL A)")
 
 	actions
 	{
-		Global.A[1] = Array(Hero(Brigitte), Hero(Domina), Hero(Reinhardt), Hero(Sigma), Hero(Winston), Hero(Ramattra));
+		Global.A[1] = Array(Hero(Brigitte), Hero(Domina), Hero(D.Mon), Hero(Reinhardt), Hero(Sigma), Hero(Winston), Hero(Ramattra));
 		Global.A[2] = Array(Hero(Doomfist), Hero(Junkrat), Hero(Junker Queen), Hero(Cassidy), Hero(Mei), Hero(Emre), Hero(Orisa), Hero(
 			Roadhog), Hero(Symmetra), Hero(Wrecking Ball), Hero(Mauga), Hero(Hazard), Hero(Vendetta), Hero(Venture));
 		Global.A[3] = Array(Hero(Echo), Hero(Widowmaker), Hero(Tracer), Hero(Sojourn), Hero(Ashe), Hero(Bastion), Hero(Reaper), Hero(
@@ -7734,7 +7773,7 @@ rule("CORE: (MSGS) TEAM HUD ERASE")
 
 	conditions
 	{
-		Array Contains(Array(Hero(Doomfist), Hero(Jetpack Cat), Hero(Roadhog), Hero(Mauga), Hero(Illari), Hero(Mercy), Hero(Torbjörn), Hero(Sojourn), Hero(Orisa), Hero(Domina), Hero(Mizuki), Hero(Hazard), Hero(Sierra), Hero(Shion)), Hero Of(Event Player)) == True;
+		Array Contains(Array(Hero(Doomfist), Hero(D.Mon), Hero(Jetpack Cat), Hero(Roadhog), Hero(Mauga), Hero(Illari), Hero(Mercy), Hero(Torbjörn), Hero(Sojourn), Hero(Orisa), Hero(Domina), Hero(Mizuki), Hero(Hazard), Hero(Sierra), Hero(Shion)), Hero Of(Event Player)) == True;
 	}
 
 	actions
@@ -7762,6 +7801,8 @@ rule("CORE: (MSGS) TEAM CHARGE-HUD ERASE")
 	conditions
 	{
 		(Hero Of(Event Player) != Hero(Ashe) && Hero Of(Event Player) != Hero(Anran) && Hero Of(Event Player) != Hero(Vendetta)) == True;
+		"DO NOT REMOVE:"
+		Has Spawned(Event Player) == True;
 	}
 
 	actions
@@ -10947,6 +10988,22 @@ rule("CORE: (TEAM) BRIG - SIZE")
 	}
 }
 
+rule("CORE: (TEAM) D.MON - SIZE")
+{
+	event
+	{
+		Ongoing - Each Player;
+		Team 2;
+		D.Mon;
+	}
+
+	actions
+	{
+		Start Scaling Player(Event Player, 1, False);
+		Start Scaling Barriers(Event Player, 2, False);
+	}
+}
+
 rule("CORE: (ALL) BASTION - SIZE")
 {
 	event
@@ -10975,7 +11032,7 @@ rule("CORE: (TEAM) General - SIZE")
 	conditions
 	{
 		Has Spawned(Event Player) == True;
-		Array Contains(Array(Hero(Winston), Hero(Brigitte), Hero(D.Va), Hero(Torbjörn), Hero(Ramattra), Hero(Orisa), Hero(Sigma), Hero(
+		Array Contains(Array(Hero(Winston), Hero(Brigitte), Hero(D.Va), Hero(D.Mon), Hero(Torbjörn), Hero(Ramattra), Hero(Orisa), Hero(Sigma), Hero(
 			Bastion), Hero(Zarya), Hero(Doomfist), Hero(Hazard)), Hero Of(Event Player)) != True;
 	}
 
@@ -12007,7 +12064,7 @@ rule("CORE: (TEAM) ALL - REMOVE HEALTH POOLS")
 	{
 		Array Contains(Array(Hero(Winston), Hero(D.Va), Hero(Zarya), Hero(Ramattra), Hero(Illari), Hero(Reinhardt), Hero(Sigma), Hero(
 			Torbjörn), Hero(Juno), Hero(Echo), Hero(Hazard), Hero(Sombra), Hero(Pharah), Hero(Orisa), Hero(Wrecking Ball), Hero(Venture),
-			Hero(Domina)), Hero Of(Event Player)) != True;
+			Hero(Domina), Hero(D.Mon)), Hero Of(Event Player)) != True;
 		Has Spawned(Event Player) == True;
 	}
 
@@ -12789,6 +12846,28 @@ rule("CORE: (TEAM) REIN: HEALTH")
 		Remove Health Pool From Player(Event Player.shield_pool);
 		Remove Health Pool From Player(Event Player.armour_pool);
 		Add Health Pool To Player(Event Player, Health, 16.667, True, False);
+		Event Player.health_pool = Last Created Health Pool;
+		Wait(0.016, Ignore Condition);
+		Event Player.base_health = Max Health(Event Player);
+		Event Player.base_shields = Max Health Of Type(Event Player, Shields);
+	}
+}
+
+rule("CORE: (TEAM) D.MON: HEALTH")
+{
+	event
+	{
+		Ongoing - Each Player;
+		Team 2;
+		D.Mon;
+	}
+
+	actions
+	{
+		Remove Health Pool From Player(Event Player.health_pool);
+		Remove Health Pool From Player(Event Player.shield_pool);
+		Remove Health Pool From Player(Event Player.armour_pool);
+		Add Health Pool To Player(Event Player, Health, 11.538, True, False);
 		Event Player.health_pool = Last Created Health Pool;
 		Wait(0.016, Ignore Condition);
 		Event Player.base_health = Max Health(Event Player);
