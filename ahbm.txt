@@ -2,7 +2,7 @@ settings
 {
 	main
 	{
-		Description: "A classic original PvP Boss Mode™\r\n\r\nFight as or against bosses of varying difficulty levels! (fit for players of all ranks)\r\n\r\nMatch Start: The Team has 5s to choose a Mercy (not needed) and skins. Then all heroes unlock and are locked out when their role is selected. The match starts when everyone spawns.\r\n\r\n♡ • Discord: 9UKzEhN • ♡"
+		Description: "A classic original PvP Boss Mode™\r\n\r\nFight as or against bosses of varying difficulty levels! (fit for players of all ranks)\r\n\r\n♡ • Discord: 9UKzEhN • ♡"
 		Mode Name: "• ANY HERO BOSS MODE ™ •"
 	}
 
@@ -4429,6 +4429,7 @@ rule("CORE: (BOSS) REAP - ABILITY HUD")
 			"WRAITH FORM"), Left, 1, Color(White), Color(White), Color(Red), Visible To and String, Default Visibility);
 		Global.BOSS_AbilityKey = Last Text ID;
 		Event Player.Ability_Toggle = True;
+		Set Ability Cooldown(Event Player, Button(Secondary Fire), 1000);
 	}
 }
 
@@ -13820,6 +13821,7 @@ rule("CORE: (TEAM) REAP - SPAWN ABILITY HUD")
 		Destroy Effect(Event Player.PlayerFX_2);
 		Destroy Effect(Event Player.PlayerFX_3);
 		Event Player.secondary_charge = 0;
+		Set Ability Cooldown(Event Player, Button(Secondary Fire), 999);
 	}
 }
 
