@@ -2902,7 +2902,7 @@ rule("CORE: (MSGS) BOSS ABILITIES ERASE")
 	{
 		Array Contains(Array(Hero(Reaper), Hero(Symmetra), Hero(Mercy), Hero(Soldier: 76), Hero(Tracer), Hero(Sombra), Hero(Moira), Hero(
 			Cassidy), Hero(Lúcio), Hero(Reinhardt), Hero(Kiriko), Hero(Ramattra), Hero(Genji), Hero(Junkrat), Hero(Brigitte), Hero(
-			Wrecking Ball), Hero(Hanzo), Hero(Ashe), Hero(Echo)), Hero Of(Event Player)) == False;
+			Wrecking Ball), Hero(Hanzo), Hero(Ashe), Hero(Echo), Hero(D.Mon)), Hero Of(Event Player)) == False;
 		Has Spawned(Event Player) == True;
 	}
 
@@ -7803,6 +7803,8 @@ rule("CORE: (MSGS) TEAM CHARGE-HUD ERASE")
 	conditions
 	{
 		Array Contains(Array(Hero(Ashe), Hero(Anran), Hero(Vendetta)), Hero Of(Event Player)) == False;
+		"Totally didn't remove it"
+		Has Spawned(Event Player);
 	}
 
 	actions
