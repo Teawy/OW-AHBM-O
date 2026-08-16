@@ -19109,7 +19109,7 @@ rule("(BOSS) KIRIKO STEP AIM")
 		Event Player.Ability_Bool == False;
 		Event Player.primary_charge == 0;
 		Is True For Any(Filtered Array(All Players(Team 2), Is Alive(Current Array Element)), (Is In View Angle(Event Player,
-			Current Array Element, 3) && !Is In Line of Sight(Eye Position(Event Player), Current Array Element, Barriers Do Not Block LOS))
+			Current Array Element, 3) && Is In Line of Sight(Eye Position(Event Player), Current Array Element, Barriers Do Not Block LOS))
 			== True) == True;
 		Is In Line of Sight(Eye Position(Player Closest To Reticle(Event Player, Team 2)), Eye Position(Player Closest To Reticle(
 			Event Player, Team 2)) + Facing Direction Of(Event Player) * 4, Barriers Do Not Block LOS) == True;
