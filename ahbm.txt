@@ -7804,7 +7804,7 @@ rule("CORE: (MSGS) TEAM CHARGE-HUD ERASE")
 	{
 		Array Contains(Array(Hero(Ashe), Hero(Anran), Hero(Vendetta)), Hero Of(Event Player)) == False;
 		"Totally didn't remove it"
-		Has Spawned(Event Player);
+		Has Spawned(Event Player) == True;
 	}
 
 	actions
