@@ -18350,46 +18350,32 @@ rule("CORE: (TEAM) ALL - HARD COOLDOWNS")
 	conditions
 	{
 		Is Waiting For Players == False;
-		Array Contains(Array(Hero(Reinhardt), Hero(Mei), Hero(Sigma), Hero(Brigitte), Hero(Orisa), Hero(Genji), Hero(Ana), Hero(Baptiste),
-			Hero(Lúcio), Hero(Kiriko), Hero(Lifeweaver), Hero(Sombra), Hero(Mauga)), Hero Of(Event Player)) == True;
+		Array Contains(Array(Hero(Ana), Hero(Reinhardt), Hero(Sombra), Hero(Orisa), Hero(Mei), Hero(Baptiste), Hero(Sigma), Hero(Kiriko), Hero(Lifeweaver), Hero(Mauga),
+			Hero(Genji), Hero(Lúcio), Hero(Brigitte)), Hero Of(Event Player)) == True;
 		Is Dead(Event Player) == True;
 	}
 
 	actions
 	{
-		Skip If(!Array Contains(Array(Hero(Ana), Hero(Reinhardt), Hero(Sojourn)), Hero Of(Event Player)), 6);
-		Abort If(Ability Cooldown(Event Player, Button(Ability 1)) <= 9);
-		Event Player.CD_saver = Ability Cooldown(Event Player, Button(Ability 1));
+		If(Array Contains(Array(Hero(Ana), Hero(Reinhardt), Hero(Sombra)), Hero Of(Event Player)));
+			Event Player.CD_saver = Array(Button(Ability 1), 9);
+		Else If(Array Contains(Array(Hero(Orisa), Hero(Mei), Hero(Baptiste), Hero(Sigma), Hero(Kiriko), Hero(Lifeweaver), Hero(Mauga),
+			Hero(Genji)), Hero Of(Event Player)));
+			Wait(5.100, Abort When False);
+			Event Player.CD_saver = Array(Button(Ability 2), 3.900);
+		Else If(Array Contains(Array(Hero(Lúcio)), Hero Of(Event Player)));
+			Wait(5, Abort When False);
+			Event Player.CD_saver = Array(Button(Secondary Fire), 4);
+		Else If(Array Contains(Array(Hero(Brigitte)), Hero Of(Event Player)));
+			Wait(5, Abort When False);
+			Event Player.CD_saver = Array(Button(Primary Fire), 4);
+		End;
+		Abort If(Ability Cooldown(Event Player, Event Player.CD_saver[0]) <= Event Player.CD_saver[1]);
+		Event Player.CD_saver = Array((Ability Cooldown(Event Player, Event Player.CD_saver[0]) - Event Player.CD_saver[1]), Event Player.CD_saver[0], Hero Of(Event Player));
 		Wait Until(Is Alive(Event Player), 9);
-		Skip If(!Array Contains(Array(Hero(Ana), Hero(Reinhardt), Hero(Sombra)), Hero Of(Event Player)), 2);
-		Skip If(Ability Cooldown(Event Player, Button(Ability 1)) > Event Player.CD_saver - 9, 1);
-		Set Ability Cooldown(Event Player, Button(Ability 1), Event Player.CD_saver - 7);
-		Skip If(!Array Contains(Array(Hero(Orisa), Hero(Mei), Hero(Baptiste), Hero(Sigma), Hero(Kiriko), Hero(Lifeweaver), Hero(Mauga),
-			Hero(Genji)), Hero Of(Event Player)), 7);
-		Wait(5.100, Abort When False);
-		Abort If(Ability Cooldown(Event Player, Button(Ability 2)) <= 3.900);
-		Event Player.CD_saver = Ability Cooldown(Event Player, Button(Ability 2));
-		Wait Until(Is Alive(Event Player), 9);
-		Skip If(!Array Contains(Array(Hero(Orisa), Hero(Mei), Hero(Baptiste), Hero(Sigma), Hero(Kiriko), Hero(Lifeweaver), Hero(Mauga),
-			Hero(Genji)), Hero Of(Event Player)), 2);
-		Skip If(Ability Cooldown(Event Player, Button(Ability 2)) > Event Player.CD_saver - 3.900, 1);
-		Set Ability Cooldown(Event Player, Button(Ability 2), Event Player.CD_saver - 1.900);
-		Skip If(Hero Of(Event Player) != Hero(Lúcio), 7);
-		Wait(5, Abort When False);
-		Abort If(Ability Cooldown(Event Player, Button(Secondary Fire)) <= 4);
-		Event Player.CD_saver = Ability Cooldown(Event Player, Button(Secondary Fire));
-		Wait Until(Is Alive(Event Player), 9);
-		Skip If(Hero Of(Event Player) != Hero(Lúcio), 2);
-		Skip If(Ability Cooldown(Event Player, Button(Secondary Fire)) > Event Player.CD_saver - 4, 1);
-		Set Ability Cooldown(Event Player, Button(Secondary Fire), Event Player.CD_saver - 2);
-		Skip If(Hero Of(Event Player) != Hero(Brigitte), 7);
-		Wait(5, Abort When False);
-		Abort If(Ability Cooldown(Event Player, Button(Primary Fire)) <= 4);
-		Event Player.CD_saver = Ability Cooldown(Event Player, Button(Primary Fire));
-		Wait Until(Is Alive(Event Player), 9);
-		Skip If(Hero Of(Event Player) != Hero(Brigitte), 2);
-		Skip If(Ability Cooldown(Event Player, Button(Primary Fire)) > Event Player.CD_saver - 4, 1);
-		Set Ability Cooldown(Event Player, Button(Primary Fire), Event Player.CD_saver - 2);
+		Abort If(Hero Of(Event Player) != Event Player.CD_saver[2]);
+		Abort If(Ability Cooldown(Event Player, Event Player.CD_saver[1]) > Event Player.CD_saver[0]);
+		Set Ability Cooldown(Event Player, Event Player.CD_saver[1], Event Player.CD_saver[0] - 2);
 	}
 }
 
@@ -18410,7 +18396,7 @@ rule("CORE: (TEAM) 76 - SELF HEAL")
 	actions
 	{
 		Set Healing Received(Event Player, 21);
-		Wait Until(!Is Using Ability 2(Event Player) || Hero Of(Event Player) != Hero(Soldier: 76), 6);
+		Wait Until(!Is Using Ability 2(Event Player), 6);
 		Set Healing Received(Event Player, 100);
 	}
 }
@@ -18475,7 +18461,7 @@ rule("CORE: (TEAM) MAUGA - START CARDIAC HEAL SELF")
 
 	actions
 	{
-		Start Healing Modification(Event Player, Event Player, 750, Receivers Healers and Healing Percent);
+		Start Healing Modification(Event Player, Event Player, 750, None);
 		Event Player.cardiac_heal = Last Healing Modification ID;
 	}
 }
@@ -18491,7 +18477,7 @@ rule("CORE: (TEAM) MAUGA - STOP CARDIAC HEAL")
 
 	conditions
 	{
-		(!Is Using Ability 2(Event Player) || Is Dead(Event Player) || Hero Of(Event Player) != Hero(Mauga)) == True;
+		(!Is Using Ability 2(Event Player) || Is Dead(Event Player)) == True;
 	}
 
 	actions
@@ -18580,7 +18566,6 @@ rule("CORE: (TEAM) JQ knife stun")
 		Wait Until(Is Dead(Event Player), 12);
 		Stop Chasing Player Variable(Event Player, secondary_charge);
 		Event Player.secondary_charge = 0;
-		Skip If(Hero Of(Event Player) != Hero(Junker Queen), 5);
 		Destroy HUD Text(Event Player.team_abilityHUD[0]);
 		Wait(0.016, Ignore Condition);
 		Create HUD Text(Event Player, Custom String("{0} {1}", Ability Icon String(Hero(Junker Queen), Button(Secondary Fire)),
@@ -19105,7 +19090,7 @@ rule("(BOSS) KIRIKO STEP AIM")
 	{
 		Event Player.Ability_Bool == False;
 		Event Player.primary_charge == 0;
-		Is True For Any(Filtered Array(All Players(Team 2), Is Alive(Current Array Element)), (Is In View Angle(Event Player,
+		Is True For Any(All Living Players(Team 2), (Is In View Angle(Event Player,
 			Current Array Element, 3) && Is In Line of Sight(Eye Position(Event Player), Current Array Element, Barriers Do Not Block LOS))
 			== True) == True;
 		Is In Line of Sight(Eye Position(Player Closest To Reticle(Event Player, Team 2)), Eye Position(Player Closest To Reticle(
@@ -19233,7 +19218,7 @@ rule("CORE: (BOSS) Bastion turret jump")
 	actions
 	{
 		Set Jump Vertical Speed(Event Player, 5);
-		Wait Until((!Is Using Ability 1(Event Player) || Hero Of(Event Player) != Hero(Bastion)) == True, 7);
+		Wait Until(!Is Using Ability 1(Event Player), 7);
 		Set Jump Vertical Speed(Event Player, 100);
 	}
 }
@@ -19272,7 +19257,6 @@ rule("CORE: (BOSS) RAM RESPAWN")
 	{
 		Skip If(!Is Waiting For Players, 6);
 		Wait Until(Is Alive(Event Player), 8);
-		Skip If(Hero Of(Event Player) != Hero(Ramattra), 4);
 		Wait(4, Ignore Condition);
 		Allow Button(Event Player, Button(Ultimate));
 		Press Button(Event Player, Button(Ultimate));
