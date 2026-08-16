@@ -3489,7 +3489,7 @@ rule("CORE: (BOSS) Mercy - FAST HEAL VARS")
 		Global.BOSS_AbilityCD = 0;
 		Destroy HUD Text(Global.BOSS_AbilityKey);
 		Create HUD Text(All Players(Team 1), Input Binding String(Button(Ability 1)), Custom String("HALF LIFE"), Custom String("Healing"),
-			Left, 1, Color(White), Color(White), Color(Yellow), Visible To and String, Default Visibility);
+			Left, 1, Color(White), Color(White), Color(Yellow), String, Default Visibility);
 		Global.BOSS_AbilityKey = Last Text ID;
 		Event Player.Z[0] = False;
 	}
@@ -3514,17 +3514,17 @@ rule("CORE: (BOSS) Mercy - FAST HEAL ABILITY")
 		Event Player.Ability_Toggle = False;
 		Global.BOSS_AbilityCD = 30;
 		Play Effect(All Players(All Teams), Good Pickup Effect, Color(Yellow), Event Player + Facing Direction Of(Event Player), 1.500);
-		Play Effect(All Players(Team 1), Ring Explosion Sound, Color(White), Event Player, 100);
+		Play Effect(Event Player, Ring Explosion Sound, Color(White), Event Player, 100);
 		Destroy HUD Text(Global.BOSS_AbilityKey);
-		Create HUD Text(All Players(Team 1), Input Binding String(Button(Ability 1)), Custom String("Half Life"), Custom String("Healing"),
-			Left, 1, Color(Orange), Color(White), Color(Yellow), Visible To and String, Default Visibility);
+		Create HUD Text(Event Player, Input Binding String(Button(Ability 1)), Custom String("Half Life"), Custom String("Healing"),
+			Left, 1, Color(Orange), Color(White), Color(Yellow), String, Default Visibility);
 		Global.BOSS_AbilityKey = Last Text ID;
 		Event Player.Z[0] = True;
 		Wait(2.400, Ignore Condition);
 		Event Player.Z[0] = False;
 		Destroy HUD Text(Global.BOSS_AbilityKey);
-		Create HUD Text(All Players(Team 1), Round To Integer(Global.BOSS_AbilityCD, Up), Custom String("Half Life"), Custom String(
-			"Healing"), Left, 1, Color(Orange), Color(White), Color(Yellow), Visible To and String, Default Visibility);
+		Create HUD Text(Event Player, Round To Integer(Global.BOSS_AbilityCD, Up), Custom String("Half Life"), Custom String(
+			"Healing"), Left, 1, Color(Orange), Color(White), Color(Yellow), String, Default Visibility);
 		Global.BOSS_AbilityKey = Last Text ID;
 		Chase Global Variable At Rate(BOSS_AbilityCD, 0, 1, None);
 		Wait(30, Ignore Condition);
@@ -3532,10 +3532,10 @@ rule("CORE: (BOSS) Mercy - FAST HEAL ABILITY")
 		Global.BOSS_AbilityCD = 0;
 		Event Player.Ability_Toggle = True;
 		Destroy HUD Text(Global.BOSS_AbilityKey);
-		Create HUD Text(All Players(Team 1), Input Binding String(Button(Ability 1)), Custom String("Half Life"), Custom String("Healing"),
-			Left, 1, Color(White), Color(White), Color(Yellow), Visible To and String, Default Visibility);
+		Create HUD Text(Event Player, Input Binding String(Button(Ability 1)), Custom String("Half Life"), Custom String("Healing"),
+			Left, 1, Color(White), Color(White), Color(Yellow), String, Default Visibility);
 		Global.BOSS_AbilityKey = Last Text ID;
-		Play Effect(All Players(Team 1), Buff Impact Sound, Color(White), Event Player, 50);
+		Play Effect(Event Player, Buff Impact Sound, Color(White), Event Player, 50);
 	}
 }
 
@@ -3639,20 +3639,20 @@ rule("CORE: (BOSS) REIN - FLAME ON")
 		Event Player.F = 5;
 		Skip If(Event Player.primary_charge != 2, 3);
 		Destroy HUD Text(Global.BOSS_AbilityKey);
-		Create HUD Text(All Players(Team 1), Custom String("{0} {0}", Icon String(Fire)), Custom String("CHARGES OF"), Custom String(
-			"FIRE STRIKE"), Left, 1, Color(Red), Color(White), Color(Red), Visible To and String, Default Visibility);
+		Create HUD Text(Event Player, Custom String("{0} {0}", Icon String(Fire)), Custom String("CHARGES OF"), Custom String(
+			"FIRE STRIKE"), Left, 1, Color(Red), Color(White), Color(Red), String, Default Visibility);
 		Global.BOSS_AbilityKey = Last Text ID;
 		Skip If(Event Player.primary_charge != 1, 3);
 		Destroy HUD Text(Global.BOSS_AbilityKey);
-		Create HUD Text(All Players(Team 1), Custom String("{0} {1}", Icon String(Fire), Round To Integer(Event Player.F, Up)),
+		Create HUD Text(Event Player, Custom String("{0} {1}", Icon String(Fire), Round To Integer(Event Player.F, Up)),
 			Custom String("CHARGES OF"), Custom String("FIRE STRIKE"), Left, 1, Color(Red), Color(White), Color(Red),
-			Visible To and String, Default Visibility);
+			String, Default Visibility);
 		Global.BOSS_AbilityKey = Last Text ID;
 		Skip If(Event Player.primary_charge != 0, 3);
 		Destroy HUD Text(Global.BOSS_AbilityKey);
-		Create HUD Text(All Players(Team 1), Custom String("{0} {1}", Icon String(No), Round To Integer(Event Player.F, Up)),
+		Create HUD Text(Event Player, Custom String("{0} {1}", Icon String(No), Round To Integer(Event Player.F, Up)),
 			Custom String("CHARGES OF"), Custom String("FIRE STRIKE"), Left, 1, Color(Red), Color(White), Color(Red),
-			Visible To and String, Default Visibility);
+			String, Default Visibility);
 		Global.BOSS_AbilityKey = Last Text ID;
 	}
 }
@@ -3685,20 +3685,20 @@ rule("CORE: (BOSS) REIN - FLAME OFF")
 		Chase Player Variable At Rate(Event Player, F, 0, 1, Destination and Rate);
 		Skip If(Event Player.primary_charge != 2, 3);
 		Destroy HUD Text(Global.BOSS_AbilityKey);
-		Create HUD Text(All Players(Team 1), Custom String("{0} {0}", Icon String(Fire)), Custom String("CHARGES OF"), Custom String(
-			"FIRE STRIKE"), Left, 1, Color(Red), Color(White), Color(Red), Visible To and String, Default Visibility);
+		Create HUD Text(Event Player, Custom String("{0} {0}", Icon String(Fire)), Custom String("CHARGES OF"), Custom String(
+			"FIRE STRIKE"), Left, 1, Color(Red), Color(White), Color(Red), String, Default Visibility);
 		Global.BOSS_AbilityKey = Last Text ID;
 		Skip If(Event Player.primary_charge != 1, 3);
 		Destroy HUD Text(Global.BOSS_AbilityKey);
-		Create HUD Text(All Players(Team 1), Custom String("{0} {1}", Icon String(Fire), Round To Integer(Event Player.F, Up)),
+		Create HUD Text(Event Player, Custom String("{0} {1}", Icon String(Fire), Round To Integer(Event Player.F, Up)),
 			Custom String("CHARGES OF"), Custom String("FIRE STRIKE"), Left, 1, Color(Red), Color(White), Color(Red),
-			Visible To and String, Default Visibility);
+			String, Default Visibility);
 		Global.BOSS_AbilityKey = Last Text ID;
 		Skip If(Event Player.primary_charge != 0, 3);
 		Destroy HUD Text(Global.BOSS_AbilityKey);
-		Create HUD Text(All Players(Team 1), Custom String("{0} {1}", Icon String(No), Round To Integer(Event Player.F, Up)),
+		Create HUD Text(Event Player, Custom String("{0} {1}", Icon String(No), Round To Integer(Event Player.F, Up)),
 			Custom String("CHARGES OF"), Custom String("FIRE STRIKE"), Left, 1, Color(Red), Color(White), Color(Red),
-			Visible To and String, Default Visibility);
+			String, Default Visibility);
 		Global.BOSS_AbilityKey = Last Text ID;
 	}
 }
@@ -3725,9 +3725,9 @@ rule("CORE: (BOSS) REIN - FLAME FROZEN")
 		Event Player.F = 15;
 		Global.BossFrozen = -1;
 		Destroy HUD Text(Global.BOSS_AbilityKey);
-		Create HUD Text(All Players(Team 1), Custom String("{0} {1}", Ability Icon String(Hero(Mei), Button(Ultimate)), Round To Integer(
+		Create HUD Text(Event Player, Custom String("{0} {1}", Ability Icon String(Hero(Mei), Button(Ultimate)), Round To Integer(
 			Event Player.F, Up)), Custom String("THAWING"), Custom String("FIRE STRIKE"), Left, 1, Color(Sky Blue), Color(White), Color(
-			Sky Blue), Visible To and String, Default Visibility);
+			Sky Blue), String, Default Visibility);
 		Global.BOSS_AbilityKey = Last Text ID;
 		Chase Player Variable At Rate(Event Player, F, 0, 1, Destination and Rate);
 		Set Ability 2 Enabled(Event Player, False);
@@ -3841,8 +3841,8 @@ rule("CORE: (BOSS) REIN - SPAWN")
 	{
 		Set Ability 2 Enabled(Event Player, True);
 		Destroy HUD Text(Global.BOSS_AbilityKey);
-		Create HUD Text(All Players(Team 1), Custom String("{0} {0}", Icon String(Fire)), Custom String("CHARGES OF"), Custom String(
-			"FIRE STRIKE"), Left, 1, Color(Red), Color(White), Color(Red), Visible To and String, Default Visibility);
+		Create HUD Text(Event Player, Custom String("{0} {0}", Icon String(Fire)), Custom String("CHARGES OF"), Custom String(
+			"FIRE STRIKE"), Left, 1, Color(Red), Color(White), Color(Red), String, Default Visibility);
 		Global.BOSS_AbilityKey = Last Text ID;
 		Event Player.primary_charge = 2;
 	}
@@ -4426,8 +4426,8 @@ rule("CORE: (BOSS) REAP - ABILITY HUD")
 	actions
 	{
 		Destroy HUD Text(Global.BOSS_AbilityKey);
-		Create HUD Text(All Players(Team 1), Input Binding String(Button(Ability 1)), Custom String("ZERO GRAVITY"), Custom String(
-			"WRAITH FORM"), Left, 1, Color(White), Color(White), Color(Red), Visible To and String, Default Visibility);
+		Create HUD Text(Event Player, Input Binding String(Button(Ability 1)), Custom String("ZERO GRAVITY"), Custom String(
+			"WRAITH FORM"), Left, 1, Color(White), Color(White), Color(Red), String, Default Visibility);
 		Global.BOSS_AbilityKey = Last Text ID;
 		Event Player.Ability_Toggle = True;
 		Set Ability Cooldown(Event Player, Button(Secondary Fire), 1000);
@@ -4453,8 +4453,8 @@ rule("CORE: (BOSS) REAP - WRAITH JUMP")
 		Event Player.Ability_Toggle = False;
 		Set Gravity(Event Player, 16);
 		Destroy HUD Text(Global.BOSS_AbilityKey);
-		Create HUD Text(All Players(Team 1), Input Binding String(Button(Ability 1)), Custom String("ZERO GRAVITY"), Custom String(
-			"WRAITH FORM"), Left, 1, Color(Orange), Color(White), Color(Red), Visible To and String, Default Visibility);
+		Create HUD Text(Event Player, Input Binding String(Button(Ability 1)), Custom String("ZERO GRAVITY"), Custom String(
+			"WRAITH FORM"), Left, 1, Color(Orange), Color(White), Color(Red), String, Default Visibility);
 		Global.BOSS_AbilityKey = Last Text ID;
 	}
 }
@@ -4478,13 +4478,13 @@ rule("CORE: (BOSS) REAP - NORM JUMP")
 		Abort If(Event Player.Ability_Toggle);
 		Set Gravity(Event Player, 100);
 		Destroy HUD Text(Global.BOSS_AbilityKey);
-		Create HUD Text(All Players(Team 1), Icon String(No), Custom String("ZERO GRAVITY"), Custom String("WRAITH FORM"), Left, 1, Color(
-			Red), Color(White), Color(Red), Visible To and String, Default Visibility);
+		Create HUD Text(Event Player, Icon String(No), Custom String("ZERO GRAVITY"), Custom String("WRAITH FORM"), Left, 1, Color(
+			Red), Color(White), Color(Red), String, Default Visibility);
 		Global.BOSS_AbilityKey = Last Text ID;
 		Wait(16, Ignore Condition);
 		Destroy HUD Text(Global.BOSS_AbilityKey);
-		Create HUD Text(All Players(Team 1), Input Binding String(Button(Ability 1)), Custom String("ZERO GRAVITY"), Custom String(
-			"WRAITH FORM"), Left, 1, Color(White), Color(White), Color(Red), Visible To and String, Default Visibility);
+		Create HUD Text(Event Player, Input Binding String(Button(Ability 1)), Custom String("ZERO GRAVITY"), Custom String(
+			"WRAITH FORM"), Left, 1, Color(White), Color(White), Color(Red), String, Default Visibility);
 		Global.BOSS_AbilityKey = Last Text ID;
 	}
 }
@@ -4626,9 +4626,9 @@ rule("CORE: (BOSS) TRACER - SPAWN")
 		Skip If(Event Player.PlayerFX_1 == Null, 1);
 		Destroy Effect(Event Player.PlayerFX_1);
 		Destroy HUD Text(Global.BOSS_AbilityKey);
-		Create HUD Text(All Players(Team 1), Custom String("{0}%", Round To Integer(Global.BOSS_AbilityCD, Down)), Custom String(
+		Create HUD Text(Event Player, Custom String("{0}%", Round To Integer(Global.BOSS_AbilityCD, Down)), Custom String(
 			"Charging Ultimate Ability"), Custom String("WARP SPEED: x2 DMG + INVISIBLE"), Left, 1, Color(Orange), Color(Orange), Color(
-			White), Visible To and String, Default Visibility);
+			White), String, Default Visibility);
 		Global.BOSS_AbilityKey = Last Text ID;
 		Set Damage Dealt(Event Player, 100);
 		Set Move Speed(Event Player, 100);
@@ -4701,11 +4701,11 @@ rule("CORE: (BOSS) TRACER - ULT READY")
 		Global.W = True;
 		Global.BOSS_AbilityCD = 100;
 		Destroy HUD Text(Global.BOSS_AbilityKey);
-		Create HUD Text(All Players(Team 1), Custom String("WARP SPEED"), Custom String("Press {0} to use ultimate ability",
+		Create HUD Text(Event Player, Custom String("WARP SPEED"), Custom String("Press {0} to use ultimate ability",
 			Input Binding String(Button(Ultimate))), Custom String("x2 DMG + INVISIBLE (4 sec)"), Left, 1, Color(Aqua), Color(White),
-			Color(Aqua), Visible To and String, Default Visibility);
+			Color(Aqua), String, Default Visibility);
 		Global.BOSS_AbilityKey = Last Text ID;
-		Play Effect(All Players(Team 1), Buff Explosion Sound, Color(White), Event Player, 100);
+		Play Effect(Event Player, Buff Explosion Sound, Color(White), Event Player, 100);
 	}
 }
 
@@ -4731,19 +4731,19 @@ rule("CORE: (BOSS) TRACER - ULTIMATE USE")
 		Global.BOSS_AbilityCD = 4;
 		Play Effect(All Players(All Teams), Good Explosion, Color(Sky Blue), Event Player, 2);
 		Destroy HUD Text(Global.BOSS_AbilityKey);
-		Create HUD Text(All Players(Team 1), Round To Integer(Global.BOSS_AbilityCD, Up), Custom String("WARP SPEED"), Custom String(
-			"ENGAGED"), Left, 1, Color(White), Color(Aqua), Color(Aqua), Visible To and String, Default Visibility);
+		Create HUD Text(Event Player, Round To Integer(Global.BOSS_AbilityCD, Up), Custom String("WARP SPEED"), Custom String(
+			"ENGAGED"), Left, 1, Color(White), Color(Aqua), Color(Aqua), String, Default Visibility);
 		Global.BOSS_AbilityKey = Last Text ID;
 		Wait(0.050, Ignore Condition);
 		Skip If(Event Player.PlayerFX_3 == Null, 1);
 		Destroy Effect(Event Player.PlayerFX_3);
-		Create Effect(All Players(Team 1), Ring, Color(Orange), Event Player, 0.500, Visible To Position and Radius);
+		Create Effect(Event Player, Ring, Color(Orange), Event Player, 0.500, Position and Radius);
 		Event Player.PlayerFX_3 = Last Created Entity;
 		Skip If(Is Waiting For Players, 4);
 		Skip If(Event Player.PlayerFX_1 == Null, 1);
 		Destroy Effect(Event Player.PlayerFX_1);
-		Create Effect(All Players(Team 1), Good Aura, Color(Orange), Event Player + Vector(0, Event Player.Z[4], 0) + Facing Direction Of(
-			Event Player), 1.360, Visible To Position and Radius);
+		Create Effect(Event Player, Good Aura, Color(Orange), Event Player + Vector(0, Event Player.Z[4], 0) + Facing Direction Of(
+			Event Player), 1.360, Position and Radius);
 		Event Player.PlayerFX_1 = Last Created Entity;
 		Set Damage Dealt(Event Player, 200);
 		Set Move Speed(Event Player, 250);
@@ -4755,9 +4755,9 @@ rule("CORE: (BOSS) TRACER - ULTIMATE USE")
 		Stop Chasing Global Variable(BOSS_AbilityCD);
 		Global.BOSS_AbilityCD = 0;
 		Destroy HUD Text(Global.BOSS_AbilityKey);
-		Create HUD Text(All Players(Team 1), Custom String("{0}%", Round To Integer(Global.BOSS_AbilityCD, Down)), Custom String(
+		Create HUD Text(Event Player, Custom String("{0}%", Round To Integer(Global.BOSS_AbilityCD, Down)), Custom String(
 			"Charging Ultimate Ability"), Custom String("WARP SPEED: x2 DMG + INVISIBLE"), Left, 1, Color(Orange), Color(Orange), Color(
-			White), Visible To and String, Default Visibility);
+			White), String, Default Visibility);
 		Global.BOSS_AbilityKey = Last Text ID;
 		Play Effect(All Players(All Teams), Explosion Sound, Color(White), Event Player, 100);
 		Play Effect(All Players(All Teams), Bad Explosion, Color(Orange), Event Player, 2);
@@ -5042,9 +5042,9 @@ rule("CORE: (BOSS) MOIRA - SPAWN & INITIALIZE EFFECTS")
 		Stop Chasing Global Variable(BOSS_AbilityCD);
 		Global.BOSS_AbilityCD = 100;
 		Destroy HUD Text(Global.BOSS_AbilityKey);
-		Create HUD Text(All Players(Team 1), Custom String("{0}%", Round To Integer(Global.BOSS_AbilityCD, Down)), Custom String(
+		Create HUD Text(Event Player, Custom String("{0}%", Round To Integer(Global.BOSS_AbilityCD, Down)), Custom String(
 			"Primary Fire"), Custom String("Healing"), Left, 1, Global.W ? Color(White) : Color(Orange), Color(White), Color(Yellow),
-			Visible To String and Color, Default Visibility);
+			String and Color, Default Visibility);
 		Global.BOSS_AbilityKey = Last Text ID;
 		Wait(0.250, Abort When False);
 		Global.W = True;
@@ -5099,7 +5099,7 @@ rule("CORE: (BOSS) MOIRA - HEAL")
 		Chase Global Variable At Rate(BOSS_AbilityCD, 100, 4, Destination and Rate);
 		Wait Until(Global.BOSS_AbilityCD >= 100, 99999);
 		Stop Chasing Global Variable(BOSS_AbilityCD);
-		Play Effect(All Players(Team 1), Buff Explosion Sound, Color(White), Event Player, 50);
+		Play Effect(Event Player, Buff Explosion Sound, Color(White), Event Player, 50);
 		Wait(0.100, Ignore Condition);
 		Global.W = True;
 		Loop If Condition Is True;
@@ -5128,8 +5128,8 @@ rule("CORE: (BOSS) SYM - SHIELD ABILITY")
 		Global.BOSS_AbilityCD = 6;
 		Chase Global Variable At Rate(BOSS_AbilityCD, 0, 1, None);
 		Destroy HUD Text(Global.BOSS_AbilityKey);
-		Create HUD Text(All Players(Team 1), Round To Integer(Global.BOSS_AbilityCD, Up), Custom String("PHOTOGEL"), Custom String(
-			"ABSORPTION SHIELD"), Left, 1, Color(Aqua), Color(White), Color(Aqua), Visible To and String, Default Visibility);
+		Create HUD Text(Event Player, Round To Integer(Global.BOSS_AbilityCD, Up), Custom String("PHOTOGEL"), Custom String(
+			"ABSORPTION SHIELD"), Left, 1, Color(Aqua), Color(White), Color(Aqua), String, Default Visibility);
 		Global.BOSS_AbilityKey = Last Text ID;
 		Skip If(Event Player.PlayerFX_2 == Null, 1);
 		Destroy Effect(Event Player.PlayerFX_2);
@@ -5138,12 +5138,12 @@ rule("CORE: (BOSS) SYM - SHIELD ABILITY")
 		Skip If(Is Waiting For Players, 4);
 		Skip If(Event Player.PlayerFX_1 == Null, 1);
 		Destroy Effect(Event Player.PlayerFX_1);
-		Create Effect(All Players(Team 1), Good Aura, Color(Aqua), Event Player + Vector(0, Event Player.Z[4], 0) + Facing Direction Of(
-			Event Player), 1.360, Visible To Position and Radius);
+		Create Effect(Event Player, Good Aura, Color(Aqua), Event Player + Vector(0, Event Player.Z[4], 0) + Facing Direction Of(
+			Event Player), 1.360, Position and Radius);
 		Event Player.PlayerFX_1 = Last Created Entity;
 		Skip If(Event Player.PlayerFX_3 == Null, 1);
 		Destroy Effect(Event Player.PlayerFX_3);
-		Create Effect(All Players(Team 1), Ring, Color(Aqua), Event Player, 0.500, Visible To Position and Radius);
+		Create Effect(Event Player, Ring, Color(Aqua), Event Player, 0.500, Position and Radius);
 		Event Player.PlayerFX_3 = Last Created Entity;
 		Skip If(Event Player.PlayerFX_0 == Null, 1);
 		Destroy Effect(Event Player.PlayerFX_0);
@@ -5155,8 +5155,8 @@ rule("CORE: (BOSS) SYM - SHIELD ABILITY")
 		Stop Chasing Global Variable(BOSS_AbilityCD);
 		Global.BOSS_AbilityCD = 21;
 		Destroy HUD Text(Global.BOSS_AbilityKey);
-		Create HUD Text(All Players(Team 1), Round To Integer(Global.BOSS_AbilityCD, Up), Custom String("PHOTOGEL"), Custom String(
-			"ABSORPTION SHIELD"), Left, 1, Color(Orange), Color(White), Color(Aqua), Visible To and String, Default Visibility);
+		Create HUD Text(Event Player, Round To Integer(Global.BOSS_AbilityCD, Up), Custom String("PHOTOGEL"), Custom String(
+			"ABSORPTION SHIELD"), Left, 1, Color(Orange), Color(White), Color(Aqua), String, Default Visibility);
 		Global.BOSS_AbilityKey = Last Text ID;
 		Chase Global Variable At Rate(BOSS_AbilityCD, 0, 1, None);
 		Play Effect(All Players(All Teams), Ring Explosion, Color(Team 1), Event Player, 3);
@@ -5172,10 +5172,10 @@ rule("CORE: (BOSS) SYM - SHIELD ABILITY")
 		Global.BOSS_AbilityCD = 0;
 		Event Player.Ability_Toggle = True;
 		Destroy HUD Text(Global.BOSS_AbilityKey);
-		Create HUD Text(All Players(Team 1), Input Binding String(Button(Ability 1)), Custom String("PHOTOGEL"), Custom String(
-			"ABSORPTION SHIELD"), Left, 1, Color(White), Color(White), Color(Aqua), Visible To and String, Default Visibility);
+		Create HUD Text(Event Player, Input Binding String(Button(Ability 1)), Custom String("PHOTOGEL"), Custom String(
+			"ABSORPTION SHIELD"), Left, 1, Color(White), Color(White), Color(Aqua), String, Default Visibility);
 		Global.BOSS_AbilityKey = Last Text ID;
-		Play Effect(All Players(Team 1), Buff Impact Sound, Color(White), Event Player, 30);
+		Play Effect(Event Player, Buff Impact Sound, Color(White), Event Player, 30);
 	}
 }
 
@@ -5197,8 +5197,8 @@ rule("CORE: (BOSS) SYM - SHIELD VARS")
 		Skip If(Event Player.PlayerFX_1 == Null, 1);
 		Destroy Effect(Event Player.PlayerFX_1);
 		Destroy HUD Text(Global.BOSS_AbilityKey);
-		Create HUD Text(All Players(Team 1), Input Binding String(Button(Ability 1)), Custom String("PHOTOGEL"), Custom String(
-			"ABSORPTION SHIELD"), Left, 1, Color(White), Color(White), Color(Aqua), Visible To and String, Default Visibility);
+		Create HUD Text(Event Player, Input Binding String(Button(Ability 1)), Custom String("PHOTOGEL"), Custom String(
+			"ABSORPTION SHIELD"), Left, 1, Color(White), Color(White), Color(Aqua), String, Default Visibility);
 		Global.BOSS_AbilityKey = Last Text ID;
 	}
 }
@@ -5245,8 +5245,8 @@ rule("CORE: (BOSS) 76 - POW JUMP VARS")
 		Event Player.Ability_Toggle = True;
 		Global.BOSS_AbilityCD = 0;
 		Destroy HUD Text(Global.BOSS_AbilityKey);
-		Create HUD Text(All Players(Team 1), Custom String("{0}+{1}", Input Binding String(Button(Ability 1)), Input Binding String(Button(
-			Jump))), Null, Custom String("Power Jump"), Left, 1, Color(White), Color(White), Color(Blue), Visible To and String,
+		Create HUD Text(Event Player, Custom String("{0}+{1}", Input Binding String(Button(Ability 1)), Input Binding String(Button(
+			Jump))), Null, Custom String("Power Jump"), Left, 1, Color(White), Color(White), Color(Blue), String,
 			Default Visibility);
 		Global.BOSS_AbilityKey = Last Text ID;
 	}
@@ -5274,8 +5274,8 @@ rule("CORE: (BOSS) 76 - POW JUMP ABILITY")
 		Global.BOSS_AbilityCD = 10;
 		Chase Global Variable At Rate(BOSS_AbilityCD, 0, 1, None);
 		Destroy HUD Text(Global.BOSS_AbilityKey);
-		Create HUD Text(All Players(Team 1), Round To Integer(Global.BOSS_AbilityCD, Up), Null, Custom String("Power Jump"), Left, 1,
-			Color(Orange), Color(White), Color(Blue), Visible To and String, Default Visibility);
+		Create HUD Text(Event Player, Round To Integer(Global.BOSS_AbilityCD, Up), Null, Custom String("Power Jump"), Left, 1,
+			Color(Orange), Color(White), Color(Blue), String, Default Visibility);
 		Global.BOSS_AbilityKey = Last Text ID;
 		Apply Impulse(Event Player, Up, 15, To World, Cancel Contrary Motion);
 		Play Effect(All Players(All Teams), Ring Explosion, Color(Blue), Event Player, 2.500);
@@ -5285,11 +5285,11 @@ rule("CORE: (BOSS) 76 - POW JUMP ABILITY")
 		Global.BOSS_AbilityCD = 0;
 		Event Player.Ability_Toggle = True;
 		Destroy HUD Text(Global.BOSS_AbilityKey);
-		Create HUD Text(All Players(Team 1), Custom String("{0}+{1}", Input Binding String(Button(Ability 1)), Input Binding String(Button(
-			Jump))), Null, Custom String("Power Jump"), Left, 1, Color(White), Color(White), Color(Blue), Visible To and String,
+		Create HUD Text(Event Player, Custom String("{0}+{1}", Input Binding String(Button(Ability 1)), Input Binding String(Button(
+			Jump))), Null, Custom String("Power Jump"), Left, 1, Color(White), Color(White), Color(Blue), String,
 			Default Visibility);
 		Global.BOSS_AbilityKey = Last Text ID;
-		Play Effect(All Players(Team 1), Buff Explosion Sound, Color(White), Event Player, 50);
+		Play Effect(Event Player, Buff Explosion Sound, Color(White), Event Player, 50);
 	}
 }
 
@@ -5306,8 +5306,8 @@ rule("CORE: (BOSS) SOMBRA SPAWN")
 	{
 		Global.W = False;
 		Destroy HUD Text(Global.BOSS_AbilityKey);
-		Create HUD Text(All Players(Team 1), Input Binding String(Button(Ability 1)), Custom String("Damage"), Custom String("FOCUS"),
-			Left, 1, Color(White), Color(White), Color(Purple), Visible To and String, Default Visibility);
+		Create HUD Text(Event Player, Input Binding String(Button(Ability 1)), Custom String("Damage"), Custom String("FOCUS"),
+			Left, 1, Color(White), Color(White), Color(Purple), String, Default Visibility);
 		Global.BOSS_AbilityKey = Last Text ID;
 		Set Move Speed(Event Player, 100);
 		Set Damage Dealt(Event Player, 70);
@@ -5315,7 +5315,7 @@ rule("CORE: (BOSS) SOMBRA SPAWN")
 		Skip If(Is Waiting For Players, 2);
 		Create HUD Text(Event Player, Null, Null, String("{0} {1}", Custom String(
 			"   \r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n"), String("{0} {1}", Custom String("damage: "), Icon String(
-			Arrow: Down))), Top, 8, Color(White), Color(White), Color(Black), Visible To and String, Default Visibility);
+			Arrow: Down))), Top, 8, Color(White), Color(White), Color(Black), String, Default Visibility);
 		Skip(1);
 		Create HUD Text(Event Player, Null, Null, String("{0} {1}", Custom String("\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n"), String(
 			"{0} {1}", Custom String("damage: "), Icon String(Arrow: Down))), Top, 8, Color(White), Color(White), Color(Black),
@@ -5341,10 +5341,10 @@ rule("CORE: (BOSS) SOMBRA - FOCUS")
 
 	actions
 	{
-		Play Effect(All Players(Team 1), Buff Impact Sound, Color(White), Event Player, 25);
+		Play Effect(Event Player, Buff Impact Sound, Color(White), Event Player, 25);
 		Destroy HUD Text(Global.BOSS_AbilityKey);
-		Create HUD Text(All Players(Team 1), Input Binding String(Button(Ability 1)), Custom String("Damage"), Custom String("FOCUS"),
-			Left, 1, Color(Orange), Color(Orange), Color(Orange), Visible To and String, Default Visibility);
+		Create HUD Text(Event Player, Input Binding String(Button(Ability 1)), Custom String("Damage"), Custom String("FOCUS"),
+			Left, 1, Color(Orange), Color(Orange), Color(Orange), String, Default Visibility);
 		Global.BOSS_AbilityKey = Last Text ID;
 		Set Move Speed(Event Player, 70);
 		Set Damage Dealt(Event Player, 115);
@@ -5380,10 +5380,10 @@ rule("CORE: (BOSS) SOMBRA - UNFOCUS")
 
 	actions
 	{
-		Play Effect(All Players(Team 1), Buff Impact Sound, Color(White), Event Player, 25);
+		Play Effect(Event Player, Buff Impact Sound, Color(White), Event Player, 25);
 		Destroy HUD Text(Global.BOSS_AbilityKey);
-		Create HUD Text(All Players(Team 1), Input Binding String(Button(Ability 1)), Custom String("Damage"), Custom String("FOCUS"),
-			Left, 1, Color(White), Color(White), Color(Purple), Visible To and String, Default Visibility);
+		Create HUD Text(Event Player, Input Binding String(Button(Ability 1)), Custom String("Damage"), Custom String("FOCUS"),
+			Left, 1, Color(White), Color(White), Color(Purple), String, Default Visibility);
 		Global.BOSS_AbilityKey = Last Text ID;
 		Set Move Speed(Event Player, 100);
 		Set Damage Dealt(Event Player, 70);
@@ -5439,8 +5439,8 @@ rule("CORE: (BOSS) CASS - DODGE VARS")
 		Event Player.Ability_Toggle = True;
 		Global.BOSS_AbilityCD = 0;
 		Destroy HUD Text(Global.BOSS_AbilityKey);
-		Create HUD Text(All Players(Team 1), Custom String("{0}+crouch", Input Binding String(Button(Ability 1))), Custom String(
-			"EXTENDED"), Custom String("COMBAT ROLL"), Left, 1, Color(White), Color(White), Color(Orange), Visible To and String,
+		Create HUD Text(Event Player, Custom String("{0}+crouch", Input Binding String(Button(Ability 1))), Custom String(
+			"EXTENDED"), Custom String("COMBAT ROLL"), Left, 1, Color(White), Color(White), Color(Orange), String,
 			Default Visibility);
 		Global.BOSS_AbilityKey = Last Text ID;
 		Event Player.U = 0;
@@ -5472,8 +5472,8 @@ rule("CORE: (BOSS) CASS - DODGE ABILITY")
 		Global.BOSS_AbilityCD = 12;
 		Chase Global Variable At Rate(BOSS_AbilityCD, 0, 1, None);
 		Destroy HUD Text(Global.BOSS_AbilityKey);
-		Create HUD Text(All Players(Team 1), Round To Integer(Global.BOSS_AbilityCD, Up), Custom String("EXTENDED"), Custom String(
-			"COMBAT ROLL"), Left, 1, Color(Orange), Color(White), Color(Orange), Visible To and String, Default Visibility);
+		Create HUD Text(Event Player, Round To Integer(Global.BOSS_AbilityCD, Up), Custom String("EXTENDED"), Custom String(
+			"COMBAT ROLL"), Left, 1, Color(Orange), Color(White), Color(Orange), String, Default Visibility);
 		Global.BOSS_AbilityKey = Last Text ID;
 		Apply Impulse(Event Player, Vector(X Component Of(Velocity Of(Event Player)), Y Component Of(Velocity Of(Event Player)),
 			Z Component Of(Velocity Of(Event Player))), 40, To World, Incorporate Contrary Motion);
@@ -5484,14 +5484,14 @@ rule("CORE: (BOSS) CASS - DODGE ABILITY")
 		Event Player.Ability_Toggle = True;
 		Destroy HUD Text(Global.BOSS_AbilityKey);
 		Skip If(Event Player.U != 0, 2);
-		Create HUD Text(All Players(Team 1), Custom String("{0}+crouch", Input Binding String(Button(Ability 1))), Custom String("EXTENDED"),
-			Custom String("COMBAT ROLL"), Left, 1, Color(White), Color(White), Color(Orange), Visible To and String, Default Visibility);
+		Create HUD Text(Event Player, Custom String("{0}+crouch", Input Binding String(Button(Ability 1))), Custom String("EXTENDED"),
+			Custom String("COMBAT ROLL"), Left, 1, Color(White), Color(White), Color(Orange), String, Default Visibility);
 		Global.BOSS_AbilityKey = Last Text ID;
 		Skip If(Event Player.U == 0, 2);
-		Create HUD Text(All Players(Team 1), Icon String(No), Custom String("EXTENDED"), Custom String("COMBAT ROLL"), Left, 1, Color(Red),
-			Color(White), Color(Orange), Visible To and String, Default Visibility);
+		Create HUD Text(Event Player, Icon String(No), Custom String("EXTENDED"), Custom String("COMBAT ROLL"), Left, 1, Color(Red),
+			Color(White), Color(Orange), String, Default Visibility);
 		Global.BOSS_AbilityKey = Last Text ID;
-		Play Effect(All Players(Team 1), Buff Impact Sound, Color(White), Event Player, 25);
+		Play Effect(Event Player, Buff Impact Sound, Color(White), Event Player, 25);
 	}
 }
 
@@ -5536,8 +5536,8 @@ rule("CORE: (BOSS) CASS - no DODGE x NOON")
 	actions
 	{
 		Destroy HUD Text(Global.BOSS_AbilityKey);
-		Create HUD Text(All Players(Team 1), Icon String(No), Custom String("EXTENDED"), Custom String("COMBAT ROLL"), Left, 1, Color(Red),
-			Color(White), Color(Orange), Visible To and String, Default Visibility);
+		Create HUD Text(Event Player, Icon String(No), Custom String("EXTENDED"), Custom String("COMBAT ROLL"), Left, 1, Color(Red),
+			Color(White), Color(Orange), String, Default Visibility);
 		Global.BOSS_AbilityKey = Last Text ID;
 	}
 }
@@ -5593,8 +5593,8 @@ rule("CORE: (BOSS) CASS - DODGE reset 2")
 	{
 		Abort If(Global.BOSS_AbilityCD != 0);
 		Destroy HUD Text(Global.BOSS_AbilityKey);
-		Create HUD Text(All Players(Team 1), Custom String("{0}+crouch", Input Binding String(Button(Ability 1))), Custom String(
-			"EXTENDED"), Custom String("COMBAT ROLL"), Left, 1, Color(White), Color(White), Color(Orange), Visible To and String,
+		Create HUD Text(Event Player, Custom String("{0}+crouch", Input Binding String(Button(Ability 1))), Custom String(
+			"EXTENDED"), Custom String("COMBAT ROLL"), Left, 1, Color(White), Color(White), Color(Orange), String,
 			Default Visibility);
 		Global.BOSS_AbilityKey = Last Text ID;
 	}
@@ -5890,11 +5890,11 @@ rule("CORE: (BOSS) HOG - ULTIMATE FROZEN")
 		Event Player.F = 15;
 		Global.BossFrozen = -1;
 		Chase Player Variable At Rate(Event Player, F, 0, 1, Destination and Rate);
-		Small Message(All Players(Team 1), Custom String("Whole Hog Frozen: 15 seconds"));
+		Small Message(Event Player, Custom String("Whole Hog Frozen: 15 seconds"));
 		Destroy HUD Text(Global.BOSS_AbilityKey);
-		Create HUD Text(All Players(Team 1), Custom String("{0} {1}", Ability Icon String(Hero(Mei), Button(Ultimate)), Round To Integer(
+		Create HUD Text(Event Player, Custom String("{0} {1}", Ability Icon String(Hero(Mei), Button(Ultimate)), Round To Integer(
 			Event Player.F, Up)), Custom String("THAWING"), Custom String("WHOLE HOG"), Left, 1, Color(Sky Blue), Color(White), Color(
-			Sky Blue), Visible To and String, Default Visibility);
+			Sky Blue), String, Default Visibility);
 		Global.BOSS_AbilityKey = Last Text ID;
 		Destroy Effect(Event Player.PlayerFX_3);
 		Skip If(Is Waiting For Players, 2);
@@ -6143,8 +6143,8 @@ rule("CORE: (BOSS) LUCIO - SPAWN")
 	actions
 	{
 		Destroy HUD Text(Global.BOSS_AbilityKey);
-		Create HUD Text(All Players(Team 1), Icon String(No), Custom String("SOUND BARRIER"), Custom String("BASS DROP"), Left, 1, Color(
-			Red), Color(White), Color(Lime Green), Visible To and String, Default Visibility);
+		Create HUD Text(Event Player, Icon String(No), Custom String("SOUND BARRIER"), Custom String("BASS DROP"), Left, 1, Color(
+			Red), Color(White), Color(Lime Green), String, Default Visibility);
 		Global.BOSS_AbilityKey = Last Text ID;
 	}
 }
@@ -6166,11 +6166,11 @@ rule("CORE: (BOSS) LUCIO - ULT READY w ALT")
 
 	actions
 	{
-		Play Effect(All Players(Team 1), Buff Impact Sound, Color(White), Event Player, 30);
+		Play Effect(Event Player, Buff Impact Sound, Color(White), Event Player, 30);
 		Destroy HUD Text(Global.BOSS_AbilityKey);
-		Create HUD Text(All Players(Team 1), Icon String(Checkmark), Custom String("PULSE DAMAGE: x{0}", Count Of(Players Within Radius(
+		Create HUD Text(Event Player, Icon String(Checkmark), Custom String("PULSE DAMAGE: x{0}", Count Of(Players Within Radius(
 			Event Player, 15, Team 2, Surfaces And Enemy Barriers))), Custom String("BASS DROP"), Left, 1, Color(Lime Green), Color(White),
-			Color(Lime Green), Visible To and String, Default Visibility);
+			Color(Lime Green), String, Default Visibility);
 		Global.BOSS_AbilityKey = Last Text ID;
 	}
 }
@@ -6192,11 +6192,11 @@ rule("CORE: (BOSS) LUCIO - ULT READY w/o ALT")
 
 	actions
 	{
-		Play Effect(All Players(Team 1), Debuff Impact Sound, Color(White), Event Player, 40);
+		Play Effect(Event Player, Debuff Impact Sound, Color(White), Event Player, 40);
 		Destroy HUD Text(Global.BOSS_AbilityKey);
-		Create HUD Text(All Players(Team 1), Icon String(Warning), Custom String("PULSE DAMAGE: x{0}", Count Of(Players Within Radius(
+		Create HUD Text(Event Player, Icon String(Warning), Custom String("PULSE DAMAGE: x{0}", Count Of(Players Within Radius(
 			Event Player, 15, Team 2, Surfaces And Enemy Barriers))), Custom String("BASS DROP"), Left, 1, Color(Orange), Color(White),
-			Color(Orange), Visible To and String, Default Visibility);
+			Color(Orange), String, Default Visibility);
 		Global.BOSS_AbilityKey = Last Text ID;
 	}
 }
@@ -6218,8 +6218,8 @@ rule("CORE: (BOSS) LUCIO - ULT CHARGING")
 	actions
 	{
 		Destroy HUD Text(Global.BOSS_AbilityKey);
-		Create HUD Text(All Players(Team 1), Icon String(No), Custom String("SOUND BARRIER"), Custom String("BASS DROP"), Left, 1, Color(
-			Red), Color(White), Color(Lime Green), Visible To and String, Default Visibility);
+		Create HUD Text(Event Player, Icon String(No), Custom String("SOUND BARRIER"), Custom String("BASS DROP"), Left, 1, Color(
+			Red), Color(White), Color(Lime Green), String, Default Visibility);
 		Global.BOSS_AbilityKey = Last Text ID;
 	}
 }
@@ -6275,8 +6275,8 @@ rule("CORE: (BOSS) JUNK - ON FIRE")
 		Set Status(Event Player, Null, Burning, 9999);
 		Set Damage Dealt(Event Player, 133.200);
 		Destroy HUD Text(Global.BOSS_AbilityKey);
-		Create HUD Text(All Players(Team 1), Icon String(Fire), Custom String("you're on fire!"), Custom String("fire damage"), Left, 1,
-			Color(Orange), Color(White), Color(Orange), Visible To and String, Default Visibility);
+		Create HUD Text(Event Player, Icon String(Fire), Custom String("you're on fire!"), Custom String("fire damage"), Left, 1,
+			Color(Orange), Color(White), Color(Orange), String, Default Visibility);
 		Global.BOSS_AbilityKey = Last Text ID;
 	}
 }
@@ -6301,8 +6301,8 @@ rule("CORE: (BOSS) JUNK - OFF FIRE")
 		Clear Status(Event Player, Burning);
 		Set Damage Dealt(Event Player, 100);
 		Destroy HUD Text(Global.BOSS_AbilityKey);
-		Create HUD Text(All Players(Team 1), Icon String(Warning), Custom String("get kills to deal more damage"), Custom String(
-			"fire damage"), Left, 1, Color(Red), Color(White), Color(Orange), Visible To and String, Default Visibility);
+		Create HUD Text(Event Player, Icon String(Warning), Custom String("get kills to deal more damage"), Custom String(
+			"fire damage"), Left, 1, Color(Red), Color(White), Color(Orange), String, Default Visibility);
 		Global.BOSS_AbilityKey = Last Text ID;
 	}
 }
@@ -10392,16 +10392,16 @@ rule("CORE: (BOSS) GENJI - USE 2nd fire")
 	{
 		Destroy HUD Text(Event Player.charge_hud);
 		Destroy HUD Text(Global.BOSS_AbilityKey);
-		Create HUD Text(All Players(Team 1), Ability Icon String(Hero(Genji), Button(Secondary Fire)), Custom String("secondary fire"),
-			Custom String("active"), Left, 1, Color(White), Color(Green), Color(White), Visible To and String, Default Visibility);
+		Create HUD Text(Event Player, Ability Icon String(Hero(Genji), Button(Secondary Fire)), Custom String("secondary fire"),
+			Custom String("active"), Left, 1, Color(White), Color(Green), Color(White), String, Default Visibility);
 		Global.BOSS_AbilityKey = Last Text ID;
 		Wait(2, Ignore Condition);
 		Set Secondary Fire Enabled(Event Player, False);
 		Event Player.primary_charge = 5;
 		Chase Player Variable At Rate(Event Player, primary_charge, 0, 1, Destination and Rate);
 		Destroy HUD Text(Global.BOSS_AbilityKey);
-		Create HUD Text(All Players(Team 1), Custom String("- {0} -", Round To Integer(Event Player.primary_charge, Up)), Custom String(
-			"secondary fire"), Custom String("cooldown"), Left, 1, Color(Orange), Color(Green), Color(Orange), Visible To and String,
+		Create HUD Text(Event Player, Custom String("- {0} -", Round To Integer(Event Player.primary_charge, Up)), Custom String(
+			"secondary fire"), Custom String("cooldown"), Left, 1, Color(Orange), Color(Green), Color(Orange), String,
 			Default Visibility);
 		Global.BOSS_AbilityKey = Last Text ID;
 	}
@@ -10428,8 +10428,8 @@ rule("CORE: (BOSS) GENJI - RESET 2nd fire CD")
 		Stop Chasing Player Variable(Event Player, primary_charge);
 		Event Player.primary_charge = 0;
 		Destroy HUD Text(Global.BOSS_AbilityKey);
-		Create HUD Text(All Players(Team 1), Ability Icon String(Hero(Genji), Button(Secondary Fire)), Custom String("secondary fire"),
-			Custom String("cooldown"), Left, 1, Color(Green), Color(Green), Color(White), Visible To and String, Default Visibility);
+		Create HUD Text(Event Player, Ability Icon String(Hero(Genji), Button(Secondary Fire)), Custom String("secondary fire"),
+			Custom String("cooldown"), Left, 1, Color(Green), Color(Green), Color(White), String, Default Visibility);
 		Global.BOSS_AbilityKey = Last Text ID;
 	}
 }
@@ -10625,11 +10625,11 @@ rule("CORE: (BOSS) JUNK - FIRE DMG FROZEN")
 		Event Player.F = 15;
 		Global.BossFrozen = -1;
 		Chase Player Variable At Rate(Event Player, F, 0, 1, Destination and Rate);
-		Small Message(All Players(Team 1), Custom String("FIRE DAMAGE Frozen: 15 seconds"));
+		Small Message(Event Player, Custom String("FIRE DAMAGE Frozen: 15 seconds"));
 		Destroy HUD Text(Global.BOSS_AbilityKey);
-		Create HUD Text(All Players(Team 1), Custom String("{0} {1}", Ability Icon String(Hero(Mei), Button(Ultimate)), Round To Integer(
+		Create HUD Text(Event Player, Custom String("{0} {1}", Ability Icon String(Hero(Mei), Button(Ultimate)), Round To Integer(
 			Event Player.F, Up)), Custom String("THAWING"), Custom String("FIRE DAMAGE"), Left, 1, Color(Sky Blue), Color(White), Color(
-			Sky Blue), Visible To and String, Default Visibility);
+			Sky Blue), String, Default Visibility);
 		Global.BOSS_AbilityKey = Last Text ID;
 		Destroy Effect(Event Player.PlayerFX_3);
 		Skip If(Is Waiting For Players, 2);
@@ -10640,14 +10640,14 @@ rule("CORE: (BOSS) JUNK - FIRE DMG FROZEN")
 		Destroy Effect(Event Player.PlayerFX_3);
 		Destroy HUD Text(Global.BOSS_AbilityKey);
 		Skip If(Is Portrait On Fire(Event Player), 2);
-		Create HUD Text(All Players(Team 1), Icon String(Warning), Custom String("get kills to deal more damage"), Custom String(
-			"fire damage"), Left, 1, Color(Red), Color(White), Color(Orange), Visible To and String, Default Visibility);
+		Create HUD Text(Event Player, Icon String(Warning), Custom String("get kills to deal more damage"), Custom String(
+			"fire damage"), Left, 1, Color(Red), Color(White), Color(Orange), String, Default Visibility);
 		Skip(4);
 		Set Damage Dealt(Event Player, 133.200);
 		Play Effect(All Players(All Teams), Bad Pickup Effect, Color(Red), Event Player, 1);
 		Set Status(Event Player, Null, Burning, 9999);
-		Create HUD Text(All Players(Team 1), Icon String(Fire), Custom String("you're on fire!"), Custom String("fire damage"), Left, 1,
-			Color(Orange), Color(White), Color(Orange), Visible To and String, Default Visibility);
+		Create HUD Text(Event Player, Icon String(Fire), Custom String("you're on fire!"), Custom String("fire damage"), Left, 1,
+			Color(Orange), Color(White), Color(Orange), String, Default Visibility);
 		Global.BOSS_AbilityKey = Last Text ID;
 		Event Player.X[0] = 0;
 		Global.BossFrozen = 0;
@@ -10682,11 +10682,11 @@ rule("CORE: (BOSS) ASHE - DYNAMITE FROZEN")
 		Event Player.F = 15;
 		Global.BossFrozen = -1;
 		Chase Player Variable At Rate(Event Player, F, 0, 1, Destination and Rate);
-		Small Message(All Players(Team 1), Custom String("Dynamite Frozen: 15 seconds"));
+		Small Message(Event Player, Custom String("Dynamite Frozen: 15 seconds"));
 		Destroy HUD Text(Global.BOSS_AbilityKey);
-		Create HUD Text(All Players(Team 1), Custom String("{0} {1}", Ability Icon String(Hero(Mei), Button(Ultimate)), Round To Integer(
+		Create HUD Text(Event Player, Custom String("{0} {1}", Ability Icon String(Hero(Mei), Button(Ultimate)), Round To Integer(
 			Event Player.F, Up)), Custom String("THAWING"), Custom String("DYNAMITE"), Left, 1, Color(Sky Blue), Color(White), Color(
-			Sky Blue), Visible To and String, Default Visibility);
+			Sky Blue), String, Default Visibility);
 		Global.BOSS_AbilityKey = Last Text ID;
 		Destroy Effect(Event Player.PlayerFX_3);
 		Skip If(Is Waiting For Players, 2);
@@ -11203,14 +11203,14 @@ rule("CORE: (BOSS) ASHE - DYNAMITE THAW")
 		Allow Button(Event Player, Button(Ability 2));
 		Destroy HUD Text(Global.BOSS_AbilityKey);
 		Skip If(Event Player.Ability_Bool, 2);
-		Create HUD Text(All Players(Team 1), Ability Icon String(Hero(Ashe), Button(Primary Fire)), Custom String(
+		Create HUD Text(Event Player, Ability Icon String(Hero(Ashe), Button(Primary Fire)), Custom String(
 			"Primary Ammo Active | Hold {0} to use/reload the scope", Input Binding String(Button(Secondary Fire))), Custom String(
-			"PRIMARY LOADED:  {0}", Ammo(Event Player, 0)), Left, 1, Color(Rose), Color(White), Color(White), Visible To and String,
+			"PRIMARY LOADED:  {0}", Ammo(Event Player, 0)), Left, 1, Color(Rose), Color(White), Color(White), String,
 			Default Visibility);
 		Skip(1);
-		Create HUD Text(All Players(Team 1), Ability Icon String(Hero(Ashe), Button(Primary Fire)), Custom String("Scope Ammo Active"),
+		Create HUD Text(Event Player, Ability Icon String(Hero(Ashe), Button(Primary Fire)), Custom String("Scope Ammo Active"),
 			Custom String("SCOPE LOADED:  {0}", Ammo(Event Player, 0)), Left, 1, Color(Rose), Color(Rose), Color(White),
-			Visible To and String, Default Visibility);
+			String, Default Visibility);
 		Global.BOSS_AbilityKey = Last Text ID;
 		Event Player.X[0] = 0;
 		Global.BossFrozen = 0;
@@ -11239,11 +11239,11 @@ rule("CORE: (BOSS) TORB - ULTIMATE FROZEN")
 		Event Player.F = 15;
 		Global.BossFrozen = -1;
 		Chase Player Variable At Rate(Event Player, F, 0, 1, Destination and Rate);
-		Small Message(All Players(Team 1), Custom String("Molten Core Frozen: 15 seconds"));
+		Small Message(Event Player, Custom String("Molten Core Frozen: 15 seconds"));
 		Destroy HUD Text(Global.BOSS_AbilityKey);
-		Create HUD Text(All Players(Team 1), Custom String("{0} {1}", Ability Icon String(Hero(Mei), Button(Ultimate)), Round To Integer(
+		Create HUD Text(Event Player, Custom String("{0} {1}", Ability Icon String(Hero(Mei), Button(Ultimate)), Round To Integer(
 			Event Player.F, Up)), Custom String("THAWING"), Custom String("Molten Core"), Left, 1, Color(Sky Blue), Color(White), Color(
-			Sky Blue), Visible To and String, Default Visibility);
+			Sky Blue), String, Default Visibility);
 		Global.BOSS_AbilityKey = Last Text ID;
 		Destroy Effect(Event Player.PlayerFX_3);
 		Skip If(Is Waiting For Players, 2);
@@ -11322,11 +11322,11 @@ rule("CORE: (BOSS) HAM - SLAM FROZEN")
 		Skip If(Is Waiting For Players, 2);
 		Create Effect(All Players(All Teams), Cloud, Color(White), Event Player, 2, Visible To Position and Radius);
 		Event Player.PlayerFX_3 = Last Created Entity;
-		Small Message(All Players(Team 1), Custom String("Piledriver Frozen: 15 seconds"));
+		Small Message(Event Player, Custom String("Piledriver Frozen: 15 seconds"));
 		Destroy HUD Text(Global.BOSS_AbilityKey);
-		Create HUD Text(All Players(Team 1), Custom String("{0} {1}", Ability Icon String(Hero(Mei), Button(Ultimate)), Round To Integer(
+		Create HUD Text(Event Player, Custom String("{0} {1}", Ability Icon String(Hero(Mei), Button(Ultimate)), Round To Integer(
 			Ability Cooldown(Event Player, Button(Crouch)), Up)), Custom String("THAWING"), Custom String("Piledriver"), Left, 1, Color(
-			Sky Blue), Color(White), Color(Sky Blue), Visible To and String, Default Visibility);
+			Sky Blue), Color(White), Color(Sky Blue), String, Default Visibility);
 		Global.BOSS_AbilityKey = Last Text ID;
 	}
 }
@@ -11389,11 +11389,11 @@ rule("CORE: (BOSS) OMNIC - JUMP FROZEN")
 		Event Player.F = 15;
 		Global.BossFrozen = -1;
 		Chase Player Variable At Rate(Event Player, F, 0, 1, Destination and Rate);
-		Small Message(All Players(Team 1), Custom String("Super Jump Frozen: 15 seconds"));
+		Small Message(Event Player, Custom String("Super Jump Frozen: 15 seconds"));
 		Destroy HUD Text(Global.BOSS_AbilityKey);
-		Create HUD Text(All Players(Team 1), Custom String("{0} {1}", Ability Icon String(Hero(Mei), Button(Ultimate)), Round To Integer(
+		Create HUD Text(Event Player, Custom String("{0} {1}", Ability Icon String(Hero(Mei), Button(Ultimate)), Round To Integer(
 			Event Player.F, Up)), Custom String("THAWING"), Custom String("Super Jumps"), Left, 1, Color(Sky Blue), Color(White), Color(
-			Sky Blue), Visible To and String, Default Visibility);
+			Sky Blue), String, Default Visibility);
 		Global.BOSS_AbilityKey = Last Text ID;
 		Destroy Effect(Event Player.PlayerFX_3);
 		Skip If(Is Waiting For Players, 2);
@@ -11455,11 +11455,11 @@ rule("CORE: (BOSS) D.VA - MECH FROZEN")
 		Event Player.F = 15;
 		Global.BossFrozen = -1;
 		Chase Player Variable At Rate(Event Player, F, 0, 1, Destination and Rate);
-		Small Message(All Players(Team 1), Custom String("Mech Fuel Frozen: 15 seconds"));
+		Small Message(Event Player, Custom String("Mech Fuel Frozen: 15 seconds"));
 		Destroy HUD Text(Global.BOSS_AbilityKey);
-		Create HUD Text(All Players(Team 1), Custom String("{0} {1}", Ability Icon String(Hero(Mei), Button(Ultimate)), Round To Integer(
+		Create HUD Text(Event Player, Custom String("{0} {1}", Ability Icon String(Hero(Mei), Button(Ultimate)), Round To Integer(
 			Event Player.F, Up)), Custom String("THAWING"), Custom String("Mech Fuel"), Left, 1, Color(Sky Blue), Color(White), Color(
-			Sky Blue), Visible To and String, Default Visibility);
+			Sky Blue), String, Default Visibility);
 		Global.BOSS_AbilityKey = Last Text ID;
 		Destroy Effect(Event Player.PlayerFX_3);
 		Skip If(Is Waiting For Players, 2);
@@ -15173,8 +15173,8 @@ rule("CORE: (BOSS) KIRI - SPAWN")
 	actions
 	{
 		Destroy HUD Text(Global.BOSS_AbilityKey);
-		Create HUD Text(All Players(Team 1), Ability Icon String(Hero(Kiriko), Button(Ability 1)), Custom String(
-			"SWIFT STEP \r\nBEHIND ENEMIES"), Null, Left, 1, Color(Aqua), Color(Aqua), Color(White), Visible To and String,
+		Create HUD Text(Event Player, Ability Icon String(Hero(Kiriko), Button(Ability 1)), Custom String(
+			"SWIFT STEP \r\nBEHIND ENEMIES"), Null, Left, 1, Color(Aqua), Color(Aqua), Color(White), String,
 			Default Visibility);
 		Global.BOSS_AbilityKey = Last Text ID;
 	}
@@ -15197,9 +15197,9 @@ rule("CORE: (BOSS) ASHE - SCOPE HUD")
 	actions
 	{
 		Destroy HUD Text(Global.BOSS_AbilityKey);
-		Create HUD Text(All Players(Team 1), Ability Icon String(Hero(Ashe), Button(Primary Fire)), Custom String("Scope Ammo Active"),
+		Create HUD Text(Event Player, Ability Icon String(Hero(Ashe), Button(Primary Fire)), Custom String("Scope Ammo Active"),
 			Custom String("SCOPE LOADED:  {0}", Ammo(Event Player, 0)), Left, 1, Color(Rose), Color(Rose), Color(White),
-			Visible To and String, Default Visibility);
+			String, Default Visibility);
 		Global.BOSS_AbilityKey = Last Text ID;
 	}
 }
@@ -15221,9 +15221,9 @@ rule("CORE: (BOSS) ASHE - HIP HUD")
 	actions
 	{
 		Destroy HUD Text(Global.BOSS_AbilityKey);
-		Create HUD Text(All Players(Team 1), Ability Icon String(Hero(Ashe), Button(Primary Fire)), Custom String(
+		Create HUD Text(Event Player, Ability Icon String(Hero(Ashe), Button(Primary Fire)), Custom String(
 			"Primary Ammo Active | Hold {0} to use/reload the scope", Input Binding String(Button(Secondary Fire))), Custom String(
-			"PRIMARY LOADED:  {0}", Ammo(Event Player, 0)), Left, 1, Color(Rose), Color(White), Color(White), Visible To and String,
+			"PRIMARY LOADED:  {0}", Ammo(Event Player, 0)), Left, 1, Color(Rose), Color(White), Color(White), String,
 			Default Visibility);
 		Global.BOSS_AbilityKey = Last Text ID;
 	}
@@ -15310,12 +15310,12 @@ rule("CORE: (BOSS) ECHO - P.C. UP")
 			White), Color(Yellow), String, Default Visibility);
 		Global.BOSS_AbilityKey = Last Text ID;
 		Play Effect(All Players(All Teams), Baptiste Biotic Launcher Explosion Sound, Color(White), Event Player, 100);
-		Play Effect(All Players(Team 1), Good Explosion, Color(Aqua), Event Player, 1);
+		Play Effect(Event Player, Good Explosion, Color(Aqua), Event Player, 1);
 		Play Effect(All Players(Team 2), Good Explosion, Color(Red), Event Player, 1);
 		Destroy Effect(Event Player.PlayerFX_1);
 		Wait(0.016, Ignore Condition);
-		Create Effect(All Players(Team 1), Orb, Color(Aqua), Vector(X Component Of(Event Player.L), Event Player.C, Z Component Of(
-			Event Player.L)), 1, Visible To Position and Radius);
+		Create Effect(Event Player, Orb, Color(Aqua), Vector(X Component Of(Event Player.L), Event Player.C, Z Component Of(
+			Event Player.L)), 1,Position and Radius);
 		Event Player.PlayerFX_1 = Last Created Entity;
 		Destroy Effect(Event Player.PlayerFX_2);
 		Wait(0.016, Ignore Condition);
@@ -17159,17 +17159,17 @@ rule("CORE: (BOSS) ALL - BERSERK")
 		Wait(0.016, Ignore Condition);
 		Global.BERSERK[1] = 0;
 		Set Match Time(Match Time / 2 + 0.500);
-		Play Effect(All Players(Team 1), Good Explosion, Color(Red), Eye Position(Event Player) + Facing Direction Of(Event Player) * 1,
+		Play Effect(Event Player, Good Explosion, Color(Red), Eye Position(Event Player) + Facing Direction Of(Event Player) * 1,
 			5);
 		Play Effect(All Players(All Teams), Ring Explosion Sound, Color(White), All Players(All Teams), 250);
 		Skip If(Global.BERSERK[0] == 2, 5);
-		Small Message(All Players(Team 1), Custom String("BERSERK ACTIVE"));
+		Small Message(Event Player, Custom String("BERSERK ACTIVE"));
 		Small Message(All Players(Team 2), Custom String("BOSS IS BERSERKING"));
 		Global.MAX_TIME = 61;
 		Global.BERSERK[1] = -2;
 		Set Objective Description(All Players(All Teams), Custom String("BERSERK MATCH"), Visible To and String);
 		Skip If(Global.BERSERK[0] == 1, 5);
-		Small Message(All Players(Team 1), Custom String("DOUBLE BERSERK"));
+		Small Message(Event Player, Custom String("DOUBLE BERSERK"));
 		Small Message(All Players(Team 2), Custom String("BOSS IS DOUBLE BERSERKING"));
 		Global.MAX_TIME = 31;
 		Global.BERSERK[1] = 0;
@@ -18199,9 +18199,9 @@ rule("CORE: (BOSS) HANZO - SPAWN")
 	actions
 	{
 		Destroy HUD Text(Global.BOSS_AbilityKey);
-		Create HUD Text(All Players(Team 1), Custom String("{0} x 2", Ability Icon String(Hero(Winston), Button(Ability 1))),
+		Create HUD Text(Event Player, Custom String("{0} x 2", Ability Icon String(Hero(Winston), Button(Ability 1))),
 			Custom String("LUNGE TWICE QUICKLY TO JUMP HIGHER"), Custom String("DOUBLE LUNGE"), Left, 1, Color(Sky Blue), Color(White),
-			Color(White), Visible To and String, Default Visibility);
+			Color(White), String, Default Visibility);
 		Global.BOSS_AbilityKey = Last Text ID;
 		Stop Chasing Player Variable(Event Player, primary_charge);
 		Event Player.primary_charge = 0;
@@ -18232,9 +18232,9 @@ rule("CORE: (BOSS) HANZO - DBL JUMP ON")
 		Play Effect(Event Player, Buff Explosion Sound, Color(White), Event Player, 15);
 		Wait(0.050, Ignore Condition);
 		Destroy HUD Text(Global.BOSS_AbilityKey);
-		Create HUD Text(All Players(Team 1), Custom String("{0} x 2", Ability Icon String(Hero(Winston), Button(Ability 1))),
+		Create HUD Text(Event Player, Custom String("{0} x 2", Ability Icon String(Hero(Winston), Button(Ability 1))),
 			Custom String("LUNGE TWICE QUICKLY TO JUMP HIGHER"), Custom String("DOUBLE LUNGE"), Left, 1, Color(Aqua), Color(White), Color(
-			Aqua), Visible To and String, Default Visibility);
+			Aqua), String, Default Visibility);
 		Global.BOSS_AbilityKey = Last Text ID;
 		Event Player.Ability_Bool = True;
 		Event Player.Ability_Toggle = True;
@@ -18245,9 +18245,9 @@ rule("CORE: (BOSS) HANZO - DBL JUMP ON")
 		Skip If(Event Player.primary_charge > 0, 9);
 		Set Ability Cooldown(Event Player, Button(Jump), 1.240);
 		Destroy HUD Text(Global.BOSS_AbilityKey);
-		Create HUD Text(All Players(Team 1), Custom String("{0} x 2", Ability Icon String(Hero(Winston), Button(Ability 1))),
+		Create HUD Text(Event Player, Custom String("{0} x 2", Ability Icon String(Hero(Winston), Button(Ability 1))),
 			Custom String("LUNGE TWICE QUICKLY TO JUMP HIGHER"), Custom String("DOUBLE LUNGE"), Left, 1, Color(Sky Blue), Color(White),
-			Color(White), Visible To and String, Default Visibility);
+			Color(White), String, Default Visibility);
 		Global.BOSS_AbilityKey = Last Text ID;
 		Wait(0.500, Ignore Condition);
 		Skip If(Event Player.primary_charge > 0, 3);
@@ -18282,8 +18282,8 @@ rule("CORE: (BOSS) HANZO - DBL JUMP USE")
 		Event Player.primary_charge = 9;
 		Wait(0.016, Ignore Condition);
 		Destroy HUD Text(Global.BOSS_AbilityKey);
-		Create HUD Text(All Players(Team 1), Custom String("- {0} -", Round To Integer(Event Player.primary_charge, Up)), Custom String(
-			"COOLDOWN"), Custom String("DOUBLE LUNGE"), Left, 1, Color(Orange), Color(White), Color(Orange), Visible To and String,
+		Create HUD Text(Event Player, Custom String("- {0} -", Round To Integer(Event Player.primary_charge, Up)), Custom String(
+			"COOLDOWN"), Custom String("DOUBLE LUNGE"), Left, 1, Color(Orange), Color(White), Color(Orange), String,
 			Default Visibility);
 		Global.BOSS_AbilityKey = Last Text ID;
 		Chase Player Variable At Rate(Event Player, primary_charge, 0, 1, Destination and Rate);
@@ -18310,9 +18310,9 @@ rule("CORE: (BOSS) HANZO - DBL JUMP RESET")
 	{
 		Play Effect(Event Player, Buff Impact Sound, Color(White), Event Player, 50);
 		Destroy HUD Text(Global.BOSS_AbilityKey);
-		Create HUD Text(All Players(Team 1), Custom String("{0} x 2", Ability Icon String(Hero(Winston), Button(Ability 1))),
+		Create HUD Text(Event Player, Custom String("{0} x 2", Ability Icon String(Hero(Winston), Button(Ability 1))),
 			Custom String("LUNGE TWICE QUICKLY TO JUMP HIGHER"), Custom String("DOUBLE LUNGE"), Left, 1, Color(Sky Blue), Color(White),
-			Color(White), Visible To and String, Default Visibility);
+			Color(White), String, Default Visibility);
 		Global.BOSS_AbilityKey = Last Text ID;
 		Stop Chasing Player Variable(Event Player, primary_charge);
 		Event Player.primary_charge = 0;
@@ -18833,8 +18833,8 @@ rule("CORE: (BOSS) RAM SPAWN")
 	{
 		Destroy HUD Text(Global.BOSS_AbilityKey);
 		Destroy HUD Text(Event Player.charge_hud);
-		Create HUD Text(All Players(Team 1), Input Binding String(Button(Ability 1)), Custom String("PRESS TO CHARGE:"), Custom String(
-			"NEMESIS JUMP"), Left, 1, Color(White), Color(White), Color(Rose), Visible To and String, Default Visibility);
+		Create HUD Text(Event Player, Input Binding String(Button(Ability 1)), Custom String("PRESS TO CHARGE:"), Custom String(
+			"NEMESIS JUMP"), Left, 1, Color(White), Color(White), Color(Rose), String, Default Visibility);
 		Global.BOSS_AbilityKey = Last Text ID;
 		Stop Chasing Player Variable(Event Player, primary_charge);
 		Stop Chasing Player Variable(Event Player, secondary_charge);
@@ -18868,9 +18868,9 @@ rule("CORE: (BOSS) RAM CHARGE JUMP")
 		Set Status(Event Player, Null, Rooted, 5);
 		Chase Player Variable At Rate(Event Player, primary_charge, 5, 1, Destination and Rate);
 		Destroy HUD Text(Global.BOSS_AbilityKey);
-		Create HUD Text(All Players(Team 1), Input Binding String(Button(Ability 1)), Custom String("CHARGING...  {0}%", Round To Integer(
+		Create HUD Text(Event Player, Input Binding String(Button(Ability 1)), Custom String("CHARGING...  {0}%", Round To Integer(
 			Event Player.primary_charge * 20, Up)), Custom String("NEMESIS JUMP"), Left, 1, Color(White), Color(Orange), Color(Rose),
-			Visible To and String, Default Visibility);
+			String, Default Visibility);
 		Global.BOSS_AbilityKey = Last Text ID;
 		Destroy HUD Text(Event Player.charge_hud[0]);
 		Skip If(Is Waiting For Players, 2);
@@ -18919,8 +18919,8 @@ rule("CORE: (BOSS) RAM JUMP")
 		Stop Chasing Player Variable(Event Player, primary_charge);
 		Event Player.secondary_charge = 13;
 		Destroy HUD Text(Global.BOSS_AbilityKey);
-		Create HUD Text(All Players(Team 1), Round To Integer(Event Player.secondary_charge, Up), Custom String("Cooldown"), Custom String(
-			"NEMESIS JUMP"), Left, 1, Color(Orange), Color(White), Color(Rose), Visible To and String, Default Visibility);
+		Create HUD Text(Event Player, Round To Integer(Event Player.secondary_charge, Up), Custom String("Cooldown"), Custom String(
+			"NEMESIS JUMP"), Left, 1, Color(Orange), Color(White), Color(Rose), String, Default Visibility);
 		Global.BOSS_AbilityKey = Last Text ID;
 		Skip If(Event Player.primary_charge < 2.500, 2);
 		Apply Impulse(Event Player, Up, 5 * Event Player.primary_charge, To World, Cancel Contrary Motion);
@@ -18970,8 +18970,8 @@ rule("CORE: (BOSS) RAM JUMP RESET")
 		Stop Chasing Player Variable(Event Player, secondary_charge);
 		Play Effect(Event Player, Buff Impact Sound, Color(White), Event Player, 25);
 		Destroy HUD Text(Global.BOSS_AbilityKey);
-		Create HUD Text(All Players(Team 1), Input Binding String(Button(Ability 1)), Custom String("PRESS TO CHARGE:"), Custom String(
-			"NEMESIS JUMP"), Left, 1, Color(White), Color(White), Color(Rose), Visible To and String, Default Visibility);
+		Create HUD Text(Event Player, Input Binding String(Button(Ability 1)), Custom String("PRESS TO CHARGE:"), Custom String(
+			"NEMESIS JUMP"), Left, 1, Color(White), Color(White), Color(Rose), String, Default Visibility);
 		Global.BOSS_AbilityKey = Last Text ID;
 		Stop Chasing Player Variable(Event Player, primary_charge);
 		Stop Chasing Player Variable(Event Player, secondary_charge);
