@@ -197,6 +197,7 @@ settings
 				Propulsors Maximum Time: 200%
 				Propulsors Recharge Rate: 80%
 				Role Passives: Off
+				Ultimate Generation - Combat Limit Break : 0%
 				Ultimate Generation - Passive Limit Break : 0%
 			}
 
@@ -19970,6 +19971,24 @@ rule("CORE: (BOSS) ALL - DAMAGE RECEIVED")
 	{
 		Global.BossDamageReceived = 100;
 		Set Damage Received(Event Player, Global.BossDamageReceived);
+	}
+}
+
+rule("CORE: (BOSS) D.MON ULT CHARGE")
+{
+	event
+	{
+		Player Dealt Damage;
+		Team 1;
+		D.Mon;
+	}
+
+	actions
+	{
+		If(Event Ability == Button(Primary Fire));
+			Set Ultimate Charge(Event Player, Ultimate Charge Percent(Event Player) + 5);
+		Else If(Event Ability == Button(Ability 2));
+			Set Ultimate Charge(Event Player, Ultimate Charge Percent(Event Player) + 4);
 	}
 }
 
