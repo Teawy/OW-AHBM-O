@@ -2,7 +2,7 @@ settings
 {
 	main
 	{
-		Description: "A classic original PvP Boss Mode™\r\n\r\nFight as or against bosses of varying difficulty levels! (fit for players of all ranks)\r\n\r\nMatch Start: The Team has 5s to choose a Mercy (not needed) and skins. Then all heroes unlock and are locked out when their role is selected. The match starts when everyone spawns.\r\n\r\n♡ • Discord: 9UKzEhN • ♡"
+		Description: "A classic original PvP Boss Mode™\r\n\r\nFight as or against bosses of varying difficulty levels! (fit for players of all ranks)\r\n\r\n♡ • Discord: 9UKzEhN • ♡"
 		Mode Name: "• ANY HERO BOSS MODE ™ •"
 	}
 
@@ -182,6 +182,25 @@ settings
 				Ultimate Generation Deadeye: 233%
 			}
 
+			D.Mon
+			{
+				[PH] Assemble Mech Knockback Scalar: 400%
+				[PH] Skewer Knockback Scalar: 150%
+				Damage Dealt: 200%
+				Fusion Repeater Cooldown Time: 150%
+				Healing Received: 10%
+				Health: 200%
+				Passive Health Regeneration: On
+				Power Barrier Cooldown Time: 60%
+				Power Barrier Recharge Rate: 200%
+				Propulsors Cooldown Time: 50%
+				Propulsors Maximum Time: 200%
+				Propulsors Recharge Rate: 80%
+				Role Passives: Off
+				Ultimate Generation - Combat Limit Break : 0%
+				Ultimate Generation - Passive Limit Break : 0%
+			}
+
 			D.Va
 			{
 				Boosters Cooldown Time: 75%
@@ -219,7 +238,7 @@ settings
 				Role Passives: Off
 				Sonic Repulsors Cooldown Time: 71%
 				Sonic Repulsors Knockback Scalar: 166%
-				Ultimate Barrier Health Scalar Panopticon: 100%
+				Ultimate Barrier Health Scalar Panopticon: 90%
 				Ultimate Generation - Combat Panopticon: 180%
 				Ultimate Generation - Passive Panopticon: 10%
 				Ultimate Generation Panopticon: 112%
@@ -284,7 +303,7 @@ settings
 				Siphon Blaster Duration Scalar: 500%
 				Siphon Blaster Heat Scalar: 20%
 				Ultimate Duration: 90%
-				Ultimate Generation - Combat Override Protocol: 275%
+				Ultimate Generation - Combat Override Protocol: 260%
 				Ultimate Generation - Passive Override Protocol: 0%
 			}
 
@@ -316,7 +335,7 @@ settings
 				Swift Strike Cooldown Time: 0%
 				Ultimate Duration: 60%
 				Ultimate Generation - Combat Dragonblade: 175%
-				Ultimate Generation Dragonblade: 63%
+				Ultimate Generation Dragonblade: 60%
 			}
 
 			Hanzo
@@ -350,6 +369,7 @@ settings
 				Role Passives: On
 				Spike Guard Resource Cost: 100%
 				Spike Guard Resource Regeneration: 90%
+				Ultimate Generation - Combat Downpour: 110%
 				Violent Leap Cooldown Time: 50%
 			}
 
@@ -383,12 +403,12 @@ settings
 				Healing Received: 10%
 				Health: 400%
 				Lifeline: Off
-				Movement Speed: 125%
+				Movement Speed: 105%
 				Passive Health Regeneration: On
 				Projectile Speed: 125%
 				Role Passives: On
 				Ultimate Generation - Combat Catnapper: 250%
-				Ultimate Generation - Passive Catnapper: 5%
+				Ultimate Generation - Passive Catnapper: 7%
 			}
 
 			Junker Queen
@@ -521,7 +541,7 @@ settings
 				Health: 300%
 				Passive Health Regeneration: On
 				Movement Gravity: 80%
-				Overrun Cooldown Time: 120%
+				Overrun Cooldown Time: 100%
 				Role Passives: On
 				Ultimate Generation Cage Fight: 75%
 			}
@@ -580,7 +600,7 @@ settings
 				Healing Kasa: Off
 				Healing Received: 10%
 				Health: 250%
-				Katashiro Return Cooldown Time: 90%
+				Katashiro Return Cooldown Time: 83.333%
 				Katashiro Return Duration Scalar: 145%
 				Movement Speed: 115%
 				Passive Health Regeneration: On
@@ -630,7 +650,7 @@ settings
 			Pharah
 			{
 				Ammunition Clip Size Scalar: 166%
-				Concussive Blast Cooldown Time: 250%
+				Concussive Blast Cooldown Time: 200%
 				Concussive Blast Knockback Scalar: 50%
 				Damage Received: 30%
 				Healing Received: 40%
@@ -874,7 +894,7 @@ settings
 				Healing Received: 15%
 				Health: 429%
 				Passive Health Regeneration: On
-				Recall Cooldown Time: 230%
+				Recall Cooldown Time: 250%
 				Role Passives: Off
 				Ultimate Generation Pulse Bomb: 242%
 			}
@@ -908,7 +928,7 @@ settings
 				Passive Health Regeneration: On
 				Role Passives: Off
 				Ultimate Duration: 200%
-				Ultimate Generation Tectonic Shock: 125%
+				Ultimate Generation Tectonic Shock: 115%
 			}
 
 			Widowmaker
@@ -948,7 +968,7 @@ settings
 				Secondary Fire: Off
 				Ultimate Duration: 35%
 				Ultimate Generation - Combat Primal Rage: 240%
-				Ultimate Generation Primal Rage: 338%
+				Ultimate Generation Primal Rage: 317.7%
 			}
 
 			Wrecking Ball
@@ -1141,6 +1161,24 @@ settings
 				Ultimate Generation Deadeye: 88%
 			}
 
+			D.Mon
+			{
+				[PH] Propulsion Knockback Scalar: 0%
+				[PH] Skewer Knockback Scalar: 16%
+				Damage Dealt: 70%
+				Fusion Repeater Cooldown Time: 375%
+				Healing Received: 40%
+				Health: 124%
+				Passive Health Regeneration: On
+				Power Barrier Cooldown Time: 200%
+				Power Barrier Recharge Rate: 124%
+				Propulsors Maximum Time: 120%
+				Propulsors Recharge Rate: 60%
+				Role Passives: Off
+				Ultimate Generation - Combat Limit Break : 125%
+				Ultimate Generation - Passive Limit Break : 50%
+			}
+
 			D.Va
 			{
 				Boosters Cooldown Time: 150%
@@ -1170,7 +1208,7 @@ settings
 				Reconstruction Heal Scalar: 150%
 				Role Passives: Off
 				Sonic Repulsors Cooldown Time: 428%
-				Ultimate Barrier Health Scalar Panopticon: 300%
+				Ultimate Barrier Health Scalar Panopticon: 270%
 				Ultimate Generation - Combat Panopticon: 200%
 				Ultimate Generation - Passive Panopticon: 105%
 				Ultimate Generation Panopticon: 112%
@@ -1228,7 +1266,7 @@ settings
 				Siphon Blaster Duration Scalar: 100%
 				Siphon Blaster Heat Scalar: 80%
 				Ultimate Generation - Combat Override Protocol: 275%
-				Ultimate Generation - Passive Override Protocol: 175%
+				Ultimate Generation - Passive Override Protocol: 165%
 			}
 
 			Freja
@@ -1257,7 +1295,7 @@ settings
 				Swift Strike Cooldown Time: 112%
 				Ultimate Duration: 67%
 				Ultimate Generation - Combat Dragonblade: 0%
-				Ultimate Generation - Passive Dragonblade: 425%
+				Ultimate Generation - Passive Dragonblade: 400%
 				Ultimate Generation Dragonblade: 250%
 			}
 
@@ -1289,6 +1327,7 @@ settings
 				Spike Guard Movement Speed Penalty: 20%
 				Spike Guard Resource Cost: 175%
 				Spike Guard Resource Regeneration: 25%
+				Ultimate Generation Downpour: 107%
 				Violent Leap Cooldown Time: 109%
 				Violent Leap Distance: 150%
 			}
@@ -1425,11 +1464,11 @@ settings
 
 			Mauga
 			{
-				Ammunition Clip Size Scalar: 30%
+				Ammunition Clip Size Scalar: 30.1%
 				Cardiac Overdrive Cooldown Time: 138%
 				Damage Dealt: 54%
 				Healing Dealt: 10%
-				Overrun Cooldown Time: 240%
+				Overrun Cooldown Time: 200%
 				Passive Health Regeneration: On
 				Role Passives: On
 				Ultimate Generation - Combat Cage Fight: 80%
@@ -1486,7 +1525,7 @@ settings
 				Healing Dealt: 50%
 				Healing Kasa Cooldown Time: 500%
 				Healing Received: 75%
-				Katashiro Return Cooldown Time: 81%
+				Katashiro Return Cooldown Time: 75%
 				Katashiro Return Duration Scalar: 218%
 				Passive Health Regeneration: Off
 				Role Passives: On
@@ -1743,7 +1782,7 @@ settings
 				Damage Dealt: 90%
 				Health: 86%
 				Passive Health Regeneration: On
-				Recall Cooldown Time: 115%
+				Recall Cooldown Time: 125%
 				Role Passives: On
 				Ultimate Generation - Combat Pulse Bomb: 165%
 				Ultimate Generation - Passive Pulse Bomb: 65%
@@ -1780,7 +1819,7 @@ settings
 				Ultimate Duration: 120%
 				Ultimate Generation - Combat Tectonic Shock: 190%
 				Ultimate Generation - Passive Tectonic Shock: 90%
-				Ultimate Generation Tectonic Shock: 150%
+				Ultimate Generation Tectonic Shock: 138%
 			}
 
 			Widowmaker
@@ -1811,7 +1850,7 @@ settings
 				Ultimate Duration: 50%
 				Ultimate Generation - Combat Primal Rage: 0%
 				Ultimate Generation - Passive Primal Rage: 500%
-				Ultimate Generation Primal Rage: 166%
+				Ultimate Generation Primal Rage: 156%
 			}
 
 			Wrecking Ball
@@ -1982,6 +2021,7 @@ subroutines
 	1: anti_enviro_OOM
 	2: BossIgnitionExpire
 	3: TEAMVendetta_StunReady
+	4: BOSSNoAbility_Hud
 }
 
 rule("CORE: (TIMER) SET START TIME")
@@ -2868,10 +2908,7 @@ rule("CORE: (MSGS) BOSS ABILITIES ERASE")
 
 	actions
 	{
-		Destroy HUD Text(Global.BOSS_AbilityKey);
-		Create HUD Text(All Players(Team 1), Null, Null, Custom String("None"), Left, 1, Color(White), Color(White), Color(Red),
-			Visible To and String, Default Visibility);
-		Global.BOSS_AbilityKey = Last Text ID;
+		Call Subroutine(BOSSNoAbility_Hud);
 	}
 }
 
@@ -3346,6 +3383,8 @@ rule("CORE: (TEAM) ALL - GENERAL SWITCH")
 				Event Player.base_shields = Max Health Of Type(Event Player, Shields);
 			Else If(Hero Of(Event Player) == Hero(Mei));
 				Set Max Health(Event Player, 99.638);
+			Else If(Hero Of(Event Player) == Hero(D.Mon));
+				Set Max Health(Event Player, 99.256);
 			Else If(Hero Of(Event Player) == Hero(Doomfist));
 				Set Max Health(Event Player, 99.099);
 			Else If(Hero Of(Event Player) == Hero(Reinhardt));
@@ -4390,6 +4429,7 @@ rule("CORE: (BOSS) REAP - ABILITY HUD")
 			"WRAITH FORM"), Left, 1, Color(White), Color(White), Color(Red), Visible To and String, Default Visibility);
 		Global.BOSS_AbilityKey = Last Text ID;
 		Event Player.Ability_Toggle = True;
+		Set Ability Cooldown(Event Player, Button(Secondary Fire), 1000);
 	}
 }
 
@@ -4987,7 +5027,7 @@ rule("CORE: (BOSS) MOIRA - ULTIMATE DOWN")
 	}
 }
 
-rule("CORE: (BOSS) MOIRA - SPAWN")
+rule("CORE: (BOSS) MOIRA - SPAWN & INITIALIZE EFFECTS")
 {
 	event
 	{
@@ -5000,21 +5040,28 @@ rule("CORE: (BOSS) MOIRA - SPAWN")
 	{
 		Stop Chasing Global Variable(BOSS_AbilityCD);
 		Global.BOSS_AbilityCD = 100;
-		Wait(0.016, Ignore Condition);
 		Destroy HUD Text(Global.BOSS_AbilityKey);
-		Create HUD Text(All Players(Team 1), Custom String("{0}%", Global.BOSS_AbilityCD), Custom String("Primary Fire"), Custom String(
-			"Healing"), Left, 1, Color(White), Color(White), Color(Yellow), Visible To and String, Default Visibility);
+		Create HUD Text(All Players(Team 1), Custom String("{0}%", Round To Integer(Global.BOSS_AbilityCD, Down)), Custom String(
+			"Primary Fire"), Custom String("Healing"), Left, 1, Global.W ? Color(White) : Color(Orange), Color(White), Color(Yellow),
+			Visible To String and Color, Default Visibility);
 		Global.BOSS_AbilityKey = Last Text ID;
-		Wait(0.250, Ignore Condition);
+		Wait(0.250, Abort When False);
 		Global.W = True;
-		Wait(0.016, Ignore Condition);
 		Global.B = False;
 		Stop Chasing Player Variable(Event Player, F);
 		Event Player.F = 1;
+		Destroy Effect(Event Player.PlayerFX_1);
+		Create Effect(Global.B, Energy Sound, Color(White), Eye Position(Event Player), 100, Visible To Position and Radius);
+		Event Player.PlayerFX_1 = Last Created Entity;
+		Destroy Effect(Event Player.PlayerFX_3);
+		Create Effect(Global.B, Orb, Color(Yellow), Event Player + Vector(0, 1, 0) + Facing Direction Of(Event Player), 0.250,
+			Visible To Position and Radius);
+		Event Player.PlayerFX_3 = Last Created Entity;
+		Event Player.F = 2;
 	}
 }
 
-rule("CORE: (BOSS) MOIRA - HEAL USING")
+rule("CORE: (BOSS) MOIRA - HEAL")
 {
 	event
 	{
@@ -5025,10 +5072,9 @@ rule("CORE: (BOSS) MOIRA - HEAL USING")
 
 	conditions
 	{
-		Global.W == True;
 		Is Button Held(Event Player, Button(Primary Fire)) == True;
+		Global.W == True;
 		Global.BOSS_AbilityCD > 0;
-		Is Button Held(Event Player, Button(Secondary Fire)) == False;
 		Is Using Ability 1(Event Player) == False;
 		Is Using Ability 2(Event Player) == False;
 		Is Using Ultimate(Event Player) == False;
@@ -5038,194 +5084,24 @@ rule("CORE: (BOSS) MOIRA - HEAL USING")
 
 	actions
 	{
+		Skip If(Is Button Held(Event Player, Button(Secondary Fire)), 3);
+		Stop Chasing Global Variable(BOSS_AbilityCD);
+		Global.W = True;
 		Global.B = True;
-		Wait(0.050, Abort When False);
+		Wait(0.050, Ignore Condition);
+		Skip If(Is Button Held(Event Player, Button(Secondary Fire)), 2);
 		Heal(Event Player, Event Player, 13.750);
 		Global.BOSS_AbilityCD -= 1;
 		Loop If Condition Is True;
-	}
-}
-
-rule("CORE: (BOSS) MOIRA - HEAL RECHARGE")
-{
-	event
-	{
-		Ongoing - Each Player;
-		Team 1;
-		Moira;
-	}
-
-	conditions
-	{
-		(!Is Button Held(Event Player, Button(Primary Fire)) || Global.BOSS_AbilityCD == 0 || !Global.W) == True;
-		Global.BOSS_AbilityCD < 100;
-	}
-
-	actions
-	{
-		Wait(0.250, Abort When False);
-		Global.W = False;
-		Global.BOSS_AbilityCD += 1;
-		Loop If Condition Is True;
-	}
-}
-
-rule("CORE: (BOSS) MOIRA - HEAL STOP")
-{
-	event
-	{
-		Ongoing - Each Player;
-		Team 1;
-		Moira;
-	}
-
-	conditions
-	{
-		(!Is Button Held(Event Player, Button(Primary Fire)) || Global.BOSS_AbilityCD == 0 || !Global.W || Has Status(
-			Event Player, Hacked) || Has Status(Event Player, Knocked Down) || Has Status(Event Player, Asleep) || Has Status(Event Player,
-			Frozen) || Has Status(Event Player, Stunned) || False) == True;
-		Global.BOSS_AbilityCD < 100;
-		Global.B == True;
-	}
-
-	actions
-	{
 		Global.B = False;
-		Destroy HUD Text(Global.BOSS_AbilityKey);
-		Create HUD Text(All Players(Team 1), Custom String("{0}%", Global.BOSS_AbilityCD), Custom String("Primary Fire"), Custom String(
-			"Healing"), Left, 1, Color(Orange), Color(White), Color(Yellow), Visible To and String, Default Visibility);
-		Global.BOSS_AbilityKey = Last Text ID;
-		disabled Wait(0.049, Abort When False);
 		Global.W = False;
-	}
-}
-
-rule("CORE: (BOSS) MOIRA - HEAL READY")
-{
-	event
-	{
-		Ongoing - Each Player;
-		Team 1;
-		Moira;
-	}
-
-	conditions
-	{
-		Global.BOSS_AbilityCD == 100;
-	}
-
-	actions
-	{
-		Destroy HUD Text(Global.BOSS_AbilityKey);
-		Create HUD Text(All Players(Team 1), Custom String("{0}%", Global.BOSS_AbilityCD), Custom String("Primary Fire"), Custom String(
-			"Healing"), Left, 1, Color(White), Color(White), Color(Yellow), Visible To and String, Default Visibility);
-		Global.BOSS_AbilityKey = Last Text ID;
+		Chase Global Variable At Rate(BOSS_AbilityCD, 100, 4, Destination and Rate);
+		Wait Until(Global.BOSS_AbilityCD >= 100, 99999);
+		Stop Chasing Global Variable(BOSS_AbilityCD);
 		Play Effect(All Players(Team 1), Buff Explosion Sound, Color(White), Event Player, 50);
 		Wait(0.100, Ignore Condition);
 		Global.W = True;
-	}
-}
-
-rule("CORE: (BOSS) MOIRA - HEAL CANCEL")
-{
-	event
-	{
-		Ongoing - Each Player;
-		Team 1;
-		Moira;
-	}
-
-	actions
-	{
-		Skip If(!Is Using Ability 1(Event Player) && !Is Using Ability 2(Event Player) && !Is Using Ultimate(Event Player)
-			&& !Has Status(Event Player, Hacked) && !Has Status(Event Player, Knocked Down) && !Has Status(
-			Event Player, Asleep) && !Has Status(Event Player, Frozen) && !Has Status(Event Player, Stunned)
-			 && True, 1);
-		Global.W = False;
-		Skip If(!Is Using Ability 1(Event Player) && !Is Using Ability 2(Event Player) && !Is Using Ultimate(Event Player)
-			 && !Has Status(Event Player, Hacked) && !Has Status(Event Player, Knocked Down) && !Has Status(
-			Event Player, Asleep) && !Has Status(Event Player, Frozen) && !Has Status(Event Player, Stunned)
-			 && Global.BOSS_AbilityCD == 100, 1);
-		Skip(1);
-		Global.W = True;
-		Wait(0.001, Ignore Condition);
 		Loop If Condition Is True;
-	}
-}
-
-rule("CORE: (BOSS) MOIRA - HEAL EFFECT")
-{
-	event
-	{
-		Ongoing - Each Player;
-		Team 1;
-		Moira;
-	}
-
-	conditions
-	{
-		Global.B == True;
-	}
-
-	actions
-	{
-		Wait(0.016, Abort When False);
-		Skip If(Event Player.F == 1, 1);
-		Destroy Effect(Event Player.PlayerFX_1);
-		Create Effect(All Players(All Teams), Energy Sound, Color(White), Event Player, 100, Position and Radius);
-		Event Player.PlayerFX_1 = Last Created Entity;
-		Wait(0.016, Abort When False);
-		Skip If(Event Player.F == 1, 1);
-		Destroy Effect(Event Player.PlayerFX_3);
-		Create Effect(All Players(All Teams), Orb, Color(Yellow), Event Player + Vector(0, 1, 0) + Facing Direction Of(Event Player),
-			0.250, Visible To Position and Radius);
-		Event Player.PlayerFX_3 = Last Created Entity;
-		disabled Wait(1.111, Abort When False);
-		disabled Loop If Condition Is True;
-		Event Player.F = 2;
-	}
-}
-
-rule("CORE: (BOSS) MOIRA - HEAL EFFECT ERASE")
-{
-	event
-	{
-		Ongoing - Each Player;
-		Team 1;
-		Moira;
-	}
-
-	conditions
-	{
-		Global.B == False;
-	}
-
-	actions
-	{
-		Wait(0.049, Abort When False);
-		Destroy Effect(Event Player.PlayerFX_1);
-		Destroy Effect(Event Player.PlayerFX_3);
-	}
-}
-
-rule("CORE: (BOSS) MOIRA - HEAL EFCT BUG FIX 1")
-{
-	event
-	{
-		Ongoing - Each Player;
-		Team 1;
-		Moira;
-	}
-
-	conditions
-	{
-		Is Using Ability 1(Event Player) == True;
-	}
-
-	actions
-	{
-		Destroy Effect(Event Player.PlayerFX_1);
-		Destroy Effect(Event Player.PlayerFX_3);
 	}
 }
 
@@ -6801,7 +6677,7 @@ rule("CORE: INITIALIZE ROLES (GLOBAL A)")
 
 	actions
 	{
-		Global.A[1] = Array(Hero(Brigitte), Hero(Domina), Hero(Reinhardt), Hero(Sigma), Hero(Winston), Hero(Ramattra));
+		Global.A[1] = Array(Hero(Brigitte), Hero(Domina), Hero(D.Mon), Hero(Reinhardt), Hero(Sigma), Hero(Winston), Hero(Ramattra));
 		Global.A[2] = Array(Hero(Doomfist), Hero(Junkrat), Hero(Junker Queen), Hero(Cassidy), Hero(Mei), Hero(Emre), Hero(Orisa), Hero(
 			Roadhog), Hero(Symmetra), Hero(Wrecking Ball), Hero(Mauga), Hero(Hazard), Hero(Vendetta), Hero(Venture));
 		Global.A[3] = Array(Hero(Echo), Hero(Widowmaker), Hero(Tracer), Hero(Sojourn), Hero(Ashe), Hero(Bastion), Hero(Reaper), Hero(
@@ -7842,31 +7718,6 @@ rule("CORE: (BOSS) RAM: NEM")
 	}
 }
 
-rule("CORE: (BOSS) MOIRA - HEAL EFCT BUG FIX 2")
-{
-	event
-	{
-		Ongoing - Each Player;
-		Team 1;
-		Moira;
-	}
-
-	conditions
-	{
-		Is Button Held(Event Player, Button(Primary Fire)) == False;
-	}
-
-	actions
-	{
-		Wait(0.049, Ignore Condition);
-		Destroy Effect(Event Player.PlayerFX_1);
-		Wait(0.049, Ignore Condition);
-		Destroy Effect(Event Player.PlayerFX_3);
-		Skip If(Global.BOSS_AbilityCD != 100, 1);
-		Global.W = True;
-	}
-}
-
 rule("CORE: (TEAM) EMRE - FRAG STUN")
 {
 	event
@@ -7924,7 +7775,7 @@ rule("CORE: (MSGS) TEAM HUD ERASE")
 
 	conditions
 	{
-		Array Contains(Array(Hero(Doomfist), Hero(Jetpack Cat), Hero(Roadhog), Hero(Mauga), Hero(Illari), Hero(Mercy), Hero(Torbjörn), Hero(Sojourn), Hero(Orisa), Hero(Domina), Hero(Mizuki), Hero(Hazard), Hero(Sierra), Hero(Shion)), Hero Of(Event Player)) == True;
+		Array Contains(Array(Hero(Doomfist), Hero(D.Mon), Hero(Jetpack Cat), Hero(Roadhog), Hero(Mauga), Hero(Illari), Hero(Mercy), Hero(Torbjörn), Hero(Sojourn), Hero(Orisa), Hero(Domina), Hero(Mizuki), Hero(Hazard), Hero(Sierra), Hero(Shion)), Hero Of(Event Player)) == True;
 	}
 
 	actions
@@ -10742,10 +10593,7 @@ rule("CORE: (BOSS) JUNK - WAITING SPAWN HUD")
 
 	actions
 	{
-		Destroy HUD Text(Global.BOSS_AbilityKey);
-		Create HUD Text(All Players(Team 1), Null, Null, Custom String("NONE"), Left, 1, Color(Red), Color(Red), Color(Red),
-			Visible To and String, Default Visibility);
-		Global.BOSS_AbilityKey = Last Text ID;
+		Call Subroutine(BOSSNoAbility_Hud);
 	}
 }
 
@@ -11140,6 +10988,22 @@ rule("CORE: (TEAM) BRIG - SIZE")
 	}
 }
 
+rule("CORE: (TEAM) D.MON - SIZE")
+{
+	event
+	{
+		Ongoing - Each Player;
+		Team 2;
+		D.Mon;
+	}
+
+	actions
+	{
+		Start Scaling Player(Event Player, 1, False);
+		Start Scaling Barriers(Event Player, 2, False);
+	}
+}
+
 rule("CORE: (ALL) BASTION - SIZE")
 {
 	event
@@ -11168,7 +11032,7 @@ rule("CORE: (TEAM) General - SIZE")
 	conditions
 	{
 		Has Spawned(Event Player) == True;
-		Array Contains(Array(Hero(Winston), Hero(Brigitte), Hero(D.Va), Hero(Torbjörn), Hero(Ramattra), Hero(Orisa), Hero(Sigma), Hero(
+		Array Contains(Array(Hero(Winston), Hero(Brigitte), Hero(D.Va), Hero(D.Mon), Hero(Torbjörn), Hero(Ramattra), Hero(Orisa), Hero(Sigma), Hero(
 			Bastion), Hero(Zarya), Hero(Doomfist), Hero(Hazard)), Hero Of(Event Player)) != True;
 	}
 
@@ -11278,10 +11142,7 @@ rule("CORE: (BOSS) HOG - ULTIMATE THAW")
 		Skip If(Ultimate Charge Percent(Event Player) < 100, 2);
 		Play Effect(All Players(All Teams), Bad Pickup Effect, Color(Red), Event Player, 1);
 		Set Status(Event Player, Null, Burning, 9999);
-		Destroy HUD Text(Global.BOSS_AbilityKey);
-		Create HUD Text(All Players(Team 1), Null, Null, Custom String("None"), Left, 1, Color(White), Color(White), Color(Red),
-			Visible To and String, Default Visibility);
-		Global.BOSS_AbilityKey = Last Text ID;
+		Call Subroutine(BOSSNoAbility_Hud);
 		Stop Chasing Player Variable(Event Player, F);
 		Global.BossFrozen = 0;
 		Skip If(Is Waiting For Players, 4);
@@ -11304,10 +11165,7 @@ rule("CORE: (BOSS) HOG - ULTIMATE THAW DEATH")
 	actions
 	{
 		Destroy Effect(Event Player.PlayerFX_3);
-		Destroy HUD Text(Global.BOSS_AbilityKey);
-		Create HUD Text(All Players(Team 1), Null, Null, Custom String("None"), Left, 1, Color(White), Color(White), Color(Red),
-			Visible To and String, Default Visibility);
-		Global.BOSS_AbilityKey = Last Text ID;
+		Call Subroutine(BOSSNoAbility_Hud);
 		Stop Chasing Player Variable(Event Player, F);
 		Event Player.F = 0;
 		Set Ultimate Ability Enabled(Event Player, True);
@@ -11412,10 +11270,7 @@ rule("CORE: (BOSS) TORB - ULTIMATE THAW")
 		Destroy Effect(Event Player.PlayerFX_3);
 		Set Ultimate Ability Enabled(Event Player, True);
 		Wait(0.016, Ignore Condition);
-		Destroy HUD Text(Global.BOSS_AbilityKey);
-		Create HUD Text(All Players(Team 1), Null, Null, Custom String("None"), Left, 1, Color(White), Color(White), Color(Red),
-			Visible To and String, Default Visibility);
-		Global.BOSS_AbilityKey = Last Text ID;
+		Call Subroutine(BOSSNoAbility_Hud);
 		Stop Chasing Player Variable(Event Player, F);
 		Global.BossFrozen = 0;
 	}
@@ -11433,10 +11288,7 @@ rule("CORE: (BOSS) TORB - ULTIMATE THAW DEATH")
 	actions
 	{
 		Destroy Effect(Event Player.PlayerFX_3);
-		Destroy HUD Text(Global.BOSS_AbilityKey);
-		Create HUD Text(All Players(Team 1), Null, Null, Custom String("None"), Left, 1, Color(White), Color(White), Color(Red),
-			Visible To and String, Default Visibility);
-		Global.BOSS_AbilityKey = Last Text ID;
+		Call Subroutine(BOSSNoAbility_Hud);
 		Stop Chasing Player Variable(Event Player, F);
 		Event Player.F = 0;
 		Set Ultimate Ability Enabled(Event Player, True);
@@ -11570,10 +11422,7 @@ rule("CORE: (BOSS) OMNIC - JUMP THAW")
 		Event Player.F = 0;
 		Destroy Effect(Event Player.PlayerFX_3);
 		Global.BossFrozen = 0;
-		Destroy HUD Text(Global.BOSS_AbilityKey);
-		Create HUD Text(All Players(Team 1), Null, Null, Custom String("None"), Left, 1, Color(White), Color(White), Color(Red),
-			Visible To and String, Default Visibility);
-		Global.BOSS_AbilityKey = Last Text ID;
+		Call Subroutine(BOSSNoAbility_Hud);
 	}
 }
 
@@ -11640,10 +11489,7 @@ rule("CORE: (BOSS) D.VA - MECH THAW")
 		Wait(0.016, Ignore Condition);
 		Skip If(Is In Alternate Form(Event Player), 1);
 		Set Ultimate Charge(Event Player, Event Player.X[0]);
-		Destroy HUD Text(Global.BOSS_AbilityKey);
-		Create HUD Text(All Players(Team 1), Null, Null, Custom String("None"), Left, 1, Color(White), Color(White), Color(Red),
-			Visible To and String, Default Visibility);
-		Global.BOSS_AbilityKey = Last Text ID;
+		Call Subroutine(BOSSNoAbility_Hud);
 		Stop Chasing Player Variable(Event Player, F);
 		Global.BossFrozen = 0;
 		Skip If(Is Waiting For Players, 11);
@@ -11675,10 +11521,7 @@ rule("CORE: (BOSS) D.VA - MECH THAW DEATH")
 	actions
 	{
 		Destroy Effect(Event Player.PlayerFX_3);
-		Destroy HUD Text(Global.BOSS_AbilityKey);
-		Create HUD Text(All Players(Team 1), Null, Null, Custom String("None"), Left, 1, Color(White), Color(White), Color(Red),
-			Visible To and String, Default Visibility);
-		Global.BOSS_AbilityKey = Last Text ID;
+		Call Subroutine(BOSSNoAbility_Hud);
 		Stop Chasing Player Variable(Event Player, F);
 		Event Player.F = 0;
 		Set Ultimate Ability Enabled(Event Player, True);
@@ -12221,7 +12064,7 @@ rule("CORE: (TEAM) ALL - REMOVE HEALTH POOLS")
 	{
 		Array Contains(Array(Hero(Winston), Hero(D.Va), Hero(Zarya), Hero(Ramattra), Hero(Illari), Hero(Reinhardt), Hero(Sigma), Hero(
 			Torbjörn), Hero(Juno), Hero(Echo), Hero(Hazard), Hero(Sombra), Hero(Pharah), Hero(Orisa), Hero(Wrecking Ball), Hero(Venture),
-			Hero(Domina)), Hero Of(Event Player)) != True;
+			Hero(Domina), Hero(D.Mon)), Hero Of(Event Player)) != True;
 		Has Spawned(Event Player) == True;
 	}
 
@@ -13002,6 +12845,28 @@ rule("CORE: (TEAM) REIN: HEALTH")
 		Remove Health Pool From Player(Event Player.shield_pool);
 		Remove Health Pool From Player(Event Player.armour_pool);
 		Add Health Pool To Player(Event Player, Health, 16.667, True, False);
+		Event Player.health_pool = Last Created Health Pool;
+		Wait(0.016, Ignore Condition);
+		Event Player.base_health = Max Health(Event Player);
+		Event Player.base_shields = Max Health Of Type(Event Player, Shields);
+	}
+}
+
+rule("CORE: (TEAM) D.MON: HEALTH")
+{
+	event
+	{
+		Ongoing - Each Player;
+		Team 2;
+		D.Mon;
+	}
+
+	actions
+	{
+		Remove Health Pool From Player(Event Player.health_pool);
+		Remove Health Pool From Player(Event Player.shield_pool);
+		Remove Health Pool From Player(Event Player.armour_pool);
+		Add Health Pool To Player(Event Player, Health, 11.538, True, False);
 		Event Player.health_pool = Last Created Health Pool;
 		Wait(0.016, Ignore Condition);
 		Event Player.base_health = Max Health(Event Player);
@@ -13953,6 +13818,7 @@ rule("CORE: (TEAM) REAP - SPAWN ABILITY HUD")
 		Destroy Effect(Event Player.PlayerFX_2);
 		Destroy Effect(Event Player.PlayerFX_3);
 		Event Player.secondary_charge = 0;
+		Set Ability Cooldown(Event Player, Button(Secondary Fire), 999);
 	}
 }
 
@@ -17260,7 +17126,7 @@ rule("CORE: (TEAM) REAP - LOSE ENERGY")
 	}
 }
 
-rule("CORE: (BOSS) ALL - BERSERK 1")
+rule("CORE: (BOSS) ALL - BERSERK")
 {
 	event
 	{
@@ -17273,48 +17139,39 @@ rule("CORE: (BOSS) ALL - BERSERK 1")
 	{
 		Is Waiting For Players == False;
 		Has Spawned(Event Player) == True;
-		Match Time >= 106;
 		Player Stat(Event Player, All Damage Dealt) <= 0;
-		Global.BERSERK[1] == -1;
+		Match Time >= Array(Null, 106, 50)[Absolute Value(Global.BERSERK[1])];
+		Array Contains(Array(-1, -2), Global.BERSERK[1]) == True;
 		(Is Button Held(Event Player, Button(Interact)) || Is Button Held(Host Player, Button(Interact))) == True;
 	}
 
 	actions
 	{
-		Wait Until((Is Button Held(Event Player, Button(Interact)) || Is Button Held(Host Player, Button(Interact))) == False, 1.500);
-		Skip If((Is Button Held(Event Player, Button(Interact)) || Is Button Held(Host Player, Button(Interact))) == False, 3);
-		Skip If(Global.BERSERK[1] == 0, 2);
-		Global.BERSERK[0] = 1;
-		Call Subroutine(BERSERK_activated);
-	}
-}
-
-rule("CORE: (BOSS) ALL - BERSERK 2")
-{
-	event
-	{
-		Ongoing - Each Player;
-		Team 1;
-		All;
-	}
-
-	conditions
-	{
-		Is Waiting For Players == False;
-		Has Spawned(Event Player) == True;
-		Match Time >= 50;
-		Player Stat(Event Player, All Damage Dealt) <= 0;
-		Global.BERSERK[1] == -2;
-		(Is Button Held(Event Player, Button(Interact)) || Is Button Held(Host Player, Button(Interact))) == True;
-	}
-
-	actions
-	{
-		Wait Until((Is Button Held(Event Player, Button(Interact)) || Is Button Held(Host Player, Button(Interact))) == False, 1.500);
-		Skip If((Is Button Held(Event Player, Button(Interact)) || Is Button Held(Host Player, Button(Interact))) == False, 3);
-		Skip If(Global.BERSERK[1] == 0, 2);
-		Global.BERSERK[0] = 2;
-		Call Subroutine(BERSERK_activated);
+		Wait Until(!(Is Button Held(Event Player, Button(Interact)) || Is Button Held(Host Player, Button(Interact))), 1.500);
+		Abort If(!(Is Button Held(Event Player, Button(Interact)) || Is Button Held(Host Player, Button(Interact))));
+		Abort If(Global.BERSERK[1] == 0);
+		Global.BERSERK[0] = Absolute Value(Global.BERSERK[1]);
+		Global.BERSERK[2] = 1;
+		Wait(0.016, Ignore Condition);
+		Global.BERSERK[1] = 0;
+		Set Match Time(Match Time / 2 + 0.500);
+		Play Effect(All Players(Team 1), Good Explosion, Color(Red), Eye Position(Event Player) + Facing Direction Of(Event Player) * 1,
+			5);
+		Play Effect(All Players(All Teams), Ring Explosion Sound, Color(White), All Players(All Teams), 250);
+		Skip If(Global.BERSERK[0] == 2, 5);
+		Small Message(All Players(Team 1), Custom String("BERSERK ACTIVE"));
+		Small Message(All Players(Team 2), Custom String("BOSS IS BERSERKING"));
+		Global.MAX_TIME = 61;
+		Global.BERSERK[1] = -2;
+		Set Objective Description(All Players(All Teams), Custom String("BERSERK MATCH"), Visible To and String);
+		Skip If(Global.BERSERK[0] == 1, 5);
+		Small Message(All Players(Team 1), Custom String("DOUBLE BERSERK"));
+		Small Message(All Players(Team 2), Custom String("BOSS IS DOUBLE BERSERKING"));
+		Global.MAX_TIME = 31;
+		Global.BERSERK[1] = 0;
+		Set Objective Description(All Players(All Teams), Custom String("DOUBLE BERSERK MATCH"), Visible To and String);
+		Wait(0.016, Ignore Condition);
+		Global.BERSERK[2] = 0;
 	}
 }
 
@@ -17341,40 +17198,6 @@ rule("SUB: ANTI-ENVIRO OOM")
 	}
 }
 
-rule("SUB: BERSERK ACTIVATED")
-{
-	event
-	{
-		Subroutine;
-		BERSERK_activated;
-	}
-
-	actions
-	{
-		Global.BERSERK[2] = 1;
-		Wait(0.016, Ignore Condition);
-		Global.BERSERK[1] = 0;
-		Set Match Time(Match Time / 2 + 0.500);
-		Play Effect(All Players(Team 1), Good Explosion, Color(Red), Eye Position(Event Player) + Facing Direction Of(Event Player) * 1,
-			5);
-		Play Effect(All Players(All Teams), Ring Explosion Sound, Color(White), All Players(All Teams), 250);
-		Skip If(Global.BERSERK[0] == 2, 5);
-		Small Message(All Players(Team 1), Custom String("BERSERK ACTIVE"));
-		Small Message(All Players(Team 2), Custom String("BOSS IS BERSERKING"));
-		Global.MAX_TIME = 61;
-		Global.BERSERK[1] = -2;
-		Set Objective Description(All Players(All Teams), Custom String("BERSERK MATCH"), Visible To and String);
-		Skip If(Global.BERSERK[0] == 1, 5);
-		Small Message(All Players(Team 1), Custom String("DOUBLE BERSERK"));
-		Small Message(All Players(Team 2), Custom String("BOSS IS DOUBLE BERSERKING"));
-		Global.MAX_TIME = 31;
-		Global.BERSERK[1] = 0;
-		Set Objective Description(All Players(All Teams), Custom String("DOUBLE BERSERK MATCH"), Visible To and String);
-		Wait(0.016, Ignore Condition);
-		Global.BERSERK[2] = 0;
-	}
-}
-
 rule("CORE: (BOSS) NO BERSERK RIGHTS")
 {
 	event
@@ -17386,8 +17209,7 @@ rule("CORE: (BOSS) NO BERSERK RIGHTS")
 
 	conditions
 	{
-		(Player Stat(Event Player, All Damage Dealt) > 0 || (Global.BERSERK[0] == 0 && Match Time < 106) || (
-			Global.BERSERK[0] == 1 && Match Time < 50) || (Global.BERSERK[0] == 2 && Match Time < 21)) == True;
+		(Player Stat(Event Player, All Damage Dealt) > 0 || Match Time < Array(106, 50, 21)[Global.BERSERK[0]]) == True;
 	}
 
 	actions
@@ -19282,7 +19104,7 @@ rule("(BOSS) KIRIKO STEP AIM")
 		Event Player.Ability_Bool == False;
 		Event Player.primary_charge == 0;
 		Is True For Any(Filtered Array(All Players(Team 2), Is Alive(Current Array Element)), (Is In View Angle(Event Player,
-			Current Array Element, 3) && !Is In Line of Sight(Eye Position(Event Player), Current Array Element, Barriers Do Not Block LOS))
+			Current Array Element, 3) && Is In Line of Sight(Eye Position(Event Player), Current Array Element, Barriers Do Not Block LOS))
 			== True) == True;
 		Is In Line of Sight(Eye Position(Player Closest To Reticle(Event Player, Team 2)), Eye Position(Player Closest To Reticle(
 			Event Player, Team 2)) + Facing Direction Of(Event Player) * 4, Barriers Do Not Block LOS) == True;
@@ -20146,6 +19968,24 @@ rule("CORE: (BOSS) ALL - DAMAGE RECEIVED")
 	}
 }
 
+rule("CORE: (BOSS) D.MON ULT CHARGE")
+{
+	event
+	{
+		Player Dealt Damage;
+		Team 1;
+		D.Mon;
+	}
+
+	actions
+	{
+		If(Event Ability == Button(Primary Fire));
+			Set Ultimate Charge(Event Player, Ultimate Charge Percent(Event Player) + 5);
+		Else If(Event Ability == Button(Ability 2));
+			Set Ultimate Charge(Event Player, Ultimate Charge Percent(Event Player) + 4);
+	}
+}
+
 rule("temp bug fix - hazard ammo")
 {
 	event
@@ -20302,5 +20142,22 @@ rule("Damage Numbers 1")
 		Event Player.LastDamageNumberInstance = 2;
 		Wait(Event Player.LastDamageNumberTime[1], Restart When True);
 		Destroy In-World Text(Event Player.LastDamage[1]);
+	}
+}
+
+rule("SUB: (BOSS) Init No Ability HUD")
+{
+	event
+	{
+		Subroutine;
+		BOSSNoAbility_Hud;
+	}
+
+	actions
+	{
+		Destroy HUD Text(Global.BOSS_AbilityKey);
+		Create HUD Text(Event Player, Null, Null, Custom String("None"), Left, 1, Color(White), Color(White), Color(Red),
+			None, Default Visibility);
+		Global.BOSS_AbilityKey = Last Text ID;
 	}
 }
