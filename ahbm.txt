@@ -1876,7 +1876,7 @@ settings
 			Wuyang
 			{
 				Ammunition Clip Size Scalar: 60%
-				Damage Dealt: 65%
+				Damage Dealt: 55%
 				Guardian Wave Cooldown Time: 128%
 				Guardian Wave Knockback Scalar: 10%
 				Health: 100%
