@@ -2,7 +2,7 @@ settings
 {
 	main
 	{
-		Description: "A classic original PvP Boss Mode™\r\n\r\nFight as or against bosses of varying difficulty levels! (fit for players of all ranks)\r\n\r\nMatch Start: The Team has 5s to choose a Mercy (not needed) and skins. Then all heroes unlock and are locked out when their role is selected. The match starts when everyone spawns.\r\n\r\n♡ • Discord: 9UKzEhN • ♡"
+		Description: "A classic original PvP Boss Mode™\r\n\r\nFight as or against bosses of varying difficulty levels! (fit for players of all ranks)\r\n\r\n♡ • Discord: 9UKzEhN • ♡"
 		Mode Name: "• ANY HERO BOSS MODE ™ •"
 	}
 
@@ -182,6 +182,25 @@ settings
 				Ultimate Generation Deadeye: 233%
 			}
 
+			D.Mon
+			{
+				[PH] Assemble Mech Knockback Scalar: 400%
+				[PH] Skewer Knockback Scalar: 150%
+				Damage Dealt: 215.385%
+				Fusion Repeater Cooldown Time: 150%
+				Healing Received: 10%
+				Health: 200%
+				Passive Health Regeneration: On
+				Power Barrier Cooldown Time: 60%
+				Power Barrier Recharge Rate: 200%
+				Propulsors Cooldown Time: 50%
+				Propulsors Maximum Time: 200%
+				Propulsors Recharge Rate: 80%
+				Role Passives: Off
+				Ultimate Generation - Combat Limit Break : 0%
+				Ultimate Generation - Passive Limit Break : 0%
+			}
+
 			D.Va
 			{
 				Boosters Cooldown Time: 75%
@@ -191,7 +210,7 @@ settings
 				Damage Received: 50%
 				Defense Matrix Maximum Time: 500%
 				Healing Received: 33%
-				Health: 143%
+				Health: 200%
 				Micro Missiles Cooldown Time: 100%
 				Movement Speed: 133%
 				Passive Health Regeneration: On
@@ -219,7 +238,7 @@ settings
 				Role Passives: Off
 				Sonic Repulsors Cooldown Time: 71%
 				Sonic Repulsors Knockback Scalar: 166%
-				Ultimate Barrier Health Scalar Panopticon: 100%
+				Ultimate Barrier Health Scalar Panopticon: 90%
 				Ultimate Generation - Combat Panopticon: 180%
 				Ultimate Generation - Passive Panopticon: 10%
 				Ultimate Generation Panopticon: 112%
@@ -254,7 +273,7 @@ settings
 				Focusing Beam Cooldown Time: 25%
 				Healing Dealt: 10%
 				Healing Received: 15%
-				Health: 267%
+				Health: 266.66625%
 				Jump Vertical Speed: 125%
 				Movement Gravity: 80%
 				Movement Speed: 90%
@@ -284,7 +303,7 @@ settings
 				Siphon Blaster Duration Scalar: 500%
 				Siphon Blaster Heat Scalar: 20%
 				Ultimate Duration: 90%
-				Ultimate Generation - Combat Override Protocol: 275%
+				Ultimate Generation - Combat Override Protocol: 260%
 				Ultimate Generation - Passive Override Protocol: 0%
 			}
 
@@ -316,7 +335,7 @@ settings
 				Swift Strike Cooldown Time: 0%
 				Ultimate Duration: 60%
 				Ultimate Generation - Combat Dragonblade: 175%
-				Ultimate Generation Dragonblade: 63%
+				Ultimate Generation Dragonblade: 60%
 			}
 
 			Hanzo
@@ -350,6 +369,7 @@ settings
 				Role Passives: On
 				Spike Guard Resource Cost: 100%
 				Spike Guard Resource Regeneration: 90%
+				Ultimate Generation - Combat Downpour: 110%
 				Violent Leap Cooldown Time: 50%
 			}
 
@@ -378,7 +398,7 @@ settings
 				Damage Dealt: 225%
 				Damage Received: 22%
 				Frenetic Flight Maximum Time: 75%
-				Frenetic Flight Recharge Rate: 30%
+				Frenetic Flight Recharge Rate: 35%
 				Healing Dealt: 400%
 				Healing Received: 10%
 				Health: 400%
@@ -388,7 +408,7 @@ settings
 				Projectile Speed: 125%
 				Role Passives: On
 				Ultimate Generation - Combat Catnapper: 250%
-				Ultimate Generation - Passive Catnapper: 5%
+				Ultimate Generation - Passive Catnapper: 7%
 			}
 
 			Junker Queen
@@ -457,7 +477,7 @@ settings
 				Ammunition Clip Size Scalar: 25%
 				Damage Dealt: 200%
 				Healing Received: 10%
-				Health: 267%
+				Health: 266.66625%
 				Jump Vertical Speed: 110%
 				Movement Gravity: 90%
 				Passive Health Regeneration: On
@@ -500,7 +520,7 @@ settings
 				Damage Dealt: 222%
 				Healing Dealt: 10%
 				Healing Received: 10%
-				Health: 267%
+				Health: 266.66625%
 				Jump Vertical Speed: 100%
 				Movement Speed: 90%
 				Passive Health Regeneration: On
@@ -521,7 +541,7 @@ settings
 				Health: 300%
 				Passive Health Regeneration: On
 				Movement Gravity: 80%
-				Overrun Cooldown Time: 120%
+				Overrun Cooldown Time: 100%
 				Role Passives: On
 				Ultimate Generation Cage Fight: 75%
 			}
@@ -554,7 +574,7 @@ settings
 				Guardian Angel: Off
 				Healing Dealt: 10%
 				Healing Received: 50%
-				Health: 267%
+				Health: 266.66625%
 				Jump Vertical Speed: 160%
 				Movement Gravity: 90%
 				Movement Speed: 160%
@@ -580,7 +600,7 @@ settings
 				Healing Kasa: Off
 				Healing Received: 10%
 				Health: 250%
-				Katashiro Return Cooldown Time: 90%
+				Katashiro Return Cooldown Time: 83.333%
 				Katashiro Return Duration Scalar: 145%
 				Movement Speed: 115%
 				Passive Health Regeneration: On
@@ -600,7 +620,7 @@ settings
 				Fade Cooldown Time: 42%
 				Healing Dealt: 190%
 				Healing Received: 10%
-				Health: 267%
+				Health: 266.66625%
 				Movement Speed: 90%
 				Passive Health Regeneration: On
 				Primary Fire: Off
@@ -618,7 +638,7 @@ settings
 				Energy Javelin Cooldown Time: 28%
 				Fortify Cooldown Time: 103%
 				Healing Received: 10%
-				Health: 178%
+				Health: 177.7775%
 				Javelin Spin Cooldown Time: 300%
 				Movement Speed: 225%
 				Passive Health Regeneration: On
@@ -630,7 +650,7 @@ settings
 			Pharah
 			{
 				Ammunition Clip Size Scalar: 166%
-				Concussive Blast Cooldown Time: 250%
+				Concussive Blast Cooldown Time: 200%
 				Concussive Blast Knockback Scalar: 50%
 				Damage Received: 30%
 				Healing Received: 40%
@@ -672,7 +692,7 @@ settings
 				Damage Received: 48%
 				Healing Dealt: 416%
 				Healing Received: 21%
-				Health: 219%
+				Health: 218.18094%
 				Movement Speed: 90%
 				Passive Health Regeneration: On
 				Role Passives: Off
@@ -821,7 +841,7 @@ settings
 				Ammunition Clip Size Scalar: 83%
 				Damage Dealt: 200%
 				Healing Received: 10%
-				Health: 323%
+				Health: 322.22157%
 				Movement Speed: 150%
 				Passive Health Regeneration: On
 				Role Passives: On
@@ -872,9 +892,9 @@ settings
 				Blink Cooldown Time: 75%
 				Damage Dealt: 215%
 				Healing Received: 15%
-				Health: 429%
+				Health: 428.571%
 				Passive Health Regeneration: On
-				Recall Cooldown Time: 230%
+				Recall Cooldown Time: 250%
 				Role Passives: Off
 				Ultimate Generation Pulse Bomb: 242%
 			}
@@ -908,7 +928,7 @@ settings
 				Passive Health Regeneration: On
 				Role Passives: Off
 				Ultimate Duration: 200%
-				Ultimate Generation Tectonic Shock: 125%
+				Ultimate Generation Tectonic Shock: 115%
 			}
 
 			Widowmaker
@@ -919,7 +939,7 @@ settings
 				Grappling Hook Cooldown Time: 40%
 				Healing Dealt: 25%
 				Healing Received: 10%
-				Health: 389%
+				Health: 388.88719%
 				Movement Gravity: 90%
 				Passive Health Regeneration: On
 				Projectile Gravity: 105%
@@ -937,7 +957,7 @@ settings
 				Damage Dealt: 116%
 				Damage Received: 55%
 				Healing Received: 10%
-				Health: 139%
+				Health: 138.46207%
 				Jump Pack Acceleration Scalar: 90%
 				Jump Pack Cooldown Time: 35%
 				Jump Pack Knockback Scalar: 90%
@@ -948,7 +968,7 @@ settings
 				Secondary Fire: Off
 				Ultimate Duration: 35%
 				Ultimate Generation - Combat Primal Rage: 240%
-				Ultimate Generation Primal Rage: 338%
+				Ultimate Generation Primal Rage: 317.7%
 			}
 
 			Wrecking Ball
@@ -960,7 +980,7 @@ settings
 				Grappling Claw Cooldown Time: 200%
 				Healing Dealt: 10%
 				Healing Received: 15%
-				Health: 174%
+				Health: 173.913%
 				Passive Health Regeneration: On
 				Piledriver Cooldown Time: 25%
 				Projectile Speed: 250%
@@ -978,10 +998,13 @@ settings
 				Health: 400%
 				Movement Speed: 108%
 				Passive Health Regeneration: On
+				Projectile Speed: 66%
 				Restorative Stream: Off
 				Role Passives: Off
 				Rushing Torrent Cooldown Time: 11%
 				Rushing Torrent Duration Scalar: 457%
+				Water Staff Orb Maximum Control Time: 500%
+				Water Staff Orb Turn Rate: 500%
 			}
 
 			Zarya
@@ -1009,7 +1032,7 @@ settings
 				Damage Dealt: 225%
 				Damage Received: 30%
 				Healing Received: 25%
-				Health: 250%
+				Health: 249.8%
 				Jump Vertical Speed: 250%
 				Movement Gravity: 125%
 				Movement Speed: 90%
@@ -1100,7 +1123,7 @@ settings
 				Damage Dealt: 70%
 				Healing Dealt: 10%
 				Healing Received: 40%
-				Health: 115%
+				Health: 114.28585%
 				Movement Speed: 80%
 				Passive Health Regeneration: On
 				Reconfigure Cooldown Time: 40%
@@ -1141,6 +1164,24 @@ settings
 				Ultimate Generation Deadeye: 88%
 			}
 
+			D.Mon
+			{
+				[PH] Propulsion Knockback Scalar: 0%
+				[PH] Skewer Knockback Scalar: 16%
+				Damage Dealt: 70%
+				Fusion Repeater Cooldown Time: 375%
+				Healing Received: 40%
+				Health: 123.07744%
+				Passive Health Regeneration: On
+				Power Barrier Cooldown Time: 200%
+				Power Barrier Recharge Rate: 124%
+				Propulsors Maximum Time: 120%
+				Propulsors Recharge Rate: 60%
+				Role Passives: Off
+				Ultimate Generation - Combat Limit Break : 125%
+				Ultimate Generation - Passive Limit Break : 50%
+			}
+
 			D.Va
 			{
 				Boosters Cooldown Time: 150%
@@ -1164,13 +1205,13 @@ settings
 				Crystal Charge Cooldown Time: 125%
 				Damage Dealt: 60%
 				Healing Received: 40%
-				Health: 72%
+				Health: 71.1108%
 				Passive Health Regeneration: On
 				Projectile Speed: 80%
 				Reconstruction Heal Scalar: 150%
 				Role Passives: Off
 				Sonic Repulsors Cooldown Time: 428%
-				Ultimate Barrier Health Scalar Panopticon: 300%
+				Ultimate Barrier Health Scalar Panopticon: 270%
 				Ultimate Generation - Combat Panopticon: 200%
 				Ultimate Generation - Passive Panopticon: 105%
 				Ultimate Generation Panopticon: 112%
@@ -1181,7 +1222,7 @@ settings
 				Ammunition Regeneration Time Scalar: 110%
 				Damage Dealt: 55%
 				Healing Received: 66%
-				Health: 74%
+				Health: 73.33326%
 				Passive Health Regeneration: On
 				Power Block Cooldown Time: 428%
 				Projectile Speed: 90%
@@ -1202,7 +1243,7 @@ settings
 				Flight Cooldown Time: 133%
 				Focusing Beam Cooldown Time: 450%
 				Healing Received: 80%
-				Health: 33%
+				Health: 32.95875%
 				Passive Health Regeneration: On
 				Projectile Speed: 125%
 				Role Passives: Off
@@ -1228,14 +1269,14 @@ settings
 				Siphon Blaster Duration Scalar: 100%
 				Siphon Blaster Heat Scalar: 80%
 				Ultimate Generation - Combat Override Protocol: 275%
-				Ultimate Generation - Passive Override Protocol: 175%
+				Ultimate Generation - Passive Override Protocol: 165%
 			}
 
 			Freja
 			{
 				Ammunition Clip Size Scalar: 46%
 				Damage Dealt: 83%
-				Health: 112%
+				Health: 111.11072%
 				Passive Health Regeneration: On
 				Projectile Speed: 100%
 				Quick Dash Cooldown Time: 195%
@@ -1257,7 +1298,7 @@ settings
 				Swift Strike Cooldown Time: 112%
 				Ultimate Duration: 67%
 				Ultimate Generation - Combat Dragonblade: 0%
-				Ultimate Generation - Passive Dragonblade: 425%
+				Ultimate Generation - Passive Dragonblade: 400%
 				Ultimate Generation Dragonblade: 250%
 			}
 
@@ -1289,6 +1330,7 @@ settings
 				Spike Guard Movement Speed Penalty: 20%
 				Spike Guard Resource Cost: 175%
 				Spike Guard Resource Regeneration: 25%
+				Ultimate Generation Downpour: 107%
 				Violent Leap Cooldown Time: 109%
 				Violent Leap Distance: 150%
 			}
@@ -1425,11 +1467,11 @@ settings
 
 			Mauga
 			{
-				Ammunition Clip Size Scalar: 30%
+				Ammunition Clip Size Scalar: 30.1%
 				Cardiac Overdrive Cooldown Time: 138%
 				Damage Dealt: 54%
 				Healing Dealt: 10%
-				Overrun Cooldown Time: 240%
+				Overrun Cooldown Time: 200%
 				Passive Health Regeneration: On
 				Role Passives: On
 				Ultimate Generation - Combat Cage Fight: 80%
@@ -1444,7 +1486,7 @@ settings
 				Damage Dealt: 55%
 				Healing Dealt: 75%
 				Healing Received: 80%
-				Health: 92%
+				Health: 91.66696%
 				Ice Wall Cooldown Time: 250%
 				Movement Speed: 125%
 				Passive Health Regeneration: On
@@ -1466,7 +1508,7 @@ settings
 				Guardian Angel Cooldown Time: 200%
 				Healing Dealt: 27%
 				Healing Received: 500%
-				Health: 45%
+				Health: 44.44425%
 				Movement Gravity: 80%
 				Movement Speed: 140%
 				Passive Health Regeneration: Off
@@ -1486,7 +1528,7 @@ settings
 				Healing Dealt: 50%
 				Healing Kasa Cooldown Time: 500%
 				Healing Received: 75%
-				Katashiro Return Cooldown Time: 81%
+				Katashiro Return Cooldown Time: 75%
 				Katashiro Return Duration Scalar: 218%
 				Passive Health Regeneration: Off
 				Role Passives: On
@@ -1504,7 +1546,7 @@ settings
 				Fade Cooldown Time: 150%
 				Healing Dealt: 44%
 				Healing Received: 80%
-				Health: 112%
+				Health: 111.11072%
 				Passive Health Regeneration: On
 				Projectile Speed: 25%
 				Role Passives: On
@@ -1556,7 +1598,7 @@ settings
 				Ammunition Clip Size Scalar: 40%
 				Damage Dealt: 40%
 				Healing Received: 40%
-				Health: 87%
+				Health: 86.6085%
 				Nemesis Form Cooldown Time: 143%
 				Passive Health Regeneration: On
 				Projectile Speed: 50%
@@ -1590,7 +1632,7 @@ settings
 				Damage Dealt: 70%
 				Fire Strike Cooldown Time: 500%
 				Healing Received: 40%
-				Health: 134%
+				Health: 133.33268%
 				Passive Health Regeneration: On
 				Rocket Hammer Knockback Scalar: 13%
 				Role Passives: Off
@@ -1667,7 +1709,7 @@ settings
 				Damage Dealt: 85%
 				Disruptor Shot Cooldown Time: 167%
 				Healing Received: 90%
-				Health: 112%
+				Health: 111.11072%
 				Passive Health Regeneration: On
 				Power Slide Cooldown Time: 114%
 				Charged Shot Energy Charge Rate: 225%
@@ -1741,9 +1783,9 @@ settings
 				Ammunition Clip Size Scalar: 75%
 				Blink Cooldown Time: 112%
 				Damage Dealt: 90%
-				Health: 86%
+				Health: 85.71448%
 				Passive Health Regeneration: On
-				Recall Cooldown Time: 115%
+				Recall Cooldown Time: 125%
 				Role Passives: On
 				Ultimate Generation - Combat Pulse Bomb: 165%
 				Ultimate Generation - Passive Pulse Bomb: 65%
@@ -1780,7 +1822,7 @@ settings
 				Ultimate Duration: 120%
 				Ultimate Generation - Combat Tectonic Shock: 190%
 				Ultimate Generation - Passive Tectonic Shock: 90%
-				Ultimate Generation Tectonic Shock: 150%
+				Ultimate Generation Tectonic Shock: 138%
 			}
 
 			Widowmaker
@@ -1803,7 +1845,7 @@ settings
 				Barrier Projector Cooldown Time: 166%
 				Damage Dealt: 66%
 				Healing Received: 40%
-				Health: 108%
+				Health: 107.6922%
 				Jump Pack Cooldown Time: 140%
 				Jump Pack Knockback Scalar: 16%
 				Passive Health Regeneration: On
@@ -1811,7 +1853,7 @@ settings
 				Ultimate Duration: 50%
 				Ultimate Generation - Combat Primal Rage: 0%
 				Ultimate Generation - Passive Primal Rage: 500%
-				Ultimate Generation Primal Rage: 166%
+				Ultimate Generation Primal Rage: 156%
 			}
 
 			Wrecking Ball
@@ -1841,7 +1883,6 @@ settings
 				Healing Dealt: 10%
 				Healing Received: 140%
 				Passive Health Regeneration: On
-				Projectile Speed: 66%
 				Restorative Stream Drain Rate: 75%
 				Restorative Stream Recharge Rate: 50%
 				Role Passives: Off
@@ -1850,8 +1891,7 @@ settings
 				Ultimate Generation - Combat Tidal Blast: 133%
 				Ultimate Generation - Passive Tidal Blast: 3%
 				Ultimate Generation Tidal Blast: 133%
-				Water Staff Orb Maximum Control Time: 500%
-				Water Staff Orb Turn Rate: 500%
+				Water Staff Orb Maximum Control Time: 75%
 			}
 
 			Zarya
@@ -2863,7 +2903,7 @@ rule("CORE: (MSGS) BOSS ABILITIES ERASE")
 	{
 		Array Contains(Array(Hero(Reaper), Hero(Symmetra), Hero(Mercy), Hero(Soldier: 76), Hero(Tracer), Hero(Sombra), Hero(Moira), Hero(
 			Cassidy), Hero(Lúcio), Hero(Reinhardt), Hero(Kiriko), Hero(Ramattra), Hero(Genji), Hero(Junkrat), Hero(Brigitte), Hero(
-			Wrecking Ball), Hero(Hanzo), Hero(Ashe), Hero(Echo)), Hero Of(First Of(All Players(Team 1)))) == False;
+			Wrecking Ball), Hero(Hanzo), Hero(Ashe), Hero(Echo), Hero(D.Mon)), Hero Of(First Of(All Players(Team 1)))) == False;
 		Has Spawned(Event Player) == True;
 	}
 
@@ -3332,28 +3372,7 @@ rule("CORE: (TEAM) ALL - GENERAL SWITCH")
 			Destroy Effect(Event Player.PlayerFX_1);
 			Destroy Effect(Event Player.PlayerFX_2);
 			Destroy Effect(Event Player.PlayerFX_3);
-			If(Hero Of(Event Player) == Hero(Bastion));
-				Set Max Health(Event Player, 99.379);
-			Else If(Hero Of(Event Player) == Hero(Mercy) || Hero Of(Event Player) == Hero(Domina));
-				Set Max Health(Event Player, 98.765);
-			Else If(Array Contains(Array(Hero(Moira), Hero(Freja), Hero(Sojourn)), Hero Of(Event Player)));
-				Set Max Health(Event Player, 99.206);
-			Else If(Hero Of(Event Player) == Hero(Tracer));
-				Set Max Health(Event Player, 99.668);
-				Heal(Event Player, Null, 5);
-				Event Player.base_shields = Max Health Of Type(Event Player, Shields);
-			Else If(Hero Of(Event Player) == Hero(Mei));
-				Set Max Health(Event Player, 99.638);
-			Else If(Hero Of(Event Player) == Hero(Doomfist));
-				Set Max Health(Event Player, 99.099);
-			Else If(Hero Of(Event Player) == Hero(Reinhardt));
-				Set Max Health(Event Player, 99.502);
-			Else If(Hero Of(Event Player) == Hero(Ramattra));
-				Set Max Health(Event Player, 99.550);
-			Else If(Hero Of(Event Player) != Hero(Winston) && Hero Of(Event Player) != Hero(Bastion) && Hero Of(Event Player) != Hero(Mei)
-					&& Hero Of(Event Player) != Hero(Echo));
-				Set Max Health(Event Player, 100);
-			End;
+			Set Max Health(Event Player, 100);
 		End;
 		Wait(0.016, Ignore Condition);
 		If(Hero Of(Event Player) == Hero(Illari) || Hero Of(Event Player) == Hero(Jetpack Cat));
@@ -3389,10 +3408,10 @@ rule("CORE: (BOSS) Mercy - Valkyrie Health")
 		Set Damage Dealt(Event Player, 149);
 		Set Healing Received(Event Player, 200);
 		Set Move Speed(Event Player, 50);
-		Set Max Health(Event Player, 166.458);
+		Set Max Health(Event Player, 166.666);
 		Wait(0.001, Ignore Condition);
 		disabled Heal(Event Player, Null, Health(Event Player) * 0.666);
-		Set Player Health(Event Player, Health(Event Player) * 1.666);
+		Set Player Health(Event Player, Health(Event Player) * 1.667);
 		Heal(Event Player, Event Player, 1);
 		Event Player.M = True;
 		Abort If(Is Waiting For Players);
@@ -3425,7 +3444,7 @@ rule("CORE: (BOSS) Mercy - Ground Health")
 		disabled Damage(Event Player, Null, Health(Players On Hero(Hero(Mercy), Team 1)) * 1.142);
 		disabled Set Player Health(Event Player, Health(Event Player) * 0.600);
 		Wait(0.001, Ignore Condition);
-		Set Max Health(Event Player, 99.875);
+		Set Max Health(Event Player, 100);
 		Event Player.M = False;
 		Abort If(Is Waiting For Players);
 		Play Effect(All Players(Team 2), Bad Explosion, Color(White), Event Player, 3);
@@ -3549,11 +3568,12 @@ rule("CORE: (BOSS) Mercy - Switch")
 	{
 		Ongoing - Each Player;
 		Team 1;
-		Mercy;
+		All;
 	}
 
 	conditions
 	{
+		Hero Of(Event Player) != Hero(Mercy);
 		Event Player.M == True;
 	}
 
@@ -3562,8 +3582,8 @@ rule("CORE: (BOSS) Mercy - Switch")
 		Event Player.M = Null;
 		Destroy Effect(Event Player.U);
 		Set Healing Received(Event Player, 100);
+		Skip If(Event Player == Players On Hero(Hero(D.Va), Team 1), 1);
 		Set Max Health(Event Player, 100);
-		Set Move Speed(Event Player, 100);
 	}
 }
 
@@ -4389,6 +4409,7 @@ rule("CORE: (BOSS) REAP - ABILITY HUD")
 			"WRAITH FORM"), Left, 1, Color(White), Color(White), Color(Red), Visible To and String, Default Visibility);
 		Global.BOSS_AbilityKey = Last Text ID;
 		Event Player.Ability_Toggle = True;
+		Set Ability Cooldown(Event Player, Button(Secondary Fire), 1000);
 	}
 }
 
@@ -5623,117 +5644,6 @@ rule("CORE: (BOSS) JUNO TANK DMG")
 	}
 }
 
-rule("CORE: (BOSS) ZEN: HEALTH")
-{
-	event
-	{
-		Ongoing - Each Player;
-		Team 1;
-		Zenyatta;
-	}
-
-	actions
-	{
-		Set Max Health(Event Player, 99.920);
-	}
-}
-
-rule("CORE: (BOSS) SOMBRA: HEALTH")
-{
-	event
-	{
-		Ongoing - Each Player;
-		Team 1;
-		Sombra;
-	}
-
-	actions
-	{
-		Set Max Health(Event Player, 99.759);
-	}
-}
-
-rule("CORE: (BOSS) Mobile Healer: HEALTH")
-{
-	event
-	{
-		Ongoing - Each Player;
-		Team 1;
-		All;
-	}
-
-	conditions
-	{
-		Array Contains(Array(Hero(Mercy), Hero(Kiriko), Hero(Moira), Hero(Lúcio)), Hero Of(Event Player)) == True;
-	}
-
-	actions
-	{
-		Set Max Health(Event Player, 99.875);
-		Set Player Health(Event Player, 600);
-	}
-}
-
-rule("CORE: (BOSS) ORISA: HEALTH")
-{
-	event
-	{
-		Ongoing - Each Player;
-		Team 1;
-		Orisa;
-	}
-
-	actions
-	{
-		Set Max Health(Event Player, 99.875);
-	}
-}
-
-rule("CORE: (BOSS) TRACER: HEALTH")
-{
-	event
-	{
-		Ongoing - Each Player;
-		Team 1;
-		Tracer;
-	}
-
-	actions
-	{
-		Set Max Health(Event Player, 99.900);
-	}
-}
-
-rule("CORE: (BOSS) WRECKING BALL: HEALTH")
-{
-	event
-	{
-		Ongoing - Each Player;
-		Team 1;
-		Wrecking Ball;
-	}
-
-	actions
-	{
-		Set Max Health(Event Player, 99.950);
-	}
-}
-
-rule("CORE: (BOSS) REAPER: HEALTH")
-{
-	event
-	{
-		Ongoing - Each Player;
-		Team 1;
-		Reaper;
-	}
-
-	actions
-	{
-		Set Max Health(Event Player, 99.626);
-	}
-}
-
 rule("CORE: (BOSS) HOG - FLAME ON")
 {
 	event
@@ -6280,7 +6190,7 @@ rule("CORE: (BOSS) JUNK - SWITCH DMG")
 	}
 }
 
-rule("CORE: (BOSS) General: SWITCH HEALTH")
+rule("CORE: (BOSS) General: SWITCH")
 {
 	event
 	{
@@ -6291,16 +6201,14 @@ rule("CORE: (BOSS) General: SWITCH HEALTH")
 
 	conditions
 	{
-		Array Contains(Array(Hero(Orisa), Hero(D.Va), Hero(Kiriko), Hero(Wrecking Ball), Hero(Mercy), Hero(Tracer), Hero(Mercy), Hero(
-			Widowmaker), Hero(Sombra), Hero(Moira), Hero(Winston), Hero(Echo), Hero(Roadhog), Hero(Lúcio), Hero(Reaper)), Hero Of(Event Player)) != True;
 		Has Spawned(Event Player) == True;
+		Hero Of(Event Player) != Hero(D.Va);
 	}
 
 	actions
 	{
 		Set Max Health(Event Player, 100);
-		Wait(0.250, Ignore Condition);
-		Heal(Event Player, Null, 50);
+		Set Move Speed(Event Player, 100);
 	}
 }
 
@@ -6636,7 +6544,7 @@ rule("CORE: INITIALIZE ROLES (GLOBAL A)")
 
 	actions
 	{
-		Global.A[1] = Array(Hero(Brigitte), Hero(Domina), Hero(Reinhardt), Hero(Sigma), Hero(Winston), Hero(Ramattra));
+		Global.A[1] = Array(Hero(Brigitte), Hero(Domina), Hero(D.Mon), Hero(Reinhardt), Hero(Sigma), Hero(Winston), Hero(Ramattra));
 		Global.A[2] = Array(Hero(Doomfist), Hero(Junkrat), Hero(Junker Queen), Hero(Cassidy), Hero(Mei), Hero(Emre), Hero(Orisa), Hero(
 			Roadhog), Hero(Symmetra), Hero(Wrecking Ball), Hero(Mauga), Hero(Hazard), Hero(Vendetta), Hero(Venture));
 		Global.A[3] = Array(Hero(Echo), Hero(Widowmaker), Hero(Tracer), Hero(Sojourn), Hero(Ashe), Hero(Bastion), Hero(Reaper), Hero(
@@ -7734,7 +7642,7 @@ rule("CORE: (MSGS) TEAM HUD ERASE")
 
 	conditions
 	{
-		Array Contains(Array(Hero(Doomfist), Hero(Jetpack Cat), Hero(Roadhog), Hero(Mauga), Hero(Illari), Hero(Mercy), Hero(Torbjörn), Hero(Sojourn), Hero(Orisa), Hero(Domina), Hero(Mizuki), Hero(Hazard), Hero(Sierra), Hero(Shion)), Hero Of(Event Player)) == True;
+		Array Contains(Array(Hero(Doomfist), Hero(D.Mon), Hero(Jetpack Cat), Hero(Roadhog), Hero(Mauga), Hero(Illari), Hero(Mercy), Hero(Torbjörn), Hero(Sojourn), Hero(Orisa), Hero(Domina), Hero(Mizuki), Hero(Hazard), Hero(Sierra), Hero(Shion)), Hero Of(Event Player)) == True;
 	}
 
 	actions
@@ -7762,6 +7670,8 @@ rule("CORE: (MSGS) TEAM CHARGE-HUD ERASE")
 	conditions
 	{
 		(Hero Of(Event Player) != Hero(Ashe) && Hero Of(Event Player) != Hero(Anran) && Hero Of(Event Player) != Hero(Vendetta)) == True;
+		"DO NOT REMOVE:"
+		Has Spawned(Event Player) == True;
 	}
 
 	actions
@@ -10737,18 +10647,16 @@ rule("CORE: (BOSS) WIDOW: SHIELD POOL")
 
 	actions
 	{
-		Set Max Health(Event Player, 99.971);
 		Remove Health Pool From Player(Global.BOSS_HealthPools[0]);
 		Remove Health Pool From Player(Global.BOSS_HealthPools[1]);
 		Add Health Pool To Player(Event Player, Shields, 25, True, False);
 		Global.BOSS_HealthPools[0] = Last Created Health Pool;
-		Set Player Health(Event Player, 900);
 		Event Player.base_health = Max Health(Event Player);
 		Event Player.base_shields = Max Health Of Type(Event Player, Shields);
 	}
 }
 
-rule("CORE: (BOSS) ASHE & HANZO: ARMOUR POOL (+HEALTH)")
+rule("CORE: (BOSS) ASHE & HANZO: ARMOUR POOL")
 {
 	event
 	{
@@ -10870,7 +10778,6 @@ rule("CORE: (BOSS) WINSTON - HEALTH")
 
 	actions
 	{
-		Set Max Health(Event Player, 99.613);
 		Remove Health Pool From Player(Global.BOSS_HealthPools[0]);
 		Remove Health Pool From Player(Global.BOSS_HealthPools[1]);
 		Add Health Pool To Player(Event Player, Armor, 17.305, True, False);
@@ -10898,11 +10805,11 @@ rule("CORE: (BOSS) WINSTON - RAGE HP")
 
 	actions
 	{
-		Set Max Health(Event Player, 90.957);
+		Set Max Health(Event Player, 90.605);
 		Event Player.base_health = Max Health(Event Player);
 		Event Player.base_shields = Max Health Of Type(Event Player, Shields);
 		Wait Until(!Is Using Ultimate(Event Player), 4.100);
-		Set Max Health(Event Player, 99.613);
+		Set Max Health(Event Player, 100);
 		Event Player.base_health = Max Health(Event Player);
 		Event Player.base_shields = Max Health Of Type(Event Player, Shields);
 	}
@@ -10947,6 +10854,22 @@ rule("CORE: (TEAM) BRIG - SIZE")
 	}
 }
 
+rule("CORE: (TEAM) D.MON - SIZE")
+{
+	event
+	{
+		Ongoing - Each Player;
+		Team 2;
+		D.Mon;
+	}
+
+	actions
+	{
+		Start Scaling Player(Event Player, 1, False);
+		Start Scaling Barriers(Event Player, 2, False);
+	}
+}
+
 rule("CORE: (ALL) BASTION - SIZE")
 {
 	event
@@ -10975,7 +10898,7 @@ rule("CORE: (TEAM) General - SIZE")
 	conditions
 	{
 		Has Spawned(Event Player) == True;
-		Array Contains(Array(Hero(Winston), Hero(Brigitte), Hero(D.Va), Hero(Torbjörn), Hero(Ramattra), Hero(Orisa), Hero(Sigma), Hero(
+		Array Contains(Array(Hero(Winston), Hero(Brigitte), Hero(D.Va), Hero(D.Mon), Hero(Torbjörn), Hero(Ramattra), Hero(Orisa), Hero(Sigma), Hero(
 			Bastion), Hero(Zarya), Hero(Doomfist), Hero(Hazard)), Hero Of(Event Player)) != True;
 	}
 
@@ -12007,7 +11930,7 @@ rule("CORE: (TEAM) ALL - REMOVE HEALTH POOLS")
 	{
 		Array Contains(Array(Hero(Winston), Hero(D.Va), Hero(Zarya), Hero(Ramattra), Hero(Illari), Hero(Reinhardt), Hero(Sigma), Hero(
 			Torbjörn), Hero(Juno), Hero(Echo), Hero(Hazard), Hero(Sombra), Hero(Pharah), Hero(Orisa), Hero(Wrecking Ball), Hero(Venture),
-			Hero(Domina)), Hero Of(Event Player)) != True;
+			Hero(Domina), Hero(D.Mon)), Hero Of(Event Player)) != True;
 		Has Spawned(Event Player) == True;
 	}
 
@@ -12789,6 +12712,28 @@ rule("CORE: (TEAM) REIN: HEALTH")
 		Remove Health Pool From Player(Event Player.shield_pool);
 		Remove Health Pool From Player(Event Player.armour_pool);
 		Add Health Pool To Player(Event Player, Health, 16.667, True, False);
+		Event Player.health_pool = Last Created Health Pool;
+		Wait(0.016, Ignore Condition);
+		Event Player.base_health = Max Health(Event Player);
+		Event Player.base_shields = Max Health Of Type(Event Player, Shields);
+	}
+}
+
+rule("CORE: (TEAM) D.MON: HEALTH")
+{
+	event
+	{
+		Ongoing - Each Player;
+		Team 2;
+		D.Mon;
+	}
+
+	actions
+	{
+		Remove Health Pool From Player(Event Player.health_pool);
+		Remove Health Pool From Player(Event Player.shield_pool);
+		Remove Health Pool From Player(Event Player.armour_pool);
+		Add Health Pool To Player(Event Player, Health, 11.538, True, False);
 		Event Player.health_pool = Last Created Health Pool;
 		Wait(0.016, Ignore Condition);
 		Event Player.base_health = Max Health(Event Player);
@@ -13740,6 +13685,7 @@ rule("CORE: (TEAM) REAP - SPAWN ABILITY HUD")
 		Destroy Effect(Event Player.PlayerFX_2);
 		Destroy Effect(Event Player.PlayerFX_3);
 		Event Player.secondary_charge = 0;
+		Set Ability Cooldown(Event Player, Button(Secondary Fire), 999);
 	}
 }
 
@@ -14292,7 +14238,7 @@ rule("BUG: ALL - STEALTH FX OFF")
 	}
 }
 
-rule("CORE: (BOSS) DVA MECH SPEED")
+rule("CORE: (BOSS) DVA MECH")
 {
 	event
 	{
@@ -14310,10 +14256,13 @@ rule("CORE: (BOSS) DVA MECH SPEED")
 	{
 		Set Move Speed(Event Player, 100);
 		Event Player.primary_charge = True;
+		Set Max Health(Event Player, 100);
+		Wait Until(Max Health(Event Player) == 1000, 0.016);
+		Set Player Health(Event Player, 1000);
 	}
 }
 
-rule("CORE: (BOSS) DVA PILOT SPEED")
+rule("CORE: (BOSS) DVA PILOT")
 {
 	event
 	{
@@ -14331,78 +14280,7 @@ rule("CORE: (BOSS) DVA PILOT SPEED")
 	{
 		Set Move Speed(Event Player, 79);
 		Event Player.primary_charge = False;
-	}
-}
-
-rule("temp (BOSS) DVA ALTERNATE FORM HEALTH")
-{
-	event
-	{
-		Ongoing - Each Player;
-		Team 1;
-		D.Va;
-	}
-
-	conditions
-	{
-		Event Player.primary_charge == False;
-	}
-
-	actions
-	{
-		Set Max Health(Event Player, 99.900);
-		Wait(0.016, Ignore Condition);
-		Skip If(Is Using Ultimate(Event Player), 1);
-		Heal(Event Player, Null, 10000);
-		Wait Until(Event Player.primary_charge, 9999);
-		Set Max Health(Event Player, 139.860);
-		Wait(0.016, Ignore Condition);
-		Skip If(Is Using Ultimate(Event Player), 1);
-		Heal(Event Player, Null, 10000);
-	}
-}
-
-rule("temp (BOSS) DVA MECH HEALTH LOOP")
-{
-	event
-	{
-		Ongoing - Each Player;
-		Team 1;
-		D.Va;
-	}
-
-	conditions
-	{
-		Event Player.primary_charge == True;
-		Max Health(Event Player) > 1002;
-	}
-
-	actions
-	{
-		Set Max Health(Event Player, 139.860);
-		Wait(0.100, Abort When False);
-		Loop If Condition Is True;
-	}
-}
-
-rule("temp (BOSS) DVA - SPAWN HP")
-{
-	event
-	{
-		Ongoing - Each Player;
-		Team 1;
-		D.Va;
-	}
-
-	actions
-	{
-		Wait(1.900, Ignore Condition);
-		Skip If(Is In Alternate Form(Event Player), 5);
-		Event Player.primary_charge = True;
-		Wait(0.016, Ignore Condition);
-		Set Max Health(Event Player, 139.860);
-		Wait(0.904, Ignore Condition);
-		Heal(Event Player, Null, 10000);
+		Set Max Health(Event Player, 71.42857);
 	}
 }
 
@@ -14533,7 +14411,6 @@ rule("CORE: (TEAM) WINSTON: HEALTH / SIZE")
 
 	actions
 	{
-		Set Max Health(Event Player, 99.715);
 		Start Scaling Player(Event Player, 1, False);
 		Start Scaling Barriers(Event Player, 0.750, False);
 		Remove Health Pool From Player(Event Player.armour_pool);
@@ -14542,6 +14419,8 @@ rule("CORE: (TEAM) WINSTON: HEALTH / SIZE")
 		Event Player.health_pool = Last Created Health Pool;
 		Add Health Pool To Player(Event Player, Armor, 5.770, True, False);
 		Event Player.armour_pool = Last Created Health Pool;
+		Event Player.base_health = Max Health(Event Player);
+		Event Player.base_shields = Max Health Of Type(Event Player, Shields);
 	}
 }
 
@@ -14562,7 +14441,7 @@ rule("CORE: (TEAM) WINSTON: OFF RAGE +SHIELDS")
 	actions
 	{
 		Remove Health Pool From Player(Event Player.shield_pool);
-		Set Max Health(Event Player, 99.715);
+		Set Max Health(Event Player, 100);
 		Add Health Pool To Player(Event Player, Shields, 100, True, False);
 		Event Player.shield_pool = Last Created Health Pool;
 		Heal(Event Player, Null, 100);
@@ -14588,7 +14467,7 @@ rule("CORE: (TEAM) WINSTON: ON RAGE X-SHIELDS")
 	actions
 	{
 		Remove Health Pool From Player(Event Player.shield_pool);
-		Set Max Health(Event Player, 93.456);
+		Set Max Health(Event Player, 93.18965);
 		Heal(Event Player, Null, 10);
 	}
 }
@@ -17211,18 +17090,17 @@ rule("CORE: (BOSS) NO BERSERK HUD")
 	}
 }
 
-rule("CORE: (ALL) ECHO: HEALTH")
+rule("CORE: (TEAM) ECHO: HEALTH POOLS")
 {
 	event
 	{
 		Ongoing - Each Player;
-		All;
+		Team 2;
 		Echo;
 	}
 
 	actions
 	{
-		Skip If(Team Of(Event Player) == Team 1, 8);
 		Remove Health Pool From Player(Event Player.health_pool);
 		Remove Health Pool From Player(Event Player.shield_pool);
 		Remove Health Pool From Player(Event Player.armour_pool);
@@ -17230,8 +17108,6 @@ rule("CORE: (ALL) ECHO: HEALTH")
 		Event Player.health_pool = Last Created Health Pool;
 		Event Player.base_health = Max Health(Event Player);
 		Event Player.base_shields = Max Health Of Type(Event Player, Shields);
-		Skip(1);
-		Set Max Health(Event Player, 99.875);
 	}
 }
 
@@ -18277,7 +18153,7 @@ rule("CORE: (TEAM) ALL - HARD COOLDOWNS")
 
 	actions
 	{
-		Skip If(!Array Contains(Array(Hero(Ana), Hero(Reinhardt), Hero(Sojourn)), Hero Of(Event Player)), 6);
+		Skip If(!Array Contains(Array(Hero(Ana), Hero(Reinhardt), Hero(Sombra)), Hero Of(Event Player)), 6);
 		Abort If(Ability Cooldown(Event Player, Button(Ability 1)) <= 9);
 		Event Player.CD_saver = Ability Cooldown(Event Player, Button(Ability 1));
 		Wait Until(Is Alive(Event Player), 9);
@@ -19026,7 +18902,7 @@ rule("(BOSS) KIRIKO STEP AIM")
 		Event Player.Ability_Bool == False;
 		Event Player.primary_charge == 0;
 		Is True For Any(Filtered Array(All Players(Team 2), Is Alive(Current Array Element)), (Is In View Angle(Event Player,
-			Current Array Element, 3) && !Is In Line of Sight(Eye Position(Event Player), Current Array Element, Barriers Do Not Block LOS))
+			Current Array Element, 3) && Is In Line of Sight(Eye Position(Event Player), Current Array Element, Barriers Do Not Block LOS))
 			== True) == True;
 		Is In Line of Sight(Eye Position(Player Closest To Reticle(Event Player, Team 2)), Eye Position(Player Closest To Reticle(
 			Event Player, Team 2)) + Facing Direction Of(Event Player) * 4, Barriers Do Not Block LOS) == True;
@@ -19888,6 +19764,24 @@ rule("CORE: (BOSS) ALL - DAMAGE RECEIVED")
 	{
 		Global.BossDamageReceived = 100;
 		Set Damage Received(Event Player, Global.BossDamageReceived);
+	}
+}
+
+rule("CORE: (BOSS) D.MON ULT CHARGE")
+{
+	event
+	{
+		Player Dealt Damage;
+		Team 1;
+		D.Mon;
+	}
+
+	actions
+	{
+		If(Event Ability == Button(Primary Fire));
+			Set Ultimate Charge(Event Player, Ultimate Charge Percent(Event Player) + 5);
+		Else If(Event Ability == Button(Ability 2));
+			Set Ultimate Charge(Event Player, Ultimate Charge Percent(Event Player) + 4);
 	}
 }
 
