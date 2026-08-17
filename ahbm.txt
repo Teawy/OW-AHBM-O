@@ -186,7 +186,7 @@ settings
 			{
 				[PH] Assemble Mech Knockback Scalar: 400%
 				[PH] Skewer Knockback Scalar: 150%
-				Damage Dealt: 200%
+				Damage Dealt: 215.385%
 				Fusion Repeater Cooldown Time: 150%
 				Healing Received: 10%
 				Health: 200%
@@ -398,12 +398,12 @@ settings
 				Damage Dealt: 225%
 				Damage Received: 22%
 				Frenetic Flight Maximum Time: 75%
-				Frenetic Flight Recharge Rate: 30%
+				Frenetic Flight Recharge Rate: 35%
 				Healing Dealt: 400%
 				Healing Received: 10%
 				Health: 400%
 				Lifeline: Off
-				Movement Speed: 105%
+				Movement Speed: 125%
 				Passive Health Regeneration: On
 				Projectile Speed: 125%
 				Role Passives: On
@@ -998,10 +998,13 @@ settings
 				Health: 400%
 				Movement Speed: 108%
 				Passive Health Regeneration: On
+				Projectile Speed: 66%
 				Restorative Stream: Off
 				Role Passives: Off
 				Rushing Torrent Cooldown Time: 11%
 				Rushing Torrent Duration Scalar: 457%
+				Water Staff Orb Maximum Control Time: 500%
+				Water Staff Orb Turn Rate: 500%
 			}
 
 			Zarya
@@ -1880,7 +1883,6 @@ settings
 				Healing Dealt: 10%
 				Healing Received: 140%
 				Passive Health Regeneration: On
-				Projectile Speed: 66%
 				Restorative Stream Drain Rate: 75%
 				Restorative Stream Recharge Rate: 50%
 				Role Passives: Off
@@ -1889,8 +1891,7 @@ settings
 				Ultimate Generation - Combat Tidal Blast: 133%
 				Ultimate Generation - Passive Tidal Blast: 3%
 				Ultimate Generation Tidal Blast: 133%
-				Water Staff Orb Maximum Control Time: 500%
-				Water Staff Orb Turn Rate: 500%
+				Water Staff Orb Maximum Control Time: 75%
 			}
 
 			Zarya
