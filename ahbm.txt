@@ -568,7 +568,7 @@ settings
 			Mercy
 			{
 				Ammunition Clip Size Scalar: 300%
-				Damage Dealt: 312.5%
+				Damage Dealt: 310%
 				Damage Received: 33%
 				Flash Heal: Off
 				Guardian Angel: Off
@@ -18351,6 +18351,27 @@ rule("CORE: (BOSS) RAM - START SK DMG")
 	{
 		Start Damage Modification(Players On Hero(Hero(Mercy), Team 2), Players On Hero(Hero(Ramattra), Team 1), 166.666,
 			Receivers Damagers and Damage Percent);
+	}
+}
+
+rule("CORE: (BOSS) MERCY SK SHOT")
+{
+	event
+	{
+		Player Dealt Damage;
+		Team 1;
+		Mercy;
+	}
+
+	conditions
+	{
+		Hero Of(Victim) == Hero(Mercy);
+		Event Was Critical Hit == True;
+	}
+
+	actions
+	{
+		Damage(Victim, Event Player, 0.3226);
 	}
 }
 
