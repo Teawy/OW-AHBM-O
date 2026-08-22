@@ -17912,12 +17912,12 @@ rule("CORE: (BOSS) WINSTON - JUMP SK")
 	{
 		Hero Of(Victim) == Hero(Mercy);
 		Event Ability == Button(Ability 1);
-		Event Damage < 50;
+		Event Damage < 75;
 	}
 
 	actions
 	{
-		Damage(Victim, Event Player, (50 - Event Damage) / 1.160);
+		Damage(Victim, Event Player, (75 - Event Damage) / 1.160);
 	}
 }
 
