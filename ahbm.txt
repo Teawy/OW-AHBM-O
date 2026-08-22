@@ -184,8 +184,7 @@ settings
 
 			D.Mon
 			{
-				[PH] Assemble Mech Knockback Scalar: 400%
-				[PH] Skewer Knockback Scalar: 150%
+				Call Mech Knockback Scalar: 400%
 				Damage Dealt: 215.385%
 				Fusion Repeater Cooldown Time: 150%
 				Healing Received: 10%
@@ -197,8 +196,9 @@ settings
 				Propulsors Maximum Time: 200%
 				Propulsors Recharge Rate: 80%
 				Role Passives: Off
-				Ultimate Generation - Combat Limit Break : 0%
-				Ultimate Generation - Passive Limit Break : 0%
+				Surging Strike Knockback Scalar: 150%
+				Ultimate Generation - Combat Limit Break: 0%
+				Ultimate Generation - Passive Limit Break: 0%
 			}
 
 			D.Va
@@ -323,7 +323,7 @@ settings
 			Genji
 			{
 				Ammunition Clip Size Scalar: 70%
-				Damage Dealt: 240%
+				Damage Dealt: 250%
 				Deflect Cooldown Time: 83%
 				Healing Received: 25%
 				Health: 240%
@@ -568,7 +568,7 @@ settings
 			Mercy
 			{
 				Ammunition Clip Size Scalar: 300%
-				Damage Dealt: 333%
+				Damage Dealt: 312.5%
 				Damage Received: 33%
 				Flash Heal: Off
 				Guardian Angel: Off
@@ -1010,7 +1010,7 @@ settings
 			Zarya
 			{
 				Ammunition Clip Size Scalar: 300%
-				Damage Dealt: 271%
+				Damage Dealt: 260%
 				Damage Received: 26%
 				Healing Dealt: 10%
 				Healing Received: 30%
@@ -1048,7 +1048,6 @@ settings
 
 		Team 2
 		{
-			Healing Received: 90%
 			Ultimate Generation: 124%
 
 			Ana
@@ -1101,8 +1100,8 @@ settings
 				Ammunition Clip Size Scalar: 42%
 				Damage Dealt: 55%
 				Healing Dealt: 10%
-				Healing Received: 140%
-				Health: 90%
+				Healing Received: 200%
+				Health: 80%
 				Immortality Field Cooldown Time: 181%
 				Passive Health Regeneration: On
 				Projectile Gravity: 13%
@@ -1157,6 +1156,7 @@ settings
 				Combat Roll Cooldown Time: 200%
 				Damage Dealt: 50%
 				Flashbang Cooldown Time: 125%
+				Healing Received: 80%
 				Health: 110%
 				Passive Health Regeneration: On
 				Role Passives: Off
@@ -1166,8 +1166,6 @@ settings
 
 			D.Mon
 			{
-				[PH] Propulsion Knockback Scalar: 0%
-				[PH] Skewer Knockback Scalar: 16%
 				Damage Dealt: 70%
 				Fusion Repeater Cooldown Time: 375%
 				Healing Received: 40%
@@ -1175,11 +1173,13 @@ settings
 				Passive Health Regeneration: On
 				Power Barrier Cooldown Time: 200%
 				Power Barrier Recharge Rate: 124%
+				Propulsors Knockback Scalar: 0%
 				Propulsors Maximum Time: 120%
 				Propulsors Recharge Rate: 60%
 				Role Passives: Off
-				Ultimate Generation - Combat Limit Break : 125%
-				Ultimate Generation - Passive Limit Break : 50%
+				Surging Strike Knockback Scalar: 16%
+				Ultimate Generation - Combat Limit Break: 125%
+				Ultimate Generation - Passive Limit Break: 50%
 			}
 
 			D.Va
@@ -1221,7 +1221,7 @@ settings
 			{
 				Ammunition Regeneration Time Scalar: 110%
 				Damage Dealt: 55%
-				Healing Received: 66%
+				Healing Received: 80%
 				Health: 73.33326%
 				Passive Health Regeneration: On
 				Power Block Cooldown Time: 428%
@@ -1276,6 +1276,7 @@ settings
 			{
 				Ammunition Clip Size Scalar: 46%
 				Damage Dealt: 83%
+				Healing Received: 90%
 				Health: 111.11072%
 				Passive Health Regeneration: On
 				Projectile Speed: 100%
@@ -1305,6 +1306,7 @@ settings
 			Hanzo
 			{
 				Damage Dealt: 85%
+				Healing Received: 90%
 				Lunge Cooldown Time: 125%
 				Lunge Distance Scalar: 75%
 				Passive Health Regeneration: On
@@ -1321,6 +1323,7 @@ settings
 			{
 				Ammunition Clip Size Scalar: 75%
 				Damage Dealt: 60%
+				Healing Received: 80%
 				Health: 10%
 				Jagged Wall Cooldown Time: 133%
 				Jagged Wall Health: 100%
@@ -1341,7 +1344,6 @@ settings
 				Damage Dealt: 80%
 				Healing Dealt: 10%
 				Healing Pylon Cooldown Time: 72%
-				Healing Received: 95%
 				Health: 80%
 				Outburst Cooldown Time: 150%
 				Passive Health Regeneration: On
@@ -1354,10 +1356,11 @@ settings
 			Jetpack Cat
 			{
 				Ammunition Clip Size Scalar: 50%
-				Biotic Pawjectile Range: 500%
+				Biotic Pawjectile Range: 200%
 				Damage Dealt: 67%
 				Healing Dealt: 10%
-				Healing Received: 140%
+				Healing Received: 200%
+				Health: 88.88889%
 				Lifeline Cooldown Time: 400%
 				Passive Health Regeneration: On
 				Purr Cooldown Time: 333%
@@ -1403,7 +1406,7 @@ settings
 				Damage Dealt: 63%
 				Glide Boost Cooldown Time: 100%
 				Healing Dealt: 11%
-				Healing Received: 140%
+				Healing Received: 200%
 				Health: 33%
 				Hyper Ring Cooldown Time: 143%
 				Passive Health Regeneration: On
@@ -1417,6 +1420,8 @@ settings
 				Ammunition Clip Size Scalar: 40%
 				Damage Dealt: 60%
 				Healing Dealt: 11%
+				Healing Received: 200%
+				Health: 88.88889%
 				Passive Health Regeneration: On
 				Projectile Speed: 140%
 				Protection Suzu Cooldown Time: 285%
@@ -1452,9 +1457,9 @@ settings
 				Ammunition Clip Size Scalar: 60%
 				Amp It Up Cooldown Time: 165%
 				Damage Dealt: 80%
-				Damage Received: 102%
 				Healing Dealt: 10%
-				Healing Received: 140%
+				Healing Received: 200%
+				Health: 88.88889%
 				Passive Health Regeneration: On
 				Projectile Speed: 160%
 				Role Passives: On
@@ -1471,6 +1476,7 @@ settings
 				Cardiac Overdrive Cooldown Time: 138%
 				Damage Dealt: 54%
 				Healing Dealt: 10%
+				Healing Received: 66%
 				Overrun Cooldown Time: 200%
 				Passive Health Regeneration: On
 				Role Passives: On
@@ -1503,12 +1509,11 @@ settings
 			{
 				Ammunition Clip Size Scalar: 63%
 				Damage Dealt: 10%
-				Damage Received: 75%
 				Flash Heal: Off
 				Guardian Angel Cooldown Time: 200%
-				Healing Dealt: 27%
+				Healing Dealt: 20%
 				Healing Received: 500%
-				Health: 44.44425%
+				Health: 55.55556%
 				Movement Gravity: 80%
 				Movement Speed: 140%
 				Passive Health Regeneration: Off
@@ -1544,8 +1549,8 @@ settings
 				Biotic Orb Max Damage Scalar: 40%
 				Damage Dealt: 60%
 				Fade Cooldown Time: 150%
-				Healing Dealt: 44%
-				Healing Received: 80%
+				Healing Dealt: 50%
+				Healing Received: 85%
 				Health: 111.11072%
 				Passive Health Regeneration: On
 				Projectile Speed: 25%
@@ -1577,7 +1582,7 @@ settings
 			{
 				Concussive Blast: Off
 				Damage Dealt: 45%
-				Healing Received: 75%
+				Healing Received: 80%
 				Health: 66%
 				Hover Jets Maximum Time: 500%
 				Hover Jets Vertical Speed Scalar: 60%
@@ -1708,7 +1713,7 @@ settings
 				Ammunition Clip Size Scalar: 44%
 				Damage Dealt: 85%
 				Disruptor Shot Cooldown Time: 167%
-				Healing Received: 90%
+				Healing Received: 80%
 				Health: 111.11072%
 				Passive Health Regeneration: On
 				Power Slide Cooldown Time: 114%
@@ -1723,8 +1728,8 @@ settings
 				Ammunition Clip Size Scalar: 50%
 				Damage Dealt: 45%
 				Healing Dealt: 125%
-				Healing Received: 140%
-				Health: 90%
+				Healing Received: 200%
+				Health: 80%
 				Helix Rockets Cooldown Time: 333%
 				Helix Rockets Knockback Scalar: 400%
 				Passive Health Regeneration: On
@@ -1783,6 +1788,7 @@ settings
 				Ammunition Clip Size Scalar: 75%
 				Blink Cooldown Time: 112%
 				Damage Dealt: 90%
+				Healing Received: 80%
 				Health: 85.71448%
 				Passive Health Regeneration: On
 				Recall Cooldown Time: 125%
@@ -1795,7 +1801,6 @@ settings
 			Vendetta
 			{
 				Damage Dealt: 50%
-				Healing Received: 85%
 				Health: 100%
 				Movement Speed: 110%
 				Passive Health Regeneration: On
@@ -1815,7 +1820,7 @@ settings
 				Burrow Cooldown Time: 200%
 				Damage Dealt: 50%
 				Drill Dash Cooldown Time: 75%
-				Healing Received: 82%
+				Healing Received: 80%
 				Passive Health Regeneration: On
 				Projectile Speed: 100%
 				Role Passives: Off
@@ -1830,6 +1835,7 @@ settings
 				Ammunition Clip Size Scalar: 71%
 				Damage Dealt: 85%
 				Grappling Hook Cooldown Time: 120%
+				Healing Received: 90%
 				Health: 100%
 				Passive Health Regeneration: On
 				Role Passives: On
@@ -1879,9 +1885,9 @@ settings
 				Damage Dealt: 55%
 				Guardian Wave Cooldown Time: 128%
 				Guardian Wave Knockback Scalar: 10%
-				Health: 100%
+				Health: 88.88889%
 				Healing Dealt: 10%
-				Healing Received: 140%
+				Healing Received: 200%
 				Passive Health Regeneration: On
 				Restorative Stream Drain Rate: 75%
 				Restorative Stream Recharge Rate: 50%
@@ -8727,7 +8733,7 @@ rule("CORE: (TEAM) BRIG - ARMOUR BROKEN")
 	conditions
 	{
 		Global.mercyArmourBool == True;
-		Health(Players On Hero(Hero(Mercy), Team 2)) <= 100;
+		Health(Players On Hero(Hero(Mercy), Team 2)) <= 125;
 	}
 
 	actions
@@ -13019,7 +13025,7 @@ rule("CORE: (TEAM) JUNO: HEALTH")
 		Remove Health Pool From Player(Event Player.health_pool);
 		Remove Health Pool From Player(Event Player.shield_pool);
 		Remove Health Pool From Player(Event Player.armour_pool);
-		Add Health Pool To Player(Event Player, Health, 150.250, True, False);
+		Add Health Pool To Player(Event Player, Health, 125.250, True, False);
 		Event Player.health_pool = Last Created Health Pool;
 		Wait(0.016, Ignore Condition);
 		Event Player.base_health = Max Health(Event Player);
@@ -17889,7 +17895,7 @@ rule("CORE: (BOSS) WINSTON - MELEE SK")
 
 	actions
 	{
-		Damage(Victim, Event Player, 17.471);
+		Damage(Victim, Event Player, 3.104);
 	}
 }
 
@@ -17911,7 +17917,7 @@ rule("CORE: (BOSS) WINSTON - JUMP SK")
 
 	actions
 	{
-		Damage(Victim, Event Player, (50 - Event Damage) / 1.160 / 0.750);
+		Damage(Victim, Event Player, (50 - Event Damage) / 1.160);
 	}
 }
 
@@ -18205,7 +18211,7 @@ rule("CORE: (TEAM) 76 - SELF HEAL")
 
 	actions
 	{
-		Set Healing Received(Event Player, 21);
+		Set Healing Received(Event Player, 15);
 		Wait Until(!Is Using Ability 2(Event Player) || Hero Of(Event Player) != Hero(Soldier: 76), 6);
 		Set Healing Received(Event Player, 100);
 	}
@@ -18271,7 +18277,7 @@ rule("CORE: (TEAM) MAUGA - START CARDIAC HEAL SELF")
 
 	actions
 	{
-		Start Healing Modification(Event Player, Event Player, 750, Receivers Healers and Healing Percent);
+		Start Healing Modification(Event Player, Event Player, 1025, Receivers Healers and Healing Percent);
 		Event Player.cardiac_heal = Last Healing Modification ID;
 	}
 }
@@ -18343,7 +18349,7 @@ rule("CORE: (BOSS) RAM - START SK DMG")
 
 	actions
 	{
-		Start Damage Modification(Players On Hero(Hero(Mercy), Team 2), Players On Hero(Hero(Ramattra), Team 1), 177.777,
+		Start Damage Modification(Players On Hero(Hero(Mercy), Team 2), Players On Hero(Hero(Ramattra), Team 1), 166.666,
 			Receivers Damagers and Damage Percent);
 	}
 }
@@ -18392,7 +18398,7 @@ rule("CORE: (TEAM) EMP")
 	event
 	{
 		Player Dealt Damage;
-		Team 2;
+		All;
 		Sombra;
 	}
 
@@ -18403,9 +18409,9 @@ rule("CORE: (TEAM) EMP")
 
 	actions
 	{
-		Damage(Victim, Null, 25);
+		Damage(Victim, Event Player, 25);
 		Wait(0.016, Ignore Condition);
-		Loop If(Health Of Type(Victim, Shields) > 0);
+		Loop If(Health Of Type(Victim, Shields) > 0 || Max Health(Victim) > Victim.base_health);
 	}
 }
 
@@ -18467,7 +18473,7 @@ rule("CORE: (BOSS) ORISA DMG MERCY SPEAR")
 
 	actions
 	{
-		Damage(Victim, Event Player, 17);
+		Damage(Victim, Event Player, 16);
 	}
 }
 
@@ -19119,69 +19125,6 @@ rule("CORE: (ALL) TRACK CC")
 			Event Player) || !Has Spawned(Event Player));
 		Wait(0.016, Ignore Condition);
 		Loop If Condition Is True;
-	}
-}
-
-rule("CORE: (BOSS) ASHE SK SHOT")
-{
-	event
-	{
-		Player Dealt Damage;
-		Team 1;
-		Ashe;
-	}
-
-	conditions
-	{
-		Hero Of(Victim) == Hero(Mercy);
-		Event Ability == Button(Primary Fire);
-	}
-
-	actions
-	{
-		Damage(Victim, Event Player, Event Damage * 0.279);
-	}
-}
-
-rule("CORE: (BOSS) GENJI SK DASH")
-{
-	event
-	{
-		Player Dealt Damage;
-		Team 1;
-		Genji;
-	}
-
-	conditions
-	{
-		Hero Of(Victim) == Hero(Mercy);
-		Event Ability == Button(Ability 1);
-	}
-
-	actions
-	{
-		Damage(Victim, Event Player, 10);
-	}
-}
-
-rule("CORE: (BOSS) MERCY SK SHOT")
-{
-	event
-	{
-		Player Dealt Damage;
-		Team 1;
-		Mercy;
-	}
-
-	conditions
-	{
-		Hero Of(Victim) == Hero(Mercy);
-		Event Ability == Button(Primary Fire);
-	}
-
-	actions
-	{
-		Damage(Victim, Event Player, 0.250);
 	}
 }
 
