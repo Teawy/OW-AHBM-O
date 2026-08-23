@@ -6556,8 +6556,8 @@ rule("CORE: INITIALIZE ROLES (GLOBAL A)")
 		Global.A[3] = Array(Hero(Echo), Hero(Widowmaker), Hero(Tracer), Hero(Sojourn), Hero(Ashe), Hero(Bastion), Hero(Reaper), Hero(
 			Hanzo), Hero(Genji), Hero(Freja), Hero(Torbjörn), Hero(Sierra), Hero(Shion));
 		Global.A[4] = Array(Hero(Jetpack Cat), Hero(Mizuki), Hero(Zarya), Hero(Ana), Hero(Baptiste), Hero(D.Va), Hero(Illari), Hero(Juno),
-			Hero(Kiriko), Hero(Lifeweaver), Hero(Lúcio), Hero(Anran), Hero(Soldier: 76), Hero(Moira), Hero(Pharah), Hero(Sombra), Hero(
-			Wuyang), Hero(Zenyatta));
+			Hero(Kiriko), Hero(Lúcio), Hero(Anran), Hero(Soldier: 76), Hero(Moira), Hero(Pharah), Hero(Sombra), Hero(
+			Wuyang), Hero(Zenyatta)); // Hero(Lifeweaver)
 	}
 }
 
@@ -10835,12 +10835,15 @@ rule("CORE: (BOSS) General: REMOVE POOLS")
 		Array Contains(Array(Hero(Genji), Hero(Hanzo), Hero(Widowmaker), Hero(Juno), Hero(Ashe), Hero(Domina), Hero(Echo), Hero(Shion), Hero(Sigma),
 			Hero(Winston)), Hero Of(Event Player)) != True;
 		Has Spawned(Event Player) == True;
+		Is Alive(Event Player) == True;
 	}
 
 	actions
 	{
 		Remove Health Pool From Player(Global.BOSS_HealthPools[0]);
 		Remove Health Pool From Player(Global.BOSS_HealthPools[1]);
+		Event Player.base_health = Max Health(Event Player);
+		Event Player.base_shields = Max Health Of Type(Event Player, Shields);
 	}
 }
 
