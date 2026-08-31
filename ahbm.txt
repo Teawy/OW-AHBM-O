@@ -726,7 +726,7 @@ settings
 			{
 				Ammunition Clip Size Scalar: 33%
 				Chain Hook Cooldown Time: 29%
-				Damage Dealt: 185%
+				Damage Dealt: 192.3077%
 				Damage Received: 40%
 				Healing Dealt: 400%
 				Healing Received: 10%
@@ -6557,7 +6557,7 @@ rule("CORE: INITIALIZE ROLES (GLOBAL A)")
 			Hanzo), Hero(Genji), Hero(Freja), Hero(Torbjörn), Hero(Sierra), Hero(Shion));
 		Global.A[4] = Array(Hero(Jetpack Cat), Hero(Mizuki), Hero(Zarya), Hero(Ana), Hero(Baptiste), Hero(D.Va), Hero(Illari), Hero(Juno),
 			Hero(Kiriko), Hero(Lúcio), Hero(Anran), Hero(Soldier: 76), Hero(Moira), Hero(Pharah), Hero(Sombra), Hero(
-			Wuyang), Hero(Zenyatta)); // Hero(Lifeweaver)
+			Wuyang), Hero(Zenyatta));
 	}
 }
 
@@ -7378,7 +7378,7 @@ rule("MAPS: set threshold list 1")
 
 	actions
 	{
-		Skip If(Current Map != Map(Black Forest) && Current Map != Map(Black Forest Winter), 1);
+		Skip If(Current Map != Map(Black Forest Winter), 1);
 		Global.Enviro_Threshold = 8.500;
 		Skip If(Current Map != Map(Blizzard World) && Current Map != Map(Blizzard World Winter), 1);
 		Global.Enviro_Threshold = -2.750;
@@ -18417,7 +18417,7 @@ rule("CORE: (TEAM) JQ knife stun")
 	}
 }
 
-rule("CORE: (TEAM) EMP")
+rule("CORE: (ALL) EMP")
 {
 	event
 	{
