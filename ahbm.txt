@@ -6557,7 +6557,7 @@ rule("CORE: INITIALIZE ROLES (GLOBAL A)")
 			Hanzo), Hero(Genji), Hero(Freja), Hero(Torbjörn), Hero(Sierra), Hero(Shion));
 		Global.A[4] = Array(Hero(Jetpack Cat), Hero(Mizuki), Hero(Zarya), Hero(Ana), Hero(Baptiste), Hero(D.Va), Hero(Illari), Hero(Juno),
 			Hero(Kiriko), Hero(Lúcio), Hero(Anran), Hero(Soldier: 76), Hero(Moira), Hero(Pharah), Hero(Sombra), Hero(
-			Wuyang), Hero(Zenyatta));
+			Wuyang), Hero(Zenyatta), Hero(Lifeweaver));
 	}
 }
 
