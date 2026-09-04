@@ -7138,7 +7138,7 @@ rule("ROLES: IN-GAME joiner: TAC FIX")
 	actions
 	{
 		Set Player Allowed Heroes(Event Player, All Heroes);
-		Skip If(Count Of(All Players(Team 2)) < 6, 2);
+		Skip If(Number Of Players(Team 2) < 6, 2);
 		Skip If(Count Of(Filtered Array(All Players(Team 2), Current Array Element.Z[3] == 4)) >= 2, 1);
 		All Players(Team 2).Z[5] = 6;
 	}
