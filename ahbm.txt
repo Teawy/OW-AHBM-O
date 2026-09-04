@@ -14053,8 +14053,7 @@ rule("CORE: (TEAM) PHARAH - FIX STUCK BEACON")
 
 	conditions
 	{
-		(!Is Hero Being Played(Hero(Pharah), Team 2) || Is True For All(Filtered Array(All Players(Team 2), Hero Of(
-			Current Array Element) == Hero(Pharah)), Current Array Element.Ability_Bool == False)) == True;
+		(!Is Hero Being Played(Hero(Pharah), Team 2) || Is True For All(Players On Hero(Hero(Pharah), Team 2), Current Array Element.Ability_Bool == False)) == True;
 	}
 
 	actions
@@ -17374,7 +17373,7 @@ rule("CORE: (TEAM) ANA - NADE a 40")
 	{
 		Event Ability == Button(Ability 2);
 		Normalized Health(Healee) <= 0.750;
-		(Is True For Any(Append To Array(Global.A[1], Array(Hero(Bastion), Hero(Torbjörn))), Current Array Element == Hero Of(Healee))) == True;
+		Array Contains(Append To Array(Global.A[1], Array(Hero(Bastion), Hero(Torbjörn))), Hero Of(Healee)) == True;
 	}
 
 	actions
@@ -18698,10 +18697,7 @@ rule("CORE: (BOSS) RAM JUMP")
 		Create HUD Text(All Players(Team 1), Round To Integer(Event Player.secondary_charge, Up), Custom String("Cooldown"), Custom String(
 			"NEMESIS JUMP"), Left, 1, Color(Orange), Color(White), Color(Rose), Visible To and String, Default Visibility);
 		Global.BOSS_AbilityKey = Last Text ID;
-		Skip If(Event Player.primary_charge < 2.500, 2);
-		Apply Impulse(Event Player, Up, 5 * Event Player.primary_charge, To World, Cancel Contrary Motion);
-		Skip(1);
-		Apply Impulse(Event Player, Up, 12.500, To World, Cancel Contrary Motion);
+		Apply Impulse(Event Player, Up, (Event Player.primary_charge < 2.500 ? 12.500 : 5 * Event Player.primary_charge), To World, Cancel Contrary Motion);
 		Play Effect(All Players(All Teams), Ring Explosion, Color(Rose), Event Player, 4);
 		Play Effect(All Players(All Teams), Ring Explosion Sound, Color(White), Event Player, 100);
 		Wait(0.200, Ignore Condition);
@@ -19283,7 +19279,7 @@ rule("CORE: (ALL) WIDOW - SMG AMMO")
 	{
 		Skip If(Ammo(Event Player, 0) > 3, 2);
 		Set Ammo(Event Player, 0, 0);
-		Skip(1);
+		Abort;
 		Set Ammo(Event Player, 0, Ammo(Event Player, 0) - 1);
 	}
 }
