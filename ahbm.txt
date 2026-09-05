@@ -8340,6 +8340,7 @@ rule("CORE: (TEAM) JUNK - STUN OFF")
 		Chase Player Variable At Rate(Event Player, primary_charge, 0, 1, Destination and Rate);
 		Destroy Effect(Event Player.PlayerFX_1);
 		Wait(15, Ignore Condition);
+		Skip If(Hero Of(Event Player) != Hero(Junkrat), 7);
 		Destroy HUD Text(Event Player.team_abilityHUD[0]);
 		Create HUD Text(Event Player, Icon String(Dizzy), Custom String("press {0} and hit the Boss", Input Binding String(Button(
 			Ability 2))), Custom String("STUN DAMAGE"), Left, 10, Color(Red), Color(White), Color(Red), Visible To and String,
@@ -8386,6 +8387,7 @@ rule("CORE: (TEAM) JUNK - STUN DMG")
 		Wait(0.750, Ignore Condition);
 		Destroy Effect(Victim.statusFX);
 		Wait(14.250, Ignore Condition);
+		Skip If(Hero Of(Event Player) != Hero(Junkrat), 7);
 		Destroy HUD Text(Event Player.team_abilityHUD[0]);
 		Create HUD Text(Event Player, Icon String(Dizzy), Custom String("press {0} and hit the Boss", Input Binding String(Button(
 			Ability 2))), Custom String("STUN DAMAGE"), Left, 10, Color(Red), Color(White), Color(Red), Visible To and String,
