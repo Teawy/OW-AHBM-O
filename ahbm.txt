@@ -2113,6 +2113,8 @@ rule("CORE: (BOSS) ALL - RESISTANCE STAT")
 		Else;
 			Global.BossResistanceStat = 0.400;
 		End;
+		Event Player.AbilityStates[0] = True;
+		Call Subroutine(AbilityStateManager);
 		Wait(0.100, Ignore Condition);
 		Loop If Condition Is True;
 	}
@@ -3392,6 +3394,8 @@ rule("CORE: (TEAM) ALL - GENERAL SWITCH")
 		Else;
 			Set Knockback Dealt(Event Player, 100);
 		End;
+		Event Player.AbilityStates[0] = True;
+		Call Subroutine(AbilityStateManager);
 		Event Player.base_health = Max Health(Event Player);
 		Event Player.base_shields = Max Health Of Type(Event Player, Shields);
 		Wait(0.100, Ignore Condition);
@@ -4757,7 +4761,6 @@ rule("CORE: (BOSS) TRACER - SWITCH")
 		Set Invisible(Event Player, None);
 		Skip If(Is Hero Being Played(Hero(Sombra), Team 1), 1);
 		Set Damage Dealt(Event Player, 100);
-		Allow Button(Event Player, Button(Ultimate));
 	}
 }
 
@@ -9026,7 +9029,7 @@ rule("CORE: (TEAM) DVA - CHARGING MATRIX")
 			Round To Integer(Ability Resource(Event Player, Button(Secondary Fire)), Up)), Custom String("DEFENSE MATRIX"), Left, 10,
 			Color(Orange), Color(Orange), Color(Lime Green), Visible To and String, Default Visibility);
 		Event Player.team_abilityHUD[0] = Last Text ID;
-		Set Secondary Fire Enabled(Event Player, False);
+		Modify Player Variable At Index(Event Player, AbilityStates, 9, Append To Array, Custom String("D.Va_Matrix"));
 		Event Player.Ability_Bool = False;
 	}
 }
@@ -9055,7 +9058,7 @@ rule("CORE: (TEAM) DVA - CHARGED MATRIX")
 			"FULLY CHARGED: READY TO USE  {0}", Input Binding String(Button(Secondary Fire))), Custom String("DEFENSE MATRIX"), Left, 10,
 			Color(Green), Color(White), Color(Lime Green), Visible To and String, Default Visibility);
 		Event Player.team_abilityHUD[0] = Last Text ID;
-		Set Secondary Fire Enabled(Event Player, True);
+		Modify Player Variable At Index(Event Player, AbilityStates, 9, Remove From Array By Value, Custom String("D.Va_Matrix"));
 		Event Player.Ability_Bool = True;
 	}
 }
@@ -9076,22 +9079,7 @@ rule("CORE: (TEAM) DVA - DEMECH")
 
 	actions
 	{
-		Set Secondary Fire Enabled(Event Player, True);
-	}
-}
-
-rule("CORE: (TEAM) MOIRA - SPAWN NO HEAL")
-{
-	event
-	{
-		Ongoing - Each Player;
-		Team 2;
-		Moira;
-	}
-
-	actions
-	{
-		Set Primary Fire Enabled(Event Player, False);
+		Modify Player Variable At Index(Event Player, AbilityStates, 9, Remove From Array By Value, Custom String("D.Va_Matrix"));
 	}
 }
 
@@ -9131,7 +9119,7 @@ rule("CORE: (TEAM) ALL - RE-ENABLE PRIMARY")
 
 	conditions
 	{
-		(Hero Of(Event Player) != Hero(Moira) && Hero Of(Event Player) != Hero(Lifeweaver)) == True;
+		Hero Of(Event Player) != Hero(Lifeweaver);
 		Has Spawned(Event Player) == True;
 	}
 
@@ -9387,47 +9375,6 @@ rule("CORE: (TEAM) MOIRA - USE DMG ORB")
 		Event Player.Ability_Bool = True;
 		Wait(2, Ignore Condition);
 		Event Player.Ability_Bool = False;
-	}
-}
-
-rule("CORE: (TEAM) ALL - RE-ENABLE SECONDARY")
-{
-	event
-	{
-		Ongoing - Each Player;
-		Team 2;
-		All;
-	}
-
-	conditions
-	{
-		Has Spawned(Event Player) == True;
-		Array Contains(Array(Hero(D.Va), Hero(Sombra), Hero(Reaper)), Hero Of(Event Player)) == False;
-	}
-
-	actions
-	{
-		Set Secondary Fire Enabled(Event Player, True);
-	}
-}
-
-rule("CORE: (TEAM) ALL - DISABLE SECONDARY FIRE")
-{
-	event
-	{
-		Ongoing - Each Player;
-		Team 2;
-		All;
-	}
-
-	conditions
-	{
-		(Hero Of(Event Player) == Hero(Sombra) || Hero Of(Event Player) == Hero(Reaper)) == True;
-	}
-
-	actions
-	{
-		Set Secondary Fire Enabled(Event Player, False);
 	}
 }
 
@@ -9894,22 +9841,6 @@ rule("CORE: (TEAM) BAP - IMMORTALITY SPEED")
 	}
 }
 
-rule("CORE: (TEAM) BAP - ABILITY 2 BUTTON OFF")
-{
-	event
-	{
-		Ongoing - Each Player;
-		Team 2;
-		Baptiste;
-	}
-
-	actions
-	{
-		Modify Player Variable At Index(Event Player, AbilityStates, 4, Append To Array, Custom String("Baptiste_Immortality"));
-		Call Subroutine(AbilityStateManager);
-	}
-}
-
 rule("CORE: (TEAM) ALL - ABILITY 2 BUTTON ON")
 {
 	event
@@ -10237,7 +10168,8 @@ rule("CORE: (BOSS) GENJI - USE 2nd fire")
 			Custom String("active"), Left, 1, Color(White), Color(Green), Color(White), Visible To and String, Default Visibility);
 		Global.BOSS_AbilityKey = Last Text ID;
 		Wait(2, Ignore Condition);
-		Set Secondary Fire Enabled(Event Player, False);
+		Modify Player Variable At Index(Event Player, AbilityStates, 9, Append To Array, Custom String("Genji_2ndFire"));
+		Call Subroutine(AbilityStateManager);
 		Event Player.primary_charge = 5;
 		Chase Player Variable At Rate(Event Player, primary_charge, 0, 1, Destination and Rate);
 		Destroy HUD Text(Global.BOSS_AbilityKey);
@@ -10265,7 +10197,8 @@ rule("CORE: (BOSS) GENJI - RESET 2nd fire CD")
 
 	actions
 	{
-		Set Secondary Fire Enabled(Event Player, True);
+		Modify Player Variable At Index(Event Player, AbilityStates, 9, Remove From Array By Value, Custom String("Genji_2ndFire"));
+		Call Subroutine(AbilityStateManager);
 		Stop Chasing Player Variable(Event Player, primary_charge);
 		Event Player.primary_charge = 0;
 		Destroy HUD Text(Global.BOSS_AbilityKey);
@@ -10294,48 +10227,6 @@ rule("CORE: (WAIT) INSTA ULT")
 	actions
 	{
 		Set Ultimate Charge(Event Player, 100);
-	}
-}
-
-rule("CORE: (BOSS) DISABLE 2nd FIRE")
-{
-	event
-	{
-		Ongoing - Each Player;
-		Team 1;
-		All;
-	}
-
-	conditions
-	{
-		Array Contains(Array(Hero(Baptiste), Hero(Zenyatta), Hero(Illari), Hero(Winston), Hero(Reaper)), Hero Of(Event Player)) == True;
-	}
-
-	actions
-	{
-		Set Secondary Fire Enabled(Event Player, False);
-	}
-}
-
-rule("CORE: (BOSS) ENABLE 2nd FIRE")
-{
-	event
-	{
-		Ongoing - Each Player;
-		Team 1;
-		All;
-	}
-
-	conditions
-	{
-		Array Contains(Array(Hero(Baptiste), Hero(Zenyatta), Hero(Illari), Hero(Genji), Hero(Winston), Hero(Reaper)), Hero Of(
-			Event Player)) != True;
-		Has Spawned(Event Player) == True;
-	}
-
-	actions
-	{
-		Set Secondary Fire Enabled(Event Player, True);
 	}
 }
 
@@ -10561,28 +10452,6 @@ rule("CORE: (BOSS) ALL - ABILITY 1 SET")
 		Abort;
 		Set Ability 1 Enabled(Event Player, False);
 		Disallow Button(Event Player, Button(Ability 1));
-	}
-}
-
-rule("CORE: (BOSS) ALL - ULTIMATE SET")
-{
-	event
-	{
-		Ongoing - Each Player;
-		Team 1;
-		All;
-	}
-
-	conditions
-	{
-		Is Hero Being Played(Hero(Ramattra), Team 1) == False;
-	}
-
-	actions
-	{
-		Skip If(Hero Of(Event Player) == Hero(Tracer), 2);
-		Set Ultimate Ability Enabled(Event Player, True);
-		Allow Button(Event Player, Button(Ultimate));
 	}
 }
 
@@ -11006,10 +10875,10 @@ rule("CORE: (BOSS) ASHE - DYNAMITE THAW")
 
 	actions
 	{
-		Call Subroutine(BossClearFreeze);
 		Set Ability Cooldown(Event Player, Button(Ability 2), Event Player.X[0]);
 		Modify Player Variable At Index(Event Player, AbilityStates, 3, Remove From Array By Value, Custom String("Ashe_Frozen"));
-		Modify Player Variable At Index(Event Player, AbilityStates, 4, Remove From Array By Value, Custom String("Ashe_Frozen"));
+		Modify Player Variable At Index(Event Player, AbilityStates, 4, Remove From Array By Value, Custom String("Ashe_Frozen"));	
+		Call Subroutine(BossClearFreeze);
 		Skip If(Event Player.Ability_Bool, 2);
 		Create HUD Text(All Players(Team 1), Ability Icon String(Hero(Ashe), Button(Primary Fire)), Custom String(
 			"Primary Ammo Active | Hold {0} to use/reload the scope", Input Binding String(Button(Secondary Fire))), Custom String(
@@ -11272,11 +11141,10 @@ rule("CORE: (BOSS) D.VA - MECH THAW DEATH")
 
 	actions
 	{
-		Call Subroutine(BossClearFreeze);
-		Call Subroutine(BOSSNoAbility_Hud);
 		Set Ultimate Ability Enabled(Event Player, True);
 		Modify Player Variable At Index(Event Player, AbilityStates, 1, Remove From Array By Value, Custom String("D.Va_Frozen"));
-		Call Subroutine(AbilityStateManager);
+		Call Subroutine(BossClearFreeze);
+		Call Subroutine(BOSSNoAbility_Hud);
 	}
 }
 
@@ -11826,22 +11694,6 @@ rule("CORE: (TEAM) ALL - REMOVE HEALTH POOLS")
 		Remove Health Pool From Player(Event Player.shield_pool);
 		Event Player.base_health = Max Health(Event Player);
 		Event Player.base_shields = Max Health Of Type(Event Player, Shields);
-	}
-}
-
-rule("CORE: (TEAM) PHARAH - ABILITY 2 BUTTON OFF")
-{
-	event
-	{
-		Ongoing - Each Player;
-		Team 2;
-		Pharah;
-	}
-
-	actions
-	{
-		Modify Player Variable At Index(Event Player, AbilityStates, 4, Append To Array, Custom String("Pharah_Concussive"));
-		Call Subroutine(AbilityStateManager);
 	}
 }
 
@@ -18982,8 +18834,7 @@ rule("CORE: (BOSS) RAM RESPAWN")
 		Wait(4, Ignore Condition);
 		Allow Button(Event Player, Button(Ultimate));
 		Press Button(Event Player, Button(Ultimate));
-		Event Player.AbilityStates[6] = Array(Custom String("Ramattra_Nemesis"));
-		Call Subroutine(AbilityStateManager);
+		Disallow Button(Event Player, Button(Ultimate));
 	}
 }
 
@@ -19866,6 +19717,19 @@ rule("Rule 662")
 
 	actions
 	{
+		If(Event Player.AbilityStates[0]);
+			If(Team of(Event Player) == Team 1);
+				Event Player.AbilityStates[6] = (Array Contains(Array(Hero(Tracer), Hero(Ramattra)), Hero Of(Event Player)) ? Custom String("Boss_Ultimate") : Empty Array);
+				Event Player.AbilityStates[9] = (Array Contains(Array(Hero(Baptiste), Hero(Zenyatta), Hero(Illari), Hero(Winston), Hero(Reaper)), Hero Of(Event Player)) ? Custom String("Boss_2ndFire") : Empty Array);
+			Else;
+				Event Player.AbilityStates[4] = (Array Contains(Array(Hero(Pharah)), Hero Of(Event Player)) ? Custom String("Pharah_Concussive") : Empty Array);
+				Event Player.AbilityStates[4] = (Array Contains(Array(Hero(Baptiste)), Hero Of(Event Player)) ? Custom String("Baptiste_Immortality") : Event Player.AbilityStates[4]);
+				Event Player.AbilityStates[7] = (Array Contains(Array(Hero(Moira)), Hero Of(Event Player)) ? Custom String("Team_PrimaryFire") : Empty Array);
+				Event Player.AbilityStates[9] = (Array Contains(Array(Hero(D.Va), Hero(Sombra), Hero(Reaper)), Hero Of(Event Player)) ? Custom String("All_SecondaryFire") : Empty Array);
+				Event Player.AbilityStates[9] = (Array Contains(Array(Hero(D.Va)), Hero Of(Event Player)) ? Custom String("D.Va_Matrix") : Event Player.AbilityStates[9]);
+			End;
+			Event Player.AbilityStates[0] = False;
+		End;
 		Set Ability 1 Enabled(Event Player, Remove From Array(Event Player.AbilityStates[1], Null) == Empty Array);
 		If(Remove From Array(Event Player.AbilityStates[2], Null) == Empty Array);
 			Allow Button(Event Player, Button(Ability 1));
