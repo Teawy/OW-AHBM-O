@@ -3394,6 +3394,13 @@ rule("CORE: (TEAM) ALL - GENERAL SWITCH")
 		Else;
 			Set Knockback Dealt(Event Player, 100);
 		End;
+		If(Team Of(Event Player) == Team 1);
+			Set Secondary Fire Enabled(Event Player, !(Array Contains(Array(Hero(Baptiste), Hero(Zenyatta), Hero(Illari), Hero(Winston), Hero(Reaper)),
+				Hero Of(Event Player))));
+		Else;
+			Set Primary Fire Enabled(Event Player, !(Array Contains(Array(Hero(Lifeweaver), Hero(Moira)), Hero Of(Event Player))));
+			Set Secondary Fire Enabled(Event Player, !(Array Contains(Array(Hero(Sombra), Hero(Reaper)), Hero Of(Event Player))));
+		End;
 		Event Player.base_health = Max Health(Event Player);
 		Event Player.base_shields = Max Health Of Type(Event Player, Shields);
 		Wait(0.100, Ignore Condition);
@@ -9097,21 +9104,6 @@ rule("CORE: (TEAM) DVA - DEMECH")
 	}
 }
 
-rule("CORE: (TEAM) MOIRA - SPAWN NO HEAL")
-{
-	event
-	{
-		Ongoing - Each Player;
-		Team 2;
-		Moira;
-	}
-
-	actions
-	{
-		Set Primary Fire Enabled(Event Player, False);
-	}
-}
-
 rule("CORE: (TEAM) MOIRA - USE HEAL ORB")
 {
 	event
@@ -9134,27 +9126,6 @@ rule("CORE: (TEAM) MOIRA - USE HEAL ORB")
 		Set Primary Fire Enabled(Event Player, True);
 		Wait(7, Ignore Condition);
 		Set Primary Fire Enabled(Event Player, False);
-	}
-}
-
-rule("CORE: (TEAM) ALL - RE-ENABLE PRIMARY")
-{
-	event
-	{
-		Ongoing - Each Player;
-		Team 2;
-		All;
-	}
-
-	conditions
-	{
-		(Hero Of(Event Player) != Hero(Moira) && Hero Of(Event Player) != Hero(Lifeweaver)) == True;
-		Has Spawned(Event Player) == True;
-	}
-
-	actions
-	{
-		Set Primary Fire Enabled(Event Player, True);
 	}
 }
 
@@ -9419,32 +9390,13 @@ rule("CORE: (TEAM) ALL - RE-ENABLE SECONDARY")
 	conditions
 	{
 		Has Spawned(Event Player) == True;
+		"D.Va gotta be special"
 		Array Contains(Array(Hero(D.Va), Hero(Sombra), Hero(Reaper)), Hero Of(Event Player)) == False;
 	}
 
 	actions
 	{
 		Set Secondary Fire Enabled(Event Player, True);
-	}
-}
-
-rule("CORE: (TEAM) ALL - DISABLE SECONDARY FIRE")
-{
-	event
-	{
-		Ongoing - Each Player;
-		Team 2;
-		All;
-	}
-
-	conditions
-	{
-		(Hero Of(Event Player) == Hero(Sombra) || Hero Of(Event Player) == Hero(Reaper)) == True;
-	}
-
-	actions
-	{
-		Set Secondary Fire Enabled(Event Player, False);
 	}
 }
 
@@ -10306,48 +10258,6 @@ rule("CORE: (WAIT) INSTA ULT")
 	actions
 	{
 		Set Ultimate Charge(Event Player, 100);
-	}
-}
-
-rule("CORE: (BOSS) DISABLE 2nd FIRE")
-{
-	event
-	{
-		Ongoing - Each Player;
-		Team 1;
-		All;
-	}
-
-	conditions
-	{
-		Array Contains(Array(Hero(Baptiste), Hero(Zenyatta), Hero(Illari), Hero(Winston), Hero(Reaper)), Hero Of(Event Player)) == True;
-	}
-
-	actions
-	{
-		Set Secondary Fire Enabled(Event Player, False);
-	}
-}
-
-rule("CORE: (BOSS) ENABLE 2nd FIRE")
-{
-	event
-	{
-		Ongoing - Each Player;
-		Team 1;
-		All;
-	}
-
-	conditions
-	{
-		Array Contains(Array(Hero(Baptiste), Hero(Zenyatta), Hero(Illari), Hero(Genji), Hero(Winston), Hero(Reaper)), Hero Of(
-			Event Player)) != True;
-		Has Spawned(Event Player) == True;
-	}
-
-	actions
-	{
-		Set Secondary Fire Enabled(Event Player, True);
 	}
 }
 
@@ -19857,4 +19767,3 @@ rule("CORE: (BOSS) THAW RESET")
 		Global.BossFrozen = 0;
 	}
 }
-
