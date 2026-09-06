@@ -11254,8 +11254,6 @@ rule("CORE: (BOSS) D.VA - MECH THAW")
 		Skip If(Is In Alternate Form(Event Player), 1);
 		Set Ultimate Charge(Event Player, Event Player.X[0]);
 		Call Subroutine(BOSSNoAbility_Hud);
-		Stop Chasing Player Variable(Event Player, F);
-		Global.BossFrozen = 0;
 		Skip If(Is Waiting For Players, 10);
 		If(Ultimate Charge Percent(Event Player) <= 33);
 			Create Effect(All Players(All Teams), Cloud, Color(Gray), Event Player, 0.500, Visible To Position and Radius);
