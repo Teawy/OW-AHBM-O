@@ -11503,8 +11503,8 @@ rule("CORE: (TEAM) MERCY - PHARAH MERCY BEACON OUT RANGE")
 	conditions
 	{
 		Is True For Any(Players On Hero(Hero(Pharah), Team 2), Current Array Element.Ability_Bool == True) == True;
-		(Absolute Value(X Component Of(Global.MercyBeacon[0]) - X Component Of(Position Of(Event Player))) > 5 || Absolute Value(
-			Z Component Of(Global.MercyBeacon[0]) - Z Component Of(Position Of(Event Player))) > 5) == True;
+		Distance Between(Vector(X Component Of(Global.MercyBeacon[0]), Y Component Of(Position Of(Event Player)), Z Component Of(
+			Global.MercyBeacon[0])), Event Player) > 5;
 	}
 
 	actions
@@ -11530,8 +11530,8 @@ rule("CORE: (TEAM) MERCY - PHARAH MERCY BEACON IN RANGE")
 	conditions
 	{
 		Is True For Any(Players On Hero(Hero(Pharah), Team 2), Current Array Element.Ability_Bool == True) == True;
-		Absolute Value(X Component Of(Global.MercyBeacon[0]) - X Component Of(Position Of(Event Player))) <= 5;
-		Absolute Value(Z Component Of(Global.MercyBeacon[0]) - Z Component Of(Position Of(Event Player))) <= 5;
+		Distance Between(Vector(X Component Of(Global.MercyBeacon[0]), Y Component Of(Position Of(Event Player)), Z Component Of(
+			Global.MercyBeacon[0])), Event Player) <= 5;
 	}
 
 	actions
@@ -11559,8 +11559,8 @@ rule("CORE: (TEAM) MERCY - PHARAH MERCY BEACON USE")
 		Is True For Any(Players On Hero(Hero(Pharah), Team 2), Current Array Element.Ability_Bool == True) == True;
 		Is Alive(Event Player) == True;
 		Is Button Held(Event Player, Button(Interact)) == True;
-		Absolute Value(X Component Of(Global.MercyBeacon[0]) - X Component Of(Position Of(Event Player))) <= 5;
-		Absolute Value(Z Component Of(Global.MercyBeacon[0]) - Z Component Of(Position Of(Event Player))) <= 5;
+		Distance Between(Vector(X Component Of(Global.MercyBeacon[0]), Y Component Of(Position Of(Event Player)), Z Component Of(
+			Global.MercyBeacon[0])), Event Player) <= 5;
 	}
 
 	actions
