@@ -777,7 +777,7 @@ settings
 				Projectile Speed: 75%
 				Role Passives: On
 				Tracking Shot Cooldown Time: 60%
-				Tremor Charge Cooldown Time: 140%
+				Tremor Charge Cooldown Time: 171.4286%
 				Tremor Charge Knockback Scalar: 160%
 				Ultimate Generation - Combat Trailblazer: 120%
 				Ultimate Generation - Passive Trailblazer: 0%
@@ -1687,7 +1687,7 @@ settings
 				Projectile Speed: 75%
 				Role Passives: Off
 				Tracking Shot Cooldown Time: 120%
-				Tremor Charge Cooldown Time: 329%
+				Tremor Charge Cooldown Time: 400%
 				Tremor Charge Knockback Scalar: 0%
 				Ultimate Generation - Combat Trailblazer: 105%
 				Ultimate Generation - Passive Trailblazer: 80%
