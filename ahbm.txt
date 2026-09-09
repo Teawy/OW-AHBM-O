@@ -114,11 +114,11 @@ settings
 			Baptiste
 			{
 				Ammunition Clip Size Scalar: 42%
-				Damage Dealt: 260%
+				Damage Dealt: 250%
 				Healing Dealt: 40%
 				Healing Received: 30%
 				Health: 240%
-				Immortality Field Cooldown Time: 45%
+				Immortality Field Cooldown Time: 50%
 				Jump Vertical Speed: 120%
 				Movement Gravity: 120%
 				Passive Health Regeneration: On
@@ -185,7 +185,7 @@ settings
 			D.Mon
 			{
 				Call Mech Knockback Scalar: 400%
-				Damage Dealt: 215.385%
+				Damage Dealt: 233.334%
 				Fusion Repeater Cooldown Time: 150%
 				Healing Received: 10%
 				Health: 200%
@@ -210,7 +210,7 @@ settings
 				Damage Received: 50%
 				Defense Matrix Maximum Time: 500%
 				Healing Received: 33%
-				Health: 200%
+				Health: 190.47619%
 				Micro Missiles Cooldown Time: 100%
 				Movement Speed: 133%
 				Passive Health Regeneration: On
@@ -241,7 +241,7 @@ settings
 				Ultimate Barrier Health Scalar Panopticon: 90%
 				Ultimate Generation - Combat Panopticon: 180%
 				Ultimate Generation - Passive Panopticon: 10%
-				Ultimate Generation Panopticon: 112%
+				Ultimate Generation Panopticon: 105.28%
 			}
 
 			Doomfist
@@ -310,7 +310,7 @@ settings
 			Freja
 			{
 				Ammunition Clip Size Scalar: 33%
-				Damage Dealt: 188%
+				Damage Dealt: 205%
 				Health: 400%
 				Passive Health Regeneration: On
 				Quick Dash Cooldown Time: 100%
@@ -395,7 +395,7 @@ settings
 			Jetpack Cat
 			{
 				Biotic Pawjectile Range: 75%
-				Damage Dealt: 225%
+				Damage Dealt: 260%
 				Damage Received: 22%
 				Frenetic Flight Maximum Time: 75%
 				Frenetic Flight Recharge Rate: 35%
@@ -435,7 +435,7 @@ settings
 			Junkrat
 			{
 				Ammunition Clip Size Scalar: 120%
-				Concussion Mine Cooldown Time: 37%
+				Concussion Mine Cooldown Time: 42.857%
 				Concussion Mine Knockback Scalar: 40%
 				Damage Dealt: 240%
 				Damage Received: 37%
@@ -536,7 +536,7 @@ settings
 			Mauga
 			{
 				Cardiac Overdrive Cooldown Time: 132%
-				Damage Received: 42%
+				Damage Received: 40%
 				Healing Dealt: 50%
 				Health: 300%
 				Passive Health Regeneration: On
@@ -774,9 +774,10 @@ settings
 				Health: 400%
 				Movement Gravity: 90%
 				Passive Health Regeneration: On
+				Projectile Speed: 75%
 				Role Passives: On
 				Tracking Shot Cooldown Time: 60%
-				Tremor Charge Cooldown Time: 140%
+				Tremor Charge Cooldown Time: 171.4286%
 				Tremor Charge Knockback Scalar: 160%
 				Ultimate Generation - Combat Trailblazer: 120%
 				Ultimate Generation - Passive Trailblazer: 0%
@@ -953,7 +954,7 @@ settings
 			Winston
 			{
 				Ammunition Clip Size Scalar: 250%
-				Barrier Projector Cooldown Time: 7%
+				Barrier Projector Cooldown Time: 9%
 				Damage Dealt: 116%
 				Damage Received: 55%
 				Healing Received: 10%
@@ -1017,7 +1018,7 @@ settings
 				Health: 375%
 				Jump Vertical Speed: 115%
 				Movement Speed: 115%
-				Particle Barrier Cooldown Time: 145%
+				Particle Barrier Cooldown Time: 136.3636%
 				Particle Cannon Secondary Knockback Scalar: 300%
 				Passive Health Regeneration: On
 				Projected Barrier: Off
@@ -1102,7 +1103,7 @@ settings
 				Healing Dealt: 10%
 				Healing Received: 200%
 				Health: 80%
-				Immortality Field Cooldown Time: 181%
+				Immortality Field Cooldown Time: 200%
 				Passive Health Regeneration: On
 				Projectile Gravity: 13%
 				Projectile Speed: 313%
@@ -1214,7 +1215,7 @@ settings
 				Ultimate Barrier Health Scalar Panopticon: 270%
 				Ultimate Generation - Combat Panopticon: 200%
 				Ultimate Generation - Passive Panopticon: 105%
-				Ultimate Generation Panopticon: 112%
+				Ultimate Generation Panopticon: 105.28%
 			}
 
 			Doomfist
@@ -1275,7 +1276,7 @@ settings
 			Freja
 			{
 				Ammunition Clip Size Scalar: 46%
-				Damage Dealt: 83%
+				Damage Dealt: 90%
 				Healing Received: 90%
 				Health: 111.11072%
 				Passive Health Regeneration: On
@@ -1356,12 +1357,12 @@ settings
 			Jetpack Cat
 			{
 				Ammunition Clip Size Scalar: 50%
-				Biotic Pawjectile Range: 200%
-				Damage Dealt: 67%
-				Healing Dealt: 10%
+				Biotic Pawjectile Range: 100%
+				Damage Dealt: 80%
+				Healing Dealt: 12.5%
 				Healing Received: 200%
 				Health: 88.88889%
-				Lifeline Cooldown Time: 400%
+				Lifeline Cooldown Time: 200%
 				Passive Health Regeneration: On
 				Purr Cooldown Time: 333%
 				Role Passives: On
@@ -1387,7 +1388,7 @@ settings
 
 			Junkrat
 			{
-				Concussion Mine Cooldown Time: 175%
+				Concussion Mine Cooldown Time: 200%
 				Concussion Mine Knockback Scalar: 118%
 				Damage Dealt: 52%
 				Frag Launcher Knockback Scalar: 120%
@@ -1424,7 +1425,7 @@ settings
 				Health: 88.88889%
 				Passive Health Regeneration: On
 				Projectile Speed: 140%
-				Protection Suzu Cooldown Time: 285%
+				Protection Suzu Cooldown Time: 250%
 				Role Passives: On
 				Swift Step Cooldown Time: 100%
 				Ultimate Generation - Combat Kitsune Rush: 103%
@@ -1682,10 +1683,10 @@ settings
 				Damage Dealt: 80%
 				Healing Received: 80%
 				Passive Health Regeneration: On
-				Projectile Speed: 100%
+				Projectile Speed: 75%
 				Role Passives: Off
 				Tracking Shot Cooldown Time: 120%
-				Tremor Charge Cooldown Time: 329%
+				Tremor Charge Cooldown Time: 400%
 				Tremor Charge Knockback Scalar: 0%
 				Ultimate Generation - Combat Trailblazer: 105%
 				Ultimate Generation - Passive Trailblazer: 80%
@@ -1771,7 +1772,7 @@ settings
 
 			Torbjörn
 			{
-				Ammunition Clip Size Scalar: 33%
+				Ammunition Clip Size Scalar: 25%
 				Damage Dealt: 84%
 				Deploy Turret Cooldown Time: 125%
 				Healing Received: 40%
@@ -1848,7 +1849,7 @@ settings
 			Winston
 			{
 				Ammunition Clip Size Scalar: 30%
-				Barrier Projector Cooldown Time: 166%
+				Barrier Projector Cooldown Time: 200%
 				Damage Dealt: 66%
 				Healing Received: 40%
 				Health: 107.6922%
@@ -1890,7 +1891,7 @@ settings
 				Healing Received: 200%
 				Passive Health Regeneration: On
 				Restorative Stream Drain Rate: 75%
-				Restorative Stream Recharge Rate: 50%
+				Restorative Stream Recharge Rate: 41.667%
 				Role Passives: Off
 				Rushing Torrent Cooldown Time: 62%
 				Rushing Torrent Duration Scalar: 285%
@@ -1906,10 +1907,10 @@ settings
 				Damage Dealt: 60%
 				Healing Received: 50%
 				Health: 80%
-				Particle Barrier Cooldown Time: 150%
+				Particle Barrier Cooldown Time: 137.5%
 				Particle Cannon Secondary Knockback Scalar: 20%
 				Passive Health Regeneration: On
-				Projected Barrier Cooldown Time: 100%
+				Projected Barrier Cooldown Time: 91.667%
 				Role Passives: On
 				Ultimate Generation - Combat Graviton Surge: 125%
 				Ultimate Generation - Passive Graviton Surge: 90%
@@ -2083,8 +2084,6 @@ rule("CORE: (BOSS) ALL - RESISTANCE STAT")
 			Global.BossResistanceStat = 0.360;
 		Else If(Hero Of(Event Player) == Hero(Jetpack Cat));
 			Global.BossResistanceStat = 0.220;
-		Else If(Hero Of(Event Player) == Hero(Mauga));
-			Global.BossResistanceStat = 0.420;
 		Else If(Hero Of(Event Player) == Hero(Symmetra));
 			Global.BossResistanceStat = 0.470;
 		Else If(Hero Of(Event Player) == Hero(Zarya));
@@ -12542,7 +12541,7 @@ rule("CORE: (TEAM) D.VA - MECH POOLS")
 		Remove Health Pool From Player(Event Player.health_pool);
 		Remove Health Pool From Player(Event Player.shield_pool);
 		Remove Health Pool From Player(Event Player.armour_pool);
-		Add Health Pool To Player(Event Player, Health, 112.500, True, False);
+		Add Health Pool To Player(Event Player, Health, 100, True, False);
 		Event Player.health_pool = Last Created Health Pool;
 		Add Health Pool To Player(Event Player, Armor, 37.500, True, False);
 		Event Player.armour_pool = Last Created Health Pool;
@@ -13471,7 +13470,7 @@ rule("CORE: (BOSS) HAM - SHIELD DOWN HUD")
 	}
 }
 
-rule("CORE: (TEAM) PILOT D.VA - AMMO & DMG")
+rule("CORE: (TEAM) D.VA PILOT - AMMO & DMG")
 {
 	event
 	{
@@ -14174,7 +14173,7 @@ rule("CORE: (BOSS) DVA MECH")
 		Set Move Speed(Event Player, 100);
 		Event Player.primary_charge = True;
 		Set Max Health(Event Player, 100);
-		Wait Until(Max Health(Event Player) == 1000, 0.016);
+		Wait Until(Max Health(Event Player) > 999, 0.016);
 		Set Player Health(Event Player, 1000);
 	}
 }
@@ -14197,7 +14196,7 @@ rule("CORE: (BOSS) DVA PILOT")
 	{
 		Set Move Speed(Event Player, 79);
 		Event Player.primary_charge = False;
-		Set Max Health(Event Player, 71.42857);
+		Set Max Health(Event Player, 74.99999);
 	}
 }
 
@@ -19677,6 +19676,22 @@ rule("temp bug fix - hazard ammo")
 		Abort;
 		Set Ammo(Event Player, 0, 3);
 		Set Max Ammo(Event Player, 0, 3);
+	}
+}
+
+rule("CORE: (TEAM) TORB - AMMO")
+{
+	event
+	{
+		Ongoing - Each Player;
+		Team 2;
+		Torbjörn;
+	}
+
+	actions
+	{
+		Set Ammo(Event Player, 0, 4);
+		Set Max Ammo(Event Player, 0, 4);
 	}
 }
 
