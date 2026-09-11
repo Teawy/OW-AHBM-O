@@ -19080,6 +19080,7 @@ rule("CORE: (BOSS) RAM RESPAWN")
 	{
 		Skip If(!Is Waiting For Players, 6);
 		Wait Until(Is Alive(Event Player), 8);
+		Abort If(Hero Of(Event Player) != Hero(Ramattra));
 		Wait(4, Ignore Condition);
 		Allow Button(Event Player, Button(Ultimate));
 		Press Button(Event Player, Button(Ultimate));
