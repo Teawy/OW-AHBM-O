@@ -19839,6 +19839,7 @@ rule("CORE: (BOSS) FROZEN NOTIFICATION")
 
 	actions
 	{
+		Wait(0.032, Ignore Condition);
 		Stop Chasing Player Variable(Event Player, F);
 		Event Player.F = 15;
 		Chase Player Variable At Rate(Event Player, F, 0, 1, Destination and Rate);
