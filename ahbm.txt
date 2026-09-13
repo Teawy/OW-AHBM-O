@@ -8465,15 +8465,15 @@ rule("CORE: (TEAM) Ana - Heal Dart Warning")
 
 	actions
 	{
-		Skip If(Healee == Event Player, 23);
+		Abort If(Healee == Event Player);
 		Event Player.Ability_Toggle = 1;
 		Destroy HUD Text(Event Player.charge_hud[0]);
 		Wait(0.033, Ignore Condition);
 		Create HUD Text(Event Player, Null, Custom String(
 			"\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n{0}HEAL DART WARNING:", Global.HUDPadding[1]),
 			Null, Top, 8, Color(White), Color(White), Color(White), String, Default Visibility);
-		Skip If(Is Waiting For Players, 5);
 		Event Player.charge_hud[0] = Last Text ID;
+		Skip If(Is Waiting For Players, 4);
 		Destroy Effect(Event Player.PlayerFX_1);
 		Wait(0.033, Ignore Condition);
 		Create Effect(Event Player, Good Aura, Color(Purple), Event Player + Vector(0, Event Player.Z[4], 0) + Facing Direction Of(
@@ -17009,8 +17009,8 @@ rule("CORE: (BOSS) ECHO DUPE: REMOVE CHARGE BOMB")
 			"throw an energy bomb that  \r\nignores shields and charges duplicate"), Custom String("CHARGE BOMB"), Left, 1, Color(Red),
 			Color(White), Color(Sky Blue), Visible To and String, Default Visibility);
 		Global.BOSS_AbilityKey = Last Text ID;
-		Wait Until(!Is Duplicating(Event Player), 11);
-		Skip If(Event Player.primary_charge == 0, 6);
+		Wait Until(!Is Duplicating(Event Player), 17);
+		Skip If(Event Player.primary_charge == 0, 3);
 		Create HUD Text(Event Player, Null, Null, Custom String(
 			"   \r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n{1}                              {0}", Round To Integer(
 			Event Player.primary_charge, Up), Global.HUDPadding[0]), Top, 8, Color(White), Color(White), Color(Aqua), Visible To and String, Default Visibility);
@@ -19717,11 +19717,6 @@ rule("HUD PADDING MANAGER")
 	event
 	{
 		Ongoing - Global;
-	}
-	
-	conditions
-	{
-		Global.HUDPadding != Is Waiting For Players;
 	}
 	
 	actions
