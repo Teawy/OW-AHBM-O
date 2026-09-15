@@ -2021,9 +2021,8 @@ variables
 		57: LastDamage
 		58: LastDamageNumber
 		59: LastDamageNumberInstance
-		60: LastDamageNumberTime
-		61: LastDamageNumberRandomPosition
-		62: FireStrike
+		60: LastDamageNumberProperties
+		61: FireStrike
 }
 
 subroutines
@@ -19738,30 +19737,22 @@ rule("Damage Numbers 0")
 		Wait(0.032, Ignore Condition);
 		Destroy In-World Text(Event Player.LastDamage[0]);
 		Abort If(Event Player.LastDamageNumber <= 0);
-		Event Player.LastDamageNumberRandomPosition = Vector(Random Real(-0.500, 0.500),
-					Random Real(0.500, 1), Random Real(-0.500, 0.500));
 		If(Event Player.LastDamageNumber < 10);
-			Event Player.LastDamageNumberTime[0] = 0.333;
-			Create In-World Text(All Players(Team 2), Event Player.LastDamageNumber, Eye Position(Victim) + Event Player.LastDamageNumberRandomPosition, 1, Clip Against Surfaces, Visible To, Color(White), Default Visibility);
+			Event Player.LastDamageNumberProperties = Array(1, Color(White), 0.333);
 		Else If(Event Player.LastDamageNumber < 45);
-			Event Player.LastDamageNumberTime[0] = 0.500;
-			Create In-World Text(All Players(Team 2), Event Player.LastDamageNumber, Eye Position(Victim) + Event Player.LastDamageNumberRandomPosition, 1.500, Clip Against Surfaces, Visible To, Custom Color(255, 255, 200, 255),
-				Default Visibility);
+			Event Player.LastDamageNumberProperties = Array(1.500, Custom Color(255, 255, 200, 255), 0.500);
 		Else If(Event Player.LastDamageNumber < 90);
-			Event Player.LastDamageNumberTime[0] = 0.666;
-			Create In-World Text(All Players(Team 2), Event Player.LastDamageNumber, Eye Position(Victim) + Event Player.LastDamageNumberRandomPosition, 2, Clip Against Surfaces, Visible To, Custom Color(255, 255, 100, 255),
-				Default Visibility);
+			Event Player.LastDamageNumberProperties = Array(2, Custom Color(255, 255, 100, 255), 0.666);
 		Else If(Event Player.LastDamageNumber < 160);
-			Event Player.LastDamageNumberTime[0] = 1;
-			Create In-World Text(All Players(Team 2), Event Player.LastDamageNumber, Eye Position(Victim) + Event Player.LastDamageNumberRandomPosition, 2.500, Clip Against Surfaces, Visible To, Color(Yellow),
-				Default Visibility);
+			Event Player.LastDamageNumberProperties = Array(2.500, Color(Yellow), 1);
 		Else;
-			Event Player.LastDamageNumberTime[0] = 1.250;
-			Create In-World Text(All Players(Team 2), Event Player.LastDamageNumber, Eye Position(Victim) + Event Player.LastDamageNumberRandomPosition, 3, Clip Against Surfaces, Visible To, Color(Orange), Default Visibility);
+			Event Player.LastDamageNumberProperties = Array(3, Color(Orange), 1.250);
 		End;
+		Create In-World Text(All Players(Team 2), Event Player.LastDamageNumber, Eye Position(Victim) + Vector(Random Real(-0.500, 0.500),
+					Random Real(0.500, 1), Random Real(-0.500, 0.500)), Event Player.LastDamageNumberProperties[0], Clip Against Surfaces, Visible To, Event Player.LastDamageNumberProperties[1], Default Visibility);
 		Event Player.LastDamage[0] = Last Text ID;
 		Event Player.LastDamageNumberInstance = 1;
-		Wait(Event Player.LastDamageNumberTime[0], Restart When True);
+		Wait(Evaluate Once(Event Player.LastDamageNumberProperties[2]), Restart When True);
 		Destroy In-World Text(Event Player.LastDamage[0]);
 	}
 }
@@ -19787,30 +19778,22 @@ rule("Damage Numbers 1")
 		Wait(0.032, Ignore Condition);
 		Destroy In-World Text(Event Player.LastDamage[1]);
 		Abort If(Event Player.LastDamageNumber <= 0);
-		Event Player.LastDamageNumberRandomPosition = Vector(Random Real(-0.500, 0.500),
-					Random Real(0.500, 1), Random Real(-0.500, 0.500));
 		If(Event Player.LastDamageNumber < 10);
-			Event Player.LastDamageNumberTime[1] = 0.333;
-			Create In-World Text(All Players(Team 2), Event Player.LastDamageNumber, Eye Position(Victim) + Event Player.LastDamageNumberRandomPosition, 1, Clip Against Surfaces, Visible To, Color(White), Default Visibility);
+			Event Player.LastDamageNumberProperties = Array(1, Color(White), 0.333);
 		Else If(Event Player.LastDamageNumber < 45);
-			Event Player.LastDamageNumberTime[1] = 0.500;
-			Create In-World Text(All Players(Team 2), Event Player.LastDamageNumber, Eye Position(Victim) + Event Player.LastDamageNumberRandomPosition, 1.500, Clip Against Surfaces, Visible To, Custom Color(255, 255, 200, 255),
-				Default Visibility);
+			Event Player.LastDamageNumberProperties = Array(1.500, Custom Color(255, 255, 200, 255), 0.500);
 		Else If(Event Player.LastDamageNumber < 90);
-			Event Player.LastDamageNumberTime[1] = 0.666;
-			Create In-World Text(All Players(Team 2), Event Player.LastDamageNumber, Eye Position(Victim) + Event Player.LastDamageNumberRandomPosition, 2, Clip Against Surfaces, Visible To, Custom Color(255, 255, 100, 255),
-				Default Visibility);
+			Event Player.LastDamageNumberProperties = Array(2, Custom Color(255, 255, 100, 255), 0.666);
 		Else If(Event Player.LastDamageNumber < 160);
-			Event Player.LastDamageNumberTime[1] = 1;
-			Create In-World Text(All Players(Team 2), Event Player.LastDamageNumber, Eye Position(Victim) + Event Player.LastDamageNumberRandomPosition, 2.500, Clip Against Surfaces, Visible To, Color(Yellow),
-				Default Visibility);
+			Event Player.LastDamageNumberProperties = Array(2.500, Color(Yellow), 1);
 		Else;
-			Event Player.LastDamageNumberTime[1] = 1.250;
-			Create In-World Text(All Players(Team 2), Event Player.LastDamageNumber, Eye Position(Victim) + Event Player.LastDamageNumberRandomPosition, 3, Clip Against Surfaces, Visible To, Color(Orange), Default Visibility);
+			Event Player.LastDamageNumberProperties = Array(3, Color(Orange), 1.250);
 		End;
+		Create In-World Text(All Players(Team 2), Event Player.LastDamageNumber, Eye Position(Victim) + Vector(Random Real(-0.500, 0.500),
+					Random Real(0.500, 1), Random Real(-0.500, 0.500)), Event Player.LastDamageNumberProperties[0], Clip Against Surfaces, Visible To, Event Player.LastDamageNumberProperties[1], Default Visibility);
 		Event Player.LastDamage[1] = Last Text ID;
 		Event Player.LastDamageNumberInstance = 2;
-		Wait(Event Player.LastDamageNumberTime[1], Restart When True);
+		Wait(Evaluate Once(Event Player.LastDamageNumberProperties[2]), Restart When True);
 		Destroy In-World Text(Event Player.LastDamage[1]);
 	}
 }
