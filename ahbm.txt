@@ -19737,7 +19737,7 @@ rule("Damage Numbers 0")
 		Wait(0.032, Ignore Condition);
 		Destroy In-World Text(Event Player.LastDamage[0]);
 		Abort If(Event Player.LastDamageNumber <= 0);
-		Event Player.LastDamageNumberProperties = First Of(Filtered Array(Array(10, 45, 90, 160, 9999999), Event Player.LastDamageNumber < Current Array Element));
+		Event Player.LastDamageNumberProperties = Index of Array Value(Array(10, 45, 90, 160, 9999999), First Of(Filtered Array(Array(10, 45, 90, 160, 9999999), Event Player.LastDamageNumber < Current Array Element)));
 		Create In-World Text(All Players(Team 2), Event Player.LastDamageNumber, Eye Position(Victim) + Vector(Random Real(-0.500, 0.500),
 					Random Real(0.500, 1), Random Real(-0.500, 0.500)), Array(1, 1.500, 2, 2.500, 3)[Event Player.LastDamageNumberProperties], Clip Against Surfaces, Visible To, Array(Color(White), Custom Color(255, 255, 200, 255), Custom Color(255, 255, 100, 255), Color(Yellow), Color(Orange))[Event Player.LastDamageNumberProperties], Default Visibility);
 		Event Player.LastDamage[0] = Last Text ID;
@@ -19768,7 +19768,7 @@ rule("Damage Numbers 1")
 		Wait(0.032, Ignore Condition);
 		Destroy In-World Text(Event Player.LastDamage[1]);
 		Abort If(Event Player.LastDamageNumber <= 0);
-		Event Player.LastDamageNumberProperties = First Of(Filtered Array(Array(10, 45, 90, 160, 9999999), Event Player.LastDamageNumber < Current Array Element));
+		Event Player.LastDamageNumberProperties = Index of Array Value(Array(10, 45, 90, 160, 9999999), First Of(Filtered Array(Array(10, 45, 90, 160, 9999999), Event Player.LastDamageNumber < Current Array Element)));
 		Create In-World Text(All Players(Team 2), Event Player.LastDamageNumber, Eye Position(Victim) + Vector(Random Real(-0.500, 0.500),
 					Random Real(0.500, 1), Random Real(-0.500, 0.500)), Array(1, 1.500, 2, 2.500, 3)[Event Player.LastDamageNumberProperties], Clip Against Surfaces, Visible To, Array(Color(White), Custom Color(255, 255, 200, 255), Custom Color(255, 255, 100, 255), Color(Yellow), Color(Orange))[Event Player.LastDamageNumberProperties], Default Visibility);
 		Event Player.LastDamage[1] = Last Text ID;
