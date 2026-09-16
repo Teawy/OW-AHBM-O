@@ -1474,7 +1474,7 @@ settings
 
 			Mauga
 			{
-				Ammunition Clip Size Scalar: 30.1%
+				Ammunition Clip Size Scalar: 50%
 				Cardiac Overdrive Cooldown Time: 138%
 				Damage Dealt: 54%
 				Healing Dealt: 10%
@@ -1565,13 +1565,13 @@ settings
 
 			Orisa
 			{
-				Ammunition Clip Size Scalar: 40%
+				Ammunition Clip Size Scalar: 66%
 				Damage Dealt: 54%
-				Energy Javelin Cooldown Time: 171%
-				Fortify Cooldown Time: 90%
+				Energy Javelin Cooldown Time: 142.857%
+				Fortify Cooldown Time: 75%
 				Healing Received: 66%
 				Health: 50%
-				Javelin Spin Cooldown Time: 312%
+				Javelin Spin Cooldown Time: 312.5%
 				Movement Speed: 120%
 				Passive Health Regeneration: On
 				Projectile Speed: 60%
@@ -1806,7 +1806,7 @@ settings
 				Health: 100%
 				Movement Speed: 110%
 				Passive Health Regeneration: On
-				Projectile Speed: 100%
+				Projectile Speed: 200%
 				Role Passives: Off
 				Soaring Slice Cooldown Time: 171%
 				Ultimate Generation - Combat Sundering Blade: 0%
@@ -1866,7 +1866,7 @@ settings
 
 			Wrecking Ball
 			{
-				Adaptive Shield Cooldown Time: 206%
+				Adaptive Shield Cooldown Time: 213%
 				Ammunition Clip Size Scalar: 40%
 				Damage Dealt: 60%
 				Grappling Claw Cooldown Time: 160%
@@ -1874,7 +1874,7 @@ settings
 				Health: 125%
 				Minefield Knockback Scalar: 0%
 				Passive Health Regeneration: On
-				Piledriver Cooldown Time: 237%
+				Piledriver Cooldown Time: 200%
 				Role Passives: Off
 				Ultimate Duration: 90%
 				Ultimate Generation - Combat Minefield: 135%
@@ -2022,6 +2022,7 @@ variables
 		58: LastDamageNumber
 		59: LastDamageNumberInstance
 		60: LastDamageNumberTime
+		61: FireStrike
 }
 
 subroutines
@@ -2031,6 +2032,8 @@ subroutines
 	2: BossIgnitionExpire
 	3: TEAMVendetta_StunReady
 	4: BOSSNoAbility_Hud
+	6: BossFrozenNotification
+	7: BossClearFreeze
 }
 
 rule("CORE: (TIMER) SET START TIME")
@@ -19923,5 +19926,49 @@ rule("SUB: (BOSS) Init No Ability HUD")
 		Create HUD Text(Event Player, Null, Null, Custom String("None"), Left, 1, Color(White), Color(White), Color(Red),
 			None, Default Visibility);
 		Global.BOSS_AbilityKey = Last Text ID;
+	}
+}
+
+rule("CORE: (BOSS) FROZEN NOTIFICATION")
+{
+	event
+	{
+		Subroutine;
+		BossFrozenNotification;
+	}
+
+	actions
+	{
+		Stop Chasing Player Variable(Event Player, F);
+		Event Player.F = 15;
+		Chase Player Variable At Rate(Event Player, F, 0, 1, Destination and Rate);
+		disabled Small Message(Event Player, Custom String("{0} Frozen: {1} seconds", Global.BossFrozen[1], Event Player.F));
+		Destroy HUD Text(Global.BOSS_AbilityKey);
+		Create HUD Text(Event Player, Custom String("{0} {1}", Ability Icon String(Hero(Mei), Button(Ultimate)), Round To Integer(
+			Event Player.F, Up)), Custom String("THAWING"), Global.BossFrozen[1], Left, 1, Color(Sky Blue), Color(White), Color(Sky Blue),
+			String, Default Visibility);
+		Global.BOSS_AbilityKey = Last Text ID;
+		Destroy Effect(Event Player.PlayerFX_3);
+		Skip If(Is Waiting For Players, 2);
+		Create Effect(All Players(All Teams), Cloud, Color(White), Event Player, Global.BossFrozen[2], Visible To Position and Radius);
+		Event Player.PlayerFX_3 = Last Created Entity;
+	}
+}
+
+rule("CORE: (BOSS) THAW RESET")
+{
+	event
+	{
+		Subroutine;
+		BossClearFreeze;
+	}
+
+	actions
+	{
+		Destroy Effect(Event Player.PlayerFX_3);
+		Destroy HUD Text(Global.BOSS_AbilityKey);
+		Stop Chasing Player Variable(Event Player, F);
+		Event Player.F = 0;
+		Global.BossFrozen = 0;
 	}
 }
