@@ -186,7 +186,7 @@ settings
 			{
 				Call Mech Knockback Scalar: 400%
 				Damage Dealt: 233.334%
-				Fusion Repeater Cooldown Time: 150%
+				Fusion Repeater Cooldown Time: 120%
 				Healing Received: 10%
 				Health: 200%
 				Passive Health Regeneration: On
@@ -1169,7 +1169,7 @@ settings
 			D.Mon
 			{
 				Damage Dealt: 70%
-				Fusion Repeater Cooldown Time: 375%
+				Fusion Repeater Cooldown Time: 300%
 				Healing Received: 40%
 				Health: 123.07744%
 				Passive Health Regeneration: On
@@ -10642,6 +10642,54 @@ rule("CORE: (BOSS) ASHE & HANZO: ARMOUR POOL")
 	}
 }
 
+rule("CORE: (BOSS) D.MON: PILOT HEALTH")
+{
+	event
+	{
+		Ongoing - Each Player;
+		Team 1;
+		D.Mon;
+	}
+
+	conditions
+	{
+		Max Health(Event Player) < 500;
+	}
+
+	actions
+	{
+		Remove Health Pool From Player(Global.BOSS_HealthPools[0]);
+		Remove Health Pool From Player(Global.BOSS_HealthPools[1]);
+		Event Player.base_health = Max Health(Event Player);
+		Event Player.base_shields = Max Health Of Type(Event Player, Shields);
+	}
+}
+
+rule("CORE: (BOSS) D.MON: MECH HEALTH")
+{
+	event
+	{
+		Ongoing - Each Player;
+		Team 1;
+		D.Mon;
+	}
+
+	conditions
+	{
+		Max Health(Event Player) > 500;
+	}
+
+	actions
+	{
+		Remove Health Pool From Player(Global.BOSS_HealthPools[0]);
+		Remove Health Pool From Player(Global.BOSS_HealthPools[1]);
+		Add Health Pool To Player(Event Player, Health, 100, True, False);
+		Global.BOSS_HealthPools[0] = Last Created Health Pool;
+		Event Player.base_health = Max Health(Event Player);
+		Event Player.base_shields = Max Health Of Type(Event Player, Shields);
+	}
+}
+
 rule("CORE: (BOSS) DOMINA: HEALTH")
 {
 	event
@@ -12612,13 +12660,46 @@ rule("CORE: (TEAM) REIN: HEALTH")
 	}
 }
 
-rule("CORE: (TEAM) D.MON: HEALTH")
+rule("CORE: (TEAM) D.MON: PILOT HEALTH")
 {
 	event
 	{
 		Ongoing - Each Player;
 		Team 2;
 		D.Mon;
+	}
+
+	conditions
+	{
+		Max Health(Event Player) < 699;
+	}
+
+	actions
+	{
+		Remove Health Pool From Player(Event Player.health_pool);
+		Remove Health Pool From Player(Event Player.shield_pool);
+		Remove Health Pool From Player(Event Player.armour_pool);
+		Add Health Pool To Player(Event Player, Shields, 50, True, False);
+		Event Player.shield_pool = Last Created Health Pool;
+		Set Max Health(Event Player, 92.8567);
+		Wait(0.016, Ignore Condition);
+		Event Player.base_health = Max Health(Event Player);
+		Event Player.base_shields = Max Health Of Type(Event Player, Shields);
+	}
+}
+
+rule("CORE: (TEAM) D.MON: MECH HEALTH")
+{
+	event
+	{
+		Ongoing - Each Player;
+		Team 2;
+		D.Mon;
+	}
+
+	conditions
+	{
+		Max Health(Event Player) >= 699;
 	}
 
 	actions
@@ -12628,7 +12709,11 @@ rule("CORE: (TEAM) D.MON: HEALTH")
 		Remove Health Pool From Player(Event Player.armour_pool);
 		Add Health Pool To Player(Event Player, Health, 11.538, True, False);
 		Event Player.health_pool = Last Created Health Pool;
+		Add Health Pool To Player(Event Player, Armor, 11.537, True, False);
+		Event Player.armour_pool = Last Created Health Pool;
+		Set Max Health(Event Player, 100);
 		Wait(0.016, Ignore Condition);
+		Heal(Event Player, Null, 10000);
 		Event Player.base_health = Max Health(Event Player);
 		Event Player.base_shields = Max Health Of Type(Event Player, Shields);
 	}
@@ -19643,6 +19728,8 @@ rule("CORE: (BOSS) D.MON ULT CHARGE")
 			Set Ultimate Charge(Event Player, Ultimate Charge Percent(Event Player) + 4);
 	}
 }
+
+
 
 rule("temp bug fix - hazard ammo")
 {
