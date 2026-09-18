@@ -1,0 +1,105 @@
+Global.D
+      Waiting Menu Self Death HUD
+
+
+Global.H
+      Team 1
+          1    Boss Hacked Msg HUD
+
+      Team 2
+          0    Mercy Res Healing Bool
+
+
+Global.V
+      Waiting Menu 3rd Person HUD
+
+Global.X
+      0 Soul Team Score
+      1 Waiting Menu
+      2 Waiting Menu
+      3 Waiting Menu
+      4 Waiting Menu
+      5 Waiting Menu
+      6 Waiting Menu
+      7 Waiting Menu
+
+
+Event Player.A
+      Team 2
+        Mercy Res Msg Set 1 Sorted Event Player.C
+
+
+Event Player.C
+      Team 1
+        Brigitte Shield Bash Aura Effect
+        Echo P.C. Y Comp of Eye Position
+
+      Team 2
+        Mercy Res Msg Dead Players In Radius
+
+
+Event Player.D
+      Team 1
+        Genji Dash Bool
+
+      Deal Calls
+          Team 2
+            Ramattra Health
+            Ramattra Set AOE Health
+            Mercy Res Msg
+
+
+Event Player.E
+      Team 1
+        Tracer Recall Aura Effect
+
+      Team 2
+        Mercy Res Msg Int
+
+
+Event Player.I
+      Mercy Halo Icon
+
+
+Event Player.M
+    Team 1
+        Mercy Valkerie Health Mod Bool
+
+    Team 2
+        Mercy Res Aura Bool
+
+    Dead Calls
+        Mei + Reaper Switch
+        Cam & Status Reset
+
+
+Event Player.N
+    Team 1
+        D.Va Ultimate Charge Cloud Effect
+        Echo P.C. Facing Direction
+
+    Dead Call
+        Team 2 Effect Destruction
+
+
+Event Player.S
+    Team 1
+        Genji Dash Aura Effect
+    Team 2
+        Mercy Res Aura Bool
+
+
+Event Player.T
+    Team 1
+        Zenyatta Ultimate Charge Shaft Effect
+
+
+Event Player.Y
+  0    Mercy Soul Skull Icon
+  1    Soul Hero Icon IWT
+  2    Soul Timer IWT
+  3    Soul Timer
+  4    Kiriko / Mercy Custom Jump & Angelic Descent / Wall-climb disabling.
+  5    Soul Pick-up availability IWT
+  6    Soul Defence IWT
+  7    Soul Revive Denial IWT
