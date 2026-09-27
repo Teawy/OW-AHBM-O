@@ -1,3 +1,11 @@
+Global.A
+      Roles
+
+Global.B
+      Team 1
+            Moira
+                  Healing Active Bool
+
 Global.D
       Waiting Menu Self Death HUD
 
@@ -13,6 +21,15 @@ Global.H
 Global.V
       Waiting Menu 3rd Person HUD
 
+Global.W
+      Team 1
+            Tracer
+                  Accumulated Ultimate Resource Bool
+            Moira
+                  Healing Availability Bool
+            Sombra
+                  Focus Bool
+
 Global.X
       0 Soul Team Score
       1 Waiting Menu
@@ -26,80 +43,174 @@ Global.X
 
 Event Player.A
       Team 2
-        Mercy Res Msg Set 1 Sorted Event Player.C
+            Mercy Res Msg Set 1 Sorted Event Player.C
 
 
 Event Player.C
       Team 1
-        Brigitte Shield Bash Aura Effect
-        Echo P.C. Y Comp of Eye Position
+            Brigitte Shield Bash Aura Effect
+            Echo P.C. Y Comp of Eye Position
 
       Team 2
-        Mercy Res Msg Dead Players In Radius
+            Mercy Res Msg Dead Players In Radius
 
 
 Event Player.D
       Team 1
-        Genji Dash Bool
+            Genji Dash Bool
 
       Deal Calls
-          Team 2
-            Ramattra Health
-            Ramattra Set AOE Health
-            Mercy Res Msg
+            Team 2
+                  Ramattra Health
+                  Ramattra Set AOE Health
+                  Mercy Res Msg
 
 
 Event Player.E
       Team 1
-        Tracer Recall Aura Effect
+            Tracer Recall Aura Effect
 
       Team 2
-        Mercy Res Msg Int
+            Mercy Res Msg Int
+
+Event Player.F
+      Team 1
+            Frozen
+                  Reinhardt
+                  Torbjörn
+                  Junkrat
+                  Roadhog
+                  Ashe
+                  Bastion
+                  Zenyatta
+                  D.Va
+            Echo
+                  P.C 
+                        Facing Direction End Point
+                        Vector
+
+            Dead Calls
+                  Moira 
+                        Initialization
+                              Integer
+
+Eevnt Player.G
+      Team 1
+            Moira
+                  Orb Effect
+
+Event Player.H
+      Team 1
+            Roadhog
+                  Ultimate Charge Progress Effect
 
 
 Event Player.I
       Mercy Halo Icon
 
+Event Player.K
+      Team 1
+            Moira
+                  Orb Effect
+
+Event Player.L
+      Team 1
+            Echo
+                  P.C. Vector
+
 
 Event Player.M
-    Team 1
-        Mercy Valkerie Health Mod Bool
+      Team 1
+            Mercy Valkerie Health Mod Bool
 
-    Team 2
-        Mercy Res Aura Bool
+      Team 2
+            Mercy Res Aura Bool
 
-    Dead Calls
-        Mei + Reaper Switch
-        Cam & Status Reset
+      Dead Calls
+            Mei + Reaper Switch
+            Cam & Status Reset
 
 
 Event Player.N
-    Team 1
-        D.Va Ultimate Charge Cloud Effect
-        Echo P.C. Facing Direction
+      Team 1
+            D.Va Ultimate Charge Cloud Effect
+            Echo P.C. Facing Direction
 
-    Dead Call
-        Team 2 Effect Destruction
+      Dead Call
+            Team 2 Effect Destruction
+
+Event Player.O
+      Team 1
+            Moira
+                  Orb CD
+Event Player.R
+      Team 1
+            Tracer
+                  Recall CD
+      
 
 
 Event Player.S
-    Team 1
-        Genji Dash Aura Effect
-    Team 2
-        Mercy Res Aura Bool
+      Team 1
+            Genji 
+                  Dash Aura Effect
+      Team 2
+            Mercy
+                  Res Aura Bool
 
 
 Event Player.T
     Team 1
         Zenyatta Ultimate Charge Shaft Effect
 
+Event Player.U
+      Team 1
+            Mercy
+                  Valkykrie Effect
+            Cassidy
+                  Dodge "Bool"
+                        0 Inactive
+                        2 Active
+            
+      Team 2
+            Player Soul Effect
+
+Event Player.X
+      Team 1
+            0 Frozen Ult Charge / Ability Cooldown Tracker
+      Team 2
+            Cassidy
+                  Med Use Effect
+            Wrecking Ball
+                  Slam Use Effect
 
 Event Player.Y
-  0    Mercy Soul Skull Icon
-  1    Soul Hero Icon IWT
-  2    Soul Timer IWT
-  3    Soul Timer
-  4    Kiriko / Mercy Custom Jump & Angelic Descent / Wall-climb disabling.
-  5    Soul Pick-up availability IWT
-  6    Soul Defence IWT
-  7    Soul Revive Denial IWT
+        0    Mercy Soul Skull Icon
+        1    Soul Hero Icon IWT
+        2    Soul Timer IWT
+        3    Soul Timer
+        4    Kiriko / Mercy Custom Jump & Angelic Descent / Wall-climb disabling.
+        5    Soul Pick-up availability IWT
+        6    Soul Defence IWT
+        7    Soul Revive Denial IWT
+
+Event Player.Z
+      All
+            3      Player Role
+                        1 Def
+                        2 Enf
+                        3 Off
+                        4 Tact
+            4      Eye Level (Standing / Crouching)
+
+      Team 1
+            Mercy
+            0      Fast Heal Bool
+
+      Team 2
+            5      Role Lock Re-Evaluation after Joiner / Leaver
+            Tracer
+            4      Up Component of Ultimate Effect
+
+            Symmetra
+            4      Up Component of Ability 1 Effect
