@@ -10587,7 +10587,7 @@ rule("CORE: (BOSS) D.MON: PILOT HEALTH")
 
 	conditions
 	{
-		Max Health(Event Player) < 500;
+		Max Health Of Type(Event Player, Armor) <= 50;
 	}
 
 	actions
@@ -10610,7 +10610,7 @@ rule("CORE: (BOSS) D.MON: MECH HEALTH")
 
 	conditions
 	{
-		Max Health(Event Player) > 500;
+		Max Health Of Type(Event Player, Armor) > 50;
 	}
 
 	actions
@@ -12579,7 +12579,7 @@ rule("CORE: (TEAM) D.MON: PILOT HEALTH")
 
 	conditions
 	{
-		Max Health(Event Player) < 699;
+		Max Health Of Type(Event Player, Armor) <= 50;
 	}
 
 	actions
@@ -12607,7 +12607,7 @@ rule("CORE: (TEAM) D.MON: MECH HEALTH")
 
 	conditions
 	{
-		Max Health(Event Player) >= 699;
+		Max Health Of Type(Event Player, Armor) > 50;
 	}
 
 	actions
