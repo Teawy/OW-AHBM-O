@@ -3032,7 +3032,7 @@ rule("CORE: (TEAM) MERCY: RES HEALING UP (H) + RES HEALING VAR (H)")
 
 	conditions
 	{
-		(Is Using Ability 2(Event Player) || !Global.H[0]) == True;
+		(Is Using Ability 2(Event Player) || Global.H[0]) == True;
 	}
 
 	actions
