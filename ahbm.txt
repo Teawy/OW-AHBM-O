@@ -18394,6 +18394,7 @@ rule("CORE: (TEAM) JQ knife stun")
 		Wait Until(Is Dead(Event Player), 12);
 		Stop Chasing Player Variable(Event Player, secondary_charge);
 		Event Player.secondary_charge = 0;
+		Abort If(Hero Of(Event Player) != Hero(Junker Queen));
 		Destroy HUD Text(Event Player.team_abilityHUD[0]);
 		Wait(0.016, Ignore Condition);
 		Create HUD Text(Event Player, Custom String("{0} {1}", Ability Icon String(Hero(Junker Queen), Button(Secondary Fire)),
@@ -19043,7 +19044,7 @@ rule("CORE: (BOSS) Bastion turret jump")
 	actions
 	{
 		Set Jump Vertical Speed(Event Player, 5);
-		Wait Until((!Is Using Ability 1(Event Player)  || Hero Of(Event Player) != Hero(Bastion)), 7);
+		Wait Until((!Is Using Ability 1(Event Player) || Hero Of(Event Player) != Hero(Bastion)), 7);
 		Set Jump Vertical Speed(Event Player, 100);
 	}
 }
