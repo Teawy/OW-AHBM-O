@@ -7711,7 +7711,7 @@ rule("CORE: (MSGS) TEAM CHARGE-HUD ERASE")
 	conditions
 	{
 		Array Contains(Array(Hero(Ashe), Hero(Anran), Hero(Vendetta)), Hero Of(Event Player)) == False;
-		"Totally didn't remove it"
+		"DO NOT REMOVE:"
 		Has Spawned(Event Player) == True;
 	}
 
@@ -18174,7 +18174,7 @@ rule("CORE: (TEAM) ALL - HARD COOLDOWNS")
 		Event Player.CD_saver = Array((Ability Cooldown(Event Player, Event Player.CD_saver[0]) - Event Player.CD_saver[1]), Event Player.CD_saver[0], Hero Of(Event Player));
 		Wait Until(Is Alive(Event Player), 9);
 		Abort If(Hero Of(Event Player) != Event Player.CD_saver[2]);
-		Abort If(Ability Cooldown(Event Player, Event Player.CD_saver[1]) > Event Player.CD_saver[0]);
+		Abort If(Ability Cooldown(Event Player, Event Player.CD_saver[1]) < Event Player.CD_saver[0]);
 		Set Ability Cooldown(Event Player, Event Player.CD_saver[1], Event Player.CD_saver[0] - 2);
 	}
 }
@@ -18196,7 +18196,7 @@ rule("CORE: (TEAM) 76 - SELF HEAL")
 	actions
 	{
 		Set Healing Received(Event Player, 15);
-		Wait Until(!Is Using Ability 2(Event Player), 6);
+		Wait Until(!Is Using Ability 2(Event Player) || Hero Of(Event Player) != Hero(Soldier: 76), 6);
 		Set Healing Received(Event Player, 100);
 	}
 }
@@ -18281,7 +18281,7 @@ rule("CORE: (TEAM) MAUGA - STOP CARDIAC HEAL")
 
 	conditions
 	{
-		(!Is Using Ability 2(Event Player) || Is Dead(Event Player)) == True;
+		(!Is Using Ability 2(Event Player) || Is Dead(Event Player) || Hero Of(Event Player) != Hero(Mauga))) == True;
 	}
 
 	actions
@@ -19043,7 +19043,7 @@ rule("CORE: (BOSS) Bastion turret jump")
 	actions
 	{
 		Set Jump Vertical Speed(Event Player, 5);
-		Wait Until(!Is Using Ability 1(Event Player), 7);
+		Wait Until((!Is Using Ability 1(Event Player)  || Hero Of(Event Player) != Hero(Bastion)), 7);
 		Set Jump Vertical Speed(Event Player, 100);
 	}
 }
