@@ -2354,9 +2354,9 @@ rule("CORE: (WAIT) WAITING MENU (ERASE)")
 	{
 		Destroy HUD Text(Global.BOSS_StatusArray);
 		Wait(0.033, Ignore Condition);
-		Destroy HUD Text(Global.WaitingMenu[8];
+		Destroy HUD Text(Global.WaitingMenu[8]);
 		Wait(0.030, Ignore Condition);
-		Destroy HUD Text(Global.WaitingMenu[7];
+		Destroy HUD Text(Global.WaitingMenu[7]);
 		Wait(0.030, Ignore Condition);
 		Destroy HUD Text(Global.WaitingMenu[0]);
 		Wait(0.030, Ignore Condition);
@@ -2391,7 +2391,7 @@ rule("CORE: (WAIT) WAITING MENU (MAKE)")
 		Global.WaitingMenu = Remove From Array(Global.WaitingMenu, Null);
 		While(Global.WaitingMenu != Empty Array);
 			Destroy HUD Text(First Of(Global.WaitingMenu));
-			Modify Global Variable(Waiting Menu, Remove From Array By Index, 0);
+			Modify Global Variable(WaitingMenu, Remove From Array By Index, 0);
 		End;
 		Abort;
 		Create HUD Text(All Players(All Teams), Custom String("{0} + {1}", Input Binding String(Button(Ultimate)), Input Binding String(
@@ -4567,7 +4567,7 @@ rule("CORE: (BOSS) TRACER - RECALL ON")
 		Destroy Effect(Event Player.E);
 		Create Effect(All Players(Team 2), Good Aura, Color(Sky Blue), Event Player, 0.100, Visible To Position and Radius);
 		Event Player.E = Last Created Entity;
-		Stop Chasing Player Variable(Event Player, R);
+		Stop Chasing Player Variable(Event Player, RecallCooldown);
 		Event Player.RecallCooldown = 30;
 	}
 }
@@ -5039,10 +5039,10 @@ rule("CORE: (BOSS) MOIRA - SPAWN & INITIALIZE EFFECTS")
 		Stop Chasing Player Variable(Event Player, F);
 		Event Player.F = 1;
 		Destroy Effect(Event Player.PlayerFX_1);
-		Create Effect(Global.B, Energy Sound, Color(White), Eye Position(Event Player), 100, Visible To Position and Radius);
+		Create Effect(Global.HealingOrb, Energy Sound, Color(White), Eye Position(Event Player), 100, Visible To Position and Radius);
 		Event Player.PlayerFX_1 = Last Created Entity;
 		Destroy Effect(Event Player.PlayerFX_3);
-		Create Effect(Global.B, Orb, Color(Yellow), Event Player + Vector(0, 1, 0) + Facing Direction Of(Event Player), 0.250,
+		Create Effect(Global.HealingOrb, Orb, Color(Yellow), Event Player + Vector(0, 1, 0) + Facing Direction Of(Event Player), 0.250,
 			Visible To Position and Radius);
 		Event Player.PlayerFX_3 = Last Created Entity;
 		Event Player.F = 2;
