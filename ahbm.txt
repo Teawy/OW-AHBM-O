@@ -1952,6 +1952,7 @@ settings
 variables
 {
 	global:
+		3: WaitingMenu
 		5: BossStatus_Burning
 		6: Enviro_Threshold
 		10: ResMsg1_Feed
@@ -2349,23 +2350,23 @@ rule("CORE: (WAIT) WAITING MENU (ERASE)")
 	{
 		Destroy HUD Text(Global.BOSS_StatusArray);
 		Wait(0.033, Ignore Condition);
-		Destroy HUD Text(Global.D);
+		Destroy HUD Text(Global.WaitingMenu[8];
 		Wait(0.030, Ignore Condition);
-		Destroy HUD Text(Global.V);
+		Destroy HUD Text(Global.WaitingMenu[7];
 		Wait(0.030, Ignore Condition);
-		Destroy HUD Text(Global.X[1]);
+		Destroy HUD Text(Global.WaitingMenu[0]);
 		Wait(0.030, Ignore Condition);
-		Destroy HUD Text(Global.X[2]);
+		Destroy HUD Text(Global.WaitingMenu[1]);
 		Wait(0.030, Ignore Condition);
-		Destroy HUD Text(Global.X[3]);
+		Destroy HUD Text(Global.WaitingMenu[2]);
 		Wait(0.030, Ignore Condition);
-		Destroy HUD Text(Global.X[4]);
+		Destroy HUD Text(Global.WaitingMenu[3]);
 		Wait(0.030, Ignore Condition);
-		Destroy HUD Text(Global.X[5]);
+		Destroy HUD Text(Global.WaitingMenu[4]);
 		Wait(0.030, Ignore Condition);
-		Destroy HUD Text(Global.X[6]);
+		Destroy HUD Text(Global.WaitingMenu[5]);
 		Wait(0.030, Ignore Condition);
-		Destroy HUD Text(Global.X[7]);
+		Destroy HUD Text(Global.WaitingMenu[6]);
 		Global.X = Null;
 		Create HUD Text(All Players(Team 2), Null, Null, Custom String("\r\n\r\n\r\n\r\n\r\n\r\n\r\n"), Left, 0, Color(White), Color(
 			White), Color(White), Visible To and String, Default Visibility);
@@ -2381,51 +2382,47 @@ rule("CORE: (WAIT) WAITING MENU (MAKE)")
 
 	actions
 	{
-		Skip If(Is Waiting For Players, 10);
+		Skip If(Is Waiting For Players, 7);
 		Destroy HUD Text(Global.BOSS_StatusArray);
-		Destroy HUD Text(Global.D);
-		Destroy HUD Text(Global.V);
-		Destroy HUD Text(Global.X[1]);
-		Destroy HUD Text(Global.X[2]);
-		Destroy HUD Text(Global.X[3]);
-		Destroy HUD Text(Global.X[4]);
-		Destroy HUD Text(Global.X[5]);
-		Destroy HUD Text(Global.X[6]);
-		Destroy HUD Text(Global.X[7]);
-		Skip If(!Is Waiting For Players, 20);
+		Global.WaitingMenu = Remove From Array(Global.WaitingMenu, Null);
+		While(Global.WaitingMenu != Empty Array);
+			Destroy HUD Text(First Of(Global.WaitingMenu));
+			Modify Global Variable(Waiting Menu, Remove From Array By Index, 0);
+		End;
+		Abort;
 		Create HUD Text(All Players(All Teams), Custom String("{0} + {1}", Input Binding String(Button(Ultimate)), Input Binding String(
 			Button(Ability 2))), Custom String("[gives 1min immortality]"), Custom String("SELF REVIVE"), Top, 5, Color(White), Color(
 			White), Color(Yellow), Visible To and String, Default Visibility);
 		Global.BOSS_StatusArray = Last Text ID;
-		Create HUD Text(All Players(All Teams), Custom String("{0} + {1}", Input Binding String(Button(Ultimate)), Input Binding String(
-			Button(Ability 1))), Custom String("[3 second delay]"), Custom String("SELF DEATH"), Top, 4, Color(White), Color(White), Color(
-			Red), Visible To and String, Default Visibility);
-		Global.D = Last Text ID;
-		Create HUD Text(All Players(All Teams), Input Binding String(Button(Interact)), Custom String("[toggle on/off]"), Custom String(
-			"3RD PERSON"), Top, 3, Color(White), Color(White), Color(Blue), Visible To and String, Default Visibility);
-		Global.V = Last Text ID;
 		Create HUD Text(All Players(All Teams), Null, Null, Custom String("WAITING ROOM ™ ABILITIES:"), Top, 2, Color(White), Color(White),
 			Color(Lime Green), Visible To and String, Default Visibility);
-		Global.X[1] = Last Text ID;
+		Global.WaitingMenu[0] = Last Text ID;
 		Create HUD Text(All Players(All Teams), Null, Custom String("6 OR 7 PLAYERS NEEDED"), Null, Top, -0.200, Color(White), Color(
 			White), Color(White), Visible To and String, Default Visibility);
-		Global.X[2] = Last Text ID;
+		Global.WaitingMenu[1] = Last Text ID;
 		Create HUD Text(All Players(All Teams), Null, Null, Custom String("{0} Players Connected", Number Of Players(All Teams)), Top,
 			-0.100, Color(White), Color(White), Color(Orange), Visible To and String, Default Visibility);
-		Global.X[3] = Last Text ID;
+		Global.WaitingMenu[2] = Last Text ID;
 		Create HUD Text(All Players(All Teams), Null, Custom String(""), Custom String("• ANY HERO BOSS MODE ™ •"), Top, -1.100, Color(
 			White), Color(White), Color(White), Visible To and String, Default Visibility);
-		Global.X[4] = Last Text ID;
+		Global.WaitingMenu[3] = Last Text ID;
 		Create HUD Text(All Players(Team 2), Null, Null, Custom String("THANK YOU FOR JOINING!"), Left, -1, Color(White), Color(White),
 			Color(White), Visible To and String, Default Visibility);
-		Global.X[5] = Last Text ID;
+		Global.WaitingMenu[4] = Last Text ID;
 		Create HUD Text(All Players(Team 2), Null, Null, Custom String("-------------------------------"), Left, -0.950, Color(White),
 			Color(White), Color(White), Visible To and String, Default Visibility);
-		Global.X[6] = Last Text ID;
+		Global.WaitingMenu[5] = Last Text ID;
 		Create HUD Text(All Players(Team 2), Null, Custom String(
 			"TO BE THE BOSS, JUST ASK IN CHAT\r\n\r\n\r\n\r\n♡ • Discord:   BIT.LY/OW_AHBM • ♡\r\n\r\n\r\n"), Null, Left, 0, Color(White),
 			Color(Gray), Color(White), Visible To and String, Default Visibility);
-		Global.X[7] = Last Text ID;
+		Global.WaitingMenu[6] = Last Text ID;
+		Create HUD Text(All Players(All Teams), Input Binding String(Button(Interact)), Custom String("[toggle on/off]"), Custom String(
+			"3RD PERSON"), Top, 3, Color(White), Color(White), Color(Blue), Visible To and String, Default Visibility);
+		Global.WaitingMenu[7]= Last Text ID;
+		Create HUD Text(All Players(All Teams), Custom String("{0} + {1}", Input Binding String(Button(Ultimate)), Input Binding String(
+			Button(Ability 1))), Custom String("[3 second delay]"), Custom String("SELF DEATH"), Top, 4, Color(White), Color(White), Color(
+			Red), Visible To and String, Default Visibility);
+		Global.WaitingMenu[8]= Last Text ID;
 	}
 }
 
@@ -2446,14 +2443,14 @@ rule("CORE: (WAIT) PLAYER COUNT MSG - VIA JOIN")
 	actions
 	{
 		Skip If(Number Of Players(All Teams) < 6, 6);
-		Destroy HUD Text(Global.X[2]);
+		Destroy HUD Text(Global.WaitingMenu[1]);
 		Create HUD Text(All Players(All Teams), Null, Custom String("READY TO START!"), Null, Top, -0.200, Color(White), Color(White),
 			Color(Green), Visible To and String, Default Visibility);
-		Global.X[2] = Last Text ID;
-		Destroy HUD Text(Global.X[3]);
+		Global.WaitingMenu[1] = Last Text ID;
+		Destroy HUD Text(Global.WaitingMenu[2]);
 		Create HUD Text(All Players(All Teams), Null, Null, Custom String("{0} Players Connected", Number Of Players(All Teams)), Top,
 			-0.100, Color(White), Color(White), Color(Green), Visible To and String, Default Visibility);
-		Global.X[3] = Last Text ID;
+		Global.WaitingMenu[2] = Last Text ID;
 	}
 }
 
@@ -2474,14 +2471,14 @@ rule("CORE: (WAIT) PLAYER COUNT MSG - VIA LEAVE")
 	actions
 	{
 		Skip If(Number Of Players(All Teams) >= 6, 6);
-		Destroy HUD Text(Global.X[2]);
+		Destroy HUD Text(Global.WaitingMenu[1]);
 		Create HUD Text(All Players(All Teams), Null, Custom String("6 OR 7 PLAYERS NEEDED"), Null, Top, -0.200, Color(White), Color(
 			White), Color(White), Visible To and String, Default Visibility);
-		Global.X[2] = Last Text ID;
-		Destroy HUD Text(Global.X[3]);
+		Global.WaitingMenu[1] = Last Text ID;
+		Destroy HUD Text(Global.WaitingMenu[2]);
 		Create HUD Text(All Players(All Teams), Null, Null, Custom String("{0} Players Connected", Number Of Players(All Teams)), Top,
 			-0.100, Color(White), Color(White), Color(Orange), Visible To and String, Default Visibility);
-		Global.X[3] = Last Text ID;
+		Global.WaitingMenu[2] = Last Text ID;
 	}
 }
 
