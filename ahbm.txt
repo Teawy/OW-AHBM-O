@@ -1952,6 +1952,7 @@ settings
 variables
 {
 	global:
+		1: HealingOrb
 		3: WaitingMenu
 		5: BossStatus_Burning
 		6: Enviro_Threshold
@@ -1983,9 +1984,12 @@ variables
 
 	player:
 		1: Third_Person
+		7: Wholehog
 		9: PlayerFX_1
+		14: OrbCooldown
 		15: PlayerFX_0
 		16: PlayerFX_2
+		17: RecallCooldown
 		21: PlayerFX_3
 		22: Ability_Toggle
 		26: ringout_FX
@@ -4553,7 +4557,7 @@ rule("CORE: (BOSS) TRACER - RECALL ON")
 
 	conditions
 	{
-		Event Player.R == 0;
+		Event Player.RecallCooldown == 0;
 		Is Waiting For Players == False;
 	}
 
@@ -4564,7 +4568,7 @@ rule("CORE: (BOSS) TRACER - RECALL ON")
 		Create Effect(All Players(Team 2), Good Aura, Color(Sky Blue), Event Player, 0.100, Visible To Position and Radius);
 		Event Player.E = Last Created Entity;
 		Stop Chasing Player Variable(Event Player, R);
-		Event Player.R = 30;
+		Event Player.RecallCooldown = 30;
 	}
 }
 
@@ -4586,7 +4590,7 @@ rule("CORE: (BOSS) TRACER - RECALL OFF")
 	actions
 	{
 		Destroy Effect(Event Player.E);
-		Chase Player Variable At Rate(Event Player, R, 0, 1, Destination and Rate);
+		Chase Player Variable At Rate(Event Player, RecallCooldown, 0, 1, Destination and Rate);
 	}
 }
 
@@ -4888,7 +4892,7 @@ rule("CORE: (BOSS) MOIRA - ORB ON")
 
 	conditions
 	{
-		Event Player.O == 0;
+		Event Player.OrbCooldown == 0;
 		Is Waiting For Players == False;
 	}
 
@@ -4902,8 +4906,8 @@ rule("CORE: (BOSS) MOIRA - ORB ON")
 		Event Player.G = Last Created Entity;
 		Create Effect(All Players(Team 2), Cloud, Color(Yellow), Event Player, 0.100, Visible To Position and Radius);
 		Event Player.K = Last Created Entity;
-		Stop Chasing Player Variable(Event Player, O);
-		Event Player.O = 25;
+		Stop Chasing Player Variable(Event Player, OrbCooldown);
+		Event Player.OrbCooldown = 25;
 	}
 }
 
@@ -4927,7 +4931,7 @@ rule("CORE: (BOSS) MOIRA - ORB OFF")
 	{
 		Destroy Effect(Event Player.G);
 		Destroy Effect(Event Player.K);
-		Chase Player Variable At Rate(Event Player, O, 0, 1, Destination and Rate);
+		Chase Player Variable At Rate(Event Player, OrbCooldown, 0, 1, Destination and Rate);
 	}
 }
 
@@ -5031,7 +5035,7 @@ rule("CORE: (BOSS) MOIRA - SPAWN & INITIALIZE EFFECTS")
 		Global.BOSS_AbilityKey = Last Text ID;
 		Wait(0.250, Abort When False);
 		Global.W = True;
-		Global.B = False;
+		Global.HealingOrb = False;
 		Stop Chasing Player Variable(Event Player, F);
 		Event Player.F = 1;
 		Destroy Effect(Event Player.PlayerFX_1);
@@ -5071,13 +5075,13 @@ rule("CORE: (BOSS) MOIRA - HEAL")
 		Skip If(Is Button Held(Event Player, Button(Secondary Fire)), 3);
 		Stop Chasing Global Variable(BOSS_AbilityCD);
 		Global.W = True;
-		Global.B = True;
+		Global.HealingOrb = True;
 		Wait(0.050, Ignore Condition);
 		Skip If(Is Button Held(Event Player, Button(Secondary Fire)), 2);
 		Heal(Event Player, Event Player, 13.750);
 		Global.BOSS_AbilityCD -= 1;
 		Loop If Condition Is True;
-		Global.B = False;
+		Global.HealingOrb = False;
 		Global.W = False;
 		Chase Global Variable At Rate(BOSS_AbilityCD, 100, 4, Destination and Rate);
 		Wait Until(Global.BOSS_AbilityCD >= 100, 99999);
@@ -5710,9 +5714,9 @@ rule("CORE: (BOSS) HOG - SMOKE UP")
 
 	actions
 	{
-		Destroy Effect(Event Player.H);
+		Destroy Effect(Event Player.Wholehog);
 		Create Effect(All Players(Team 2), Cloud, Color(Orange), Event Player, 1, Visible To Position and Radius);
-		Event Player.H = Last Created Entity;
+		Event Player.Wholehog = Last Created Entity;
 	}
 }
 
@@ -5733,7 +5737,7 @@ rule("CORE: (BOSS) HOG - SMOKE DOWN")
 
 	actions
 	{
-		Destroy Effect(Event Player.H);
+		Destroy Effect(Event Player.Wholehog);
 	}
 }
 
@@ -5756,7 +5760,7 @@ rule("CORE: (BOSS) HOG - ULTIMATE FROZEN")
 		Event Player.X[0] = Ultimate Charge Percent(Event Player);
 		Wait(0.250, Ignore Condition);
 		Set Ultimate Ability Enabled(Event Player, False);
-		Destroy Effect(Event Player.H);
+		Destroy Effect(Event Player.Wholehog);
 		Global.BossFrozen = Array(-1, Custom String("Whole Hog"), 2);
 		Call Subroutine(BossFrozenNotification);
 	}
@@ -11044,9 +11048,9 @@ rule("CORE: (BOSS) HOG - ULTIMATE THAW")
 		Call Subroutine(BOSSNoAbility_Hud);
 		Skip If(Is Waiting For Players, 4);
 		Skip If(Ultimate Charge Percent(Event Player) > 70, 2);
-		Destroy Effect(Event Player.H);
+		Destroy Effect(Event Player.Wholehog);
 		Create Effect(All Players(Team 2), Cloud, Color(Orange), Event Player, 1, Visible To Position and Radius);
-		Event Player.H = Last Created Entity;
+		Event Player.Wholehog = Last Created Entity;
 	}
 }
 
@@ -11066,9 +11070,9 @@ rule("CORE: (BOSS) HOG - ULTIMATE THAW DEATH")
 		Set Ultimate Ability Enabled(Event Player, True);
 		Skip If(Is Waiting For Players, 4);
 		Skip If(Ultimate Charge Percent(Event Player) > 70, 2);
-		Destroy Effect(Event Player.H);
+		Destroy Effect(Event Player.Wholehog);
 		Create Effect(All Players(Team 2), Cloud, Color(Orange), Event Player, 1, Visible To Position and Radius);
-		Event Player.H = Last Created Entity;
+		Event Player.Wholehog = Last Created Entity;
 	}
 }
 
