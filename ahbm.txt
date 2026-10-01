@@ -18171,11 +18171,12 @@ rule("CORE: (TEAM) ALL - HARD COOLDOWNS")
 			Event Player.CD_saver = Array(Button(Primary Fire), 4);
 		End;
 		Abort If(Ability Cooldown(Event Player, Event Player.CD_saver[0]) <= Event Player.CD_saver[1]);
-		Event Player.CD_saver = Array((Ability Cooldown(Event Player, Event Player.CD_saver[0]) - Event Player.CD_saver[1]), Event Player.CD_saver[0], Hero Of(Event Player));
+		Event Player.CD_saver[2] = Ability Cooldown(Event Player, Event Player.CD_saver[0]) - Event Player.CD_saver[1];
+		Event Player.CD_saver[3] = Hero Of(Event Player);
 		Wait Until(Is Alive(Event Player), 9);
-		Abort If(Hero Of(Event Player) != Event Player.CD_saver[2]);
-		Abort If(Ability Cooldown(Event Player, Event Player.CD_saver[1]) < Event Player.CD_saver[0]);
-		Set Ability Cooldown(Event Player, Event Player.CD_saver[1], Event Player.CD_saver[0] - 2);
+		Abort If(Hero Of(Event Player) != Event Player.CD_saver[3]);
+		Abort If(Ability Cooldown(Event Player, Event Player.CD_saver[0]) < Event Player.CD_saver[2]);
+		Set Ability Cooldown(Event Player, Event Player.CD_saver[0], Event Player.CD_saver[2] - (Event Player.CD_saver[1] - 2));
 	}
 }
 
