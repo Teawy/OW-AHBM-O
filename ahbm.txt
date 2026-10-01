@@ -18282,7 +18282,7 @@ rule("CORE: (TEAM) MAUGA - STOP CARDIAC HEAL")
 
 	conditions
 	{
-		(!Is Using Ability 2(Event Player) || Is Dead(Event Player) || Hero Of(Event Player) != Hero(Mauga))) == True;
+		(!Is Using Ability 2(Event Player) || Is Dead(Event Player) || Hero Of(Event Player) != Hero(Mauga)) == True;
 	}
 
 	actions
