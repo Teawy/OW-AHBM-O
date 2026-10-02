@@ -3617,7 +3617,7 @@ rule("CORE: (BOSS) REIN - FLAME ON")
 	conditions
 	{
 		Event Player.FireStrike == 0;
-		disabled Is Waiting For Players == False;
+		Global.BossFrozen == 0;
 		Has Status(Event Player, Hacked) == False;
 	}
 
@@ -5668,6 +5668,7 @@ rule("CORE: (BOSS) HOG - FLAME ON")
 	{
 		(Is Using Ultimate(Event Player) || Ultimate Charge Percent(Event Player) == 100) == True;
 		Is Waiting For Players == False;
+		Global.BossFrozen == 0;
 	}
 
 	actions
@@ -11010,16 +11011,7 @@ rule("CORE: (BOSS) REIN - FIRE THAW")
 	actions
 	{
 		Call Subroutine(BossClearFreeze);
-		Skip If(Event Player.primary_charge < 1, 4);
-		Set Ability 2 Enabled(Event Player, True);
-		Skip If(Is Waiting For Players, 1);
-		Set Status(Event Player, Null, Burning, 9999);
-		Play Effect(All Players(All Teams), Bad Pickup Effect, Color(Red), Event Player, 1);
 		Event Player.FireStrike = 0;
-		Skip If(Event Player.primary_charge >= 2, 1);
-		Chase Player Variable At Rate(Event Player, FireStrike, 0, 1, Destination and Rate);
-		Skip If(Is Alive(Event Player), 1);
-		Set Ability 2 Enabled(Event Player, True);
 	}
 }
 
@@ -11048,7 +11040,6 @@ rule("CORE: (BOSS) HOG - ULTIMATE THAW")
 		Abort If(Is Waiting For Players);
 		Abort If(Ultimate Charge Percent(Event Player) < 100);
 		Play Effect(All Players(All Teams), Bad Pickup Effect, Color(Red), Event Player, 1);
-		Set Status(Event Player, Null, Burning, 9999);
 	}
 }
 
