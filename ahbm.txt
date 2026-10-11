@@ -133,13 +133,13 @@ settings
 			{
 				A-36 Tactical Grenade Cooldown Time: 250%
 				A-36 Tactical Grenade Knockback Scalar: 150%
-				Ammunition Clip Size Scalar: 250%
+				Ammunition Clip Size Scalar: 32%
 				Healing Dealt: 10%
 				Healing Received: 25%
 				Health: 400%
 				Jump Vertical Speed: 250%
 				Passive Health Regeneration: On
-				Reconfigure Cooldown Time: 40%
+				Reconfigure Cooldown Time: 48%
 				Role Passives: Off
 				Ultimate Duration: 150%
 				Ultimate Generation Configuration: Artillery: 41%
@@ -221,11 +221,23 @@ settings
 				Ultimate Generation Self-Destruct: 50%
 			}
 
+			Doctrine
+			{
+				Health: 400%
+				Infuse Cooldown Time: 10%
+				Invigorating Drones: Off
+				Passive Health Regeneration: On
+				Role Passives: Off
+				Shrouded Momentum Cooldown Time: 37.5%
+				Shrouded Momentum Duration Scalar: 138%
+				Ultimate Generation - Passive Deliverance: 0%
+			}
+
 			Domina
 			{
 				Ammunition Clip Size Scalar: 50%
 				Barrier Array Cooldown Time: 85%
-				Crystal Charge Cooldown Time: 100%
+				Crystal Charge Cooldown Time: 114%
 				Damage Dealt: 200%
 				Damage Received: 20%
 				Healing Dealt: 10%
@@ -289,7 +301,7 @@ settings
 			Emre
 			{
 				Ammunition Clip Size Scalar: 50%
-				Cyber Frag Cooldown Time: 80%
+				Cyber Frag Cooldown Time: 88.88%
 				Cyber Frag Knockback Scalar: 80%
 				Damage Dealt: 225%
 				Damage Received: 40%
@@ -323,7 +335,7 @@ settings
 			Genji
 			{
 				Ammunition Clip Size Scalar: 70%
-				Damage Dealt: 250%
+				Damage Dealt: 225%
 				Deflect Cooldown Time: 83%
 				Healing Received: 25%
 				Health: 240%
@@ -724,11 +736,11 @@ settings
 
 			Roadhog
 			{
-				Ammunition Clip Size Scalar: 33%
-				Chain Hook Cooldown Time: 29%
+				Ammunition Clip Size Scalar: 25%
+				Chain Hook Cooldown Time: 33%
 				Damage Dealt: 192.3077%
 				Damage Received: 40%
-				Healing Dealt: 400%
+				Healing Dealt: 300%
 				Healing Received: 10%
 				Health: 200%
 				Jump Vertical Speed: 250%
@@ -736,8 +748,9 @@ settings
 				Passive Health Regeneration: On
 				Projectile Speed: 105%
 				Role Passives: Off
-				Take A Breather Maximum Time: 32%
+				Take A Breather Maximum Time: 48%
 				Take A Breather Recharge Rate: 20%
+				Trash Compactor: Off
 				Ultimate Generation - Combat Whole Hog: 0%
 				Ultimate Generation - Passive Whole Hog: 0%
 				Ultimate Generation Whole Hog: 172%
@@ -840,15 +853,16 @@ settings
 			Sombra
 			{
 				Ammunition Clip Size Scalar: 83%
-				Damage Dealt: 200%
+				Cyberspace: Off
+				Damage Dealt: 228.57%
 				Healing Received: 10%
 				Health: 322.22157%
+				Hotfix Cooldown Time: 0%
 				Movement Speed: 150%
 				Passive Health Regeneration: On
 				Role Passives: On
 				Translocator Cooldown Time: 500%
 				Ultimate Generation EMP: 66%
-				Virus: Off
 			}
 
 			Symmetra
@@ -922,10 +936,10 @@ settings
 				Burrow Cooldown Time: 200%
 				Burrow Duration Scalar: 175%
 				Damage Dealt: 200%
-				Damage Received: 55%
+				Damage Received: 42%
 				Drill Dash Cooldown Time: 112%
 				Healing Received: 20%
-				Health: 300%
+				Health: 100%
 				Passive Health Regeneration: On
 				Role Passives: Off
 				Ultimate Duration: 200%
@@ -1200,11 +1214,20 @@ settings
 				Ultimate Generation - Passive Self-Destruct: 120%
 			}
 
+			Doctrine
+			{
+				Damage Dealt: 83.333%
+				Healing Dealt: 25%
+				Healing Received: 100%
+				Passive Health Regeneration: On
+				Role Passives: Off
+			}
+
 			Domina
 			{
 				Ammunition Clip Size Scalar: 30%
 				Barrier Array Cooldown Time: 57%
-				Crystal Charge Cooldown Time: 125%
+				Crystal Charge Cooldown Time: 142%
 				Damage Dealt: 60%
 				Healing Received: 40%
 				Health: 71.1108%
@@ -1258,7 +1281,7 @@ settings
 			Emre
 			{
 				Ammunition Clip Size Scalar: 75%
-				Cyber Frag Cooldown Time: 200%
+				Cyber Frag Cooldown Time: 222.22%
 				Cyber Frag Knockback Scalar: 100%
 				Damage Dealt: 50%
 				Healing Dealt: 500%
@@ -1298,7 +1321,7 @@ settings
 				Passive Health Regeneration: On
 				Projectile Speed: 100%
 				Role Passives: Off
-				Swift Strike Cooldown Time: 112%
+				Swift Strike Cooldown Time: 75%
 				Ultimate Duration: 67%
 				Ultimate Generation - Combat Dragonblade: 0%
 				Ultimate Generation - Passive Dragonblade: 400%
@@ -1648,16 +1671,17 @@ settings
 
 			Roadhog
 			{
-				Ammunition Clip Size Scalar: 66%
-				Chain Hook Cooldown Time: 257%
-				Damage Dealt: 50%
-				Healing Dealt: 60%
+				Ammunition Clip Size Scalar: 50%
+				Chain Hook Cooldown Time: 300%
+				Damage Dealt: 54%
+				Healing Dealt: 45%
 				Healing Received: 66%
 				Health: 125%
 				Passive Health Regeneration: On
 				Role Passives: On
-				Take A Breather Maximum Time: 83%
+				Take A Breather Maximum Time: 125%
 				Take A Breather Recharge Rate: 42%
+				Trash Compactor: Off
 				Ultimate Generation - Passive Whole Hog: 6%
 				Ultimate Generation Whole Hog: 100%
 				Whole Hog Knockback Scalar: 40%
@@ -1745,18 +1769,18 @@ settings
 
 			Sombra
 			{
+				Cyberspace: Off
 				Damage Dealt: 45%
-				Hack: Off
+				Healing Dealt: 10%
 				Healing Received: 80%
 				Health: 66%
+				Hotfix: Off
 				Movement Speed: 115%
 				Passive Health Regeneration: On
 				Role Passives: On
-				Translocator Cooldown Time: 84%
-				Ultimate Generation - Combat EMP: 240%
+				Translocator Cooldown Time: 86.67%
+				Ultimate Generation - Combat EMP: 500%
 				Ultimate Generation - Passive EMP: 80%
-				Ultimate Generation EMP: 105%
-				Virus Cooldown Time: 500%
 			}
 
 			Symmetra
@@ -1867,7 +1891,7 @@ settings
 			Wrecking Ball
 			{
 				Adaptive Shield Cooldown Time: 213%
-				Ammunition Clip Size Scalar: 40%
+				Ammunition Clip Size Scalar: 50%
 				Damage Dealt: 60%
 				Grappling Claw Cooldown Time: 160%
 				Healing Received: 66%
@@ -2921,7 +2945,7 @@ rule("CORE: (MSGS) BOSS ABILITIES ERASE")
 	{
 		Array Contains(Array(Hero(Reaper), Hero(Symmetra), Hero(Mercy), Hero(Soldier: 76), Hero(Tracer), Hero(Sombra), Hero(Moira), Hero(
 			Cassidy), Hero(Lúcio), Hero(Reinhardt), Hero(Kiriko), Hero(Ramattra), Hero(Genji), Hero(Junkrat), Hero(Brigitte), Hero(
-			Wrecking Ball), Hero(Hanzo), Hero(Ashe), Hero(Echo), Hero(D.Mon)), Hero Of(First Of(All Players(Team 1)))) == False;
+			Wrecking Ball), Hero(Hanzo), Hero(Ashe), Hero(Echo), Hero(D.Mon)), Hero Of(Event Player)) == False;
 		Has Spawned(Event Player) == True;
 	}
 
@@ -3392,9 +3416,15 @@ rule("CORE: (TEAM) ALL - GENERAL SWITCH")
 			Destroy Effect(Event Player.PlayerFX_2);
 			Destroy Effect(Event Player.PlayerFX_3);
 			Set Max Health(Event Player, 100);
+			Wait(0.016, Ignore Condition);
+			If(Hero Of(Event Player) == Hero(Jetpack Cat));
+				Set Knockback Dealt(Event Player, 0);
+			Else If(Hero Of(Event Player) == Hero(Wrecking Ball));
+				Set Ultimate Charge(Event Player, 15);
+			End;
 		End;
 		Wait(0.016, Ignore Condition);
-		If(Hero Of(Event Player) == Hero(Illari) || Hero Of(Event Player) == Hero(Jetpack Cat));
+		If(Hero Of(Event Player) == Hero(Illari));
 			Set Knockback Dealt(Event Player, 0);
 		Else If(Hero Of(Event Player) == Hero(Zenyatta));
 			Set Knockback Dealt(Event Player, 4);
@@ -5675,26 +5705,26 @@ rule("CORE: (BOSS) HOG - FLAME ON")
 
 rule("CORE: (BOSS) HOG - FLAME OFF")
 {
-	event
-	{
-		Ongoing - Each Player;
-		Team 1;
-		Roadhog;
-	}
+    event
+    {
+        Ongoing - Each Player;
+        Team 1;
+        Roadhog;
+    }
 
-	conditions
-	{
-		Ultimate Charge Percent(Event Player) != 100;
-		Is Waiting For Players == False;
-	}
+    conditions
+    {
+        Ultimate Charge Percent(Event Player) != 100;
+        Is Using Ultimate(Event Player) == False;
+        Is Waiting For Players == False;
+        Has Status(Event Player, Burning) == True;
+        Event Player.BurnTimer <= 0;
+    }
 
-	actions
-	{
-		Skip If(Is Using Ultimate(Event Player), 1);
-		Clear Status(Event Player, Burning);
-		Wait(0.001, Ignore Condition);
-		Loop If Condition Is True;
-	}
+    actions
+    {
+        Clear Status(Event Player, Burning);
+    }
 }
 
 rule("CORE: (BOSS) HOG - SMOKE UP")
@@ -6594,7 +6624,7 @@ rule("CORE: INITIALIZE ROLES (GLOBAL A)")
 			Hanzo), Hero(Genji), Hero(Freja), Hero(Torbjörn), Hero(Sierra), Hero(Shion));
 		Global.A[4] = Array(Hero(Jetpack Cat), Hero(Mizuki), Hero(Zarya), Hero(Ana), Hero(Baptiste), Hero(D.Va), Hero(Illari), Hero(Juno),
 			Hero(Kiriko), Hero(Lúcio), Hero(Anran), Hero(Soldier: 76), Hero(Moira), Hero(Pharah), Hero(Sombra), Hero(
-			Wuyang), Hero(Zenyatta), Hero(Lifeweaver));
+			Wuyang), Hero(Zenyatta), Hero(Lifeweaver), Hero(Doctrine));
 	}
 }
 
@@ -7181,7 +7211,7 @@ rule("ROLES: IN-GAME joiner: TAC FIX")
 	actions
 	{
 		Set Player Allowed Heroes(Event Player, All Heroes);
-		Skip If(Count Of(All Players(Team 2)) < 6, 2);
+		Skip If(Number Of Players(Team 2) < 6, 2);
 		Skip If(Count Of(Filtered Array(All Players(Team 2), Current Array Element.Z[3] == 4)) >= 2, 1);
 		All Players(Team 2).Z[5] = 6;
 	}
@@ -7684,7 +7714,7 @@ rule("CORE: (MSGS) TEAM HUD ERASE")
 
 	conditions
 	{
-		Array Contains(Array(Hero(Doomfist), Hero(D.Mon), Hero(Jetpack Cat), Hero(Roadhog), Hero(Mauga), Hero(Illari), Hero(Mercy), Hero(Torbjörn), Hero(Sojourn), Hero(Orisa), Hero(Domina), Hero(Mizuki), Hero(Hazard), Hero(Sierra), Hero(Shion)), Hero Of(Event Player)) == True;
+		Array Contains(Array(Hero(Doomfist), Hero(Doctrine), Hero(D.Mon), Hero(Jetpack Cat), Hero(Roadhog), Hero(Mauga), Hero(Illari), Hero(Mercy), Hero(Torbjörn), Hero(Sojourn), Hero(Orisa), Hero(Domina), Hero(Mizuki), Hero(Hazard), Hero(Sierra), Hero(Shion)), Hero Of(Event Player)) == True;
 	}
 
 	actions
@@ -7711,7 +7741,7 @@ rule("CORE: (MSGS) TEAM CHARGE-HUD ERASE")
 
 	conditions
 	{
-		(Hero Of(Event Player) != Hero(Ashe) && Hero Of(Event Player) != Hero(Anran) && Hero Of(Event Player) != Hero(Vendetta)) == True;
+		Array Contains(Array(Hero(Ashe), Hero(Anran), Hero(Vendetta)), Hero Of(Event Player)) == False;
 		"DO NOT REMOVE:"
 		Has Spawned(Event Player) == True;
 	}
@@ -8344,7 +8374,7 @@ rule("CORE: (TEAM) JUNK - STUN ON")
 	{
 		Event Player.Ability_Toggle == True;
 		Is Button Held(Event Player, Button(Ability 2)) == True;
-		(Event Player.Stunned != True && !Has Status(Event Player, Rooted)) == True;
+		(!Event Player.Stunned && !Has Status(Event Player, Rooted)) == True;
 	}
 
 	actions
@@ -9474,7 +9504,7 @@ rule("CORE: (TEAM) ALL - RE-ENABLE SECONDARY")
 	conditions
 	{
 		Has Spawned(Event Player) == True;
-		Array Contains(Array(Hero(D.Va), Hero(Sombra), Hero(Reaper)), Hero Of(Event Player)) == False;
+		Array Contains(Array(Hero(D.Va), Hero(Sombra), Hero(Reaper), Hero(Roadhog)), Hero Of(Event Player)) == False;
 	}
 
 	actions
@@ -9494,7 +9524,7 @@ rule("CORE: (TEAM) ALL - DISABLE SECONDARY FIRE")
 
 	conditions
 	{
-		(Hero Of(Event Player) == Hero(Sombra) || Hero Of(Event Player) == Hero(Reaper)) == True;
+		Array Contains(Array(Hero(Sombra), Hero(Reaper), Hero(Roadhog)), Hero Of(Event Player)) == True;
 	}
 
 	actions
@@ -10375,7 +10405,7 @@ rule("CORE: (BOSS) DISABLE 2nd FIRE")
 
 	conditions
 	{
-		Array Contains(Array(Hero(Baptiste), Hero(Zenyatta), Hero(Illari), Hero(Winston), Hero(Reaper)), Hero Of(Event Player)) == True;
+		Array Contains(Array(Hero(Baptiste), Hero(Zenyatta), Hero(Illari), Hero(Winston), Hero(Reaper), Hero(Roadhog)), Hero Of(Event Player)) == True;
 	}
 
 	actions
@@ -10395,7 +10425,7 @@ rule("CORE: (BOSS) ENABLE 2nd FIRE")
 
 	conditions
 	{
-		Array Contains(Array(Hero(Baptiste), Hero(Zenyatta), Hero(Illari), Hero(Genji), Hero(Winston), Hero(Reaper)), Hero Of(
+		Array Contains(Array(Hero(Baptiste), Hero(Zenyatta), Hero(Illari), Hero(Genji), Hero(Winston), Hero(Reaper), Hero(Roadhog)), Hero Of(
 			Event Player)) != True;
 		Has Spawned(Event Player) == True;
 	}
@@ -10761,6 +10791,26 @@ rule("CORE: (BOSS) JUNO: HEALTH POOL")
 	}
 }
 
+rule("CORE: (BOSS) VEN: HEALTH POOL")
+{
+	event
+	{
+		Ongoing - Each Player;
+		Team 1;
+		Venture;
+	}
+
+	actions
+	{
+		Remove Health Pool From Player(Global.BOSS_HealthPools[0]);
+		Remove Health Pool From Player(Global.BOSS_HealthPools[1]);
+		Add Health Pool To Player(Event Player, Health, 350, True, False);
+		Global.BOSS_HealthPools[0] = Last Created Health Pool;
+		Event Player.base_health = Max Health(Event Player);
+		Event Player.base_shields = Max Health Of Type(Event Player, Shields);
+	}
+}
+
 rule("CORE: (BOSS) SHION: HEALTH POOL")
 {
 	event
@@ -10778,7 +10828,6 @@ rule("CORE: (BOSS) SHION: HEALTH POOL")
 		Global.BOSS_HealthPools[0] = Last Created Health Pool;
 		Event Player.base_health = Max Health(Event Player);
 		Event Player.base_shields = Max Health Of Type(Event Player, Shields);
-		Set Healing Dealt(Event Player, 100);
 	}
 }
 
@@ -10865,7 +10914,7 @@ rule("CORE: (BOSS) General: REMOVE POOLS")
 
 	conditions
 	{
-		Array Contains(Array(Hero(Genji), Hero(Hanzo), Hero(Widowmaker), Hero(Juno), Hero(Ashe), Hero(Domina), Hero(Echo), Hero(Shion), Hero(Sigma),
+		Array Contains(Array(Hero(Genji), Hero(Hanzo), Hero(Widowmaker), Hero(Juno), Hero(Ashe), Hero(Domina), Hero(Echo), Hero(Shion), Hero(Sigma), Hero(Venture),
 			Hero(Winston)), Hero Of(Event Player)) != True;
 		Has Spawned(Event Player) == True;
 		Is Alive(Event Player) == True;
@@ -11461,8 +11510,8 @@ rule("CORE: (TEAM) MERCY - PHARAH MERCY BEACON OUT RANGE")
 	conditions
 	{
 		Is True For Any(Players On Hero(Hero(Pharah), Team 2), Current Array Element.Ability_Bool == True) == True;
-		(Absolute Value(X Component Of(Global.MercyBeacon[0]) - X Component Of(Position Of(Event Player))) > 5 || Absolute Value(
-			Z Component Of(Global.MercyBeacon[0]) - Z Component Of(Position Of(Event Player))) > 5) == True;
+		Distance Between(Vector(X Component Of(Global.MercyBeacon[0]), Y Component Of(Position Of(Event Player)), Z Component Of(
+			Global.MercyBeacon[0])), Event Player) > 5;
 	}
 
 	actions
@@ -11488,8 +11537,8 @@ rule("CORE: (TEAM) MERCY - PHARAH MERCY BEACON IN RANGE")
 	conditions
 	{
 		Is True For Any(Players On Hero(Hero(Pharah), Team 2), Current Array Element.Ability_Bool == True) == True;
-		Absolute Value(X Component Of(Global.MercyBeacon[0]) - X Component Of(Position Of(Event Player))) <= 5;
-		Absolute Value(Z Component Of(Global.MercyBeacon[0]) - Z Component Of(Position Of(Event Player))) <= 5;
+		Distance Between(Vector(X Component Of(Global.MercyBeacon[0]), Y Component Of(Position Of(Event Player)), Z Component Of(
+			Global.MercyBeacon[0])), Event Player) <= 5;
 	}
 
 	actions
@@ -11517,8 +11566,8 @@ rule("CORE: (TEAM) MERCY - PHARAH MERCY BEACON USE")
 		Is True For Any(Players On Hero(Hero(Pharah), Team 2), Current Array Element.Ability_Bool == True) == True;
 		Is Alive(Event Player) == True;
 		Is Button Held(Event Player, Button(Interact)) == True;
-		Absolute Value(X Component Of(Global.MercyBeacon[0]) - X Component Of(Position Of(Event Player))) <= 5;
-		Absolute Value(Z Component Of(Global.MercyBeacon[0]) - Z Component Of(Position Of(Event Player))) <= 5;
+		Distance Between(Vector(X Component Of(Global.MercyBeacon[0]), Y Component Of(Position Of(Event Player)), Z Component Of(
+			Global.MercyBeacon[0])), Event Player) <= 5;
 	}
 
 	actions
@@ -11841,7 +11890,7 @@ rule("CORE: (TEAM) ALL - ROLE HUD")
 	conditions
 	{
 		Is Alive(Event Player) == True;
-		(Hero Of(Event Player) != Hero(Pharah) && Hero Of(Event Player) != Hero(Lúcio) && Hero Of(Event Player) != Hero(Vendetta)) == True;
+		Array Contains(Array(Hero(Pharah), Hero(Lúcio), Hero(Vendetta)), Hero Of(Event Player)) == False;
 		Has Spawned(Event Player) == True;
 	}
 
@@ -12315,8 +12364,7 @@ rule("CORE: (TEAM) ALL - ABILITY 2 ON")
 	conditions
 	{
 		Has Spawned(Event Player) == True;
-		(Hero Of(Event Player) != Hero(Pharah) && Hero Of(Event Player) != Hero(Junkrat) && Hero Of(Event Player) != Hero(Genji)
-			&& Hero Of(Event Player) != Hero(Zenyatta)) == True;
+		Array Contains(Array(Hero(Pharah), Hero(Junkrat), Hero(Genji), Hero(Zenyatta)), Hero Of(Event Player)) == False;
 	}
 
 	actions
@@ -12448,8 +12496,8 @@ rule("CORE: (TEAM) RAM - DRAW AOE RING")
 	conditions
 	{
 		Is Alive(Event Player) == True;
-		(Has Status(Event Player, Stunned) != True && Has Status(Event Player, Knocked Down) != True && Has Status(Event Player, Frozen)
-			!= True && Has Status(Event Player, Asleep) != True && Has Status(Event Player, Hacked) != True && True) == True;
+		(!Has Status(Event Player, Stunned) && !Has Status(Event Player, Knocked Down) && !Has Status(Event Player, Frozen)
+			 && !Has Status(Event Player, Asleep) && !Has Status(Event Player, Hacked) && True) == True;
 	}
 
 	actions
@@ -12473,7 +12521,7 @@ rule("CORE: (TEAM) ALL - ULT LOSS")
 
 	conditions
 	{
-		(Hero Of(Event Player) == Hero(Winston) || Hero Of(Event Player) == Hero(Zenyatta)) == True;
+		Array Contains(Array(Hero(Zenyatta), Hero(Winston), Hero(Vendetta)), Hero Of(Event Player)) == True;
 	}
 
 	actions
@@ -12483,22 +12531,7 @@ rule("CORE: (TEAM) ALL - ULT LOSS")
 		Set Ultimate Charge(Event Player, Ultimate Charge Percent(Event Player) - 12);
 		Skip If(Hero Of(Event Player) != Hero(Winston), 1);
 		Set Ultimate Charge(Event Player, Ultimate Charge Percent(Event Player) - 50);
-		Skip If(Ultimate Charge Percent(Event Player) >= 0, 1);
-		Set Ultimate Charge(Event Player, 0);
-	}
-}
-
-rule("CORE: (TEAM) VENDETTA - ULT LOSS")
-{
-	event
-	{
-		Player Died;
-		Team 2;
-		Vendetta;
-	}
-
-	actions
-	{
+		Skip If(Hero Of(Event Player) != Hero(Vendetta), 1);
 		Set Ultimate Charge(Event Player, Ultimate Charge Percent(Event Player) - Ultimate Charge Percent(Event Player) * (
 			Ultimate Charge Percent(Event Player) / 100));
 		Skip If(Ultimate Charge Percent(Event Player) >= 0, 1);
@@ -13178,6 +13211,9 @@ rule("CORE: (ALL) SET SPAWN")
 	{
 		Event Player.SpawnStats[0] = Position Of(Event Player);
 		Event Player.SpawnStats[1] = Ultimate Charge Percent(Event Player);
+		If(Hero Of(Event Player) == Hero(Wrecking Ball) && Team Of(Event Player) == Team 2);
+			Event Player.SpawnStats[1] = 15;
+		End;
 	}
 }
 
@@ -13450,7 +13486,10 @@ rule("CORE: (TEAM) ALL - ABILITY 1 SET")
 
 	actions
 	{
+		Skip If(Hero Of(Event Player) == Hero(Sombra), 2);
 		Set Ability 1 Enabled(Event Player, True);
+		Abort;
+		Set Ability 1 Enabled(Event Player, False);
 	}
 }
 
@@ -13674,6 +13713,12 @@ rule("CORE: (TEAM) REAP - SPAWN ABILITY HUD")
 		Ongoing - Each Player;
 		Team 2;
 		Reaper;
+	}
+
+	Conditions
+	{
+		"DO NOT REMOVE"
+		Has Spawned(Event Player) == True;
 	}
 
 	actions
@@ -14062,8 +14107,7 @@ rule("CORE: (TEAM) PHARAH - FIX STUCK BEACON")
 
 	conditions
 	{
-		(!Is Hero Being Played(Hero(Pharah), Team 2) || Is True For All(Filtered Array(All Players(Team 2), Hero Of(
-			Current Array Element) == Hero(Pharah)), Current Array Element.Ability_Bool == False)) == True;
+		(!Is Hero Being Played(Hero(Pharah), Team 2) || Is True For All(Players On Hero(Hero(Pharah), Team 2), Current Array Element.Ability_Bool == False)) == True;
 	}
 
 	actions
@@ -14668,6 +14712,27 @@ rule("CORE: (TEAM) BAP - SK HEAL ULT CHARGE")
 	actions
 	{
 		Set Ultimate Charge(Event Player, Ultimate Charge Percent(Event Player) + 0.227 * Event Healing);
+	}
+}
+
+rule("CORE: (TEAM) HAM - SPAWN")
+{
+	event
+	{
+		Ongoing - Each Player;
+		Team 2;
+		Wrecking Ball;
+	}
+
+	conditions
+	{
+		"DO NOT REMOVE"
+		(Has Spawned(Event Player) == True || Event Player.current_hero != Hero(Wrecking Ball)) == True;
+	}
+
+	actions
+	{
+		Set Ultimate Charge(Event Player, Max(Ultimate Charge Percent(Event Player), 15));
 	}
 }
 
@@ -15723,7 +15788,7 @@ rule("CORE: (TEAM) SOMBRA - HUD")
 		Destroy Progress Bar HUD Text(Event Player.team_abilityHUD[0]);
 		Wait(0.016, Ignore Condition);
 		Create HUD Text(Event Player, Ability Icon String(Hero(Sombra), Button(Ultimate)), Custom String(
-			"HIT THE BOSS WITH VIRUS TO CHARGE EMP QUICKLY"), Custom String("EMP HACK"), Left, 10, Color(Violet), Color(White), Color(
+			"EMP DESTROYS ALL SHIELDS AND OVERHEALTH"), Custom String("EMP HACK"), Left, 10, Color(Violet), Color(White), Color(
 			Rose), Visible To and String, Default Visibility);
 		Event Player.team_abilityHUD[0] = Last Text ID;
 		Event Player.Ability_Bool = False;
@@ -17383,8 +17448,7 @@ rule("CORE: (TEAM) ANA - NADE a 40")
 	{
 		Event Ability == Button(Ability 2);
 		Normalized Health(Healee) <= 0.750;
-		(Is True For Any(Global.A[1], Current Array Element == Hero Of(Healee)) || Hero Of(Healee) == Hero(Torbjörn) || Hero Of(Healee)
-			== Hero(Bastion)) == True;
+		Array Contains(Append To Array(Global.A[1], Array(Hero(Bastion), Hero(Torbjörn))), Hero Of(Healee)) == True;
 	}
 
 	actions
@@ -17776,7 +17840,7 @@ rule("CORE: (TEAM) LUCIO - MEGA AMP END")
 
 	conditions
 	{
-		(Is In Alternate Form(Event Player) || Is Alive(Event Player) == False || Is Communicating Any Emote(Event Player)
+		(Is In Alternate Form(Event Player) || Is Dead(Event Player) || Is Communicating Any Emote(Event Player)
 			 || !Is Using Ability 2(Event Player)) == True;
 		Event Player.primary_charge < 100;
 		Event Player.Ability_Bool == True;
@@ -18154,46 +18218,33 @@ rule("CORE: (TEAM) ALL - HARD COOLDOWNS")
 	conditions
 	{
 		Is Waiting For Players == False;
-		Array Contains(Array(Hero(Reinhardt), Hero(Mei), Hero(Sigma), Hero(Brigitte), Hero(Orisa), Hero(Genji), Hero(Ana), Hero(Baptiste),
-			Hero(Lúcio), Hero(Kiriko), Hero(Lifeweaver), Hero(Sombra), Hero(Mauga)), Hero Of(Event Player)) == True;
+		Array Contains(Array(Hero(Ana), Hero(Reinhardt), Hero(Sombra), Hero(Orisa), Hero(Mei), Hero(Baptiste), Hero(Sigma), Hero(Kiriko), Hero(Lifeweaver), Hero(Mauga),
+			Hero(Genji), Hero(Lúcio), Hero(Brigitte)), Hero Of(Event Player)) == True;
 		Is Dead(Event Player) == True;
 	}
 
 	actions
 	{
-		Skip If(!Array Contains(Array(Hero(Ana), Hero(Reinhardt), Hero(Sombra)), Hero Of(Event Player)), 6);
-		Abort If(Ability Cooldown(Event Player, Button(Ability 1)) <= 9);
-		Event Player.CD_saver = Ability Cooldown(Event Player, Button(Ability 1));
+		If(Array Contains(Array(Hero(Ana), Hero(Reinhardt), Hero(Sombra)), Hero Of(Event Player)));
+			Event Player.CD_saver = Array(Button(Ability 1), 9);
+		Else If(Array Contains(Array(Hero(Orisa), Hero(Mei), Hero(Baptiste), Hero(Sigma), Hero(Kiriko), Hero(Lifeweaver), Hero(Mauga),
+			Hero(Genji)), Hero Of(Event Player)));
+			Wait(5.100, Abort When False);
+			Event Player.CD_saver = Array(Button(Ability 2), 3.900);
+		Else If(Array Contains(Array(Hero(Lúcio)), Hero Of(Event Player)));
+			Wait(5, Abort When False);
+			Event Player.CD_saver = Array(Button(Secondary Fire), 4);
+		Else If(Array Contains(Array(Hero(Brigitte)), Hero Of(Event Player)));
+			Wait(5, Abort When False);
+			Event Player.CD_saver = Array(Button(Primary Fire), 4);
+		End;
+		Abort If(Ability Cooldown(Event Player, Event Player.CD_saver[0]) <= Event Player.CD_saver[1]);
+		Event Player.CD_saver[2] = Ability Cooldown(Event Player, Event Player.CD_saver[0]) - Event Player.CD_saver[1];
+		Event Player.CD_saver[3] = Hero Of(Event Player);
 		Wait Until(Is Alive(Event Player), 9);
-		Skip If(!Array Contains(Array(Hero(Ana), Hero(Reinhardt), Hero(Sombra)), Hero Of(Event Player)), 2);
-		Skip If(Ability Cooldown(Event Player, Button(Ability 1)) > Event Player.CD_saver - 9, 1);
-		Set Ability Cooldown(Event Player, Button(Ability 1), Event Player.CD_saver - 7);
-		Skip If(!Array Contains(Array(Hero(Orisa), Hero(Mei), Hero(Baptiste), Hero(Sigma), Hero(Kiriko), Hero(Lifeweaver), Hero(Mauga),
-			Hero(Genji)), Hero Of(Event Player)), 7);
-		Wait(5.100, Abort When False);
-		Abort If(Ability Cooldown(Event Player, Button(Ability 2)) <= 3.900);
-		Event Player.CD_saver = Ability Cooldown(Event Player, Button(Ability 2));
-		Wait Until(Is Alive(Event Player), 9);
-		Skip If(!Array Contains(Array(Hero(Orisa), Hero(Mei), Hero(Baptiste), Hero(Sigma), Hero(Kiriko), Hero(Lifeweaver), Hero(Mauga),
-			Hero(Genji)), Hero Of(Event Player)), 2);
-		Skip If(Ability Cooldown(Event Player, Button(Ability 2)) > Event Player.CD_saver - 3.900, 1);
-		Set Ability Cooldown(Event Player, Button(Ability 2), Event Player.CD_saver - 1.900);
-		Skip If(Hero Of(Event Player) != Hero(Lúcio), 7);
-		Wait(5, Abort When False);
-		Abort If(Ability Cooldown(Event Player, Button(Secondary Fire)) <= 4);
-		Event Player.CD_saver = Ability Cooldown(Event Player, Button(Secondary Fire));
-		Wait Until(Is Alive(Event Player), 9);
-		Skip If(Hero Of(Event Player) != Hero(Lúcio), 2);
-		Skip If(Ability Cooldown(Event Player, Button(Secondary Fire)) > Event Player.CD_saver - 4, 1);
-		Set Ability Cooldown(Event Player, Button(Secondary Fire), Event Player.CD_saver - 2);
-		Skip If(Hero Of(Event Player) != Hero(Brigitte), 7);
-		Wait(5, Abort When False);
-		Abort If(Ability Cooldown(Event Player, Button(Primary Fire)) <= 4);
-		Event Player.CD_saver = Ability Cooldown(Event Player, Button(Primary Fire));
-		Wait Until(Is Alive(Event Player), 9);
-		Skip If(Hero Of(Event Player) != Hero(Brigitte), 2);
-		Skip If(Ability Cooldown(Event Player, Button(Primary Fire)) > Event Player.CD_saver - 4, 1);
-		Set Ability Cooldown(Event Player, Button(Primary Fire), Event Player.CD_saver - 2);
+		Abort If(Hero Of(Event Player) != Event Player.CD_saver[3]);
+		Abort If(Ability Cooldown(Event Player, Event Player.CD_saver[0]) > Event Player.CD_saver[2]);
+		Set Ability Cooldown(Event Player, Event Player.CD_saver[0], Event Player.CD_saver[2] + 2);
 	}
 }
 
@@ -18412,7 +18463,7 @@ rule("CORE: (TEAM) JQ knife stun")
 		Wait Until(Is Dead(Event Player), 12);
 		Stop Chasing Player Variable(Event Player, secondary_charge);
 		Event Player.secondary_charge = 0;
-		Skip If(Hero Of(Event Player) != Hero(Junker Queen), 5);
+		Abort If(Hero Of(Event Player) != Hero(Junker Queen));
 		Destroy HUD Text(Event Player.team_abilityHUD[0]);
 		Wait(0.016, Ignore Condition);
 		Create HUD Text(Event Player, Custom String("{0} {1}", Ability Icon String(Hero(Junker Queen), Button(Secondary Fire)),
@@ -18751,10 +18802,7 @@ rule("CORE: (BOSS) RAM JUMP")
 		Create HUD Text(All Players(Team 1), Round To Integer(Event Player.secondary_charge, Up), Custom String("Cooldown"), Custom String(
 			"NEMESIS JUMP"), Left, 1, Color(Orange), Color(White), Color(Rose), Visible To and String, Default Visibility);
 		Global.BOSS_AbilityKey = Last Text ID;
-		Skip If(Event Player.primary_charge < 2.500, 2);
-		Apply Impulse(Event Player, Up, 5 * Event Player.primary_charge, To World, Cancel Contrary Motion);
-		Skip(1);
-		Apply Impulse(Event Player, Up, 12.500, To World, Cancel Contrary Motion);
+		Apply Impulse(Event Player, Up, (Event Player.primary_charge < 2.500 ? 12.500 : 5 * Event Player.primary_charge), To World, Cancel Contrary Motion);
 		Play Effect(All Players(All Teams), Ring Explosion, Color(Rose), Event Player, 4);
 		Play Effect(All Players(All Teams), Ring Explosion Sound, Color(White), Event Player, 100);
 		Wait(0.200, Ignore Condition);
@@ -18937,7 +18985,7 @@ rule("(BOSS) KIRIKO STEP AIM")
 	{
 		Event Player.Ability_Bool == False;
 		Event Player.primary_charge == 0;
-		Is True For Any(Filtered Array(All Players(Team 2), Is Alive(Current Array Element)), (Is In View Angle(Event Player,
+		Is True For Any(All Living Players(Team 2), (Is In View Angle(Event Player,
 			Current Array Element, 3) && Is In Line of Sight(Eye Position(Event Player), Current Array Element, Barriers Do Not Block LOS))
 			== True) == True;
 		Is In Line of Sight(Eye Position(Player Closest To Reticle(Event Player, Team 2)), Eye Position(Player Closest To Reticle(
@@ -19060,12 +19108,13 @@ rule("CORE: (BOSS) Bastion turret jump")
 	conditions
 	{
 		Is Using Ability 1(Event Player) == True;
+		Is On Ground(Event Player) == True;
 	}
 
 	actions
 	{
 		Set Jump Vertical Speed(Event Player, 5);
-		Wait Until((!Is Using Ability 1(Event Player) || Hero Of(Event Player) != Hero(Bastion)) == True, 7);
+		Wait Until((!Is Using Ability 1(Event Player) || Hero Of(Event Player) != Hero(Bastion)), 7);
 		Set Jump Vertical Speed(Event Player, 100);
 	}
 }
@@ -19104,7 +19153,7 @@ rule("CORE: (BOSS) RAM RESPAWN")
 	{
 		Skip If(!Is Waiting For Players, 6);
 		Wait Until(Is Alive(Event Player), 8);
-		Skip If(Hero Of(Event Player) != Hero(Ramattra), 4);
+		Abort If(Hero Of(Event Player) != Hero(Ramattra));
 		Wait(4, Ignore Condition);
 		Allow Button(Event Player, Button(Ultimate));
 		Press Button(Event Player, Button(Ultimate));
@@ -19274,7 +19323,7 @@ rule("CORE: (ALL) WIDOW - SMG AMMO")
 	{
 		Skip If(Ammo(Event Player, 0) > 3, 2);
 		Set Ammo(Event Player, 0, 0);
-		Skip(1);
+		Abort;
 		Set Ammo(Event Player, 0, Ammo(Event Player, 0) - 1);
 	}
 }
@@ -19352,8 +19401,7 @@ rule("(BOSS) WIDOW - SCOPED DAMAGE")
 	{
 		"Divide Event Damage by Damage Dealt hero stat"
 		Damage(Victim, Event Player, Event Damage / 1.250);
-		Skip If(!(Array Contains(Append To Array(Append To Array(Append To Array(Append To Array(Empty Array, Hero(Mauga)), Hero(Orisa)),
-			Hero(Roadhog)), Hero(Zarya)), Hero Of(Victim)) || Event Was Critical Hit), 1);
+		Skip If(!(Array Contains(Array(Hero(Mauga), Hero(Orisa), Hero(Roadhog), Hero(Zarya)), Hero Of(Victim)) || Event Was Critical Hit), 1);
 		Damage(Victim, Event Player, Event Damage * 0.666 / 1.250);
 	}
 }
