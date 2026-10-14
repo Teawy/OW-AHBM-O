@@ -223,6 +223,7 @@ settings
 
 			Doctrine
 			{
+				Damage Dealt: 242.4243%
 				Health: 400%
 				Infuse Cooldown Time: 10%
 				Invigorating Drones: Off
@@ -489,7 +490,7 @@ settings
 				Ammunition Clip Size Scalar: 25%
 				Damage Dealt: 200%
 				Healing Received: 10%
-				Health: 266.66625%
+				Health: 240%
 				Jump Vertical Speed: 110%
 				Movement Gravity: 90%
 				Passive Health Regeneration: On
@@ -748,7 +749,7 @@ settings
 				Passive Health Regeneration: On
 				Projectile Speed: 105%
 				Role Passives: Off
-				Take A Breather Maximum Time: 48%
+				Take A Breather Maximum Time: 33%
 				Take A Breather Recharge Rate: 20%
 				Trash Compactor: Off
 				Ultimate Generation - Combat Whole Hog: 0%
@@ -854,15 +855,15 @@ settings
 			{
 				Ammunition Clip Size Scalar: 83%
 				Cyberspace: Off
-				Damage Dealt: 228.57%
+				Damage Dealt: 246.1523%
 				Healing Received: 10%
 				Health: 322.22157%
 				Hotfix Cooldown Time: 0%
 				Movement Speed: 150%
 				Passive Health Regeneration: On
 				Role Passives: On
-				Translocator Cooldown Time: 500%
-				Ultimate Generation EMP: 66%
+				Translocator Cooldown Time: 420%
+				Ultimate Generation EMP: 111%
 			}
 
 			Symmetra
@@ -1216,7 +1217,7 @@ settings
 
 			Doctrine
 			{
-				Damage Dealt: 83.333%
+				Damage Dealt: 90.9091%
 				Healing Dealt: 25%
 				Healing Received: 100%
 				Passive Health Regeneration: On
@@ -1446,7 +1447,7 @@ settings
 				Damage Dealt: 60%
 				Healing Dealt: 11%
 				Healing Received: 200%
-				Health: 88.88889%
+				Health: 80%
 				Passive Health Regeneration: On
 				Projectile Speed: 140%
 				Protection Suzu Cooldown Time: 250%
@@ -1679,7 +1680,7 @@ settings
 				Health: 125%
 				Passive Health Regeneration: On
 				Role Passives: On
-				Take A Breather Maximum Time: 125%
+				Take A Breather Maximum Time: 100%
 				Take A Breather Recharge Rate: 42%
 				Trash Compactor: Off
 				Ultimate Generation - Passive Whole Hog: 6%
@@ -1780,7 +1781,8 @@ settings
 				Role Passives: On
 				Translocator Cooldown Time: 86.67%
 				Ultimate Generation - Combat EMP: 500%
-				Ultimate Generation - Passive EMP: 80%
+				Ultimate Generation - Passive EMP: 75%
+				Ultimate Generation EMP: 134%
 			}
 
 			Symmetra
@@ -12745,7 +12747,7 @@ rule("CORE: (TEAM) D.MON: MECH HEALTH")
 		Remove Health Pool From Player(Event Player.armour_pool);
 		Add Health Pool To Player(Event Player, Health, 11.538, True, False);
 		Event Player.health_pool = Last Created Health Pool;
-		Add Health Pool To Player(Event Player, Armor, 11.537, True, False);
+		Add Health Pool To Player(Event Player, Armor, 17.3064, True, False);
 		Event Player.armour_pool = Last Created Health Pool;
 		Set Max Health(Event Player, 100);
 		Wait(0.016, Ignore Condition);
