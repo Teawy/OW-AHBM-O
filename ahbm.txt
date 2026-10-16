@@ -5674,12 +5674,13 @@ rule("CORE: (BOSS) JUNO TANK DMG")
 	{
 		Event Ability == Button(Secondary Fire);
 		Array Contains(Append To Array(Remove From Array(All Tank Heroes, Array(Hero(Doomfist), Hero(Hazard))), Array(Hero(Brigitte), Hero(
-			Torbjörn), Hero(Bastion), Hero(Mercy))), Hero Of(Victim)) == True;
+			Torbjörn), Hero(Bastion))), Hero Of(Victim)) == True;
 	}
 
 	actions
 	{
-		Damage(Victim, Event Player, Event Damage * 1.500 / 1.450);
+		"Deals 1.5x bonus damage"
+		Damage(Victim, Event Player, Event Damage);
 	}
 }
 
@@ -11147,14 +11148,8 @@ rule("CORE: (BOSS) ASHE - DYNAMITE THAW")
 		Set Ability 2 Enabled(Event Player, True);
 		Set Ability Cooldown(Event Player, Button(Ability 2), Event Player.X[0]);
 		Allow Button(Event Player, Button(Ability 2));
-		Skip If(Event Player.Ability_Bool, 2);
-		Create HUD Text(All Players(Team 1), Ability Icon String(Hero(Ashe), Button(Primary Fire)), Custom String(
-			"Primary Ammo Active | Hold {0} to use/reload the scope", Input Binding String(Button(Secondary Fire))), Custom String(
-			"PRIMARY LOADED:  {0}", Ammo(Event Player, 0)), Left, 1, Color(Rose), Color(White), Color(White), Visible To and String,
-			Default Visibility);
-		Skip(1);
-		Create HUD Text(All Players(Team 1), Ability Icon String(Hero(Ashe), Button(Primary Fire)), Custom String("Scope Ammo Active"),
-			Custom String("SCOPE LOADED:  {0}", Ammo(Event Player, 0)), Left, 1, Color(Rose), Color(Rose), Color(White),
+		Create HUD Text(All Players(Team 1), Ability Icon String(Hero(Ashe), Button(Primary Fire)), Custom String("Take Aim"),
+			Custom String("SCOPED SHOTS TAKE 3 BULLETS"), Left, 1, Color(Rose), Color(Rose), Color(White),
 			Visible To and String, Default Visibility);
 		Global.BOSS_AbilityKey = Last Text ID;
 		Event Player.X[0] = 0;
@@ -11771,25 +11766,7 @@ rule("CORE: (BOSS) GENJI: SHIELD POOL")
 	}
 }
 
-rule("CORE: (BOSS) ASHE - SPAWN")
-{
-	event
-	{
-		Ongoing - Each Player;
-		Team 1;
-		Ashe;
-	}
-
-	actions
-	{
-		Stop Chasing Player Variable(Event Player, primary_charge);
-		Event Player.primary_charge = 6;
-		Stop Chasing Player Variable(Event Player, secondary_charge);
-		Event Player.secondary_charge = 2;
-	}
-}
-
-rule("CORE: (BOSS) ASHE - SCOPE AMMO")
+rule("CORE: (BOSS) ASHE - SCOPE SHOT")
 {
 	event
 	{
@@ -11801,39 +11778,12 @@ rule("CORE: (BOSS) ASHE - SCOPE AMMO")
 	conditions
 	{
 		Is Button Held(Event Player, Button(Secondary Fire)) == True;
-		Event Player.Ability_Bool == False;
+		Is Firing Primary(Event Player) == True;
 	}
 
 	actions
 	{
-		Event Player.primary_charge = Ammo(Event Player, 0);
-		Set Max Ammo(Event Player, 0, 2);
-		Event Player.Ability_Bool = True;
-		Set Ammo(Event Player, 0, Event Player.secondary_charge);
-	}
-}
-
-rule("CORE: (BOSS) ASHE - HIP AMMO")
-{
-	event
-	{
-		Ongoing - Each Player;
-		Team 1;
-		Ashe;
-	}
-
-	conditions
-	{
-		Is Button Held(Event Player, Button(Secondary Fire)) == False;
-		Event Player.Ability_Bool == True;
-	}
-
-	actions
-	{
-		Set Max Ammo(Event Player, 0, 6);
-		Event Player.secondary_charge = Ammo(Event Player, 0);
-		Event Player.Ability_Bool = False;
-		Set Ammo(Event Player, 0, Event Player.primary_charge);
+		Set Ammo(Event Player, 0, Max(Ammo(Event Player, 0) - 2, 0));
 	}
 }
 
@@ -13319,7 +13269,7 @@ rule("CORE: (BOSS) ALL - CLEAR CHARGE HUD")
 	conditions
 	{
 		Has Spawned(Event Player) == True;
-		Array Contains(Array(Hero(Ashe), Hero(Genji), Hero(Sombra), Hero(Reinhardt), Hero(Echo), Hero(Ramattra)), Hero Of(Event Player)) == False;
+		Array Contains(Array(Hero(Genji), Hero(Sombra), Hero(Reinhardt), Hero(Echo), Hero(Ramattra)), Hero Of(Event Player)) == False;
 	}
 
 	actions
@@ -13327,68 +13277,6 @@ rule("CORE: (BOSS) ALL - CLEAR CHARGE HUD")
 		Destroy HUD Text(Event Player.charge_hud);
 		Destroy HUD Text(Event Player.charge_hud[0]);
 		Destroy Progress Bar HUD Text(Event Player.charge_hud[1]);
-	}
-}
-
-rule("CORE: (BOSS) ASHE - HIP AMMO MID")
-{
-	event
-	{
-		Ongoing - Each Player;
-		Team 1;
-		Ashe;
-	}
-
-	conditions
-	{
-		Event Player.Ability_Bool == False;
-	}
-
-	actions
-	{
-		Destroy HUD Text(Event Player.charge_hud);
-		Skip If(Is Waiting For Players, 2);
-		Create HUD Text(Event Player, Null, Null, Custom String(
-			"   \r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n                                        {0} | {1}",
-			Ammo(Event Player, 0), Event Player.secondary_charge), Top, 8, Color(White), Color(White), Color(Rose), Visible To and String,
-			Default Visibility);
-		Skip(1);
-		Create HUD Text(Event Player, Null, Null, Custom String(
-			"   \r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n                                         {0} | {1}", Ammo(
-			Event Player, 0), Event Player.secondary_charge), Top, 8, Color(White), Color(White), Color(Rose), Visible To and String,
-			Default Visibility);
-		Event Player.charge_hud = Last Text ID;
-	}
-}
-
-rule("CORE: (BOSS) ASHE - SCOPE AMMO MID")
-{
-	event
-	{
-		Ongoing - Each Player;
-		Team 1;
-		Ashe;
-	}
-
-	conditions
-	{
-		Event Player.Ability_Bool == True;
-	}
-
-	actions
-	{
-		Destroy HUD Text(Event Player.charge_hud);
-		Skip If(Is Waiting For Players, 2);
-		Create HUD Text(Event Player, Null, Null, Custom String(
-			"   \r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n                                        {0} | {1}",
-			Ammo(Event Player, 0), Event Player.primary_charge), Top, 8, Color(White), Color(White), Color(Rose), Visible To and String,
-			Default Visibility);
-		Skip(1);
-		Create HUD Text(Event Player, Null, Null, Custom String(
-			"   \r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n                                         {0} | {1}", Ammo(
-			Event Player, 0), Event Player.primary_charge), Top, 8, Color(White), Color(White), Color(Rose), Visible To and String,
-			Default Visibility);
-		Event Player.charge_hud = Last Text ID;
 	}
 }
 
@@ -15050,7 +14938,7 @@ rule("CORE: (BOSS) KIRI - SPAWN")
 	}
 }
 
-rule("CORE: (BOSS) ASHE - SCOPE HUD")
+rule("CORE: (BOSS) ASHE - SPAWN HUD")
 {
 	event
 	{
@@ -15059,42 +14947,12 @@ rule("CORE: (BOSS) ASHE - SCOPE HUD")
 		Ashe;
 	}
 
-	conditions
-	{
-		Event Player.Ability_Bool == True;
-	}
-
 	actions
 	{
 		Destroy HUD Text(Global.BOSS_AbilityKey);
-		Create HUD Text(All Players(Team 1), Ability Icon String(Hero(Ashe), Button(Primary Fire)), Custom String("Scope Ammo Active"),
-			Custom String("SCOPE LOADED:  {0}", Ammo(Event Player, 0)), Left, 1, Color(Rose), Color(Rose), Color(White),
+		Create HUD Text(All Players(Team 1), Ability Icon String(Hero(Ashe), Button(Primary Fire)), Custom String("Take Aim"),
+			Custom String("SCOPED SHOTS TAKE 3 BULLETS"), Left, 1, Color(Rose), Color(Rose), Color(White),
 			Visible To and String, Default Visibility);
-		Global.BOSS_AbilityKey = Last Text ID;
-	}
-}
-
-rule("CORE: (BOSS) ASHE - HIP HUD")
-{
-	event
-	{
-		Ongoing - Each Player;
-		Team 1;
-		Ashe;
-	}
-
-	conditions
-	{
-		Event Player.Ability_Bool == False;
-	}
-
-	actions
-	{
-		Destroy HUD Text(Global.BOSS_AbilityKey);
-		Create HUD Text(All Players(Team 1), Ability Icon String(Hero(Ashe), Button(Primary Fire)), Custom String(
-			"Primary Ammo Active | Hold {0} to use/reload the scope", Input Binding String(Button(Secondary Fire))), Custom String(
-			"PRIMARY LOADED:  {0}", Ammo(Event Player, 0)), Left, 1, Color(Rose), Color(White), Color(White), Visible To and String,
-			Default Visibility);
 		Global.BOSS_AbilityKey = Last Text ID;
 	}
 }
