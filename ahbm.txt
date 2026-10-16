@@ -5168,7 +5168,6 @@ rule("CORE: (BOSS) SYM - SHIELD ABILITY")
 		Create Effect(All Players(All Teams), Orb, Color(Team 1), Event Player, 2, Visible To Position and Radius);
 		Event Player.PlayerFX_0 = Last Created Entity;
 		Global.BossDamageReceived *= 0.100;
-		Set Damage Received(Event Player, Global.BossDamageReceived);
 		Wait(6, Ignore Condition);
 		Stop Chasing Global Variable(BOSS_AbilityCD);
 		Global.BOSS_AbilityCD = 21;
@@ -5184,7 +5183,6 @@ rule("CORE: (BOSS) SYM - SHIELD ABILITY")
 		Destroy Effect(Event Player.PlayerFX_1);
 		Play Effect(All Players(All Teams), Ring Explosion Sound, Color(White), Event Player, 100);
 		Global.BossDamageReceived *= 10;
-		Set Damage Received(Event Player, Global.BossDamageReceived);
 		Wait(21, Ignore Condition);
 		Stop Chasing Global Variable(BOSS_AbilityCD);
 		Global.BOSS_AbilityCD = 0;
@@ -5629,34 +5627,12 @@ rule("CORE: (BOSS) ALL HEAL DEALT")
 
 	conditions
 	{
-		Array Contains(Array(Hero(Zenyatta), Hero(Illari), Hero(Juno)), Hero Of(Event Player)) == False;
+		Array Contains(Array(Hero(Zenyatta), Hero(Illari)), Hero Of(Event Player)) == False;
 		Has Spawned(Event Player) == True;
 	}
 
 	actions
 	{
-		Set Healing Dealt(Event Player, 100);
-	}
-}
-
-rule("CORE: (BOSS) JUNO ULT HEAL")
-{
-	event
-	{
-		Ongoing - Each Player;
-		Team 1;
-		Juno;
-	}
-
-	conditions
-	{
-		Is Using Ultimate(Event Player) == True;
-	}
-
-	actions
-	{
-		Set Healing Dealt(Event Player, 1000);
-		Wait Until(!Is Using Ultimate(Event Player), 11);
 		Set Healing Dealt(Event Player, 100);
 	}
 }
@@ -7607,13 +7583,11 @@ rule("CORE: (BOSS) ORISA: FORTIFY RESISTANCE+AMMO")
 	actions
 	{
 		Global.BossDamageReceived *= 1.450;
-		Set Damage Received(Event Player, Global.BossDamageReceived);
 		Remove Health Pool From Player(Event Player.shield_pool);
 		Add Health Pool To Player(Event Player, Health, 22.223, False, False);
 		Event Player.shield_pool = Last Created Health Pool;
 		Wait Until(!Is Using Ability 1(Event Player), 5.200);
 		Global.BossDamageReceived *= 100 / 145;
-		Set Damage Received(Event Player, Global.BossDamageReceived);
 		Remove Health Pool From Player(Event Player.shield_pool);
 	}
 }
@@ -10455,28 +10429,6 @@ rule("MAPS: Chateau Guillard - ENVIRO RES")
 	actions
 	{
 		Teleport(Event Player, Nearest Walkable Position(Players On Hero(Hero(Mercy), Team 2)));
-	}
-}
-
-rule("CORE: (BOSS) ANRAN - DANCING BLAZE DMG")
-{
-	event
-	{
-		Ongoing - Each Player;
-		Team 1;
-		Anran;
-	}
-
-	conditions
-	{
-		Is Using Ability 2(Event Player) == True;
-	}
-
-	actions
-	{
-		Set Damage Dealt(Event Player, 398.400);
-		Wait Until(!(Is Using Ability 2(Event Player) || Is Alive(Event Player)), 2);
-		Set Damage Dealt(Event Player, 100);
 	}
 }
 
@@ -18249,28 +18201,6 @@ rule("CORE: (TEAM) ALL - HARD COOLDOWNS")
 	}
 }
 
-rule("CORE: (TEAM) 76 - SELF HEAL")
-{
-	event
-	{
-		Ongoing - Each Player;
-		All;
-		Soldier: 76;
-	}
-
-	conditions
-	{
-		Is Using Ability 2(Event Player) == True;
-	}
-
-	actions
-	{
-		Set Healing Received(Event Player, 15);
-		Wait Until(!Is Using Ability 2(Event Player) || Hero Of(Event Player) != Hero(Soldier: 76), 6);
-		Set Healing Received(Event Player, 100);
-	}
-}
-
 rule("OW2: (ALL) FILL HP")
 {
 	event
@@ -19662,7 +19592,6 @@ rule("CORE: (TEAM) ANRAN - IGNITION ACTIVE")
 		Skip If(Event Player.timer != 0, 13);
 		Event Player.Ability_Bool = True;
 		Global.BossDamageReceived *= 1.160;
-		Set Damage Received(Victim, Global.BossDamageReceived);
 		Event Player.timer = 3;
 		Destroy HUD Text(Event Player.team_abilityHUD[0]);
 		Destroy Progress Bar HUD Text(Event Player.team_abilityHUD[0]);
@@ -19741,7 +19670,6 @@ rule("SUB: BOSS IGNITION EXPIRE")
 	actions
 	{
 		Global.BossDamageReceived *= 10 / 11.6;
-		Set Damage Received(All Players(Team 1), Global.BossDamageReceived);
 		Destroy HUD Text(Global.BossStatus_Burning);
 	}
 }
@@ -19786,7 +19714,6 @@ rule("CORE: (BOSS) ALL - DAMAGE RECEIVED")
 	actions
 	{
 		Global.BossDamageReceived = 100;
-		Set Damage Received(Event Player, Global.BossDamageReceived);
 	}
 }
 
@@ -20065,5 +19992,20 @@ rule("CORE: (BOSS) THAW RESET")
 		Stop Chasing Player Variable(Event Player, F);
 		Event Player.F = 0;
 		Global.BossFrozen = 0;
+	}
+}
+
+rule("Global Modifications")
+{
+	actions
+	{
+		"ALL - Soldier: 76  Biotic Field  NERF"
+		Start Healing Modification(Filtered Array(Players On Hero(Hero(Solider: 76), All Teams), Is Using Ability 2(Current Array Element)), All Players(All Teams), 15, Receivers and Healers);
+		"BOSS - Juno  Orbital Ray  BUFF"
+		Start Healing Modification(All Players(Team 1), Filtered Array(Players On Hero(Hero(Juno), Team 1), Is Using Ultimate(Current Array Element)), 1000, Receivers and Healers);
+		"BOSS - ALL  Damage Reduction"
+		Start Damage Modification(All Players(Team 1), All Players(All Teams), Global.BossDamageReceived, Receivers, Healers, And Healing Percent);
+		"BOSS - Anran  Dancing Blaze  BUFF"
+		Start Healing Modification(All Players(All Teams), Filtered Array(Players On Hero(Hero(Anran), Team 1), Is Using Ability 2(Current Array Element)), 15, Receivers and Healers);
 	}
 }
