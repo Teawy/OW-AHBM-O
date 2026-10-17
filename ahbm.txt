@@ -13027,6 +13027,30 @@ rule("CORE: (TEAM) HAZARD - HEALTH & SIZE")
 	}
 }
 
+rule("CORE: (TEAM) SIG - HEALTH & SIZE")
+{
+	event
+	{
+		Ongoing - Each Player;
+		Team 2;
+		Sigma;
+	}
+
+	actions
+	{
+		Start Scaling Player(Event Player, 1, False);
+		Start Scaling Barriers(Event Player, 0.900, False);
+		Remove Health Pool From Player(Event Player.health_pool);
+		Remove Health Pool From Player(Event Player.shield_pool);
+		Remove Health Pool From Player(Event Player.armour_pool);
+		Add Health Pool To Player(Event Player, Health, 50, True, False);
+		Event Player.health_pool = Last Created Health Pool;
+		Wait(0.016, Ignore Condition);
+		Event Player.base_health = Max Health(Event Player);
+		Event Player.base_shields = Max Health Of Type(Event Player, Shields);
+	}
+}
+
 rule("CORE: (TEAM) TORB: HEALTH")
 {
 	event
