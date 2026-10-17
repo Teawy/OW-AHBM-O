@@ -3649,7 +3649,7 @@ rule("CORE: (BOSS) REIN - FLAME ON")
 	conditions
 	{
 		Event Player.FireStrike == 0;
-		Global.BossFrozen == 0;
+		disabled Is Waiting For Players == False;
 		Has Status(Event Player, Hacked) == False;
 		Global.BossFrozen[0] != -1;
 	}
