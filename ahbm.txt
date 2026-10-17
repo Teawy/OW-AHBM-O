@@ -19907,7 +19907,6 @@ rule("CORE: (BOSS) FROZEN NOTIFICATION")
 		Stop Chasing Player Variable(Event Player, F);
 		Event Player.F = 15;
 		Chase Player Variable At Rate(Event Player, F, 0, 1, Destination and Rate);
-		disabled Small Message(Event Player, Custom String("{0} Frozen: {1} seconds", Global.BossFrozen[1], Event Player.F));
 		Destroy HUD Text(Global.BOSS_AbilityKey);
 		Create HUD Text(Event Player, Custom String("{0} {1}", Ability Icon String(Hero(Mei), Button(Ultimate)), Round To Integer(
 			Event Player.F, Up)), Custom String("THAWING"), Global.BossFrozen[1], Left, 1, Color(Sky Blue), Color(White), Color(Sky Blue),
@@ -19917,6 +19916,8 @@ rule("CORE: (BOSS) FROZEN NOTIFICATION")
 		Skip If(Is Waiting For Players, 2);
 		Create Effect(All Players(All Teams), Cloud, Color(White), Event Player, Global.BossFrozen[2], Visible To Position and Radius);
 		Event Player.PlayerFX_3 = Last Created Entity;
+		Wait(0.100, Ignore Condition);
+		Small Message(Event Player, Custom String("{0} Frozen: {1} seconds", Global.BossFrozen[1], Round To Integer(Event Player.F, Up)));
 	}
 }
 
