@@ -1781,8 +1781,8 @@ settings
 				Role Passives: On
 				Translocator Cooldown Time: 86.67%
 				Ultimate Generation - Combat EMP: 500%
-				Ultimate Generation - Passive EMP: 75%
-				Ultimate Generation EMP: 134%
+				Ultimate Generation - Passive EMP: 125%
+				Ultimate Generation EMP: 200%
 			}
 
 			Symmetra
@@ -3651,6 +3651,7 @@ rule("CORE: (BOSS) REIN - FLAME ON")
 		Event Player.FireStrike == 0;
 		disabled Is Waiting For Players == False;
 		Has Status(Event Player, Hacked) == False;
+		Global.BossFrozen[0] != -1;
 	}
 
 	actions
@@ -3659,8 +3660,7 @@ rule("CORE: (BOSS) REIN - FLAME ON")
 		Event Player.primary_charge += 1;
 		Skip If(Event Player.primary_charge == 0, 5);
 		Set Ability 2 Enabled(Event Player, True);
-		Skip If(Is Waiting For Players, 3);
-		Clear Status(Event Player, Burning);
+		Skip If(Is Waiting For Players, 2);
 		Play Effect(All Players(All Teams), Bad Pickup Effect, Color(Red), Event Player, 1);
 		Set Status(Event Player, Null, Burning, 9999);
 		Skip If(Event Player.primary_charge != 2, 1);
@@ -3704,13 +3704,17 @@ rule("CORE: (BOSS) REIN - FLAME OFF")
 	actions
 	{
 		Stop Chasing Player Variable(Event Player, FireStrike);
-		Event Player.primary_charge -= 1;
-		Wait(0.500, Ignore Condition);
+		Event Player.primary_charge = Max(0, Event Player.primary_charge - 1);
+		"Waits 0.500s on a normal swing, OR finishes instantly the moment ANY stun/knockdown/sleep interrupts the cast"
+		Wait Until(!Is Using Ability 2(Event Player), 0.500);
+		Abort If(Global.BossFrozen[0] == -1 || Has Status(Event Player, Hacked));
 		Skip If(Event Player.primary_charge > 0, 3);
 		Set Ability 2 Enabled(Event Player, False);
 		Skip If(Is Waiting For Players, 1);
 		Clear Status(Event Player, Burning);
-		Wait(0.300, Ignore Condition);
+		"Waits the remaining 0.480s of a normal swing, OR skips instantly if the swing was already interrupted"
+		Wait Until(!Is Using Ability 2(Event Player), 0.480);
+		Abort If(Global.BossFrozen[0] == -1 || Has Status(Event Player, Hacked));
 		Chase Player Variable At Rate(Event Player, FireStrike, 0, 1, Destination and Rate);
 		Skip If(Event Player.primary_charge != 2, 3);
 		Destroy HUD Text(Global.BOSS_AbilityKey);
@@ -3729,6 +3733,9 @@ rule("CORE: (BOSS) REIN - FLAME OFF")
 			Custom String("CHARGES OF"), Custom String("FIRE STRIKE"), Left, 1, Color(Red), Color(White), Color(Red),
 			Visible To and String, Default Visibility);
 		Global.BOSS_AbilityKey = Last Text ID;
+		"Wait 1 server tick (0.016s) so if the swing ended naturally at 0.962s, Loop If Condition Is True checks if Swing 2 was buffered"
+		Wait(0.016, Ignore Condition);
+		Loop If Condition Is True;
 	}
 }
 
@@ -3744,17 +3751,68 @@ rule("CORE: (BOSS) REIN - FLAME FROZEN")
 	conditions
 	{
 		Has Status(Event Player, Frozen) == True;
-		disabled Is Waiting For Players == False;
 	}
 
 	actions
 	{
 		Stop Chasing Player Variable(Event Player, FireStrike);
+		"If FireStrike happened to be at 0, bump it to 5 so FLAME ON cannot stay armed"
+		If(Event Player.FireStrike == 0);
+			Event Player.FireStrike = 5;
+		End;
 		Global.BossFrozen = Array(-1, Custom String("Fire Strike"), 2);
 		Call Subroutine(BossFrozenNotification);
 		Set Ability 2 Enabled(Event Player, False);
+		Skip If(Is Waiting For Players, 1);
 		Clear Status(Event Player, Burning);
-		Event Player.primary_charge -= 1;
+	}
+}
+
+rule("CORE: (BOSS) REIN - FIRE THAW")
+{
+	event
+	{
+		Ongoing - Each Player;
+		Team 1;
+		Reinhardt;
+	}
+
+	conditions
+	{
+		Global.BossFrozen[0] == -1;
+		(Event Player.F == 0 || Is Dead(Event Player)) == True;
+	}
+
+	actions
+	{
+		Call Subroutine(BossClearFreeze);
+		"If he is NOT currently Hacked when the thaw finishes, restore his ability & VFX if he has charges"
+		If(!Has Status(Event Player, Hacked));
+			If(Event Player.primary_charge >= 1);
+				Set Ability 2 Enabled(Event Player, True);
+				If(!Is Waiting For Players);
+					Clear Status(Event Player, Burning);
+					Play Effect(All Players(All Teams), Bad Pickup Effect, Color(Red), Event Player, 1);
+					Set Status(Event Player, Null, Burning, 9999);
+				End;
+			End;
+			"If he has fewer than 2 charges, resume ticking down his 5s cooldown from where it paused"
+			If(Event Player.primary_charge < 2);
+				Chase Player Variable At Rate(Event Player, FireStrike, 0, 1, Destination and Rate);
+			End;
+		End;
+		"Recreate the Fire Strike HUD so BossClearFreeze doesn't leave him with no HUD"
+		Destroy HUD Text(Global.BOSS_AbilityKey);
+		If(Event Player.primary_charge == 2);
+			Create HUD Text(All Players(Team 1), Custom String("{0} {0}", Icon String(Fire)), Custom String("CHARGES OF"), Custom String("FIRE STRIKE"), Left, 1, Color(Red), Color(White), Color(Red), Visible To and String, Default Visibility);
+		Else If(Event Player.primary_charge == 1);
+			Create HUD Text(All Players(Team 1), Custom String("{0} {1}", Icon String(Fire), Round To Integer(Event Player.FireStrike, Up)), Custom String("CHARGES OF"), Custom String("FIRE STRIKE"), Left, 1, Color(Red), Color(White), Color(Red), Visible To and String, Default Visibility);
+		Else;
+			Create HUD Text(All Players(Team 1), Custom String("{0} {1}", Icon String(No), Round To Integer(Event Player.FireStrike, Up)), Custom String("CHARGES OF"), Custom String("FIRE STRIKE"), Left, 1, Color(Red), Color(White), Color(Red), Visible To and String, Default Visibility);
+		End;
+		Global.BOSS_AbilityKey = Last Text ID;
+		Skip If(Is Alive(Event Player), 1);
+		Set Ability 2 Enabled(Event Player, True);
 	}
 }
 
@@ -3769,15 +3827,23 @@ rule("CORE: (BOSS) REIN - FLAME HACKED")
 
 	conditions
 	{
-		Is Waiting For Players == False;
 		Has Status(Event Player, Hacked) == True;
 	}
 
 	actions
 	{
+		Skip If(Is Waiting For Players, 1);
 		Clear Status(Event Player, Burning);
+		Set Ability 2 Enabled(Event Player, False);
 		Stop Chasing Player Variable(Event Player, FireStrike);
-		Event Player.FireStrike = 0;
+		Event Player.primary_charge = 0;
+		Event Player.FireStrike = 5;
+		Abort If(Global.BossFrozen[0] == -1);
+		Destroy HUD Text(Global.BOSS_AbilityKey);
+		Create HUD Text(All Players(Team 1), Custom String("{0} {1}", Icon String(No), Round To Integer(Event Player.FireStrike, Up)),
+			Custom String("CHARGES OF"), Custom String("FIRE STRIKE"), Left, 1, Color(Red), Color(White), Color(Red),
+			Visible To and String, Default Visibility);
+		Global.BOSS_AbilityKey = Last Text ID;
 	}
 }
 
@@ -3792,16 +3858,15 @@ rule("CORE: (BOSS) REIN - FLAME UNHACKED")
 
 	conditions
 	{
-		(Event Player.FireStrike == 0 && !Is Waiting For Players && !Has Status(Event Player, Hacked)) == True;
+		Has Status(Event Player, Hacked) == False;
+		Event Player.primary_charge == 0;
+		Event Player.FireStrike == 5;
+		Global.BossFrozen[0] != -1;
 	}
 
 	actions
 	{
-		Clear Status(Event Player, Burning);
-		Play Effect(All Players(All Teams), Bad Pickup Effect, Color(Red), Event Player, 1);
-		Set Status(Event Player, Null, Burning, 9999);
-		Stop Chasing Player Variable(Event Player, FireStrike);
-		Event Player.FireStrike = 5;
+		Chase Player Variable At Rate(Event Player, FireStrike, 0, 1, Destination and Rate);
 	}
 }
 
@@ -3816,7 +3881,7 @@ rule("CORE: (BOSS) REIN - SWITCH OFF")
 
 	conditions
 	{
-		Players On Hero(Hero(Reinhardt), Team 1) == False;
+		Hero Of(Event Player) != Hero(Reinhardt);
 		Is Waiting For Players == False;
 	}
 
@@ -11039,37 +11104,6 @@ rule("CORE: (BOSS) ZAR - SIZE")
 	}
 }
 
-rule("CORE: (BOSS) REIN - FIRE THAW")
-{
-	event
-	{
-		Ongoing - Each Player;
-		Team 1;
-		Reinhardt;
-	}
-
-	conditions
-	{
-		Global.BossFrozen[0] == -1;
-		(Event Player.F == 0 || Is Dead(Event Player)) == True;
-	}
-
-	actions
-	{
-		Call Subroutine(BossClearFreeze);
-		Skip If(Event Player.primary_charge < 1, 4);
-		Set Ability 2 Enabled(Event Player, True);
-		Skip If(Is Waiting For Players, 1);
-		Set Status(Event Player, Null, Burning, 9999);
-		Play Effect(All Players(All Teams), Bad Pickup Effect, Color(Red), Event Player, 1);
-		Event Player.FireStrike = 0;
-		Skip If(Event Player.primary_charge >= 2, 1);
-		Chase Player Variable At Rate(Event Player, FireStrike, 0, 1, Destination and Rate);
-		Skip If(Is Alive(Event Player), 1);
-		Set Ability 2 Enabled(Event Player, True);
-	}
-}
-
 rule("CORE: (BOSS) HOG - ULTIMATE THAW")
 {
 	event
@@ -15459,28 +15493,6 @@ rule("CORE: (BOSS) ECHO - P.C. DUPE")
 		Event Player.charge_hud = Last Text ID;
 		Event Player.Ability_Toggle = True;
 		Event Player.primary_charge = 0;
-	}
-}
-
-rule("CORE: (ALL) MOIRA - FADE JUMP")
-{
-	event
-	{
-		Ongoing - Each Player;
-		All;
-		Moira;
-	}
-
-	conditions
-	{
-		Is Using Ability 1(Event Player) == True;
-	}
-
-	actions
-	{
-		Set Jump Vertical Speed(Event Player, 40);
-		Wait Until(!Is Using Ability 1(Event Player), 1);
-		Set Jump Vertical Speed(Event Player, 100);
 	}
 }
 
