@@ -2051,6 +2051,7 @@ variables
 		61: FireStrike
 		62: BurnStatus
 		63: BurnTimer
+		64: self_healing
 }
 
 subroutines
@@ -3344,7 +3345,7 @@ rule("CORE: (TEAM) MERCY: RES AURA RECREATE")
 	}
 }
 
-disabled rule("CORE: (TEAM) MERCY: RES AURA GLITCH CORRECT")
+disabled rule("CORE: (TEAM) MERCY: SWITCH")
 {
 	event
 	{
@@ -3360,6 +3361,7 @@ disabled rule("CORE: (TEAM) MERCY: RES AURA GLITCH CORRECT")
 
 	actions
 	{
+		Stop Healing Modification(Event Player.self_healing);
 		Wait(0.064, Abort When False);
 		Destroy Effect(Event Player.M);
 		Event Player.M = Null;
@@ -8975,7 +8977,7 @@ rule("CORE: (TEAM) BRIG - ARMOUR LEAVE")
 	}
 }
 
-rule("CORE: (TEAM) BRIG - MERCY SPAWN VARS")
+rule("CORE: (TEAM) MERCY - SPAWN VARS")
 {
 	event
 	{
@@ -8988,6 +8990,8 @@ rule("CORE: (TEAM) BRIG - MERCY SPAWN VARS")
 	{
 		Global.mercyArmourDead = False;
 		Global.mercyArmourBool = False;
+		Start Healing Modification(Event Player, Event Player, 500, Receivers Healers and Healing Percent);
+		Event Player.self_healing = Last Healing Modification ID;
 	}
 }
 
@@ -11785,7 +11789,7 @@ rule("CORE: (BOSS) ASHE - SCOPE SHOT")
 
 	conditions
 	{
-		Is Button Held(Event Player, Button(Secondary Fire)) == True;
+		Is Firing Secondary(Event Player) == True;
 		Is Firing Primary(Event Player) == True;
 	}
 
