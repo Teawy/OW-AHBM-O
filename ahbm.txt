@@ -3933,7 +3933,7 @@ rule("CORE: (BOSS) REIN - SPAWN")
 	}
 }
 
-rule("CORE: (BOSS) GENJI - DASH AURA ON (check: does D have to = 0?)")
+rule("CORE: (BOSS) GENJI - DASH AURA ON")
 {
 	event
 	{
@@ -3942,22 +3942,15 @@ rule("CORE: (BOSS) GENJI - DASH AURA ON (check: does D have to = 0?)")
 		Genji;
 	}
 
-	conditions
-	{
-		Event Player.D == 0;
-		disabled Is Waiting For Players == False;
-	}
-
 	actions
 	{
 		Allow Button(Event Player, Button(Ability 1));
 		Skip If(Is Waiting For Players, 4);
 		Skip If(Event Player.S == Null, 1);
 		Destroy Effect(Event Player.S);
-		Create Effect(All Players(Team 2), Bad Aura, Color(Lime Green), Event Player, 0.100, Visible To Position and Radius);
+		Create Effect(All Players(All Teams), Bad Aura, Color(Lime Green), Event Player, 0.100, Visible To Position and Radius);
 		Event Player.S = Last Created Entity;
-		disabled Stop Chasing Player Variable(Event Player, D);
-		Event Player.D = 1;
+		Set Ability 1 Enabled(Event Player, True);
 	}
 }
 
@@ -3973,15 +3966,13 @@ rule("CORE: (BOSS) GENJI - DASH AURA OFF")
 	conditions
 	{
 		Is Using Ability 1(Event Player) == True;
-		disabled Is Waiting For Players == False;
 	}
 
 	actions
 	{
 		Skip If(Is Waiting For Players, 1);
 		Destroy Effect(Event Player.S);
-		disabled Chase Player Variable At Rate(Event Player, D, 0, 1, Destination and Rate);
-		Event Player.D = 5;
+		Set Ability 1 Enabled(Event Player, False);
 	}
 }
 
@@ -3994,19 +3985,14 @@ rule("CORE: (BOSS) GENJI - DASH RESET KILL")
 		Genji;
 	}
 
-	conditions
-	{
-		disabled Is Waiting For Players == False;
-	}
-
 	actions
 	{
 		Skip If(Is Waiting For Players, 3);
 		Destroy Effect(Event Player.S);
 		Create Effect(All Players(Team 2), Bad Aura, Color(Lime Green), Event Player, 0.100, Visible To Position and Radius);
 		Event Player.S = Last Created Entity;
-		disabled Stop Chasing Player Variable(Event Player, D);
-		Event Player.D = 1;
+		Wait Until(!Is Using Ability 1(Event Player), 0.400);
+		Set Ability 1 Enabled(Event Player, True);
 	}
 }
 
@@ -4022,7 +4008,6 @@ rule("CORE: (BOSS) GENJI - DASH RESET ULT")
 	conditions
 	{
 		(Is Using Ultimate(Event Player) && Is Button Held(Event Player, Button(Ultimate))) == True;
-		disabled Is Waiting For Players == False;
 	}
 
 	actions
@@ -4031,8 +4016,7 @@ rule("CORE: (BOSS) GENJI - DASH RESET ULT")
 		Destroy Effect(Event Player.S);
 		Create Effect(All Players(Team 2), Bad Aura, Color(Lime Green), Event Player, 0.100, Visible To Position and Radius);
 		Event Player.S = Last Created Entity;
-		disabled Stop Chasing Player Variable(Event Player, D);
-		Event Player.D = 1;
+		Set Ability 1 Enabled(Event Player, True);
 	}
 }
 
@@ -4048,38 +4032,13 @@ rule("CORE: (BOSS) GENJI - SWITCH")
 	conditions
 	{
 		Is Hero Being Played(Hero(Genji), Team 1) == False;
-		disabled Is Waiting For Players == False;
 	}
 
 	actions
 	{
-		disabled Skip If(Is Waiting For Players, 3);
 		Skip If(Event Player.S == Null, 2);
 		Destroy Effect(Event Player.S);
 		Event Player.S = Null;
-		Event Player.D = 0;
-		disabled Skip If(Array Contains(Array(Hero(Mercy), Hero(Symmetra), Hero(Zenyatta), Hero(Torbjörn)), Hero Of(Event Player)), 1);
-		disabled Set Ability 1 Enabled(Event Player, True);
-	}
-}
-
-rule("CORE: (BOSS) GENJI - DASH LOCK/UNLOCK")
-{
-	event
-	{
-		Ongoing - Each Player;
-		Team 1;
-		Genji;
-	}
-
-	actions
-	{
-		Skip If(Event Player.D == 1, 1);
-		Set Ability 1 Enabled(Event Player, False);
-		Skip If(Event Player.D == 5, 1);
-		Set Ability 1 Enabled(Event Player, True);
-		Wait(0.001, Ignore Condition);
-		Loop If Condition Is True;
 	}
 }
 
