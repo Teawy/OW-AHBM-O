@@ -433,7 +433,7 @@ settings
 				Damage Received: 50%
 				Healing Dealt: 90%
 				Healing Received: 12%
-				Health: 160%
+				Health: 141.1765%
 				Jagged Blade Delay Before Automatic Recall: 160%
 				Jagged Blade Knockback Scalar: 120%
 				Jump Vertical Speed: 190%
@@ -705,7 +705,7 @@ settings
 				Damage Received: 48%
 				Healing Dealt: 416%
 				Healing Received: 21%
-				Health: 218.18094%
+				Health: 200%
 				Movement Speed: 90%
 				Passive Health Regeneration: On
 				Role Passives: Off
@@ -1404,7 +1404,7 @@ settings
 				Commanding Shout Cooldown Time: 160%
 				Damage Dealt: 54%
 				Healing Received: 66%
-				Health: 120%
+				Health: 100%
 				Jagged Blade Gracie Cooldown Time: 266%
 				Jagged Blade Delay Before Automatic Recall: 50%
 				Jagged Blade Knockback Scalar: 120%
@@ -17107,9 +17107,9 @@ rule("CORE: (ALL) JQ - SHOUT HP")
 	{
 		Remove Health Pool From Player(Event Player.shield_pool);
 		Skip If(Team Of(Event Player) == Team 2, 2);
-		Add Health Pool To Player(Event Player, Health, 80, False, False);
+		Add Health Pool To Player(Event Player, Health, 117.647, False, False);
 		Skip(1);
-		Add Health Pool To Player(Event Player, Health, 10, False, False);
+		Add Health Pool To Player(Event Player, Health, 125, False, False);
 		Event Player.shield_pool = Last Created Health Pool;
 		Wait(4, Ignore Condition);
 		Remove Health Pool From Player(Event Player.armour_pool);
