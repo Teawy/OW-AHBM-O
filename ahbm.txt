@@ -15259,7 +15259,7 @@ rule("CORE: (BOSS) ECHO - ULTIMATE CHARGE TIER")
 	{
 		Ongoing - Each Player;
 		Team 1;
-		Reaper;
+		Echo;
 	}
 	
 	conditions
