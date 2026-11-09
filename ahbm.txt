@@ -5876,7 +5876,7 @@ rule("CORE: (ALL) BURN DAMAGE")
 	event
 	{
 		Subroutine;
-		BurnDamage
+		BurnDamage;
 	}
 
 	actions
