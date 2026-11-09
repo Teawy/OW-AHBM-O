@@ -2054,6 +2054,7 @@ variables
 		62: BurnStatus
 		63: BurnTimer
 		64: self_healing
+		65: UltimateTier
 }
 
 subroutines
@@ -4127,7 +4128,7 @@ rule("CORE: (BOSS) ORISA - RESET SPEED")
 	}
 }
 
-rule("CORE: (BOSS) D.VA - 1/3 ULTIMATE")
+rule("CORE: (BOSS) D.VA - ULTIMATE CHARGE TIER")
 {
 	event
 	{
@@ -4135,95 +4136,30 @@ rule("CORE: (BOSS) D.VA - 1/3 ULTIMATE")
 		Team 1;
 		D.Va;
 	}
-
+	
 	conditions
 	{
 		Is Alive(Event Player) == True;
-		Ultimate Charge Percent(Event Player) < 33;
 		Is Waiting For Players == False;
+		Count Of(Filtered Array(Array(-1, 32, 65, 99),  Current Array Element < Ultimate Charge Percent(Event Player))) != Event Player.UltimateTier;
 	}
-
+	
 	actions
 	{
 		Destroy Effect(Event Player.PlayerFX_2);
 		Destroy Effect(Event Player.N);
-		Create Effect(All Players(Team 2), Cloud, Color(Gray), Event Player, 0.500, Visible To Position and Radius);
-		Event Player.N = Last Created Entity;
-	}
-}
-
-rule("CORE: (BOSS) D.VA - 2/3 ULTIMATE")
-{
-	event
-	{
-		Ongoing - Each Player;
-		Team 1;
-		D.Va;
-	}
-
-	conditions
-	{
-		Is Alive(Event Player) == True;
-		(Ultimate Charge Percent(Event Player) >= 33 && Ultimate Charge Percent(Event Player) < 66) == True;
-		Is Waiting For Players == False;
-	}
-
-	actions
-	{
-		Destroy Effect(Event Player.PlayerFX_2);
-		Destroy Effect(Event Player.N);
-		Create Effect(All Players(Team 2), Cloud, Color(Rose), Event Player, 0.500, Visible To Position and Radius);
-		Event Player.N = Last Created Entity;
-	}
-}
-
-rule("CORE: (BOSS) D.VA - 3/3 ULTIMATE")
-{
-	event
-	{
-		Ongoing - Each Player;
-		Team 1;
-		D.Va;
-	}
-
-	conditions
-	{
-		Is Alive(Event Player) == True;
-		(Ultimate Charge Percent(Event Player) >= 66 && Ultimate Charge Percent(Event Player) < 100) == True;
-		Is Waiting For Players == False;
-	}
-
-	actions
-	{
-		Destroy Effect(Event Player.PlayerFX_2);
-		Destroy Effect(Event Player.N);
-		Create Effect(All Players(Team 2), Cloud, Color(Green), Event Player, 0.500, Visible To Position and Radius);
-		Event Player.N = Last Created Entity;
-	}
-}
-
-rule("CORE: (BOSS) D.VA - FULL ULTIMATE")
-{
-	event
-	{
-		Ongoing - Each Player;
-		Team 1;
-		D.Va;
-	}
-
-	conditions
-	{
-		Is Alive(Event Player) == True;
-		Ultimate Charge Percent(Event Player) == 100;
-		Is Waiting For Players == False;
-	}
-
-	actions
-	{
-		Destroy Effect(Event Player.N);
-		Create Effect(All Players(Team 2), Bad Aura, Color(Green), Event Player, 0.100, Visible To Position and Radius);
-		Event Player.PlayerFX_2 = Last Created Entity;
-		Create Effect(All Players(All Teams), Cloud, Color(Green), Event Player, 0.500, Visible To Position and Radius);
+		Event Player.UltimateTier = Count Of(Filtered Array(Array(-1, 32, 65, 99),  Current Array Element < Ultimate Charge Percent(Event Player)));
+		If(Event Player.UltimateTier == 1);
+			Create Effect(All Players(Team 2), Cloud, Color(Gray), Event Player, 0.500, Visible To Position and Radius);
+		Else If(Event Player.UltimateTier == 2);
+			Create Effect(All Players(Team 2), Cloud, Color(Rose), Event Player, 0.500, Visible To Position and Radius);
+		Else If(Event Player.UltimateTier == 3);
+			Create Effect(All Players(Team 2), Cloud, Color(Green), Event Player, 0.500, Visible To Position and Radius);
+		Else If(Event Player.UltimateTier == 4);
+			Create Effect(All Players(Team 2), Bad Aura, Color(Green), Event Player, 0.100, Visible To Position and Radius);
+			Event Player.PlayerFX_2 = Last Created Entity;
+			Create Effect(All Players(All Teams), Cloud, Color(Green), Event Player, 0.500, Visible To Position and Radius);
+		End;
 		Event Player.N = Last Created Entity;
 	}
 }
@@ -4252,7 +4188,7 @@ rule("CORE: (BOSS) D.VA - SWITCH")
 	}
 }
 
-rule("CORE: (BOSS) ZEN - NO ULTIMATE")
+rule("CORE: (BOSS) ZEN - ULTIMATE CHARGE TIER")
 {
 	event
 	{
@@ -4260,87 +4196,25 @@ rule("CORE: (BOSS) ZEN - NO ULTIMATE")
 		Team 1;
 		Zenyatta;
 	}
-
+	
 	conditions
 	{
 		Is Alive(Event Player) == True;
-		Ultimate Charge Percent(Event Player) < 50;
+		Count Of(Filtered Array(Array(-1, 49, 74, 99),  Current Array Element < Ultimate Charge Percent(Event Player))) != Event Player.UltimateTier;
 	}
-
+	
 	actions
 	{
 		Destroy Effect(Event Player.T);
-	}
-}
-
-rule("CORE: (BOSS) ZEN - 1/2 ULTIMATE")
-{
-	event
-	{
-		Ongoing - Each Player;
-		Team 1;
-		Zenyatta;
-	}
-
-	conditions
-	{
-		Is Alive(Event Player) == True;
-		(Ultimate Charge Percent(Event Player) >= 50 && Ultimate Charge Percent(Event Player) < 75) == True;
-		Is Waiting For Players == False;
-	}
-
-	actions
-	{
-		Destroy Effect(Event Player.T);
-		Create Effect(All Players(Team 2), Light Shaft, Color(White), Event Player, 0.100, Visible To Position and Radius);
-		Event Player.T = Last Created Entity;
-	}
-}
-
-rule("CORE: (BOSS) ZEN - 3/4 ULTIMATE")
-{
-	event
-	{
-		Ongoing - Each Player;
-		Team 1;
-		Zenyatta;
-	}
-
-	conditions
-	{
-		Is Alive(Event Player) == True;
-		(Ultimate Charge Percent(Event Player) >= 75 && Ultimate Charge Percent(Event Player) < 100) == True;
-		Is Waiting For Players == False;
-	}
-
-	actions
-	{
-		Destroy Effect(Event Player.T);
-		Create Effect(All Players(Team 2), Light Shaft, Color(Yellow), Event Player, 0.100, Visible To Position and Radius);
-		Event Player.T = Last Created Entity;
-	}
-}
-
-rule("CORE: (BOSS) ZEN - FULL ULTIMATE")
-{
-	event
-	{
-		Ongoing - Each Player;
-		Team 1;
-		Zenyatta;
-	}
-
-	conditions
-	{
-		Is Alive(Event Player) == True;
-		Ultimate Charge Percent(Event Player) == 100;
-		Is Waiting For Players == False;
-	}
-
-	actions
-	{
-		Destroy Effect(Event Player.T);
-		Create Effect(All Players(Team 2), Sparkles, Color(Yellow), Event Player, 1.750, Visible To Position and Radius);
+		Event Player.UltimateTier = Count Of(Filtered Array(Array(-1, 49, 74, 99),  Current Array Element < Ultimate Charge Percent(Event Player)));
+		Abort If(Is Waiting For Players);
+		If(Event Player.UltimateTier == 2);
+			Create Effect(All Players(Team 2), Light Shaft, Color(White), Event Player, 0.100, Visible To Position and Radius);
+		Else If(Event Player.UltimateTier == 3);
+			Create Effect(All Players(Team 2), Light Shaft, Color(Yellow), Event Player, 0.100, Visible To Position and Radius);
+		Else If(Event Player.UltimateTier == 4);
+			Create Effect(All Players(Team 2), Sparkles, Color(Yellow), Event Player, 1.750, Visible To Position and Radius);
+		End;
 		Event Player.T = Last Created Entity;
 	}
 }
@@ -4366,7 +4240,7 @@ rule("CORE: (BOSS) ZEN - SWITCH")
 	}
 }
 
-rule("CORE: (BOSS) MEI - NO ULTIMATE")
+rule("CORE: (BOSS) MEI - ULTIMATE CHARGE TIER")
 {
 	event
 	{
@@ -4374,65 +4248,24 @@ rule("CORE: (BOSS) MEI - NO ULTIMATE")
 		Team 1;
 		Mei;
 	}
-
+	
 	conditions
 	{
 		Is Alive(Event Player) == True;
-		Ultimate Charge Percent(Event Player) < 75;
+		Count Of(Filtered Array(Array(-1, 74, 99),  Current Array Element < Ultimate Charge Percent(Event Player))) != Event Player.UltimateTier;
 	}
-
+	
 	actions
 	{
 		Destroy Effect(Event Player.PlayerFX_1);
 		Destroy Effect(Event Player.PlayerFX_0);
-	}
-}
-
-rule("CORE: (BOSS) MEI - 3/4 ULTIMATE")
-{
-	event
-	{
-		Ongoing - Each Player;
-		Team 1;
-		Mei;
-	}
-
-	conditions
-	{
-		Is Alive(Event Player) == True;
-		Ultimate Charge Percent(Event Player) >= 75;
-		Is Waiting For Players == False;
-	}
-
-	actions
-	{
-		Destroy Effect(Event Player.PlayerFX_1);
+		Event Player.UltimateTier = Count Of(Filtered Array(Array(-1, 74, 99),  Current Array Element < Ultimate Charge Percent(Event Player)));
+		Abort If(Is Waiting For Players || Event Player.UltimateTier == 1);
 		Create Effect(All Players(Team 2), Cloud, Color(White), Event Player, 0.200, Visible To Position and Radius);
 		Event Player.PlayerFX_1 = Last Created Entity;
-	}
-}
-
-rule("CORE: (BOSS) MEI - FULL ULTIMATE")
-{
-	event
-	{
-		Ongoing - Each Player;
-		Team 1;
-		Mei;
-	}
-
-	conditions
-	{
-		Is Alive(Event Player) == True;
-		Ultimate Charge Percent(Event Player) == 100;
-		Is Waiting For Players == False;
-	}
-
-	actions
-	{
-		Destroy Effect(Event Player.PlayerFX_0);
-		Create Effect(All Players(Team 2), Sparkles, Color(Sky Blue), Event Player, 1.750, Visible To Position and Radius);
-		Event Player.PlayerFX_0 = Last Created Entity;
+		If(Event Player.UltimateTier == 3);
+			Create Effect(All Players(Team 2), Sparkles, Color(Sky Blue), Event Player, 1.750, Visible To Position and Radius);
+			Event Player.PlayerFX_0 = Last Created Entity;
 	}
 }
 
@@ -4535,7 +4368,7 @@ rule("CORE: (BOSS) REAP - NORM JUMP")
 	}
 }
 
-rule("CORE: (BOSS) REAP - NO ULTIMATE")
+rule("CORE: (BOSS) REAP - ULTIMATE CHARGE TIER")
 {
 	event
 	{
@@ -4543,65 +4376,24 @@ rule("CORE: (BOSS) REAP - NO ULTIMATE")
 		Team 1;
 		Reaper;
 	}
-
+	
 	conditions
 	{
 		Is Alive(Event Player) == True;
-		Ultimate Charge Percent(Event Player) < 75;
+		Count Of(Filtered Array(Array(-1, 74, 99),  Current Array Element < Ultimate Charge Percent(Event Player))) != Event Player.UltimateTier;
 	}
-
+	
 	actions
 	{
-		Destroy Effect(Event Player.PlayerFX_1);
 		Destroy Effect(Event Player.PlayerFX_0);
-	}
-}
-
-rule("CORE: (BOSS) REAP - 3/4 ULTIMATE")
-{
-	event
-	{
-		Ongoing - Each Player;
-		Team 1;
-		Reaper;
-	}
-
-	conditions
-	{
-		Is Alive(Event Player) == True;
-		Ultimate Charge Percent(Event Player) >= 75;
-		Is Waiting For Players == False;
-	}
-
-	actions
-	{
 		Destroy Effect(Event Player.PlayerFX_1);
+		Event Player.UltimateTier = Count Of(Filtered Array(Array(-1, 74, 99),  Current Array Element < Ultimate Charge Percent(Event Player)));
+		Abort If(Is Waiting For Players || Event Player.UltimateTier == 1);
 		Create Effect(All Players(Team 2), Cloud, Color(Red), Event Player, 0.200, Visible To Position and Radius);
 		Event Player.PlayerFX_1 = Last Created Entity;
-	}
-}
-
-rule("CORE: (BOSS) REAP - FULL ULTIMATE")
-{
-	event
-	{
-		Ongoing - Each Player;
-		Team 1;
-		Reaper;
-	}
-
-	conditions
-	{
-		Is Alive(Event Player) == True;
-		Ultimate Charge Percent(Event Player) == 100;
-		Is Waiting For Players == False;
-	}
-
-	actions
-	{
-		Destroy Effect(Event Player.PlayerFX_0);
-		Create Effect(All Players(Team 2), Bad Aura, Color(Red), Event Player, 0.100, Visible To Position and Radius);
-		Event Player.PlayerFX_0 = Last Created Entity;
+		If(Event Player.UltimateTier == 3);
+			Create Effect(All Players(Team 2), Bad Aura, Color(Red), Event Player, 0.100, Visible To Position and Radius);
+			Event Player.PlayerFX_0 = Last Created Entity;
 	}
 }
 
@@ -15461,71 +15253,33 @@ rule("CORE: (BOSS) ECHO - P.C. DUPE")
 	}
 }
 
-rule("CORE: (BOSS) ECHO - NO ULTIMATE")
+rule("CORE: (BOSS) ECHO - ULTIMATE CHARGE TIER")
 {
 	event
 	{
 		Ongoing - Each Player;
 		Team 1;
-		Echo;
+		Reaper;
 	}
-
+	
 	conditions
 	{
 		Is Alive(Event Player) == True;
-		Ultimate Charge Percent(Event Player) < 75;
+		Is Duplicating(Event Player) == False;
+		Count Of(Filtered Array(Array(-1, 74, 89),  Current Array Element < Ultimate Charge Percent(Event Player))) != Event Player.UltimateTier;
 	}
-
+	
 	actions
 	{
-		Destroy Effect(Event Player.PlayerFX_3);
 		Destroy Effect(Event Player.PlayerFX_0);
-	}
-}
-
-rule("CORE: (BOSS) ECHO - 3/4 ULTIMATE")
-{
-	event
-	{
-		Ongoing - Each Player;
-		Team 1;
-		Echo;
-	}
-
-	conditions
-	{
-		(Is Alive(Event Player) && !Is Waiting For Players && !Is Duplicating(Event Player)) == True;
-		Ultimate Charge Percent(Event Player) >= 75;
-	}
-
-	actions
-	{
 		Destroy Effect(Event Player.PlayerFX_3);
+		Event Player.UltimateTier = Count Of(Filtered Array(Array(-1, 74, 89),  Current Array Element < Ultimate Charge Percent(Event Player)));
+		Abort If(Is Waiting For Players || Event Player.UltimateTier == 1);
 		Create Effect(All Players(Team 2), Reaper Wraith Form Effect, Color(Team 1), Event Player, 1, Visible To Position and Radius);
 		Event Player.PlayerFX_3 = Last Created Entity;
-	}
-}
-
-rule("CORE: (BOSS) ECHO - 9/10 ULTIMATE")
-{
-	event
-	{
-		Ongoing - Each Player;
-		Team 1;
-		Echo;
-	}
-
-	conditions
-	{
-		(Is Alive(Event Player) && !Is Waiting For Players && !Is Duplicating(Event Player)) == True;
-		Ultimate Charge Percent(Event Player) > 90;
-	}
-
-	actions
-	{
-		Destroy Effect(Event Player.PlayerFX_0);
-		Create Effect(All Players(Team 2), Bad Aura, Color(Red), Event Player, 0.100, Visible To Position and Radius);
-		Event Player.PlayerFX_0 = Last Created Entity;
+		If(Event Player.UltimateTier == 3);
+			Create Effect(All Players(Team 2), Bad Aura, Color(Red), Event Player, 0.100, Visible To Position and Radius);
+			Event Player.PlayerFX_0 = Last Created Entity;
 	}
 }
 
