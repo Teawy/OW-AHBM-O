@@ -11086,7 +11086,8 @@ rule("CORE: (BOSS) HOG - ULTIMATE THAW")
 
 	conditions
 	{
-		(Is Dead(Event Player) ||  (Global.BossFrozen[0] == -1 && Event Player.F == 0)) == True;
+		Global.BossFrozen[0] == -1;
+		(Is Dead(Event Player) && Event Player.F == 0) == True;
 	}
 
 	actions
@@ -11166,7 +11167,8 @@ rule("CORE: (BOSS) TORB - ULTIMATE THAW")
 
 	conditions
 	{
-		(Is Dead(Event Player) ||  (Global.BossFrozen[0] == -1 && Event Player.F == 0)) == True;
+		Global.BossFrozen[0] == -1;
+		(Is Dead(Event Player) && Event Player.F == 0) == True;
 	}
 
 	actions
@@ -11310,7 +11312,8 @@ rule("CORE: (BOSS) D.VA - MECH THAW")
 
 	conditions
 	{
-		(Is Dead(Event Player) ||  (Global.BossFrozen[0] == -1 && Event Player.F == 0)) == True;
+		Global.BossFrozen[0] == -1;
+		(Is Dead(Event Player) && Event Player.F == 0) == True;
 	}
 
 	actions
