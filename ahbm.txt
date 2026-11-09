@@ -223,13 +223,13 @@ settings
 
 			Doctrine
 			{
-				Damage Dealt: 242.4243%
+				Damage Dealt: 250%
 				Health: 400%
 				Infuse Cooldown Time: 10%
 				Invigorating Drones: Off
 				Passive Health Regeneration: On
 				Role Passives: Off
-				Shrouded Momentum Cooldown Time: 37.5%
+				Shrouded Momentum Cooldown Time: 30%
 				Shrouded Momentum Duration Scalar: 138%
 				Ultimate Generation - Passive Deliverance: 0%
 			}
@@ -412,9 +412,9 @@ settings
 				Damage Received: 22%
 				Frenetic Flight Maximum Time: 75%
 				Frenetic Flight Recharge Rate: 35%
-				Healing Dealt: 400%
+				Healing Dealt: 500%
 				Healing Received: 10%
-				Health: 400%
+				Health: 450%
 				Lifeline: Off
 				Movement Speed: 125%
 				Passive Health Regeneration: On
@@ -427,13 +427,13 @@ settings
 			Junker Queen
 			{
 				Ammunition Clip Size Scalar: 25%
-				Carnage Cooldown Time: 10%
+				Carnage Cooldown Time: 14%
 				Commanding Shout Cooldown Time: 10%
 				Damage Dealt: 162%
 				Damage Received: 50%
 				Healing Dealt: 90%
 				Healing Received: 12%
-				Health: 160%
+				Health: 141.1765%
 				Jagged Blade Delay Before Automatic Recall: 160%
 				Jagged Blade Knockback Scalar: 120%
 				Jump Vertical Speed: 190%
@@ -549,7 +549,7 @@ settings
 			Mauga
 			{
 				Cardiac Overdrive Cooldown Time: 132%
-				Damage Received: 40%
+				Damage Received: 43.1%
 				Healing Dealt: 50%
 				Health: 300%
 				Passive Health Regeneration: On
@@ -684,7 +684,7 @@ settings
 
 			Ramattra
 			{
-				Ammunition Clip Size Scalar: 25%
+				Ammunition Clip Size Scalar: 28%
 				Damage Received: 20%
 				Health: 250%
 				Infinite Ultimate Duration: On
@@ -705,7 +705,7 @@ settings
 				Damage Received: 48%
 				Healing Dealt: 416%
 				Healing Received: 21%
-				Health: 218.18094%
+				Health: 200%
 				Movement Speed: 90%
 				Passive Health Regeneration: On
 				Role Passives: Off
@@ -764,7 +764,7 @@ settings
 				Damage Dealt: 143%
 				Damage Received: 36%
 				Evade Cooldown Time: 200%
-				Execution Cooldown Time: 20%
+				Execution Cooldown Time: 40%
 				Healing Received: 12%
 				Health: 200%
 				Joyride Cooldown Time: 66%
@@ -1217,11 +1217,13 @@ settings
 
 			Doctrine
 			{
-				Damage Dealt: 90.9091%
+				Damage Dealt: 93.75%
 				Healing Dealt: 25%
 				Healing Received: 100%
+				Infuse Cooldown Time: 88%
 				Passive Health Regeneration: On
 				Role Passives: Off
+				Shrouded Momentum Cooldown Time: 80%
 			}
 
 			Domina
@@ -1382,11 +1384,11 @@ settings
 			Jetpack Cat
 			{
 				Ammunition Clip Size Scalar: 50%
-				Biotic Pawjectile Range: 100%
+				Biotic Pawjectile Range: 125%
 				Damage Dealt: 80%
 				Healing Dealt: 12.5%
 				Healing Received: 200%
-				Health: 88.88889%
+				Health: 100%
 				Lifeline Cooldown Time: 200%
 				Passive Health Regeneration: On
 				Purr Cooldown Time: 333%
@@ -1398,11 +1400,11 @@ settings
 			Junker Queen
 			{
 				Ammunition Clip Size Scalar: 50%
-				Carnage Cooldown Time: 66%
+				Carnage Cooldown Time: 71%
 				Commanding Shout Cooldown Time: 160%
 				Damage Dealt: 54%
 				Healing Received: 66%
-				Health: 120%
+				Health: 100%
 				Jagged Blade Gracie Cooldown Time: 266%
 				Jagged Blade Delay Before Automatic Recall: 50%
 				Jagged Blade Knockback Scalar: 120%
@@ -1626,7 +1628,7 @@ settings
 
 			Ramattra
 			{
-				Ammunition Clip Size Scalar: 40%
+				Ammunition Clip Size Scalar: 32%
 				Damage Dealt: 40%
 				Healing Received: 40%
 				Health: 86.6085%
@@ -13784,7 +13786,7 @@ rule("CORE: (TEAM) REAP - ENERGY BUFFS")
 	actions
 	{
 		Set Damage Dealt(Event Player, 140);
-		Add Health Pool To Player(Event Player, Health, 125, False, False);
+		Add Health Pool To Player(Event Player, Health, 100, False, False);
 		Event Player.shield_pool = Last Created Health Pool;
 		Set Move Speed(Event Player, 125);
 		Set Ammo(Event Player, 0, 16);
@@ -17094,9 +17096,9 @@ rule("CORE: (ALL) JQ - SHOUT HP")
 	{
 		Remove Health Pool From Player(Event Player.shield_pool);
 		Skip If(Team Of(Event Player) == Team 2, 2);
-		Add Health Pool To Player(Event Player, Health, 80, False, False);
+		Add Health Pool To Player(Event Player, Health, 117.647, False, False);
 		Skip(1);
-		Add Health Pool To Player(Event Player, Health, 10, False, False);
+		Add Health Pool To Player(Event Player, Health, 125, False, False);
 		Event Player.shield_pool = Last Created Health Pool;
 		Wait(4, Ignore Condition);
 		Remove Health Pool From Player(Event Player.armour_pool);
