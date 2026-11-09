@@ -2101,7 +2101,7 @@ rule("CORE: (TIMER) SET START TIME")
 	}
 }
 
-rule("CORE: (BOSS) ALL - RESISTANCE STAT")
+rule("CORE: (BOSS) ALL - RESISTANCE STAT & SIZE")
 {
 	event
 	{
@@ -2117,38 +2117,12 @@ rule("CORE: (BOSS) ALL - RESISTANCE STAT")
 
 	actions
 	{
+		Start Scaling Player(Event Player, Array(1, 1.166, 1.11)[1 + Index Of Array Value(Array(Hero(Zarya), Hero(Bastion)), Hero Of(Event Player))], False);
+		Start Scaling Barriers(Event Player, Array(1, 0.600)[1 + Index Of Array Value(Array(Hero(Sigma)), Hero Of(Event Player))], False);
 		Event Player.current_hero = Hero Of(Event Player);
-		If(Hero Of(Event Player) == Hero(Ashe));
-			Global.BossResistanceStat = 0.360;
-		Else If(Hero Of(Event Player) == Hero(Jetpack Cat));
-			Global.BossResistanceStat = 0.220;
-		Else If(Hero Of(Event Player) == Hero(Symmetra));
-			Global.BossResistanceStat = 0.470;
-		Else If(Hero Of(Event Player) == Hero(Zarya));
-			Global.BossResistanceStat = 0.260;
-		Else If(Hero Of(Event Player) == Hero(Soldier: 76));
-			Global.BossResistanceStat = 0.250;
-		Else If(Hero Of(Event Player) == Hero(Mei));
-			Global.BossResistanceStat = 0.180;
-		Else If(Hero Of(Event Player) == Hero(Junkrat));
-			Global.BossResistanceStat = 0.370;
-		Else If(Hero Of(Event Player) == Hero(Echo) || Hero Of(Event Player) == Hero(Mercy));
-			Global.BossResistanceStat = 0.330;
-		Else If(Hero Of(Event Player) == Hero(Vendetta) || Hero Of(Event Player) == Hero(Illari));
-			Global.BossResistanceStat = 0.350;
-		Else If(Hero Of(Event Player) == Hero(Venture) || Hero Of(Event Player) == Hero(Winston));
-			Global.BossResistanceStat = 0.550;
-		Else If(Array Contains(Array(Hero(Reaper), Hero(Sojourn), Hero(Wrecking Ball)), Hero Of(Event Player)));
-			Global.BossResistanceStat = 0.480;
-		Else If(Array Contains(Array(Hero(Reinhardt), Hero(Ramattra), Hero(Domina)), Hero Of(Event Player)));
-			Global.BossResistanceStat = 0.200;
-		Else If(Array Contains(Array(Hero(Brigitte), Hero(Lifeweaver), Hero(Pharah), Hero(Sigma)), Hero Of(Event Player)));
-			Global.BossResistanceStat = 0.200;
-		Else If(Array Contains(Array(Hero(D.Va), Hero(Junker Queen), Hero(Moira), Hero(Orisa), Hero(Widowmaker)), Hero Of(Event Player)));
-			Global.BossResistanceStat = 0.500;
-		Else;
-			Global.BossResistanceStat = 0.400;
-		End;
+		Global.BossResistanceStat = Array(0.400, 0.360, 0.220, 0.470, 0.260, 0.250, 0.180, 0.370, 0.330, 0.330, 0.350, 0.350, 0.550, 0.550, 0.480, 0.480, 0.480, 0.200, 0.200, 0.200, 0.200, 0.200, 0.200, 0.200, 0.500, 0.500, 0.500, 0.500, 0.500)[
+			1 + Index Of Array Value(Array(Hero(Ashe), Hero(Jetpack Cat), Hero(Symmetra), Hero(Zarya), Hero(Soldier: 76), Hero(Mei), Hero(Junkrat), Hero(Echo), Hero(Mercy), Hero(Vendetta), Hero(Illari), Hero(Venture), Hero(Winston),
+			Hero(Reaper), Hero(Sojourn), Hero(Wrecking Ball), Hero(Reinhardt), Hero(Ramattra), Hero(Domina), Hero(Brigitte), Hero(Lifeweaver), Hero(Pharah), Hero(Sigma), Hero(D.Va), Hero(Junker Queen), Hero(Moira), Hero(Orisa), Hero(Widowmaker)), Hero Of(Event Player))];
 		Wait(0.100, Ignore Condition);
 		Loop If Condition Is True;
 	}
@@ -10863,7 +10837,7 @@ rule("CORE: (BOSS) SHION: HEALTH POOL")
 	}
 }
 
-rule("CORE: (BOSS) SIGMA: HEALTH & SIZE")
+rule("CORE: (BOSS) SIGMA: HEALTH")
 {
 	event
 	{
@@ -10874,8 +10848,6 @@ rule("CORE: (BOSS) SIGMA: HEALTH & SIZE")
 
 	actions
 	{
-		Start Scaling Player(Event Player, 1, False);
-		Start Scaling Barriers(Event Player, 0.600, False);
 		Remove Health Pool From Player(Global.BOSS_HealthPools[0]);
 		Remove Health Pool From Player(Global.BOSS_HealthPools[1]);
 		Add Health Pool To Player(Event Player, Health, 500, True, False);
@@ -10993,12 +10965,12 @@ rule("CORE: (TEAM) D.MON - SIZE")
 	}
 }
 
-rule("CORE: (ALL) BASTION - SIZE")
+rule("CORE: (TEAM) BASTION - SIZE")
 {
 	event
 	{
 		Ongoing - Each Player;
-		All;
+		Team 2;
 		Bastion;
 	}
 
@@ -11029,43 +11001,6 @@ rule("CORE: (TEAM) General - SIZE")
 	{
 		Start Scaling Player(Event Player, 1, False);
 		Start Scaling Barriers(Event Player, 1, False);
-	}
-}
-
-rule("CORE: (BOSS) General - SIZE")
-{
-	event
-	{
-		Ongoing - Each Player;
-		Team 1;
-		All;
-	}
-
-	conditions
-	{
-		Has Spawned(Event Player) == True;
-		Array Contains(Array(Hero(Zarya), Hero(Sigma), Hero(Bastion)), Hero Of(Event Player)) != True;
-	}
-
-	actions
-	{
-		Start Scaling Player(Event Player, 1, False);
-		Start Scaling Barriers(Event Player, 1, False);
-	}
-}
-
-rule("CORE: (BOSS) ZAR - SIZE")
-{
-	event
-	{
-		Ongoing - Each Player;
-		Team 1;
-		Zarya;
-	}
-
-	actions
-	{
-		Start Scaling Player(Event Player, 1.166, False);
 	}
 }
 
