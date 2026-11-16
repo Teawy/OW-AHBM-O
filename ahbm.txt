@@ -2118,6 +2118,8 @@ rule("CORE: (BOSS) ALL - RESISTANCE STAT")
 	actions
 	{
 		Event Player.current_hero = Hero Of(Event Player);
+		Set Secondary Fire Enabled(Event Player, !Array Contains(Array(Hero(Baptiste), Hero(Zenyatta), Hero(Illari), Hero(Genji), Hero(Winston), Hero(Reaper), Hero(Roadhog)), Hero Of(
+			Event Player)));
 		If(Hero Of(Event Player) == Hero(Ashe));
 			Global.BossResistanceStat = 0.360;
 		Else If(Hero Of(Event Player) == Hero(Jetpack Cat));
@@ -2609,7 +2611,7 @@ rule("CORE: (WAIT) SELF KILL")
 
 	actions
 	{
-		Skip If((Hero Of(Event Player) == Hero(Ramattra) && Event Player.PlayerFX_3 && Team Of(Event Player) == Team 1) == True,
+		Skip If((Hero Of(Event Player) == Hero(Ramattra) && Event Player.PlayerFX_3 && Team Of(Event Player) == Team 1),
 			9);
 		Small Message(Event Player, 3);
 		Wait(1, Ignore Condition);
@@ -2874,7 +2876,7 @@ rule("CORE: (MSGS) BOSS SLEPT MSG + BOSS SLEPT MSG ERASE")
 		Create HUD Text(All Players(All Teams), Ability Icon String(Hero(Ana), Button(Ability 1)), Null, Custom String("Boss Sleeping"),
 			Right, -1.500, Color(Blue), Color(Blue), Color(Blue), Visible To and String, Default Visibility);
 		Global.BOSS_StatusArray[0] = Last Text ID;
-		Wait Until(Has Status(Event Player, Asleep) != True && Is Waiting For Players != True, 99999);
+		Wait Until(!Has Status(Event Player, Asleep) && !Is Waiting For Players, 99999);
 		Wait(0.016, Ignore Condition);
 		Destroy HUD Text(Global.BOSS_StatusArray[0]);
 		Wait(0.016, Ignore Condition);
@@ -3068,7 +3070,7 @@ rule("CORE: (TEAM) MERCY: RES HEALING UP (H) + RES HEALING VAR (H)")
 	{
 		Skip If(Global.H[0], 3);
 		Global.H[0] = True;
-		Wait Until(Is Using Ability 2(Event Player) != True, 99999);
+		Wait Until(!Is Using Ability 2(Event Player), 99999);
 		Wait(1, Ignore Condition);
 		Global.H[0] = False;
 		Wait(0.016, Ignore Condition);
@@ -3262,7 +3264,7 @@ rule("CORE: (TEAM) MERCY: RES AURA OFF ..................SHANALOTTE")
 		Global.Res_CD = 5;
 		Event Player.S = False;
 		Set Healing Received(Event Player, 20);
-		Skip If(Is Alive(Players On Hero(Hero(Mercy), Team 2)) == False, 3);
+		Skip If(Is Dead(Players On Hero(Hero(Mercy), Team 2)), 3);
 		Destroy HUD Text(Global.Mercy_State);
 		Create HUD Text(All Players(All Teams), Custom String("{0} {1}", Round To Integer(Global.Res_CD, Up), Hero Icon String(Hero(
 			Mercy))), Null, Null, Top, -5, Color(White), Color(White), Color(Yellow), Visible To and String, Visible Always);
@@ -3667,22 +3669,17 @@ rule("CORE: (BOSS) REIN - FLAME ON")
 		Skip If(Is Waiting For Players, 2);
 		Play Effect(All Players(All Teams), Bad Pickup Effect, Color(Red), Event Player, 1);
 		Set Status(Event Player, Null, Burning, 9999);
-		Skip If(Event Player.primary_charge != 2, 1);
 		Stop Chasing Player Variable(Event Player, FireStrike);
 		Event Player.FireStrike = 5;
-		Skip If(Event Player.primary_charge != 2, 3);
 		Destroy HUD Text(Global.BOSS_AbilityKey);
+		Skip If(Event Player.primary_charge != 2, 1);
 		Create HUD Text(All Players(Team 1), Custom String("{0} {0}", Icon String(Fire)), Custom String("CHARGES OF"), Custom String(
 			"FIRE STRIKE"), Left, 1, Color(Red), Color(White), Color(Red), Visible To and String, Default Visibility);
-		Global.BOSS_AbilityKey = Last Text ID;
-		Skip If(Event Player.primary_charge != 1, 3);
-		Destroy HUD Text(Global.BOSS_AbilityKey);
+		Skip If(Event Player.primary_charge != 1, 1);
 		Create HUD Text(All Players(Team 1), Custom String("{0} {1}", Icon String(Fire), Round To Integer(Event Player.FireStrike, Up)),
 			Custom String("CHARGES OF"), Custom String("FIRE STRIKE"), Left, 1, Color(Red), Color(White), Color(Red),
 			Visible To and String, Default Visibility);
-		Global.BOSS_AbilityKey = Last Text ID;
-		Skip If(Event Player.primary_charge != 0, 3);
-		Destroy HUD Text(Global.BOSS_AbilityKey);
+		Skip If(Event Player.primary_charge != 0, 1);
 		Create HUD Text(All Players(Team 1), Custom String("{0} {1}", Icon String(No), Round To Integer(Event Player.FireStrike, Up)),
 			Custom String("CHARGES OF"), Custom String("FIRE STRIKE"), Left, 1, Color(Red), Color(White), Color(Red),
 			Visible To and String, Default Visibility);
@@ -3720,19 +3717,15 @@ rule("CORE: (BOSS) REIN - FLAME OFF")
 		Wait Until(!Is Using Ability 2(Event Player), 0.480);
 		Abort If(Has Status(Event Player, Frozen) || Has Status(Event Player, Hacked));
 		Chase Player Variable At Rate(Event Player, FireStrike, 0, 1, Destination and Rate);
-		Skip If(Event Player.primary_charge != 2, 3);
 		Destroy HUD Text(Global.BOSS_AbilityKey);
+		Skip If(Event Player.primary_charge != 2, 1);
 		Create HUD Text(All Players(Team 1), Custom String("{0} {0}", Icon String(Fire)), Custom String("CHARGES OF"), Custom String(
 			"FIRE STRIKE"), Left, 1, Color(Red), Color(White), Color(Red), Visible To and String, Default Visibility);
-		Global.BOSS_AbilityKey = Last Text ID;
-		Skip If(Event Player.primary_charge != 1, 3);
-		Destroy HUD Text(Global.BOSS_AbilityKey);
+		Skip If(Event Player.primary_charge != 1, 1);
 		Create HUD Text(All Players(Team 1), Custom String("{0} {1}", Icon String(Fire), Round To Integer(Event Player.FireStrike, Up)),
 			Custom String("CHARGES OF"), Custom String("FIRE STRIKE"), Left, 1, Color(Red), Color(White), Color(Red),
 			Visible To and String, Default Visibility);
-		Global.BOSS_AbilityKey = Last Text ID;
-		Skip If(Event Player.primary_charge != 0, 3);
-		Destroy HUD Text(Global.BOSS_AbilityKey);
+		Skip If(Event Player.primary_charge != 0, 1);
 		Create HUD Text(All Players(Team 1), Custom String("{0} {1}", Icon String(No), Round To Integer(Event Player.FireStrike, Up)),
 			Custom String("CHARGES OF"), Custom String("FIRE STRIKE"), Left, 1, Color(Red), Color(White), Color(Red),
 			Visible To and String, Default Visibility);
@@ -3800,10 +3793,6 @@ rule("CORE: (BOSS) REIN - FIRE THAW")
 					Set Status(Event Player, Null, Burning, 9999);
 				End;
 			End;
-			"If he has fewer than 2 charges, resume ticking down his 5s cooldown from where it paused"
-			If(Event Player.primary_charge < 2);
-				Chase Player Variable At Rate(Event Player, FireStrike, 0, 1, Destination and Rate);
-			End;
 		End;
 		"Recreate the Fire Strike HUD so BossClearFreeze doesn't leave him with no HUD"
 		Destroy HUD Text(Global.BOSS_AbilityKey);
@@ -3851,7 +3840,7 @@ rule("CORE: (BOSS) REIN - FLAME HACKED")
 	}
 }
 
-rule("CORE: (BOSS) REIN - FLAME UNHACKED")
+rule("CORE: (BOSS) REIN - NEXT FLAME TIMER")
 {
 	event
 	{
@@ -3863,8 +3852,8 @@ rule("CORE: (BOSS) REIN - FLAME UNHACKED")
 	conditions
 	{
 		Has Status(Event Player, Hacked) == False;
-		Event Player.primary_charge == 0;
-		Event Player.FireStrike == 5;
+		Event Player.primary_charge < 2;
+		Event Player.FireStrike != 0;
 		Global.BossFrozen[0] != -1;
 	}
 
@@ -7522,7 +7511,7 @@ rule("MAPS: set threshold list 2")
 		Global.Enviro_Threshold = 7;
 		Skip If(Current Map != Map(King's Row) && Current Map != Map(King's Row Winter), 1);
 		Global.Enviro_Threshold = -100;
-		Skip If(Current Map != Map(Workshop Island) && Current Map != Map(Workshop Island Night) && Current Map != Map(Workshop Expanse) && Current Map != Map(Workshop Expanse Night), 1);
+		Skip If(!Array Contains(Array(Map(Workshop Island), Map(Workshop Island Night), Map(Workshop Expanse), Map(Workshop Expanse Night)), Current Map), 1);
 		Global.Enviro_Threshold = -20;
 	}
 }
@@ -10426,48 +10415,6 @@ rule("CORE: (WAIT) INSTA ULT")
 	}
 }
 
-rule("CORE: (BOSS) DISABLE 2nd FIRE")
-{
-	event
-	{
-		Ongoing - Each Player;
-		Team 1;
-		All;
-	}
-
-	conditions
-	{
-		Array Contains(Array(Hero(Baptiste), Hero(Zenyatta), Hero(Illari), Hero(Winston), Hero(Reaper), Hero(Roadhog)), Hero Of(Event Player)) == True;
-	}
-
-	actions
-	{
-		Set Secondary Fire Enabled(Event Player, False);
-	}
-}
-
-rule("CORE: (BOSS) ENABLE 2nd FIRE")
-{
-	event
-	{
-		Ongoing - Each Player;
-		Team 1;
-		All;
-	}
-
-	conditions
-	{
-		Array Contains(Array(Hero(Baptiste), Hero(Zenyatta), Hero(Illari), Hero(Genji), Hero(Winston), Hero(Reaper), Hero(Roadhog)), Hero Of(
-			Event Player)) != True;
-		Has Spawned(Event Player) == True;
-	}
-
-	actions
-	{
-		Set Secondary Fire Enabled(Event Player, True);
-	}
-}
-
 rule("MAPS: Chateau Guillard - ENVIRO RES")
 {
 	event
@@ -11798,8 +11745,7 @@ rule("CORE: (BOSS) MERCY - FAST HEAL STUN CANCEL")
 	conditions
 	{
 		Event Player.Z[0] == True;
-		(Has Status(Event Player, Hacked) || Has Status(Event Player, Stunned) || Has Status(Event Player, Knocked Down) || Has Status(
-			Event Player, Asleep) || Has Status(Event Player, Frozen)) == True;
+		Event Player.Stunned == True;
 	}
 
 	actions
@@ -12245,8 +12191,8 @@ rule("CORE: (TEAM) RAM - HOT LOOP")
 	conditions
 	{
 		Is Alive(Event Player) == True;
-		(Has Status(Event Player, Stunned) != True && Has Status(Event Player, Knocked Down) != True && Has Status(Event Player, Frozen)
-			!= True && Has Status(Event Player, Asleep) != True && Has Status(Event Player, Hacked) != True && True) == True;
+		(!Has Status(Event Player, Stunned) && !Has Status(Event Player, Knocked Down) && !Has Status(Event Player, Frozen)
+			 && !Has Status(Event Player, Asleep) && !Has Status(Event Player, Hacked) && True) == True;
 	}
 
 	actions
@@ -13853,9 +13799,7 @@ rule("CORE: (TEAM) REAP - TELE CANCEL")
 	conditions
 	{
 		Event Player.secondary_charge == 1;
-		(Is Button Held(Event Player, Button(Secondary Fire)) || Has Status(Event Player, Hacked) || Has Status(Event Player, Knocked Down)
-			|| Has Status(Event Player, Asleep) || Has Status(Event Player, Frozen) || Has Status(Event Player, Rooted) || Has Status(
-			Event Player, Stunned)) == True;
+		(Is Button Held(Event Player, Button(Secondary Fire)) || Event Player.Stunned) == True;
 	}
 
 	actions
@@ -13970,8 +13914,7 @@ rule("CORE: (TEAM) RAM - HUD TEXT INACTIVE")
 
 	conditions
 	{
-		(Is Dead(Event Player) || Has Status(Event Player, Hacked) || Has Status(Event Player, Knocked Down) || Has Status(Event Player,
-			Asleep) || Has Status(Event Player, Frozen) || Has Status(Event Player, Stunned)) == True;
+		(Is Dead(Event Player) || Event Player.Stunned) == True;
 	}
 
 	actions
@@ -14615,7 +14558,7 @@ rule("CORE: (TEAM) HAM - SPAWN")
 	conditions
 	{
 		"DO NOT REMOVE"
-		(Has Spawned(Event Player) == True || Event Player.current_hero != Hero(Wrecking Ball)) == True;
+		(Has Spawned(Event Player) || Event Player.current_hero != Hero(Wrecking Ball)) == True;
 	}
 
 	actions
@@ -14736,8 +14679,7 @@ rule("CORE: (TEAM) HAM - END SLAM")
 
 	conditions
 	{
-		(!Is In Air(Event Player) || Is Dead(Event Player) || Has Status(Event Player, Hacked) || Has Status(Event Player,
-			Knocked Down) || Has Status(Event Player, Asleep) || Has Status(Event Player, Frozen) || Has Status(Event Player, Stunned)
+		(!Is In Air(Event Player) || Is Dead(Event Player) || Event Player.Stunned
 			|| False || False) == True;
 		Event Player.Ability_Bool == True;
 	}
@@ -14820,17 +14762,15 @@ rule("MAPS: ANTI-ENVIRO actions")
 		Skip If(Team Of(Event Player) == Team 2, 2);
 		Create Effect(All Players(All Teams), Ring, Color(White), Event Player, 0.500, Visible To Position and Radius);
 		Event Player.ringout_FX = Last Created Entity;
-		Skip If(Has Status(Event Player, Knocked Down), 8);
 		Wait(2, Restart When True);
 		Big Message(Event Player, Custom String("{0} OUT OF BOUNDS {0}", Icon String(No)));
+		Skip If(Has Status(Event Player, Knocked Down), 6);
 		Stop Throttle In Direction(Event Player);
 		Clear Status(Event Player, Phased Out);
 		Destroy Effect(Event Player.ringout_FX);
 		Wait Until(!Is Using Ability 1(Event Player), 4.040);
 		Set Status(Event Player, Null, Knocked Down, 4.444);
-		Skip(5);
-		Wait(2, Restart When True);
-		Big Message(Event Player, Custom String("{0} OUT OF BOUNDS {0}", Icon String(No)));
+		Skip(3);
 		Clear Status(Event Player, Knocked Down);
 		Stop Throttle In Direction(Event Player);
 		Wait(0.900, Restart When True);
@@ -14891,9 +14831,7 @@ rule("CORE: (TEAM) SIG - LEVITATION OFF")
 	conditions
 	{
 		Event Player.Ability_Bool == True;
-		(!Is Button Held(Event Player, Button(Jump)) || Is Dead(Event Player) || Has Status(Event Player, Hacked) || Has Status(
-			Event Player, Asleep) || Has Status(Event Player, Knocked Down) || Has Status(Event Player, Frozen) || Has Status(Event Player,
-			Rooted) || Has Status(Event Player, Stunned) || Is Using Ultimate(Event Player) || Is On Ground(Event Player)) == True;
+		(!Is Button Held(Event Player, Button(Jump)) || Is Dead(Event Player) || Event Player.Stunned || Is Using Ultimate(Event Player) || Is On Ground(Event Player)) == True;
 	}
 
 	actions
@@ -17452,7 +17390,7 @@ rule("CORE: (TEAM) SYM - USE STUN")
 	{
 		Press Button(Event Player, Button(Melee));
 		Wait(0.350, Ignore Condition);
-		Skip If(Is Meleeing(Event Player) == False, 33);
+		Skip If(!Is Meleeing(Event Player), 33);
 		Event Player.Ability_Toggle = False;
 		Event Player.Ability_Bool = True;
 		Skip If(!Is True For Any(Players Within Radius(Eye Position(Event Player) + Facing Direction Of(Event Player) * 6, 8, All Teams,
